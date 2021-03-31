@@ -20,6 +20,8 @@ Library\Bee\artifacts\movedfrom\Unity.InternalAPIEngineBridge.001.ref.dll_130381
 Library\Bee\artifacts\movedfrom\Unity.Mathematics.Editor.ref.dll_11106105192880348995.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.Mathematics.ref.dll_16784875247615350606.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.Mobile.AndroidLogcat.Editor.ref.dll_6547397256233500910.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.Multiplayer.MLAPI.Prototyping.ref.dll_3681747689304969008.movedfrom
+Library\Bee\artifacts\movedfrom\Unity.Multiplayer.MLAPI.Runtime.ref.dll_4877754222611491081.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.RenderPipeline.Universal.ShaderLibrary.ref.dll_6068312011569950091.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.RenderPipelines.Core.Editor.ref.dll_5110349078272833937.movedfrom
 Library\Bee\artifacts\movedfrom\Unity.RenderPipelines.Core.Runtime.ref.dll_14873774152507386634.movedfrom

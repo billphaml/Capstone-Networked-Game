@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637526666076378223
-    m_Hash: 1640572335
+      ticks: 637527484850532795
+    m_Hash: 3854633030
   m_LockFileStatus:
     m_FilePath: D:/Mass Document Storage/School HW-Projects/Capstone-Game/Capstone/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637526666089902291
-    m_Hash: 783365790
+      ticks: 637527484865308607
+    m_Hash: 2296586496
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -1117,6 +1117,68 @@ m_ResolvedPackages:
     type: git
     url: git+https://github.com/Unity-Technologies/com.unity.mobile.logcat.git
     revision: 1bb3d0b67733fc73fbd6c88358cfd882d64cc428
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+- packageId: com.unity.multiplayer.mlapi@https://github.com/Unity-Technologies/com.unity.multiplayer.mlapi.git?path=/com.unity.multiplayer.mlapi#0.1.0
+  testable: 0
+  isDirectDependency: 1
+  version: 0.1.0
+  source: 5
+  resolvedPath: D:\Mass Document Storage\School HW-Projects\Capstone-Game\Capstone\Library\PackageCache\com.unity.multiplayer.mlapi@17bd894dff
+  assetPath: Packages/com.unity.multiplayer.mlapi
+  name: com.unity.multiplayer.mlapi
+  displayName: MLAPI Networking Library
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: library
+  description: This the Core Unity Mid-level API that provides core SDK for multiplayer
+    games within unity
+  status: 4
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    verified: 
+  dependencies:
+  - name: com.unity.modules.ai
+    version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.nuget.mono-cecil
+    version: 1.10.1-preview.1
+  resolvedDependencies:
+  - name: com.unity.modules.ai
+    version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.nuget.mono-cecil
+    version: 1.10.1-preview.1
+  keywords:
+  - unity
+  registry:
+    id: 
+    name: 
+    url: 
+    scopes: []
+    isDefault: 0
+    capabilities: 0
+  hasRegistry: 0
+  hideInEditor: 0
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
     path: 
   unityLifecycle:
     version: 
@@ -4037,6 +4099,72 @@ m_ResolvedPackages:
     type: 
     url: 
     revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+- packageId: com.unity.nuget.mono-cecil@1.10.1-preview.1
+  testable: 0
+  isDirectDependency: 0
+  version: 1.10.1-preview.1
+  source: 1
+  resolvedPath: D:\Mass Document Storage\School HW-Projects\Capstone-Game\Capstone\Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1-preview.1
+  assetPath: Packages/com.unity.nuget.mono-cecil
+  name: com.unity.nuget.mono-cecil
+  displayName: Mono Cecil
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: 'The mono cecil library from https://www.nuget.org/packages/Mono.Cecil/
+
+
+    This
+    package is intended for internal Unity use only. Most Unity users will be better
+    suite using the existing community tooling.
+
+    To avoid assembly clashes, please
+    use this package if you intend to use Mono.Cecil.'
+  status: 4
+  errors: []
+  versions:
+    all:
+    - 0.1.6-preview.2
+    - 1.0.0-preview.1
+    - 1.10.0-preview.1
+    - 1.10.1-preview.1
+    - 1.10.1
+    compatible:
+    - 0.1.6-preview.2
+    - 1.0.0-preview.1
+    - 1.10.0-preview.1
+    - 1.10.1-preview.1
+    - 1.10.1
+    verified: 
+  dependencies: []
+  resolvedDependencies: []
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+  hasRegistry: 1
+  hideInEditor: 1
+  entitlements:
+    isAllowed: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637414275090000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.nuget.mono-cecil.git
+    revision: a3a6bd3697f92f6872f64c08a98ef2331394cd16
     path: 
   unityLifecycle:
     version: 
