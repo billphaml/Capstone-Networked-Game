@@ -10,13 +10,16 @@ namespace Capstone
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
             if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
             {
-                StartButtons();
+                // Default buttons for hosting and joining, replaced by custom buttons below
+                //StartButtons();
             }
             else
             {
                 StatusLabels();
 
                 SubmitNewPosition();
+
+                QuitSession();
             }
 
             GUILayout.EndArea();
@@ -53,6 +56,23 @@ namespace Capstone
                     }
                 }
             }
+        }
+
+        static void QuitSession()
+        {
+            if (GUILayout.Button("Quit")) NetworkManager.Singleton.StopClient();
+        }
+
+        //-------------------------------------------------------------------//
+
+        public static void Host()
+        {
+            NetworkManager.Singleton.StartHost();
+        }
+
+        public static void Join()
+        {
+            NetworkManager.Singleton.StartClient();
         }
     }
 }
