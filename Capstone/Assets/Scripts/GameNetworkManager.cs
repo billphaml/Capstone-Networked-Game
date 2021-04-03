@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Capstone
 {
-    public class GameplayNetworkManager : MonoBehaviour
+    public class GameNetworkManager : MonoBehaviour
     {
         void OnGUI()
         {
