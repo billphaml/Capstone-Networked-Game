@@ -15,7 +15,7 @@ using UnityEngine;
             {
                 StatusLabels();
 
-                SubmitNewPosition();
+                //SubmitNewPosition();
 
                 QuitSession();
             }

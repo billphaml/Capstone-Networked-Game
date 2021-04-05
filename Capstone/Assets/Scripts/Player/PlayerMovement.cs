@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
-using MLAPI;
 using UnityEngine;
+using MLAPI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     private Vector3 movement;
 
@@ -21,23 +21,30 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
-        movement.z = 0f;
-        //Debug.Log(movement);
+        if (IsLocalPlayer)
+        {
+            GrabInputPC();
+            //GrabInputAndroid();
+            //Debug.Log(movement);
+        }
     }
-        
-    // Update is called once per frame
+
+    void GrabInputPC()
+    {
+        movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        movement = Vector3.ClampMagnitude(movement, 1f);
+    }
+
+    void GrabInputAndroid()
+    {
+
+    }
+
     private void FixedUpdate()
     {
-        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
-            out var networkedClient))
+        if (IsLocalPlayer)
         {
-            var player = networkedClient.PlayerObject.GetComponent<NetworkPlayer>();
-            if (player)
-            {
-                player.Move(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
-            }
+            rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
     }
 }

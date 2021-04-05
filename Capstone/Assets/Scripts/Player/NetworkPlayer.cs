@@ -31,10 +31,35 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
+    public void Move()
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            var randomPosition = GetRandomPositionOnPlane();
+            transform.position = randomPosition;
+            Position.Value = randomPosition;
+        }
+        else
+        {
+            SubmitPositionRequestServerRpc();
+        }
+    }
+
     [ServerRpc]
     void SubmitPositionRequestServerRpc(Vector3 newPosition, ServerRpcParams rpcParams = default)
     {
         Position.Value = newPosition;
+    }
+
+    [ServerRpc]
+    void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
+    {
+        Position.Value = GetRandomPositionOnPlane();
+    }
+
+    static Vector3 GetRandomPositionOnPlane()
+    {
+        return new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0f);
     }
 
     void Update()
