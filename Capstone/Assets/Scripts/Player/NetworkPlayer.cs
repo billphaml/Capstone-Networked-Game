@@ -3,49 +3,42 @@ using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using UnityEngine;
 
-namespace Capstone
+
+public class NetworkPlayer : NetworkBehaviour
 {
-    public class NetworkPlayer : NetworkBehaviour
+    public NetworkVariableVector3 Position = new NetworkVariableVector3(new NetworkVariableSettings
     {
-        public NetworkVariableVector3 Position = new NetworkVariableVector3(new NetworkVariableSettings
-        {
-            WritePermission = NetworkVariablePermission.ServerOnly,
-            ReadPermission = NetworkVariablePermission.Everyone
-        });
+        WritePermission = NetworkVariablePermission.ServerOnly,
+        ReadPermission = NetworkVariablePermission.Everyone
+    });
 
-        public override void NetworkStart()
-        {
-            Move();
-        }
+    public override void NetworkStart()
+    {
+        Move(Vector3.zero);
+    }
 
-        public void Move()
+    public void Move(Vector3 newPosition)
+    {
+        if (NetworkManager.Singleton.IsServer)
         {
-            if (NetworkManager.Singleton.IsServer)
-            {
-                var randomPosition = GetRandomPositionOnPlane();
-                transform.position = randomPosition;
-                Position.Value = randomPosition;
-            }
-            else
-            {
-                SubmitPositionRequestServerRpc();
-            }
+            var randomPosition = newPosition;
+            transform.position = randomPosition;
+            Position.Value = randomPosition;
         }
+        else
+        {
+            SubmitPositionRequestServerRpc(newPosition);
+        }
+    }
 
-        [ServerRpc]
-        void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
-        {
-            Position.Value = GetRandomPositionOnPlane();
-        }
+    [ServerRpc]
+    void SubmitPositionRequestServerRpc(Vector3 newPosition, ServerRpcParams rpcParams = default)
+    {
+        Position.Value = newPosition;
+    }
 
-        static Vector3 GetRandomPositionOnPlane()
-        {
-            return new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0f);
-        }
-
-        void Update()
-        {
-            transform.position = Position.Value;
-        }
+    void Update()
+    {
+        transform.position = Position.Value;
     }
 }

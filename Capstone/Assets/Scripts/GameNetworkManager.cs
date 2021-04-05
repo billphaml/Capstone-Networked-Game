@@ -1,8 +1,6 @@
 using MLAPI;
 using UnityEngine;
 
-namespace Capstone
-{
     public class GameNetworkManager : MonoBehaviour
     {
         void OnGUI()
@@ -52,7 +50,7 @@ namespace Capstone
                     var player = networkedClient.PlayerObject.GetComponent<NetworkPlayer>();
                     if (player)
                     {
-                        player.Move();
+                        //player.Move();
                     }
                 }
             }
@@ -75,4 +73,4 @@ namespace Capstone
             NetworkManager.Singleton.StartClient();
         }
     }
-}
+
