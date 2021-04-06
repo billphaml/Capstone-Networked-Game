@@ -514,7 +514,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -532,8 +532,8 @@ RectTransform:
   - {fileID: 1895685642}
   - {fileID: 596434891}
   - {fileID: 82392201}
-  - {fileID: 211828068}
   - {fileID: 126110276}
+  - {fileID: 211828068}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -576,7 +576,7 @@ RectTransform:
   - {fileID: 1093984263}
   - {fileID: 1626370309}
   m_Father: {fileID: 112368698}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 157447374}
   - component: {fileID: 157447373}
   m_Layer: 5
-  m_Name: Lobby Name InputField (TMP)
+  m_Name: Server IP InputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1483,7 +1483,7 @@ RectTransform:
   - {fileID: 1988116252}
   - {fileID: 894000003}
   m_Father: {fileID: 112368698}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter lobby password...
+  m_text: Enter Server IP...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2626,6 +2626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c56574fd8b5a1449f6fb2a16419b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ipBoxHost: {fileID: 157447371}
+  ipBoxClient: {fileID: 942061428}
+  ServerPassword: {fileID: 584739783}
 --- !u!4 &857237187
 Transform:
   m_ObjectHideFlags: 0
@@ -2893,7 +2896,7 @@ GameObject:
   - component: {fileID: 942061431}
   - component: {fileID: 942061430}
   m_Layer: 5
-  m_Name: Password InputField (TMP)
+  m_Name: Server IP InputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3067,7 +3070,7 @@ GameObject:
   - component: {fileID: 1019623912}
   - component: {fileID: 1019623911}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text ip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3350,7 +3353,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1093984265}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2141971525}
+        m_TargetAssemblyTypeName: GameNetworkManager, Assembly-CSharp
+        m_MethodName: Join
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1093984265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,7 +3512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter lobby name...
+  m_text: Enter Server IP...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4881,7 +4896,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 211828067}
+      - m_Target: {fileID: 126110275}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -5579,6 +5594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dc3cc22be21ed44a980ab86e2f1780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 857237185}
 --- !u!4 &2141971526
 Transform:
   m_ObjectHideFlags: 0
