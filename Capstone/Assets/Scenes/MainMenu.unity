@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 157447374}
   - component: {fileID: 157447373}
   m_Layer: 5
-  m_Name: Server IP InputField (TMP)
+  m_Name: Server IP InputField Host (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2763,7 +2763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ipBoxHost: {fileID: 157447371}
-  ipBoxClient: {fileID: 157447371}
+  ipBoxClient: {fileID: 942061428}
   ServerPassword: {fileID: 584739783}
 --- !u!4 &857237187
 Transform:
@@ -2949,7 +2949,7 @@ GameObject:
   - component: {fileID: 942061431}
   - component: {fileID: 942061430}
   m_Layer: 5
-  m_Name: Server IP InputField (TMP)
+  m_Name: Server IP InputField Client (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
