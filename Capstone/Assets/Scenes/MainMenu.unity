@@ -2762,6 +2762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c56574fd8b5a1449f6fb2a16419b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ipBoxHost: {fileID: 157447371}
+  ipBoxClient: {fileID: 0}
+  ServerPassword: {fileID: 584739783}
 --- !u!4 &857237187
 Transform:
   m_ObjectHideFlags: 0
@@ -5770,6 +5773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dc3cc22be21ed44a980ab86e2f1780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
 --- !u!4 &2141971526
 Transform:
   m_ObjectHideFlags: 0
