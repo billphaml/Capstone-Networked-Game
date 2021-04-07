@@ -103,4 +103,3 @@ public class GameNetworkManager : MonoBehaviour
         NetworkManager.Singleton.StartClient();
     }
 }
-
