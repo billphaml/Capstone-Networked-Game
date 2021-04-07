@@ -1460,7 +1460,7 @@ GameObject:
   - component: {fileID: 211828068}
   - component: {fileID: 211828069}
   m_Layer: 5
-  m_Name: Joining Menu
+  m_Name: Old Joining Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1714,10 +1714,8 @@ MonoBehaviour:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 481076778}
     RegisteredScenes:
-    - SampleScene
-    - DemoScene
-    - NetworkingDemo
     - MainMenu
+    - NetworkingDemo
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
     - Prefab: {fileID: 665451937295417340, guid: 60f106e053163534aab54d723a21bb9c, type: 3}
@@ -3337,7 +3335,7 @@ GameObject:
   - component: {fileID: 1093984265}
   - component: {fileID: 1093984264}
   m_Layer: 5
-  m_Name: Create Lobby Button
+  m_Name: Join Lobby Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3411,6 +3409,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameNetworkManager, Assembly-CSharp
         m_MethodName: Join
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 126110275}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4249,6 +4259,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 596434890}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1626370311
 MonoBehaviour:

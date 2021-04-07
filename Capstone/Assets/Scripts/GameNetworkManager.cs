@@ -70,37 +70,37 @@ public class GameNetworkManager : MonoBehaviour
 
     //-------------------------------------------------------------------//
 
-    //public static void Host()
-    //{
-    //    UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
-    //    UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
-    //    Debug.Log(ui.ipBoxHost.GetComponent<TMP_InputField>().text);
-    //    if (ui.ipBoxHost.GetComponent<TMP_InputField>().text.Length <= 0)
-    //    {
-    //        manager.ConnectAddress = "127.0.0.1";
-    //    }
-    //    else
-    //    {
-    //        manager.ConnectAddress = ui.ipBoxHost.GetComponent<TMP_InputField>().text;
-    //    }
+    public static void Host()
+    {
+        UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
+        Debug.Log(ui.ipBoxHost.GetComponent<TMP_InputField>().text);
+        if (ui.ipBoxHost.GetComponent<TMP_InputField>().text.Length <= 0)
+        {
+            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = "127.0.0.1";
+        }
+        else
+        {
+            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = ui.ipBoxHost.GetComponent<TMP_InputField>().text;
+        }
 
-    //    NetworkManager.Singleton.StartHost();
-    //}
+        NetworkManager.Singleton.StartHost();
+    }
 
-    //public static void Join()
-    //{
-    //    UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
-    //    UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
-    //    Debug.Log(ui.ipBoxClient.GetComponent<TMP_InputField>().text);
-    //    if (ui.ipBoxClient.GetComponent<TMP_InputField>().text.Length <= 0)
-    //    {
-    //        manager.ConnectAddress = "127.0.0.1";
-    //    }
-    //    else
-    //    {
-    //        manager.ConnectAddress = ui.ipBoxClient.GetComponent<TMP_InputField>().text;
-    //    }
-    //    NetworkManager.Singleton.StartClient();
-    //}
+    public static void Join()
+    {
+        UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        //UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
+        Debug.Log(ui.ipBoxClient.GetComponent<TMP_InputField>().text);
+        if (ui.ipBoxClient.GetComponent<TMP_InputField>().text.Length <= 0)
+        {
+            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = "127.0.0.1";
+        }
+        else
+        {
+            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = ui.ipBoxClient.GetComponent<TMP_InputField>().text;
+        }
+        NetworkManager.Singleton.StartClient();
+    }
 }
 
