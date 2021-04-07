@@ -1685,9 +1685,9 @@ MonoBehaviour:
   MessageBufferSize: 5120
   MaxConnections: 100
   MaxSentMessageQueueSize: 128
-  ConnectAddress: 127.0.0.1
-  ConnectPort: 80
-  ServerListenPort: 80
+  ConnectAddress: 10.0.0.180
+  ConnectPort: 7777
+  ServerListenPort: 7777
   ServerWebsocketListenPort: 8887
   SupportWebsocket: 0
   Channels: []
@@ -1715,7 +1715,6 @@ MonoBehaviour:
     NetworkTransport: {fileID: 481076778}
     RegisteredScenes:
     - MainMenu
-    - NetworkingDemo
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
     - Prefab: {fileID: 665451937295417340, guid: 60f106e053163534aab54d723a21bb9c, type: 3}
