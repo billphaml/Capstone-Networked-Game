@@ -1686,8 +1686,8 @@ MonoBehaviour:
   MaxConnections: 100
   MaxSentMessageQueueSize: 128
   ConnectAddress: 127.0.0.1
-  ConnectPort: 7777
-  ServerListenPort: 7777
+  ConnectPort: 80
+  ServerListenPort: 80
   ServerWebsocketListenPort: 8887
   SupportWebsocket: 0
   Channels: []

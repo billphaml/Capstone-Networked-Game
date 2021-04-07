@@ -73,7 +73,7 @@ public class GameNetworkManager : MonoBehaviour
     public static void Host()
     {
         UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
-        UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
+        //UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
         Debug.Log(ui.ipBoxHost.GetComponent<TMP_InputField>().text);
         if (ui.ipBoxHost.GetComponent<TMP_InputField>().text.Length <= 0)
         {
