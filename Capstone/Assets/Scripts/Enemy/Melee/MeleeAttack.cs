@@ -29,7 +29,7 @@ public class MeleeAttack : MonoBehaviour
         {
             if (remainingCoolDownTime <= 0)
             {
-                state.setAttacking(true);
+                state.SetIsAttacking(true);
 
                 if (timerTick > startUp)
                 {
@@ -38,7 +38,7 @@ public class MeleeAttack : MonoBehaviour
                     h.PlayerHit("MeleeEnemy");
                     remainingCoolDownTime = attackCoolDown;
                     timerTick = 0;
-                    state.setAttacking(false);
+                    state.SetIsAttacking(false);
                 }
                 timerTick++;
             }
@@ -50,7 +50,7 @@ public class MeleeAttack : MonoBehaviour
         else
         {
             timerTick = 0;
-            state.setAttacking(false);
+            state.SetIsAttacking(false);
         }
     }
 }

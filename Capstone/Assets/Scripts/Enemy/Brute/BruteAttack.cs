@@ -28,7 +28,7 @@ public class BruteAttack : MonoBehaviour
         {
             if (remainingCoolDownTime <= 0)
             {
-                state.setAttacking(true);
+                state.SetIsAttacking(true);
 
                 if (timerTick > startUp) 
                 {
@@ -37,7 +37,7 @@ public class BruteAttack : MonoBehaviour
                     h.PlayerHit("Brute");
                     remainingCoolDownTime = attackCoolDown;
                     timerTick = 0;
-                    state.setAttacking(false);
+                    state.SetIsAttacking(false);
                 }
                 timerTick++;
             }
@@ -49,7 +49,7 @@ public class BruteAttack : MonoBehaviour
         else
         {
             timerTick = 0;
-            state.setAttacking(false);
+            state.SetIsAttacking(false);
         }
     }
 }

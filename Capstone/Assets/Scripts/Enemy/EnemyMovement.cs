@@ -1,45 +1,67 @@
-﻿using UnityEngine;
+﻿/******************************************************************************
+ * Controls enemy movement.
+ * 
+ * TODO:
+ * - Uncomment player dest set once player search is implemented
+ *****************************************************************************/
+
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private GameObject player;
-    public EnemyFSM state;
-    public EnemyFSM.EnemyState enemyState;
-    public NavMeshAgent agent;
+    /// <summary>
+    /// Reference to enemy controller to get other references i.e. player.
+    /// </summary>
+    private EnemyController ec = default;
 
     /// <summary>
-    /// Make sure evade is less than attack range.
+    /// Reference to NavMeshAgent.
     /// </summary>
-    public float evadeDistance = 4;
+    private NavMeshAgent agent = default;
 
-    private int randomDir = 0;
-    private Vector3 newDest = Vector3.zero;
+    /// <summary>
+    /// Distance that certain enemies will stay away from the player.
+    /// Note: Make sure evade is less than attack range.
+    /// </summary>
+    [SerializeField] private float evadeDistance = 4;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Variable to affect enemy bias in moving towards the player when
+    /// randomly patroling. Values 3 and higher decrease player bias.
+    /// This variable gets changed at runtime, if you want to decrease player
+    /// bias, edit the random number range in the PatrolMovement function.
+    /// This should be updated later to support range changing.
+    /// </summary>
+    [SerializeField] private int playerBias = 3;
+
+    /// <summary>
+    /// Next destination enemy will navigate to.
+    /// </summary>
+    private Vector3 newDest = default;
+
+    private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        state = gameObject.GetComponent<EnemyFSM>();;
+        ec = gameObject.GetComponent<EnemyController>();
         agent = gameObject.GetComponent<NavMeshAgent>();
-        randomDir = Random.Range(1, 4);
         newDest = RandomVector(-20, 20);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Updates position enemy should move to.
+    /// </summary>
+    public void UpdateMovement()
     {
-        enemyState = state.GetEnemyState();
-        switch (enemyState)
+        switch (ec.fsm.GetEnemyState())
         {
             case EnemyFSM.EnemyState.patrolState:
-                patroleMovement();
+                PatrolMovement();
                 break;
             case EnemyFSM.EnemyState.idleState:
                 agent.SetDestination(transform.position);
                 break;
             case EnemyFSM.EnemyState.chaseState:
-                newDest = player.transform.position;
+                newDest = ec.player.transform.position;
                 agent.SetDestination(newDest);
                 break;
             case EnemyFSM.EnemyState.attackState:
@@ -47,21 +69,17 @@ public class EnemyMovement : MonoBehaviour
                 {
                     agent.SetDestination(transform.position);
                 }
-                 
+                
                 if (gameObject.tag.Equals("RangedEnemy"))
                 {
-                    agent.SetDestination(player.transform.position);
+                    agent.SetDestination(ec.player.transform.position);
                 }
 
-                if (gameObject.tag.Equals("Brute"))
-                {
-                    agent.SetDestination(transform.position);
-                }
-
-                if (gameObject.tag.Equals("Adware"))
-                {
-                    AdwareMove();
-                }
+                // Update as Evasion enemy? Disabled for alpha build
+                //if (gameObject.tag.Equals("Adware"))
+                //{
+                //    AdwareMove();
+                //}
 
                 break;
         }
@@ -73,22 +91,24 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     private void AdwareMove()
     {
-        // If player enters evade range then move else stay
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) < (gameObject.GetComponent<EnemyFSM>().getAttackRange() - evadeDistance))
-        {
-            // Grab the direction to move away from
-            var newVec = gameObject.transform.position - player.transform.position;
+        //// If player enters evade range then move else stay
+        //if (Vector3.Distance(gameObject.transform.position, player.transform.position) <
+        //    (gameObject.GetComponent<EnemyFSM>().GetAttackRange() - evadeDistance))
+        //{
+        //    // Grab the direction to move away from
+        //    var newVec = gameObject.transform.position - player.transform.position;
 
-            // Calculate the new position to move to
-            newVec = new Vector3((newVec.x * 2), (newVec.y * 2), newVec.z) + gameObject.transform.position;
-            agent.SetDestination(newVec);
-        }
-        else
-        {
-            agent.SetDestination(transform.position);
-        }
+        //    // Calculate the new position to move to
+        //    newVec = new Vector3((newVec.x * 2), (newVec.y * 2), newVec.z) + gameObject.transform.position;
+        //    agent.SetDestination(newVec);
+        //}
+        //else
+        //{
+        //    agent.SetDestination(transform.position);
+        //}
 
-        //if (Vector3.Distance(gameObject.transform.position, player.transform.position) < gameObject.GetComponent<EnemyFSM>().getAttackRange())
+        //if (Vector3.Distance(gameObject.transform.position, player.transform.position) <
+        //    gameObject.GetComponent<EnemyFSM>().getAttackRange())
         //{
         //    if (state.isExecutingState())
         //    {
@@ -104,14 +124,13 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// facilitates the random movement and biased movement towards the player
+    /// Facilitates the random movement and biased movement towards the player.
     /// </summary>
-    void patroleMovement() 
+    private void PatrolMovement() 
     {
-        if (state.isExecutingState())
+        if (ec.fsm.IsExecutingPatrolState())
         {
-            randomDir = Random.Range(1, 4);
-            //newDest = RandomVector(-20, 20);
+            playerBias = Random.Range(1, 4);
 
             if (RandomPoint(transform.position, 10.0f, out newDest))
             {
@@ -119,15 +138,15 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if (randomDir > 2)
+        if (playerBias > 2)
         {
             Debug.DrawLine(newDest, gameObject.transform.position, Color.blue, 1.0f);
             agent.SetDestination(newDest);
         }
         else
         {
-            Debug.DrawLine(player.transform.position, gameObject.transform.position, Color.red, 1.0f);
-            agent.SetDestination(player.transform.position);
+            //Debug.DrawLine(ec.player.transform.position, gameObject.transform.position, Color.red, 1.0f);
+            //agent.SetDestination(ec.player.transform.position);
         }
     }
 
@@ -144,7 +163,14 @@ public class EnemyMovement : MonoBehaviour
         return new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
     }
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    /// <summary>
+    /// Returns a random position around a specified vector3.
+    /// </summary>
+    /// <param name="center"></param>
+    /// <param name="range"></param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    private bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
         {
@@ -157,15 +183,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         result = Vector3.zero;
-        return false;
-    }
 
-    /// <summary>
-    /// Return the new destination the enemy is navigating to.
-    /// </summary>
-    /// <returns></returns>
-    public Vector3 getNewDest()
-    {
-        return newDest;
+        return false;
     }
 }

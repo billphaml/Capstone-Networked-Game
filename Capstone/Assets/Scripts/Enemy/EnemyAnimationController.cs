@@ -2,6 +2,11 @@
 
 public class EnemyAnimationController : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to enemy controller to get other references i.e. player.
+    /// </summary>
+    private EnemyController ec = default;
+
     [SerializeField]
     private Animator enemyAnimator = null;
     [SerializeField]
@@ -11,6 +16,8 @@ public class EnemyAnimationController : MonoBehaviour
 
     private void Start()
     {
+        ec = gameObject.GetComponent<EnemyController>();
+
         if (enemy != null)
         {
             enemyFSM = enemy.GetComponent<EnemyFSM>();
@@ -21,14 +28,14 @@ public class EnemyAnimationController : MonoBehaviour
     {
         if (enemyFSM != null && enemyAnimator != null)
         {
-            if (enemyFSM.getIsAttacking())
+            if (enemyFSM.GetIsAttacking())
             {
                 //Debug.Log(enemyFSM.getIsAttacking());
                 enemyAnimator.SetBool("attacking", true);
 
                 if (enemy.tag == "RangedEnemy")
                 {
-                    var newVec = (enemyFSM.transform.position - enemyFSM.getPlayerVector()).normalized;
+                    var newVec = (enemyFSM.transform.position - ec.player.transform.position).normalized;
                     //Debug.Log(newVec);
 
                     enemyAnimator.SetFloat("horizontal", newVec.x);
@@ -42,7 +49,7 @@ public class EnemyAnimationController : MonoBehaviour
                // Debug.Log(enemyFSM.getIsAttacking());
                 enemyAnimator.SetBool("attacking", false);
 
-                var newVec = (enemyFSM.transform.position - enemyFSM.getPlayerVector()).normalized;
+                var newVec = (enemyFSM.transform.position - ec.player.transform.position).normalized;
                 //Debug.Log(newVec);
 
                 enemyAnimator.SetFloat("horizontal", newVec.x);

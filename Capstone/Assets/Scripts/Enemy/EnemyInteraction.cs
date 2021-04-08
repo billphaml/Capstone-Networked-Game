@@ -1,65 +1,64 @@
+/******************************************************************************
+ * Controls enemy interactions.
+ *****************************************************************************/
+
+// Uncomment for debug mode
+//#define DEBUG
+// Uncomment for normal mode
+#undef DEBUG
+
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyInteraction : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to enemy controller to get other references i.e. player.
+    /// </summary>
+    private EnemyController ec = default;
+
+    /// <summary>
+    /// Enemy health.
+    /// </summary>
+    [SerializeField] private float health = 3f;
+
     //private ItemDrop itemDrop = default;
-    private GameObject player;
-
-    public EnemyFSM state;
-    public EnemyFSM.EnemyState enemyState;
-
-    [SerializeField]
-    private float health = 3f;
 
     #region Color 
-    // Original color
-    private Color normalColor = Color.white;
-    // Damage color
-    private Color newColor = new Color(222f / 255f, 139f / 255f, 137f / 255f, 197f / 255f);
-    // color timer
-    private float timer = 60;
+    /// <summary>
+    /// Original color.
+    /// </summary>
+
+    [SerializeField] private Color normalColor = Color.white;
+
+    /// <summary>
+    /// Damage color.
+    /// </summary>
+    [SerializeField] private Color damagedColor = new Color(222f / 255f, 139f / 255f, 137f / 255f, 197f / 255f);
+
+    /// <summary>
+    /// Time until switch from damaged to normal color.
+    /// </summary>
+    [SerializeField] private float damagedColorDuration = 60f;
+
     private bool countdown = false;
     #endregion
 
-    // Enemy NavMesh controller
-    private NavMeshAgent agent;
-
-    // Start is called before the first frame update
     void Start()
     {
+        ec = gameObject.GetComponent<EnemyController>();
+
         //itemDrop = GetComponent<ItemDrop>();
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
-        enemyState = EnemyFSM.EnemyState.patrolState;
-        state = gameObject.GetComponent<EnemyFSM>();
-
-        // Get agent component in enemy
-        agent = GetComponent<NavMeshAgent>();
-
-        state.setState(EnemyFSM.EnemyState.patrolState);
     }
 
-    // Update is called once per frame
     void Update()
     {
         ColorCountdown();
-
-        ProcessHealth();
-
-        state.meleeMovementFSM();
-
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) < state.getChaseRange())
-        {
-            state.setState(EnemyFSM.EnemyState.chaseState);
-
-            if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= state.getAttackRange())
-            {
-                state.setState(EnemyFSM.EnemyState.attackState);
-            }
-        }
     }
 
     #region Enemy taking damage
+    // deprecated function, needs to be reworked
+    // functional that destroys enemy when health is equal to or less than zero.
+    // also adds points based on enemy value.
     // function that destroys itself once health is lower than 1
     private void ProcessHealth()
     {
@@ -102,6 +101,7 @@ public class EnemyInteraction : MonoBehaviour
         }
     }
 
+    // Function to take projectile damage
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // hit by player bolt, damaged by amount given by
@@ -109,7 +109,7 @@ public class EnemyInteraction : MonoBehaviour
         if (collision.gameObject.tag == "PlayerBolt")
         {
             //PlayerBehavior i = player.GetComponent<PlayerBehavior>();
-            ColorChange(newColor);
+            ColorChange(damagedColor);
             countdown = true;
             if (collision != null)
             {
@@ -123,12 +123,15 @@ public class EnemyInteraction : MonoBehaviour
                 //    health -= i.EnemyDamaged();
                 //}
             }
-           
-            Debug.Log(health);
-        }
 
+#if (DEBUG)
+            Debug.Log(health);
+#endif
+        }
     }
 
+    // deprecated, needs to be reworked into modular damage system
+    // Function to take sniper damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.gameObject.tag == "PlayerSniperBolt") // damge twice
@@ -163,18 +166,18 @@ public class EnemyInteraction : MonoBehaviour
         GameObject enemySprite = transform.Find("Enemy Sprite").gameObject;
         enemySprite.GetComponent<SpriteRenderer>().color = c;
     }
+
     // Color change timer support
     private void ColorCountdown()
     {
-        if (countdown)
-            timer--;
-        if (timer < 0)
+        if (countdown) damagedColorDuration--;
+
+        if (damagedColorDuration < 0)
         {
-            timer = 60;
+            damagedColorDuration = 60;
             countdown = false;
             ColorChange(normalColor);
         }
     }
-    #endregion
-
+#endregion
 }

@@ -1,92 +1,127 @@
-﻿//#undef DEBUG
+﻿/******************************************************************************
+ * Controls enemy state.
+ *****************************************************************************/
+
+// Uncomment for debug mode
+//#define DEBUG
+// Uncomment for normal mode
+#undef DEBUG
 
 using UnityEngine;
 
 public class EnemyFSM : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /// <summary>
+    /// Reference to enemy controller to get other references i.e. player.
+    /// </summary>
+    private EnemyController ec = default;
+
     public enum EnemyState
     {
         patrolState,
         chaseState,
         idleState,
-        attackState,
+        attackState
     };
 
-    ///<summary> private variables for our enemy values change depending on type </summary>
-    
-    /// <summary> Default Timer </summary> 
-    [SerializeField]
-    private float kTimer = 480f; // 8 sec
-    ///<summary> Num seconds for idle state  </summary>
-    [SerializeField]
-    private float kIdleTimer = 150f; // 2.5 sec
-    ///<summary> Num seconds for attack state </summary>
-    [SerializeField]
-    private float kAttackTimer = 60f; // 1 sec
-    ///<summary> chase range </summary>
-    [SerializeField]
-    private float kChaseRange = 5f;  // 5 units
-    ///<summary> effective attack range </summary>
-    [SerializeField]
-    private float kAttackRange = 1.5f; // 1 and a half units
+    /// <summary>
+    /// The current state of the enemy.
+    /// </summary>
+    [SerializeField] private EnemyState mState;
 
+    /// <summary>
+    /// Duration in seconds for patrol state.
+    /// </summary>
+    [SerializeField] private float kPatrolTimer = 480f;
+
+    /// <summary>
+    /// Duration in seconds for chase state.
+    /// </summary>
+    [SerializeField] private float kChaseTimer = 480f;
+
+    /// <summary>
+    /// Duration in seconds for idle state.
+    /// </summary>
+    [SerializeField] private float kIdleTimer = 150f;
+
+    /// <summary>
+    /// Duration in seconds for attack state.
+    /// </summary>
+    [SerializeField] private float kAttackTimer = 60f;
+
+    /// <summary>
+    /// Chase range in units.
+    /// </summary>
+    [SerializeField] private float kChaseRange = 5f;
+
+    /// <summary>
+    /// Attack range in units.
+    /// </summary>
+    [SerializeField] private float kAttackRange = 1.5f;
+
+    /// <summary>
+    /// Timer for state changes.
+    /// </summary>
+    [SerializeField] private int timerTick = 0;
+
+    /// <summary>
+    /// Check if in attack animation.
+    /// </summary>
     private bool isAttacking = false;
-
-    private GameObject player;
-
-    private int timerTick = 0;
-
-    /// <summary> The current state of the enemy </summary>
-    public EnemyState mState;
-
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        ec = gameObject.GetComponent<EnemyController>();
     }
 
-    //enemy FMS basic behavior for the enemy cycles through patrol and indle until player enters effective range
-    public void meleeMovementFSM() 
+    /// <summary>
+    /// Enemy FSM basic behavior where the enemy cycles through patrol and idle
+    /// until player enters effective range.
+    /// </summary>
+    public void UpdateFSM() 
     {
         switch (mState) 
         {
             case EnemyState.patrolState:
-                patrolBehavior();
+                PatrolBehavior();
                 break;
             case EnemyState.idleState:
-                idleBehavior();
+                IdleBehavior();
                 break;
             case EnemyState.chaseState:
-                chaseBehavior();
+                ChaseBehavior();
                 break;
             case EnemyState.attackState:
-                attackBehavior();
+                AttackBehavior();
                 break;
-
         }
     }
 
-    // Randomly goes in different directions but is biased towards moving to the player
-    void patrolBehavior()
+    /// <summary>
+    /// Randomly goes in different directions but is biased towards moving to
+    /// the player.
+    /// </summary>
+    private void PatrolBehavior()
     {
-        if (timerTick > kTimer)
+        if (timerTick > kPatrolTimer)
         {
             mState = EnemyState.idleState;
             timerTick = 0;
         }
         else
         {
-            #if (DEBUG)
-                //Debug.Log("Patrol");
-            #endif
+#if (DEBUG)
+            Debug.Log("State: Patrol");
+#endif
             timerTick++;
         }
-
     }
 
-    //basic idle for the enemy they have an interesting animation also allows the player to get some cheep shots in
-    void idleBehavior() 
+    /// <summary>
+    /// Basic idle for the enemy they have an interesting animation also allows
+    /// the player to get some cheep shots in.
+    /// </summary>
+    private void IdleBehavior()
     {
         if (timerTick > kIdleTimer)
         {
@@ -95,40 +130,45 @@ public class EnemyFSM : MonoBehaviour
         }
         else 
         {
-            #if (DEBUG)
-                //Debug.Log("Idle");
-            #endif
-
-            //flip sprite left and right some sort of animation enemy is static
+#if (DEBUG)
+            Debug.Log("Idle");
+#endif
+            // Flip sprite left and right some sort of animation enemy is static
             timerTick++;
         }
     }
-    
-    //enemy chases the player nothing too fancy but will transition to attack phase after chasing for 5 secs
-    void chaseBehavior()
+
+    /// <summary>
+    /// Enemy chases the player nothing too fancy but will transition to attack
+    /// phase after chasing for 5 secs.
+    /// </summary>
+    private void ChaseBehavior()
     {
-        if (timerTick > kTimer)
+        if (timerTick > kChaseTimer)
         {
             mState = EnemyState.attackState;
             timerTick = 0;
         }
         else 
         {
-            #if (DEBUG)
-                //Debug.Log("Chase");
-            #endif
+#if (DEBUG)
+            Debug.Log("Chase");
+#endif
             timerTick++;
 
-            if (Vector3.Distance(gameObject.transform.position, player.transform.position) > kChaseRange &&
-                !isAttacking)
+            if (Vector3.Distance(gameObject.transform.position, ec.player.transform.position) >
+                kChaseRange && !isAttacking)
             {
                 mState = EnemyState.patrolState;
             }
         }
     }
 
-    //attack behavior just calls the attack for the enemy sometimes set to attack state if in attack range (melee only)
-    void attackBehavior() 
+    /// <summary>
+    /// Attack behavior just calls the attack for the enemy sometimes set to 
+    /// attack state if in attack range (melee only).
+    /// </summary>
+    private void AttackBehavior() 
     {
         if (timerTick > kAttackTimer)
         {
@@ -137,11 +177,9 @@ public class EnemyFSM : MonoBehaviour
         }
         else 
         {
-            #if (DEBUG)
-                //Debug.Log("Attack");
-            #endif
-      
-
+#if (DEBUG)
+            //Debug.Log("Attack");
+#endif
             timerTick++;
         }
     }
@@ -151,44 +189,32 @@ public class EnemyFSM : MonoBehaviour
         return mState;
     }
 
-    public float getAttackRange() 
-    {
-        return kAttackRange;
-    }
-
-    public float getChaseRange() 
-    {
-        return kChaseRange;
-    }
-
-    public void setState(EnemyState state) 
+    public void SetState(EnemyState state)
     {
         mState = state;
     }
 
-    public bool isExecutingState()
+    public float GetAttackRange() 
     {
-        //Debug.Log(timerTick > kTimer);
-        return timerTick > kTimer;
+        return kAttackRange;
     }
 
-    public bool isExecutingAttackState()
+    public float GetChaseRange()
     {
-        //Debug.Log(timerTick > kAttackTimer);
-        return timerTick > kAttackTimer;
+        return kChaseRange;
     }
 
-    public Vector3 getPlayerVector()
+    public bool IsExecutingPatrolState()
     {
-        return player.transform.position;
+        return timerTick > kPatrolTimer;
     }
 
-    public void setAttacking(bool attack)
+    public void SetIsAttacking(bool attacking)
     {
-        isAttacking = attack;
+        isAttacking = attacking;
     }
 
-    public bool getIsAttacking()
+    public bool GetIsAttacking()
     {
         return isAttacking;
     }

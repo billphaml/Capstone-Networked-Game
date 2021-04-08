@@ -21,12 +21,12 @@ public class RangedAttack : MonoBehaviour
 
         if (enemyState == EnemyFSM.EnemyState.attackState)
         {
-            state.setAttacking(true);
+            state.SetIsAttacking(true);
             ProcessAttack();
         }
         else
         {
-            state.setAttacking(false);
+            state.SetIsAttacking(false);
         }
     }
 

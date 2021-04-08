@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Trojan
+  - RangedEnemy
+  - MeleeEnemy
+  - Brute
+  - Adware
+  - Enemy
   layers:
   - Default
   - TransparentFX
