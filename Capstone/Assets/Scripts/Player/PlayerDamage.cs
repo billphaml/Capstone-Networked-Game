@@ -14,6 +14,7 @@ public class PlayerDamage : NetworkBehaviour
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
     NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
+    
     void Start()
     {
         
@@ -27,31 +28,28 @@ public class PlayerDamage : NetworkBehaviour
             attack.Value = Input.GetMouseButton(0);
             if (attack.Value == true)
             {
-                InvokeServerRPC(Swing);
+                SwingServerRpc();
             }
         }
     }
 
-
-    [ServerRpc RPC]
-    void Swing()
+    [ServerRpc]
+    void SwingServerRpc(ServerRpcParams rpcParams = default)
     {
-        int damage = 10;
+        //int damage = 10;
 
-        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
-        foreach (var currentEnemy in enemiesToDamage)
-        {
+        //Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0);
+        //foreach (var currentEnemy in enemiesToDamage)
+        //{
+        //    // Skip if you already damaged this enemy
+        //    if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
 
-            // Skip if you already damaged this enemy
-            if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
+        //    currentEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
 
-            currentEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
-
-            // Add the damaged enemy to the list
-            alreadyDamagedEnemies.Add(currentEnemy);
-        }
-        alreadyDamagedEnemies.Clear();
-        Debug.Log("hit");
+        //    // Add the damaged enemy to the list
+        //    alreadyDamagedEnemies.Add(currentEnemy);
+        //}
+        //alreadyDamagedEnemies.Clear();
+        //Debug.Log("hit");
     }
-
 }
