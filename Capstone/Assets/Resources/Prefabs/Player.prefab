@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColor: {fileID: 665451937400494506}
-  cameraTransform: {fileID: 8224773004060374537}
+  camera: {fileID: 8720794809705530412}
 --- !u!1 &665451937400494509
 GameObject:
   m_ObjectHideFlags: 0

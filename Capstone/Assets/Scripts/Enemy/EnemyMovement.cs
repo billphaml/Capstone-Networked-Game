@@ -42,9 +42,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        // Could probably set this to happen only on server, not sure if references waste memory
         ec = gameObject.GetComponent<EnemyController>();
         agent = gameObject.GetComponent<NavMeshAgent>();
-        newDest = RandomVector(-20, 20);
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
                 PatrolMovement();
                 break;
             case EnemyFSM.EnemyState.idleState:
-                agent.SetDestination(transform.position);
+                agent.SetDestination(gameObject.transform.position);
                 break;
             case EnemyFSM.EnemyState.chaseState:
                 newDest = ec.player.transform.position;

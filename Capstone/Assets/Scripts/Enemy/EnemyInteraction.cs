@@ -8,8 +8,9 @@
 #undef DEBUG
 
 using UnityEngine;
+using MLAPI;
 
-public class EnemyInteraction : MonoBehaviour
+public class EnemyInteraction : NetworkBehaviour
 {
     /// <summary>
     /// Reference to enemy controller to get other references i.e. player.
@@ -45,14 +46,19 @@ public class EnemyInteraction : MonoBehaviour
 
     void Start()
     {
+        // Could probably set this to happen only on server, not sure if references waste memory
         ec = gameObject.GetComponent<EnemyController>();
 
+        // Make sure to implement this as a server/host side thing.
         //itemDrop = GetComponent<ItemDrop>();
     }
 
     void Update()
     {
-        ColorCountdown();
+        if (IsHost || IsServer)
+        {
+            ColorCountdown();
+        }
     }
 
     #region Enemy taking damage

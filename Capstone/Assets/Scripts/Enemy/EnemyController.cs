@@ -10,8 +10,9 @@
  *****************************************************************************/
 
 using UnityEngine;
+using MLAPI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : NetworkBehaviour
 {
     /// <summary>
     /// Reference to player object.
@@ -30,33 +31,39 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        // Remove after adding nearest player searching
-        player = GameObject.FindGameObjectWithTag("Player");
+        if (IsHost || IsServer)
+        {
+            // Remove after adding nearest player searching
+            player = GameObject.FindGameObjectWithTag("Player");
 
-        fsm = gameObject.GetComponent<EnemyFSM>();
+            fsm = gameObject.GetComponent<EnemyFSM>();
 
-        move = gameObject.GetComponent<EnemyMovement>();
+            move = gameObject.GetComponent<EnemyMovement>();
 
-        fsm.SetState(EnemyFSM.EnemyState.patrolState);
+            fsm.SetState(EnemyFSM.EnemyState.patrolState);
+        }
     }
 
     void Update()
     {
-        // Add nearest player searching
-        //player = 
+        if (IsHost || IsServer)
+        {
+            // Add nearest player searching
+            //player = 
 
-        move.UpdateMovement();
+            move.UpdateMovement();
 
-        fsm.UpdateFSM();
+            fsm.UpdateFSM();
 
-        //if (Vector3.Distance(gameObject.transform.position, player.transform.position) < fsm.GetChaseRange())
-        //{
-        //    fsm.SetState(EnemyFSM.EnemyState.chaseState);
+            //if (Vector3.Distance(gameObject.transform.position, player.transform.position) < fsm.GetChaseRange())
+            //{
+            //    fsm.SetState(EnemyFSM.EnemyState.chaseState);
 
-        //    if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= fsm.GetAttackRange())
-        //    {
-        //        fsm.SetState(EnemyFSM.EnemyState.attackState);
-        //    }
-        //}
+            //    if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= fsm.GetAttackRange())
+            //    {
+            //        fsm.SetState(EnemyFSM.EnemyState.attackState);
+            //    }
+            //}
+        }
     }
 }

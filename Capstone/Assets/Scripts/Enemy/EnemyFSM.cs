@@ -71,6 +71,7 @@ public class EnemyFSM : MonoBehaviour
 
     private void Start()
     {
+        // Could probably set this to happen only on server, not sure if references waste memory
         ec = gameObject.GetComponent<EnemyController>();
     }
 
