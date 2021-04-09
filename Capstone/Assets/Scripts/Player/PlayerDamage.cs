@@ -36,20 +36,20 @@ public class PlayerDamage : NetworkBehaviour
     [ServerRpc]
     void SwingServerRpc(ServerRpcParams rpcParams = default)
     {
-        //int damage = 10;
+        int damage = 10;
 
-        //Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0);
-        //foreach (var currentEnemy in enemiesToDamage)
-        //{
-        //    // Skip if you already damaged this enemy
-        //    if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0);
+        foreach (var currentEnemy in enemiesToDamage)
+        {
+            // Skip if you already damaged this enemy
+            if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
 
-        //    currentEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
+            currentEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
 
-        //    // Add the damaged enemy to the list
-        //    alreadyDamagedEnemies.Add(currentEnemy);
-        //}
-        //alreadyDamagedEnemies.Clear();
-        //Debug.Log("hit");
+            // Add the damaged enemy to the list
+            alreadyDamagedEnemies.Add(currentEnemy);
+        }
+        alreadyDamagedEnemies.Clear();
+        Debug.Log("hit");
     }
 }
