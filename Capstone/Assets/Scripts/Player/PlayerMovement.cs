@@ -37,7 +37,6 @@ public class PlayerMovement : NetworkBehaviour
 
     void GrabInputAndroid()
     {
-
     }
 
     private void FixedUpdate()

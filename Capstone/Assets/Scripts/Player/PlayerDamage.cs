@@ -9,6 +9,7 @@ public class PlayerDamage : NetworkBehaviour
 {
     [SerializeField] float meleeRange;
     [SerializeField] float rangeRange;
+    [SerializeField] LayerMask whatIsEnemy;
     public Transform player;
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
@@ -38,7 +39,7 @@ public class PlayerDamage : NetworkBehaviour
     {
         int damage = 10;
 
-        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0);
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
         foreach (var currentEnemy in enemiesToDamage)
         {
             // Skip if you already damaged this enemy
