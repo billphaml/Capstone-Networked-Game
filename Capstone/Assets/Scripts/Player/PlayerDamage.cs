@@ -7,15 +7,22 @@ using UnityEngine;
 
 public class PlayerDamage : NetworkBehaviour
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [SerializeField] float meleeRange;
     [SerializeField] float rangeRange;
     [SerializeField] LayerMask whatIsEnemy;
     public Transform player;
+    [SerializeField] private GameObject attackBox;
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
     NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
     
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         
@@ -34,12 +41,16 @@ public class PlayerDamage : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="rpcParams"></param>
     [ServerRpc]
     void SwingServerRpc(ServerRpcParams rpcParams = default)
     {
         int damage = 10;
 
-        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(player.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
         foreach (var currentEnemy in enemiesToDamage)
         {
             // Skip if you already damaged this enemy
@@ -52,5 +63,11 @@ public class PlayerDamage : NetworkBehaviour
         }
         alreadyDamagedEnemies.Clear();
         Debug.Log("hit");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(attackBox.transform.position, new Vector3(meleeRange, meleeRange, 0f));
     }
 }
