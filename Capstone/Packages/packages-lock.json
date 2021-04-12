@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "b052f44f4d6424b24716daa6a15870771991e033"
     },
+    "com.mlapi.contrib.transport.photon-realtime": {
+      "version": "https://github.com/Unity-Technologies/mlapi-community-contributions.git?path=/Transports/com.mlapi.contrib.transport.photon-realtime",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8e24931aeb610eee703bde7d278cedfdff989686"
+    },
     "com.unity.2d.animation": {
       "version": "5.0.4",
       "depth": 0,
