@@ -12,9 +12,13 @@ public class PlayerDamage : NetworkBehaviour
     /// </summary>
     [SerializeField] float meleeRange;
     [SerializeField] float rangeRange;
+    [SerializeField] float damage;
+    [SerializeField] private Transform Projectile;
     [SerializeField] LayerMask whatIsEnemy;
     public Transform player;
     [SerializeField] private GameObject attackBox;
+    [SerializeField] private GameObject rangeBox;
+    [SerializeField] private int weaponType; //1) Sword 2) Bow 3) Spells?
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
@@ -36,19 +40,27 @@ public class PlayerDamage : NetworkBehaviour
             attack.Value = Input.GetMouseButton(0);
             if (attack.Value == true)
             {
-                SwingServerRpc();
+                if (weaponType == 1)
+                {
+                    SwingServerRpc();
+                }
+                else if (weaponType == 2)
+                {
+                    ShootServerRpc();
+                }
+               
             }
         }
     }
 
     /// <summary>
-    /// 
+    /// Melee Hit detectuion using COllider2D
     /// </summary>
     /// <param name="rpcParams"></param>
     [ServerRpc]
     void SwingServerRpc(ServerRpcParams rpcParams = default)
     {
-        int damage = 10;
+        
 
         Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
         foreach (var currentEnemy in enemiesToDamage)
@@ -61,8 +73,17 @@ public class PlayerDamage : NetworkBehaviour
             // Add the damaged enemy to the list
             alreadyDamagedEnemies.Add(currentEnemy);
         }
+        Debug.Log(alreadyDamagedEnemies);
         alreadyDamagedEnemies.Clear();
-        Debug.Log("hit");
+        
+    }
+
+    [ServerRpc]
+    void ShootServerRpc(ServerRpcParams rpcParams = default)
+    {
+        Transform arrowTransform = Instantiate(Projectile, attackBox.transform.position, Quaternion.identity);
+        Vector3 trajectory = (attackBox.transform.position - rangeBox.transform.position);
+
     }
 
     private void OnDrawGizmosSelected()
