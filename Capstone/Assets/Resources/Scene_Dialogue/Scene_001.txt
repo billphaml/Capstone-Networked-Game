@@ -1,0 +1,8 @@
+00	\t	Jason	\t	Greetings, welcome to the land of Rumipitier.	\t	false	\t	00	\t	null
+00	\t	Jason	\t	If you're looking for the guild hall, simply follow the road North and it will take you there.	\t	false	\t	00	\t	null
+00	\t	Player	\t	Thank you.	\t	true	\t	01	\t	null
+00	\t	Player	\t	Nobody asked you, loser.	\t	true	\t	02	\t	null
+00	\t	Player	\t	I'm onto you Jason, don't think you can fool me!	\t	true	\t	03	\t	null
+01	\t	Jason	\t	It is no problem, may the wild be kind to you.	\t	false	\t	01	\t	null
+02	\t	Jason	\t	Okay, geez, I was just trying to be helpful.	\t	false	\t	02	\t	null
+03	\t	Jason	\t	Hahaha, very well, you foolish, fool! Have at you!	\t	false	\t	03	\t	null

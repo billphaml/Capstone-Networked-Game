@@ -8,11 +8,17 @@ using MLAPI;
 public class PlayerMovement : NetworkBehaviour
 {
     private Vector3 movement;
+    public bool canMove;
 
     [SerializeField]
     private float moveSpeed = 7f;
 
     private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        canMove = true;
+    }
 
     void Start()
     {
@@ -21,7 +27,7 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update()
     {
-        if (IsLocalPlayer)
+        if (IsLocalPlayer && canMove)
         {
             GrabInputPC();
             //GrabInputAndroid();
@@ -45,5 +51,15 @@ public class PlayerMovement : NetworkBehaviour
         {
             rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
+    }
+
+    public void turnOnMove()
+    {
+        canMove = true;
+    }
+
+    public void turnOffMove()
+    {
+        canMove = false;
     }
 }
