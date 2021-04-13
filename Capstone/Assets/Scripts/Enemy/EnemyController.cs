@@ -2,12 +2,20 @@
  * Manager for enemy that holds references as well updates enemy logic.
  * Utilizes EnemyFSM, EnemyMovement, and EnemyInteraction classes
  * 
+ *  * Note:
+ * - Unity Editor mode is not considered a host. Enemy updates won't o
+ * 
  * TODO:
  * - Add player searching to Update
  * - Add enemy health less than zero destroy logic
  * - Update enemy take damage logic
  * - Uncomment player distance chase check
  *****************************************************************************/
+
+// Uncomment for debug mode
+#define DEBUG
+// Uncomment for normal mode
+//#undef DEBUG
 
 using UnityEngine;
 using MLAPI;
@@ -42,6 +50,19 @@ public class EnemyController : NetworkBehaviour
 
             fsm.SetState(EnemyFSM.EnemyState.patrolState);
         }
+
+#if UNITY_EDITOR && DEBUG
+        Debug.Log("Is host");
+
+        // Remove after adding nearest player searching
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        fsm = gameObject.GetComponent<EnemyFSM>();
+
+        move = gameObject.GetComponent<EnemyMovement>();
+
+        fsm.SetState(EnemyFSM.EnemyState.patrolState);
+#endif
     }
 
     void Update()
@@ -65,5 +86,11 @@ public class EnemyController : NetworkBehaviour
             //    }
             //}
         }
+
+#if UNITY_EDITOR && DEBUG
+        move.UpdateMovement();
+
+        fsm.UpdateFSM();
+#endif
     }
 }
