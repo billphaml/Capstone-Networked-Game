@@ -28,7 +28,13 @@ public class PlayerMovement : NetworkBehaviour
 
         if (IsLocalPlayer)
         {
-            stick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FloatingJoystick>();
+            try
+            {
+                stick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FloatingJoystick>();
+            }
+            catch
+            {
+            }
         }
     }
 
@@ -37,10 +43,9 @@ public class PlayerMovement : NetworkBehaviour
         if (IsLocalPlayer && canMove)
         {
             GrabInputPC();
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID
             GrabInputAndroid();
 #endif
-            //Debug.Log(movement);
         }
     }
 
