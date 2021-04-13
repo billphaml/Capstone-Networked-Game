@@ -10,6 +10,7 @@ TagManager:
   - Brute
   - Adware
   - Enemy
+  - Joystick
   layers:
   - Default
   - TransparentFX
