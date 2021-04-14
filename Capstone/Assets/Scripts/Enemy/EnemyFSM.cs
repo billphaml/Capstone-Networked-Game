@@ -69,6 +69,8 @@ public class EnemyFSM : MonoBehaviour
     /// </summary>
     private bool isAttacking = false;
 
+    public bool isPatroling = false;
+
     private void Start()
     {
         // Could probably set this to happen only on server, not sure if references waste memory
@@ -108,6 +110,7 @@ public class EnemyFSM : MonoBehaviour
         {
             mState = EnemyState.idleState;
             timerTick = 0;
+            isPatroling = false;
         }
         else
         {
@@ -207,7 +210,8 @@ public class EnemyFSM : MonoBehaviour
 
     public bool IsExecutingPatrolState()
     {
-        return timerTick > kPatrolTimer;
+        //return timerTick > kPatrolTimer;
+        return isPatroling;
     }
 
     public void SetIsAttacking(bool attacking)

@@ -72,9 +72,9 @@ public class EnemyController : NetworkBehaviour
             // Add nearest player searching
             //player = 
 
-            move.UpdateMovement();
-
             fsm.UpdateFSM();
+
+            move.UpdateMovement();
 
             //if (Vector3.Distance(gameObject.transform.position, player.transform.position) < fsm.GetChaseRange())
             //{
