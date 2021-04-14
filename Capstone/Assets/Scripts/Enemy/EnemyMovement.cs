@@ -128,26 +128,32 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     private void PatrolMovement() 
     {
-        if (ec.fsm.IsExecutingPatrolState())
+        if (!ec.fsm.IsExecutingPatrolState())
         {
             playerBias = Random.Range(1, 4);
 
             if (RandomPoint(transform.position, 10.0f, out newDest))
             {
-                //Debug.DrawLine(newDest, Vector3.up, Color.blue, 1.0f);
+                Debug.DrawLine(newDest, Vector3.up, Color.yellow, 1.0f);
             }
+
+            ec.fsm.isPatroling = true;
         }
 
-        if (playerBias > 2)
-        {
-            Debug.DrawLine(newDest, gameObject.transform.position, Color.blue, 1.0f);
-            agent.SetDestination(newDest);
-        }
-        else
-        {
-            //Debug.DrawLine(ec.player.transform.position, gameObject.transform.position, Color.red, 1.0f);
-            //agent.SetDestination(ec.player.transform.position);
-        }
+        
+        Debug.DrawLine(newDest, gameObject.transform.position, Color.blue, 1.0f);
+        agent.SetDestination(newDest);
+
+        //if (playerBias > 2)
+        //{
+        //    Debug.DrawLine(newDest, gameObject.transform.position, Color.blue, 1.0f);
+        //    agent.SetDestination(newDest);
+        //}
+        //else
+        //{
+        //    //Debug.DrawLine(ec.player.transform.position, gameObject.transform.position, Color.red, 1.0f);
+        //    //agent.SetDestination(ec.player.transform.position);
+        //}
     }
 
     /// <summary>
