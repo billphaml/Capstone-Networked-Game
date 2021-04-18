@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] public GameObject RoomName;
+    [SerializeField] public GameObject ipBoxHost;
     [SerializeField] public GameObject ipBoxClient;
-    [SerializeField] public GameObject NickName;
+    [SerializeField] public GameObject ServerPassword;
 
     [Header("Android UI")]
     [SerializeField] private GameObject androidUI = default;
