@@ -20,6 +20,7 @@ public class Actor
         DAGGER,
         GREATSWORD,
         BOW,
+        MAGIC,
         BEAST,
         BOSS
     }
@@ -38,24 +39,24 @@ public class Actor
     // Defining Traits
     public string actorName; // The actor's name
     public string actorDescription; //  The Description for the actor
-    private actorType theActorType; // Determine whether the actor is NPC or not
-    private attackType theAttackType; // Determine the attack type of the actor
+    public actorType theActorType; // Determine whether the actor is NPC or not
+    public attackType theAttackType; // Determine the attack type of the actor
 
 
     // Actor Statistic
-    private int actorStrength = 10; // Stat used to calculate the attacking stat.
-    private int actorMagic = 10; // Hidden Stat, most likely not going to be used. Maybe could be used to enhance item effects
-    private int actorDexterity = 10; // Stat used to calculate the critical chance of attacks and increase stamina.
-    private int actorConstitution = 10; // Stat used to calculate the hitpoints and resistance
+    private int actorBaseStrength = 10; // Stat used to calculate the attacking stat.
+    private int actorBaseMagic = 10; // Hidden Stat, most likely not going to be used. Maybe could be used to enhance item effects
+    private int actorBaseDexterity = 10; // Stat used to calculate the critical chance of attacks and increase stamina.
+    private int actorBaseConstitution = 10; // Stat used to calculate the hitpoints and resistance
 
     // Actor Game Value Statistic
-    private int actorAttack = 10; // Used to calculate the damage dealt
-    private int actorDefense = 10; // Used to calculate the damage resisted
-    private int actorMagicResistance = 10; // Used to calculate the magic damage resisted
-    private float actorSpeed = 4.5f; // Used to calculate the movement speed
-    private float actorCriticalChance = 0.15f; // Used to calculate how often they crit
-    private float actorCriticalDamage = 1f; // Used to calculate the crit damage
-    private float actorResistance = 0.2f; // used to calculate how often status effect apply
+    private int actorBaseAttack = 10; // Used to calculate the damage dealt
+    private int actorBaseDefense = 10; // Used to calculate the damage resisted
+    private int actorBaseMagicResistance = 10; // Used to calculate the magic damage resisted
+    private float actorBaseSpeed = 4.5f; // Used to calculate the movement speed
+    private float actorBaseCriticalChance = 0.15f; // Used to calculate how often they crit
+    private float actorBaseCriticalDamage = 1f; // Used to calculate the crit damage
+    private float actorBaseResistance = 0.2f; // used to calculate how often status effect apply
 
     // This method is a basic constructor for the actor class.
     public Actor(string name, string description, actorType theType, attackType theAttack)
@@ -213,141 +214,141 @@ public class Actor
     {
         if (iStrength <= 0)
         {
-            actorStrength = 1;
+            actorBaseStrength = 1;
         }
         else
         {
-            actorStrength = iStrength;
+            actorBaseStrength = iStrength;
         }
     }
 
     public int getStrength()
     {
-        return actorStrength;
+        return actorBaseStrength;
     }
 
     public void setMagic(int iMagic)
     {
         if (iMagic <= 0)
         {
-            actorMagic = 1;
+            actorBaseMagic = 1;
         }
         else
         {
-            actorMagic = iMagic;
+            actorBaseMagic = iMagic;
         }
 
     }
 
     public int getMagic()
     {
-        return actorMagic;
+        return actorBaseMagic;
     }
 
     public void setDexterity(int iDex)
     {
         if (iDex <= 0)
         {
-            actorDexterity = 1;
+            actorBaseDexterity = 1;
         }
         else
         {
-            actorDexterity = iDex;
+            actorBaseDexterity = iDex;
         }
     }
 
     public int getDexterity()
     {
-        return actorDexterity;
+        return actorBaseDexterity;
     }
 
     public void setConstitution(int iCon)
     {
         if(iCon <= 0)
         {
-            actorConstitution = 1;
+            actorBaseConstitution = 1;
         }
         else
         {
-            actorConstitution = iCon;
+            actorBaseConstitution = iCon;
         }
     }
 
     public int getConstitution()
     {
-        return actorConstitution;
+        return actorBaseConstitution;
     }
 
     public void setAttack(int iAttack)
     {
         if(iAttack < 0)
         {
-            actorAttack = 0;
+            actorBaseAttack = 0;
         }
         else
         {
-            actorAttack = iAttack;
+            actorBaseAttack = iAttack;
         }
     }
 
     public int getAttack()
     {
-        return actorAttack;
+        return actorBaseAttack;
     }
 
     public void setDefense(int iDefense)
     {
         if(iDefense < 0)
         {
-            actorDefense = 0;
+            actorBaseDefense = 0;
         }
         else
         {
-            actorDefense = iDefense;
+            actorBaseDefense = iDefense;
         }
     }
 
     public int getDefense()
     {
-        return actorDefense;
+        return actorBaseDefense;
     }
 
     public void setMagicResistance(int iResist)
     {
         if(iResist < 0)
         {
-            actorMagicResistance = 0;
+            actorBaseMagicResistance = 0;
         }
         else
         {
-            actorMagicResistance = iResist;
+            actorBaseMagicResistance = iResist;
         }
     }
 
     public int getMagicResistance()
     {
-        return actorMagicResistance;
+        return actorBaseMagicResistance;
     }
 
     public void setSpeed(float iSpeed)
     {
         if (iSpeed < 0)
         {
-            actorSpeed = 0.1f;
+            actorBaseSpeed = 0.1f;
         }
         else if (iSpeed > 7.5f)
         {
-            actorSpeed = 7.5f;
+            actorBaseSpeed = 7.5f;
         }
         else
         {
-            actorSpeed = iSpeed;
+            actorBaseSpeed = iSpeed;
         }
     }
 
     public float getSpeed()
     {
-        return actorSpeed;
+        return actorBaseSpeed;
     }
 
     // Multiply the float by 100.
@@ -355,40 +356,40 @@ public class Actor
     {
         if(iCrit < 0.15f)
         {
-            actorCriticalChance = 0.15f;
+            actorBaseCriticalChance = 0.15f;
         } else if(iCrit > 1f)
         {
-            actorCriticalChance = 1f;
+            actorBaseCriticalChance = 1f;
         }
         else
         {
-            actorCriticalChance = iCrit;
+            actorBaseCriticalChance = iCrit;
         }
     }
 
     public float getCritChance()
     {
-        return actorCriticalChance;
+        return actorBaseCriticalChance;
     }
 
     public void setCritDamage(float iCrit)
     {
         if(iCrit < 0.01)
         {
-            actorCriticalDamage = 0f;
+            actorBaseCriticalDamage = 0f;
         } else if(iCrit > 4.5f)
         {
-            actorCriticalDamage = 4.5f;
+            actorBaseCriticalDamage = 4.5f;
         }
         else
         {
-            actorCriticalDamage = iCrit;
+            actorBaseCriticalDamage = iCrit;
         }
     }
 
     public float getCritDamage()
     {
-        return actorCriticalDamage;
+        return actorBaseCriticalDamage;
     }
 
 
@@ -396,21 +397,21 @@ public class Actor
     {
         if (iResist > 1f)
         {
-            actorResistance = 1f;
+            actorBaseResistance = 1f;
         }
         else if (iResist < 0.2f)
         {
-            actorResistance = 0.2f;
+            actorBaseResistance = 0.2f;
         }
         else 
         {
-            actorResistance = iResist;
+            actorBaseResistance = iResist;
         }
     }
 
     public float getResistance()
     {
-        return actorResistance;
+        return actorBaseResistance;
     }
 
 }
