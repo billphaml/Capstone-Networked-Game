@@ -18,7 +18,8 @@ GameObject:
   - component: {fileID: 2100353275523439228}
   - component: {fileID: 1405533726842306546}
   - component: {fileID: 1405533726842306545}
-  m_Layer: 0
+  - component: {fileID: -7041948865194189947}
+  m_Layer: 7
   m_Name: Enemy Template
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -150,6 +151,7 @@ MonoBehaviour:
   kChaseRange: 5
   kAttackRange: 1.5
   timerTick: 0
+  isPatroling: 0
 --- !u!114 &2100353275523439228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +200,19 @@ MonoBehaviour:
   CorrectionDelay: 3
   DriftCorrectionPercentage: 0.1
   WarpOnDestinationChange: 0
+--- !u!114 &-7041948865194189947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405533726842306551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3f270c2be2e7c4b9aa0dcb714b94bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1 &1405533727244231343
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +224,7 @@ GameObject:
   - component: {fileID: 1405533727244231342}
   - component: {fileID: 1405533727244231337}
   - component: {fileID: 6019827525303499277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -194,17 +194,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5d9449c36b4bf44a0d07c1f4e03912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootParticleSystem: {fileID: 0}
   meleeRange: 1
   rangeRange: 1
-  damage: 0
+  damage: 5
   Projectile: {fileID: 5451775907266220302}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   player: {fileID: 665451937295417341}
   attackBox: {fileID: 4002624745775347529}
   rangeBox: {fileID: 7086769163375278502}
-  weaponType: 0
+  weaponType: 1
 --- !u!1 &665451937400494509
 GameObject:
   m_ObjectHideFlags: 0

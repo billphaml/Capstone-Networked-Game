@@ -10,6 +10,7 @@ public class PlayerDamage : NetworkBehaviour
     /// <summary>
     /// 
     /// </summary>
+    public ParticleSystem shootParticleSystem;
     [SerializeField] float meleeRange;
     [SerializeField] float rangeRange;
     [SerializeField] float damage;
@@ -25,7 +26,7 @@ public class PlayerDamage : NetworkBehaviour
     NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
     
     /// <summary>
-    /// 
+    /// Empty
     /// </summary>
     void Start()
     {
@@ -37,7 +38,7 @@ public class PlayerDamage : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            attack.Value = Input.GetMouseButton(0);
+            attack.Value = Input.GetMouseButtonDown(0);
             if (attack.Value == true)
             {
                 if (weaponType == 1)
@@ -69,6 +70,7 @@ public class PlayerDamage : NetworkBehaviour
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
 
             currentEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
+            Debug.Log("hit" + currentEnemy);
 
             // Add the damaged enemy to the list
             alreadyDamagedEnemies.Add(currentEnemy);
@@ -78,14 +80,27 @@ public class PlayerDamage : NetworkBehaviour
         
     }
 
+    /// <summary>
+    /// Ranged Hit detection using Raycasting
+    /// Also responsible for projectile display
+    /// </summary>
     [ServerRpc]
     void ShootServerRpc(ServerRpcParams rpcParams = default)
     {
-        Transform arrowTransform = Instantiate(Projectile, attackBox.transform.position, Quaternion.identity);
-        Vector3 trajectory = (attackBox.transform.position - rangeBox.transform.position);
+        Ray ray = new Ray(shootParticleSystem.transform.position, shootParticleSystem.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+        {
+            hit.collider.GetComponent<HealthSystem>().TakeDamage(damage);
+            Debug.Log("hit" + hit.collider);
+        }
+        //Transform arrowTransform = Instantiate(Projectile, attackBox.transform.position, Quaternion.identity);
+        //Vector3 trajectory = (attackBox.transform.position - rangeBox.transform.position);
 
     }
 
+    /// <summary>
+    /// Honestly this stuff dosn't work for me. I think it draws outlines or somthing in the prefab veiw?
+    /// </summary>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

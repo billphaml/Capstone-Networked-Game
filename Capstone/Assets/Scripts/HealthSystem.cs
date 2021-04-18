@@ -12,5 +12,6 @@ public class HealthSystem : NetworkBehaviour
     public void TakeDamage(float damage)
     {
         health.Value -= damage;
+        Debug.Log("IM HIT" + health.Value);
     }
 }
