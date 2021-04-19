@@ -13,7 +13,6 @@ public class Player : Actor
     public GameItem playerRingOne;
     public GameItem playerRingTwo;
 
-
     [Header("Player Final Stats")]
     public int playerStrength = 10;
     public int playerMagic = 10;
@@ -27,9 +26,11 @@ public class Player : Actor
     public float playerCriticalDamage = 1f;
     public float playerResistance = 0.2f;
 
+    public InventoryItem playerInventory;
+
     public Player(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
     {
-        
+
     }
 
     public Player(Player iPlayer) : base(iPlayer.actorName, iPlayer.actorDescription, iPlayer.getActorType(), iPlayer.getAttackType())

@@ -9,27 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2131094c2fc79524e9d2c3a9d548c625, type: 3}
+  m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Dragon_Greatsword
   m_EditorClassIdentifier: 
+  itemGameObject: {fileID: 7035493676493830629, guid: 0c3eb4dbfd698a24c9f51e3ff2144540, type: 3}
   itemName: Dragon Greatsword
-  itemDescription: It was too big to be called a sword. Too big, too thick, too heavy
-    , and too rough. It was more like a large hunk of iron.
+  itemDescription: It was too big to be called a sword. Too big, too thick, too heavy,
+    and too rough, it was more like a large hunk of iron.
   itemGameType: 5
   addAttack: 40
   addDefence: 0
   addMagicResistance: 0
   addSpeed: 0
-  addCriticalChance: 15
-  addCriticalDamage: 60
+  addCriticalChance: 0
+  addCriticalDamage: 0
   addResistance: 0
-  addStrength: 20
-  addMagic: 10
-  addDexterity: 5
-  addConstitution: 5
+  addStrength: 50
+  addMagic: 5
+  addDexterity: 10
+  addConstitution: 20
   addHP: 0
   addSP: 0
   addMP: 0
-  itemRange: 2.5
-  itemRadius: 0
+  itemRange: 1.2
+  itemRadius: 1.5
   itemAttackSpeed: 0.78

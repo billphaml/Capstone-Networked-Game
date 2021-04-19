@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehavior : MonoBehaviour
+public class PlayerStat : MonoBehaviour
 {
 
     public Player thePlayer;
 
+    public InventoryItem playerInventory;
 
-    public GameItem[] playerInventory;
 
     void Awake()
     {
@@ -36,7 +36,8 @@ public class PlayerBehavior : MonoBehaviour
     public void setupPlayer()
     {
         thePlayer = new Player("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
-        playerInventory = new GameItem[28];
+        thePlayer.playerInventory = playerInventory;
+
     }
 
     public void itemChange()
@@ -44,6 +45,23 @@ public class PlayerBehavior : MonoBehaviour
         
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Wow you hit something");
+        var item = collision.GetComponent<ItemBehavior>();
+        if (item)
+        {
+           thePlayer.playerInventory.addItem(item.theItem, 1);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        thePlayer.playerInventory.Inventory.Clear();
+    }
+
+    /*
     public void updateAttackType()
     {
         switch (thePlayer.playerWeapon.itemGameType)
@@ -68,7 +86,7 @@ public class PlayerBehavior : MonoBehaviour
                 break;
         }
     }
-
+    **/
 
 
     public void addHelmetStat()
@@ -137,6 +155,7 @@ public class PlayerBehavior : MonoBehaviour
 
     }
 
+    /*
     public void addEquiptmentStat(GameItem theItem)
     {
         thePlayer.playerStrength += theItem.addStrength;
@@ -172,5 +191,5 @@ public class PlayerBehavior : MonoBehaviour
         updateAttackType();
         calculatePlayerStat();
     }
-
+    **/
 }
