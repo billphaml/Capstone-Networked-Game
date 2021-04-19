@@ -6,12 +6,12 @@ using UnityEngine;
 public class Player : Actor
 {
     [Header("Player Equipment")]
-    public GameItem playerHelmet;
-    public GameItem playerArmor;
-    public GameItem playerWeapon;
-    public GameItem playerNecklace;
-    public GameItem playerRingOne;
-    public GameItem playerRingTwo;
+    public EquipItem playerHelmet;
+    public EquipItem playerArmor;
+    public EquipItem playerWeapon;
+    public EquipItem playerNecklace;
+    public EquipItem playerRingOne;
+    public EquipItem playerRingTwo;
 
     [Header("Player Final Stats")]
     public int playerStrength = 10;

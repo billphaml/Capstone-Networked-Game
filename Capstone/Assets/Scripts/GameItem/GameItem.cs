@@ -27,6 +27,6 @@ public abstract class GameItem : ScriptableObject
     public string itemName;
     [TextArea(10,20)]
     public string itemDescription;
-    public itemType itemGameType;
+    public itemType gameItemType;
 
 }

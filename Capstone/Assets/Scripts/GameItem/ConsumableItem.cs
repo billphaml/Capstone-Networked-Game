@@ -11,6 +11,6 @@ public class ConsumableItem : GameItem
 
     void Awake()
     {
-        itemGameType = itemType.CONSUME;   
+        gameItemType = itemType.CONSUME;   
     }
 }

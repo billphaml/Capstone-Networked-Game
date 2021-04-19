@@ -7,6 +7,6 @@ public class DefaultItem : GameItem
 {
     void Awake()
     {
-        itemGameType = itemType.DEFAULT;
+        gameItemType = itemType.DEFAULT;
     }
 }

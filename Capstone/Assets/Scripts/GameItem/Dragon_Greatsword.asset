@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Dragon Greatsword
   itemDescription: It was too big to be called a sword. Too big, too thick, too heavy,
     and too rough, it was more like a large hunk of iron.
-  itemGameType: 5
+  gameItemType: 5
   addAttack: 40
   addDefence: 0
   addMagicResistance: 0

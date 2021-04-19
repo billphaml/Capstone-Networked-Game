@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
-  m_Name: Dragon_Helmet
+  m_Name: Dragon_Armor
   m_EditorClassIdentifier: 
-  itemGameObject: {fileID: 7347699027425308234, guid: 31e9df12b048e82479ab3cf11472f8af, type: 3}
-  itemName: Dragon Helmet
-  itemDescription: Can't believe someone killed a dragon for this.
-  gameItemType: 0
-  addAttack: 10
-  addDefence: 50
-  addMagicResistance: 50
+  itemGameObject: {fileID: 0}
+  itemName: Dragon Armor
+  itemDescription: Armor made from a dragon bone. You look absolutely ridiculous.
+    Also, very cool.
+  gameItemType: 1
+  addAttack: 0
+  addDefence: 80
+  addMagicResistance: 80
   addSpeed: 0
-  addCriticalChance: 15
-  addCriticalDamage: 25
-  addResistance: 10
-  addStrength: 20
-  addMagic: 20
+  addCriticalChance: 0
+  addCriticalDamage: 0
+  addResistance: 80
+  addStrength: 0
+  addMagic: 0
   addDexterity: 0
   addConstitution: 40
   addHP: 0

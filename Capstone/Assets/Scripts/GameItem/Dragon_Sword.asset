@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
-  m_Name: Dragon_Helmet
+  m_Name: Dragon_Sword
   m_EditorClassIdentifier: 
-  itemGameObject: {fileID: 7347699027425308234, guid: 31e9df12b048e82479ab3cf11472f8af, type: 3}
-  itemName: Dragon Helmet
-  itemDescription: Can't believe someone killed a dragon for this.
-  gameItemType: 0
-  addAttack: 10
-  addDefence: 50
-  addMagicResistance: 50
+  itemGameObject: {fileID: 0}
+  itemName: Dragon Sword
+  itemDescription: 'A sword made from a dragon''s claw apparently. '
+  gameItemType: 4
+  addAttack: 40
+  addDefence: 0
+  addMagicResistance: 0
   addSpeed: 0
-  addCriticalChance: 15
-  addCriticalDamage: 25
-  addResistance: 10
+  addCriticalChance: 20
+  addCriticalDamage: 50
+  addResistance: 0
   addStrength: 20
-  addMagic: 20
-  addDexterity: 0
-  addConstitution: 40
+  addMagic: 10
+  addDexterity: 20
+  addConstitution: 20
   addHP: 0
   addSP: 0
   addMP: 0

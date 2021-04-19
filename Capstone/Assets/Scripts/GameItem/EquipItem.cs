@@ -37,6 +37,6 @@ public class EquipItem : GameItem
 
      void Awake()
     {
-        itemGameType = itemType.HEAD;
+        //gameItemType = itemType.HEAD;
     }
 }
