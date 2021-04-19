@@ -1,4 +1,5 @@
 using MLAPI;
+using MLAPI.Transports.PhotonRealtime;
 using MLAPI.Transports.UNET;
 using TMPro;
 using Unity.VisualScripting;
@@ -83,7 +84,12 @@ public class GameNetworkManager : MonoBehaviour
         //{
         //    NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = ui.ipBoxHost.GetComponent<TMP_InputField>().text;
         //}
+        
+        UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        PhotonRealtimeTransport manager = GameObject.Find("Network Manager").GetComponent<PhotonRealtimeTransport>();
 
+        manager.RoomName = ui.RoomNameHost.GetComponent<TMP_InputField>().text.ToString();
+        manager.name = ui.NickName.GetComponent<TMP_InputField>().text.ToString();
         NetworkManager.Singleton.StartHost();
     }
 
@@ -100,7 +106,10 @@ public class GameNetworkManager : MonoBehaviour
         //{
         //    NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = ui.ipBoxClient.GetComponent<TMP_InputField>().text;
         //}
+        UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        PhotonRealtimeTransport manager = GameObject.Find("Network Manager").GetComponent<PhotonRealtimeTransport>();
 
+        manager.RoomName = ui.RoomNameClient.GetComponent<TMP_InputField>().text.ToString();
         NetworkManager.Singleton.StartClient();
     }
 }
