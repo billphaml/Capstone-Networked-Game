@@ -17,13 +17,13 @@ public class GameSceneManager : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void LoadMainMenu()
@@ -40,7 +40,7 @@ public class GameSceneManager : NetworkBehaviour
     public void LoadLevelAdventure()
     {
         SceneManager.LoadScene("AdventureZone");
-
+        
     }
 
     /// <summary>
