@@ -1,3 +1,8 @@
+/*
+ * Bug: server host can't send messages in chat after users have joined.
+ * Something to do with ownership.
+ */
+
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;
@@ -14,20 +19,30 @@ public class ChatBehaviour : NetworkBehaviour
 
     public override void NetworkStart()
     {
-        if (!IsClient) return;
+        if (IsClient || IsHost)
+        {
+            base.NetworkStart();
 
-        base.NetworkStart();
+            chatUI.SetActive(true);
 
-        chatUI.SetActive(true);
-
-        OnMessage += HandleNewMessage;
+            OnMessage += HandleNewMessage;
+        } 
+        else
+        {
+            return;
+        }
     }
 
     private void OnDestroy()
     {
-        if (!IsClient) return;
-
-        OnMessage -= HandleNewMessage;
+        if (IsClient || IsHost)
+        {
+            OnMessage -= HandleNewMessage;
+        }
+        else
+        {
+            return;
+        } 
     }
 
     private void HandleNewMessage(string message)
@@ -35,22 +50,33 @@ public class ChatBehaviour : NetworkBehaviour
         chatText.text += message;
     }
 
-    public void Send(string message)
+    public void Send()
     {
-        if (!IsClient) return;
+        if (IsClient || IsHost)
+        {
+            if (!Input.GetKeyDown(KeyCode.Return)) return;
 
-        if (!Input.GetKeyDown(KeyCode.Return)) return;
+            string message = inputField.text;
 
-        if (string.IsNullOrWhiteSpace(message)) return;
+            if (string.IsNullOrWhiteSpace(message)) return;
 
-        SendMessageServerRpc(message);
+            SendMessageServerRpc(message);
 
-        inputField.text = string.Empty;
+            inputField.text = string.Empty;
+        }
+        else
+        {
+            return;
+        }
     }
 
     [ServerRpc]
     private void SendMessageServerRpc(string message)
     {
+        // Need to somehow get nickname, perhaps make loadbalanceclient public in photon class and directly
+        // retrieve nickname from there? Better idea is probably to have a custom nickname system stored
+        // as network var so that we're not dependent on photon
+        //NetworkManager.Singleton.gameObject.GetComponent<pho>
         HandleMessageClientRpc($"[Player]: {message}");
     }
 
