@@ -7,8 +7,9 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+using MLAPI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : NetworkBehaviour
 {
     /// <summary>
     /// Reference to enemy controller to get other references i.e. player.
@@ -47,6 +48,14 @@ public class EnemyMovement : MonoBehaviour
         agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
+    public override void NetworkStart()
+    {
+        base.NetworkStart();
+        ec = gameObject.GetComponent<EnemyController>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
+    }
+
+    //
     /// <summary>
     /// Updates position enemy should move to.
     /// </summary>
@@ -58,7 +67,7 @@ public class EnemyMovement : MonoBehaviour
                 PatrolMovement();
                 break;
             case EnemyFSM.EnemyState.idleState:
-                agent.SetDestination(gameObject.transform.position);
+                //agent.SetDestination(gameObject.transform.position);
                 break;
             case EnemyFSM.EnemyState.chaseState:
                 newDest = ec.player.transform.position;

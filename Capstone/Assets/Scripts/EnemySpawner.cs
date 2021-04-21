@@ -79,20 +79,20 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (doneSpawning)
-        {
-            //for (int i = 0; i < doors.Length; i++)
-            //{
-            //    doors[i].GetComponent<BoxCollider2D>().enabled = false;
-            //    doors[i].GetComponent<SpriteRenderer>().enabled = false;
-            //}
-            //for (int i = 0; i < spawnPoints.Length; i++)
-            //{
-            //    spawnPoints[i].GetComponent<Animator>().SetBool("delete", true);
-            //}
+        //if (doneSpawning)
+        //{
+        //    //for (int i = 0; i < doors.Length; i++)
+        //    //{
+        //    //    doors[i].GetComponent<BoxCollider2D>().enabled = false;
+        //    //    doors[i].GetComponent<SpriteRenderer>().enabled = false;
+        //    //}
+        //    //for (int i = 0; i < spawnPoints.Length; i++)
+        //    //{
+        //    //    spawnPoints[i].GetComponent<Animator>().SetBool("delete", true);
+        //    //}
             
-            StartCoroutine(DeletePortals());
-        }
+        //    StartCoroutine(DeletePortals());
+        //}
     }
 
     /// <summary>

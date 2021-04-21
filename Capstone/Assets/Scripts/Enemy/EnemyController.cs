@@ -25,17 +25,38 @@ public class EnemyController : NetworkBehaviour
     /// <summary>
     /// Reference to player object.
     /// </summary>
-    public GameObject player = default;
+    public GameObject player = null;
 
     /// <summary>
     /// Reference to enemy fsm.
     /// </summary>
-    public EnemyFSM fsm = default;
+    public EnemyFSM fsm = null;
 
     /// <summary>
     /// Reference to enemy movement.
     /// </summary>
-    public EnemyMovement move = default;
+    public EnemyMovement move = null;
+
+    public override void NetworkStart()
+    {
+        //if (IsHost || IsServer)
+        //{
+        //    base.NetworkStart();
+            
+        //    // Remove after adding nearest player searching
+        //    player = GameObject.FindGameObjectWithTag("Player");
+
+        //    fsm = gameObject.GetComponent<EnemyFSM>();
+
+        //    move = gameObject.GetComponent<EnemyMovement>();
+
+        //    fsm.SetState(EnemyFSM.EnemyState.patrolState);
+        //}
+        //else
+        //{
+        //    return;
+        //}
+    }
 
     void Start()
     {
@@ -50,19 +71,6 @@ public class EnemyController : NetworkBehaviour
 
             fsm.SetState(EnemyFSM.EnemyState.patrolState);
         }
-
-#if UNITY_EDITOR && DEBUG
-        Debug.Log("Is host");
-
-        // Remove after adding nearest player searching
-        player = GameObject.FindGameObjectWithTag("Player");
-
-        fsm = gameObject.GetComponent<EnemyFSM>();
-
-        move = gameObject.GetComponent<EnemyMovement>();
-
-        fsm.SetState(EnemyFSM.EnemyState.patrolState);
-#endif
     }
 
     void Update()
@@ -86,11 +94,5 @@ public class EnemyController : NetworkBehaviour
             //    }
             //}
         }
-
-#if UNITY_EDITOR && DEBUG
-        move.UpdateMovement();
-
-        fsm.UpdateFSM();
-#endif
     }
 }

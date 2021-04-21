@@ -210,7 +210,6 @@ public class EnemyFSM : MonoBehaviour
 
     public bool IsExecutingPatrolState()
     {
-        //return timerTick > kPatrolTimer;
         return isPatroling;
     }
 
