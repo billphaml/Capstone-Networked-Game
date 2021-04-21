@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
+using Cinemachine;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -14,8 +15,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            camera.GetComponent<AudioListener>().enabled = false;
-            camera.GetComponent<Camera>().enabled = false;
+            camera.GetComponent<CinemachineVirtualCamera>().enabled = false;
         }
 
         playerColor.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
