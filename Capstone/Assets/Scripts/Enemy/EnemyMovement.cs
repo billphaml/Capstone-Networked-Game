@@ -11,6 +11,7 @@ using MLAPI;
 
 public class EnemyMovement : NetworkBehaviour
 {
+    
     /// <summary>
     /// Reference to enemy controller to get other references i.e. player.
     /// </summary>

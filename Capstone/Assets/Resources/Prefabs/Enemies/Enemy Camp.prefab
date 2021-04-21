@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 1613656052107456909}
   - component: {fileID: 1613656052107456906}
   - component: {fileID: 1613656052107456907}
-  - component: {fileID: 9077441048520071374}
   m_Layer: 0
   m_Name: Spawn Trigger
   m_TagString: Untagged
@@ -285,23 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 1613656052059598248}
---- !u!114 &9077441048520071374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613656052107456908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkInstanceId: 0
-  PrefabHash: 16401911356634229586
-  PrefabHashGenerator: Spawn Trigger
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
 --- !u!1 &1613656052596042955
 GameObject:
   m_ObjectHideFlags: 0
