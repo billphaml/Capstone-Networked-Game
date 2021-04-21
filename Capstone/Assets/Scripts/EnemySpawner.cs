@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using MLAPI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject[] doors;
 
     [System.Serializable]
-    public struct enemyBP 
+    public struct enemyBP
     {
         public GameObject enemy;
         public int enemyCount;
@@ -21,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     [System.Serializable]
-    public struct waveDeets 
+    public struct waveDeets
     {
         public enemyBP[] enemies;
         public int length;
@@ -79,17 +80,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (FloorGameController.numberOfEnemies == 0 && FloorGameController.currentRoundTime > 1f && doneSpawning)
+        if (doneSpawning)
         {
-            for (int i = 0; i < doors.Length; i++)
-            {
-                doors[i].GetComponent<BoxCollider2D>().enabled = false;
-                doors[i].GetComponent<SpriteRenderer>().enabled = false;
-            }
-            for (int i = 0; i < spawnPoints.Length; i++)
-            {
-                spawnPoints[i].GetComponent<Animator>().SetBool("delete", true);
-            }
+            //for (int i = 0; i < doors.Length; i++)
+            //{
+            //    doors[i].GetComponent<BoxCollider2D>().enabled = false;
+            //    doors[i].GetComponent<SpriteRenderer>().enabled = false;
+            //}
+            //for (int i = 0; i < spawnPoints.Length; i++)
+            //{
+            //    spawnPoints[i].GetComponent<Animator>().SetBool("delete", true);
+            //}
+            
             StartCoroutine(DeletePortals());
         }
     }
@@ -102,7 +104,8 @@ public class EnemySpawner : MonoBehaviour
     {
         int spawnPointIndex = Random.Range(0, spawnPointPositions.Length);
 
-        Instantiate(currentEnemy, spawnPointPositions[spawnPointIndex].position, spawnPointPositions[spawnPointIndex].rotation);
+        GameObject go = Instantiate(currentEnemy, spawnPointPositions[spawnPointIndex].position, spawnPointPositions[spawnPointIndex].rotation);
+        go.GetComponent<NetworkObject>().Spawn();
     }
 
     public void StartWaves()
@@ -121,7 +124,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 Debug.Log("enemies spawn " + k);
                 Spawn(waves[0].enemies[j].enemy);
-                FloorGameController.numberOfEnemies++;
+                //FloorGameController.numberOfEnemies++;
                 yield return new WaitForSeconds(waves[0].enemies[j].enemyRate);
             }
         }
@@ -139,7 +142,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     Debug.Log("enemies spawn " + k);
                     Spawn(waves[a].enemies[j].enemy);
-                    FloorGameController.numberOfEnemies++;
+                    //FloorGameController.numberOfEnemies++;
                     yield return new WaitForSeconds(waves[a].enemies[j].enemyRate);
                 }
             }
