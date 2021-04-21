@@ -9,7 +9,6 @@
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
 
 public class WaveTrigger : NetworkBehaviour
 {
@@ -18,9 +17,6 @@ public class WaveTrigger : NetworkBehaviour
     /// </summary> 
     [SerializeField]
     private GameObject room = null;
-
-    [SerializeField]
-    private GameObject room2 = null;
 
     //[SerializeField]
     //private GameObject[] doors;
@@ -40,17 +36,12 @@ public class WaveTrigger : NetworkBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Player" && NetworkManager.Singleton.IsHost)
+        if (collision.gameObject.tag == "Player" && IsHost)
         {
 #if (DEBUG)
             Debug.Log("Triggered by player/object");
 #endif
             room.GetComponent<EnemySpawner>().StartWaves();
-
-            if (room2 != null)
-            {
-                room2.GetComponent<EnemySpawner>().StartWaves();
-            }
 
             //for (int i = 0; i < doors.Length; i++)
             //{
@@ -75,11 +66,6 @@ public class WaveTrigger : NetworkBehaviour
         Debug.Log("Triggered by player/object");
 #endif
         room.GetComponent<EnemySpawner>().StartWaves();
-
-        if (room2 != null)
-        {
-            room2.GetComponent<EnemySpawner>().StartWaves();
-        }
 
         //for (int i = 0; i < doors.Length; i++)
         //{

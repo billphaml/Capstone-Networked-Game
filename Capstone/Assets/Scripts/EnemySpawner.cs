@@ -10,7 +10,6 @@ using MLAPI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
     private GameObject[] doors;
 
     [System.Serializable]
@@ -24,8 +23,8 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public struct waveDeets
     {
-        public enemyBP[] enemies;
         public int length;
+        public enemyBP[] enemies;
     }
 
     // is done spawning
@@ -50,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
     /// <summary>
     /// Array of valid spawnpoint positions.
     /// </summary>
-    public Transform[] spawnPointPositions;
+    private Transform[] spawnPointPositions;
 
     /// <summary>
     /// Starts a invoke to repeatively spawn enemies.
