@@ -7,7 +7,7 @@ public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private SpriteRenderer playerColor;
 
-    [SerializeField] private GameObject camera;
+    [SerializeField] private new GameObject camera;
 
     // Start is called before the first frame update
     void Start()

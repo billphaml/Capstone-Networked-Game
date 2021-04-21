@@ -69,7 +69,7 @@ public class PlayerDamage : NetworkBehaviour
             // Skip if you already damaged this enemy
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
 
-            currentEnemy.GetComponent<HealthSystem>().TakeDamage(damage);
+            currentEnemy.GetComponent<EnemyDamageable>().DealDamage(damage);
             Debug.Log("hit" + currentEnemy);
 
             // Add the damaged enemy to the list
@@ -90,7 +90,7 @@ public class PlayerDamage : NetworkBehaviour
         Ray ray = new Ray(shootParticleSystem.transform.position, shootParticleSystem.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
-            hit.collider.GetComponent<HealthSystem>().TakeDamage(damage);
+            hit.collider.GetComponent<EnemyDamageable>().DealDamage(damage);
             Debug.Log("hit" + hit.collider);
         }
         //Transform arrowTransform = Instantiate(Projectile, attackBox.transform.position, Quaternion.identity);

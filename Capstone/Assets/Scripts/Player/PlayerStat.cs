@@ -9,12 +9,12 @@ public class PlayerStat : MonoBehaviour
 
     public InventoryItem playerInventory;
 
-    private bool headCheck = false;
-    private bool armorCheck = false;
-    private bool weaponCheck = false;
-    private bool necklaceCheck = false;
-    private bool ringOneCheck = false;
-    private bool ringTwoCheck = false;
+    //private bool headCheck = false;
+    //private bool armorCheck = false;
+    //private bool weaponCheck = false;
+    //private bool necklaceCheck = false;
+    //private bool ringOneCheck = false;
+    //private bool ringTwoCheck = false;
 
     void Awake()
     {

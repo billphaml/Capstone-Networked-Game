@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
     /// Distance that certain enemies will stay away from the player.
     /// Note: Make sure evade is less than attack range.
     /// </summary>
-    [SerializeField] private float evadeDistance = 4;
+    //[SerializeField] private float evadeDistance = 4;
 
     /// <summary>
     /// Variable to affect enemy bias in moving towards the player when

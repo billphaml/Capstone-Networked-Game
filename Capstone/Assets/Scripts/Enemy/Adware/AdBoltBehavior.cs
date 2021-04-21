@@ -20,7 +20,7 @@ public class AdBoltBehavior : MonoBehaviour
     private float boltSpeed = 2f;
 
     [SerializeField]
-    private float damageAmount = 1f;
+    //private float damageAmount = 1f;
 
     private float kSizeIncrement = 0.0002f;
     private float scale = 0f;

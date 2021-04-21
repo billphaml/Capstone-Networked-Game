@@ -16,7 +16,7 @@ public class BoltBehavior : MonoBehaviour
     private float boltSpeed = 2f;
 
     [SerializeField]
-    private float damageAmount = 1f;
+    //private float damageAmount = 1f;
 
     private void Start()
     {
