@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyAnimationController : MonoBehaviour
+public class EnemyAnimation : MonoBehaviour
 {
     /// <summary>
     /// Reference to enemy controller to get other references i.e. player.

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocalGameManager : MonoBehaviour
+public class GameDialogueManager : MonoBehaviour
 {
-    private static LocalGameManager _theLocalgameManager;
+    private static GameDialogueManager _theLocalgameManager;
 
-    public static LocalGameManager theLocalGameManager { get { return _theLocalgameManager; } }
+    public static GameDialogueManager theLocalGameManager { get { return _theLocalgameManager; } }
 
     public DialogueManager theDialogueManager;
     public PlayerMovement ThePlayerMovement;

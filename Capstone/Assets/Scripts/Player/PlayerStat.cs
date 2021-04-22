@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
 
-    public Player thePlayer;
+    public PlayerActor thePlayer;
 
     public InventoryItem playerInventory;
 
@@ -41,7 +41,7 @@ public class PlayerStat : MonoBehaviour
     // Method used to set up the player character
     public void setupPlayer()
     {
-        thePlayer = new Player("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
+        thePlayer = new PlayerActor("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
         thePlayer.playerInventory = playerInventory;
 
     }

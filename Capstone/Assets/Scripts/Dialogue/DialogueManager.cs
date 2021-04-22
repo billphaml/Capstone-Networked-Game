@@ -179,7 +179,7 @@ public class DialogueManager : MonoBehaviour
     {
         // Find the dialogue set corresponding with the scene
         //string path = "Assets/Dialogue_Set/" + startScene + ".txt";
-        LocalGameManager.theLocalGameManager.turnOffPlayerMovement();
+        GameDialogueManager.theLocalGameManager.turnOffPlayerMovement();
         turnOnDialogue();
 
         // Add a check for file
@@ -323,7 +323,7 @@ public class DialogueManager : MonoBehaviour
     {
         textGroup.SetActive(true);
         isActive = true;
-        LocalGameManager.theLocalGameManager.turnOnDialogue();
+        GameDialogueManager.theLocalGameManager.turnOnDialogue();
     }
 
     // This method is used to turn off the dialogue, hiding the textbox
@@ -331,7 +331,7 @@ public class DialogueManager : MonoBehaviour
     {
         textGroup.SetActive(false);
         isActive = false;
-        LocalGameManager.theLocalGameManager.turnOffDialogue();
+        GameDialogueManager.theLocalGameManager.turnOffDialogue();
     }
 
     public bool getActive()

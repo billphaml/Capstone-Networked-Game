@@ -23,14 +23,14 @@ public class NPCBehavior : MonoBehaviour
 
     public void triggerDialogue()
     {
-        LocalGameManager.theLocalGameManager.startDialogue(actorIdentity.getDialogue());
+        GameDialogueManager.theLocalGameManager.startDialogue(actorIdentity.getDialogue());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //canTalk = true; 
         Debug.Log("Wow you got here");
-        if(LocalGameManager.theLocalGameManager.dialogueActive == false)
+        if(GameDialogueManager.theLocalGameManager.dialogueActive == false)
         triggerDialogue();
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Player : Actor
+public class PlayerActor : Actor
 {
     [Header("Player Equipment")]
     public EquipItem playerHelmet;
@@ -28,12 +28,12 @@ public class Player : Actor
 
     public InventoryItem playerInventory;
 
-    public Player(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
+    public PlayerActor(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
     {
 
     }
 
-    public Player(Player iPlayer) : base(iPlayer.actorName, iPlayer.actorDescription, iPlayer.getActorType(), iPlayer.getAttackType())
+    public PlayerActor(PlayerActor iPlayer) : base(iPlayer.actorName, iPlayer.actorDescription, iPlayer.getActorType(), iPlayer.getAttackType())
     {
 
     }

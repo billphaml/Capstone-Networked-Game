@@ -5,7 +5,7 @@ using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using UnityEngine;
 
-public class PlayerDamage : NetworkBehaviour
+public class PlayerAttack : NetworkBehaviour
 {
     /// <summary>
     /// 
@@ -43,11 +43,11 @@ public class PlayerDamage : NetworkBehaviour
             {
                 if (weaponType == 1)
                 {
-                    SwingServerRpc();
+                    MeleeAttackServerRpc();
                 }
                 else if (weaponType == 2)
                 {
-                    ShootServerRpc();
+                    RangeAttackServerRpc();
                 }
                
             }
@@ -59,7 +59,7 @@ public class PlayerDamage : NetworkBehaviour
     /// </summary>
     /// <param name="rpcParams"></param>
     [ServerRpc]
-    void SwingServerRpc(ServerRpcParams rpcParams = default)
+    void MeleeAttackServerRpc(ServerRpcParams rpcParams = default)
     {
         
 
@@ -85,7 +85,7 @@ public class PlayerDamage : NetworkBehaviour
     /// Also responsible for projectile display
     /// </summary>
     [ServerRpc]
-    void ShootServerRpc(ServerRpcParams rpcParams = default)
+    void RangeAttackServerRpc(ServerRpcParams rpcParams = default)
     {
         Ray ray = new Ray(shootParticleSystem.transform.position, shootParticleSystem.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
