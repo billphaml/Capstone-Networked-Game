@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6faf08ba14324f4aa75d50155b6f501, type: 3}
   m_Name: Skeleton_Key
   m_EditorClassIdentifier: 
-  itemGameObject: {fileID: 7035493676493830629, guid: 0c3eb4dbfd698a24c9f51e3ff2144540, type: 3}
+  itemID: 0
+  itemImage: {fileID: 0}
   itemName: Skeleton Key
   itemDescription: A key with a design that is inspired by human bones. It's pretty
     cool.
-  itemGameType: 10
+  gameItemType: 10

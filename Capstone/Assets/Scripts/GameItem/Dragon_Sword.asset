@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Dragon_Sword
   m_EditorClassIdentifier: 
-  itemGameObject: {fileID: 0}
+  itemID: 0
+  itemImage: {fileID: 0}
   itemName: Dragon Sword
   itemDescription: 'A sword made from a dragon''s claw apparently. '
   gameItemType: 4

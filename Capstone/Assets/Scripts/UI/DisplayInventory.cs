@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class DisplayInventory : MonoBehaviour
 {
+    public GameObject inventoryItem;
     public InventoryItem theInventory;
 
     public int xStart;
@@ -32,7 +35,7 @@ public class DisplayInventory : MonoBehaviour
     {
         for(int i = 0; i < theInventory.Inventory.Count; i++)
         {
-            var itemObject = Instantiate(theInventory.Inventory[i].theItem.itemGameObject, Vector3.zero, Quaternion.identity, transform);
+            var itemObject = Instantiate(inventoryItem, Vector3.zero, Quaternion.identity, transform);
             itemObject.GetComponent<RectTransform>().localPosition = getPosition(i);
             itemObject.GetComponentInChildren<TextMeshProUGUI>().text = theInventory.Inventory[i].itemAmount.ToString("n0");
         }
@@ -48,7 +51,8 @@ public class DisplayInventory : MonoBehaviour
             }
             else
             {
-                var itemObject = Instantiate(theInventory.Inventory[i].theItem.itemGameObject, Vector3.zero, Quaternion.identity, transform);
+                var itemObject = Instantiate(inventoryItem, Vector3.zero, Quaternion.identity, transform);
+                //itemObject.transform.GetChild(0).GetComponentInChildren<Image>().sprite;
                 itemObject.GetComponent<RectTransform>().localPosition = getPosition(i);
                 itemObject.GetComponentInChildren<TextMeshProUGUI>().text = theInventory.Inventory[i].itemAmount.ToString("n0");
                 displayItem.Add(theInventory.Inventory[i], itemObject);

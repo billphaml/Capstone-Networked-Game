@@ -22,7 +22,8 @@ public abstract class GameItem : ScriptableObject
 {
 
     // Item Description
-    public GameObject itemGameObject;
+    public int itemID;
+    public Sprite itemImage;
     [Header("Game Item Description")]
     public string itemName;
     [TextArea(10,20)]

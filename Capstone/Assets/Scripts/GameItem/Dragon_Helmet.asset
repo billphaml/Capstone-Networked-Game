@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Dragon_Helmet
   m_EditorClassIdentifier: 
-  itemGameObject: {fileID: 7347699027425308234, guid: 31e9df12b048e82479ab3cf11472f8af, type: 3}
+  itemID: 0
+  itemImage: {fileID: 0}
   itemName: Dragon Helmet
   itemDescription: Can't believe someone killed a dragon for this.
   gameItemType: 0
