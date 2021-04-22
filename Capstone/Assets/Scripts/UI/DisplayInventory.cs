@@ -33,29 +33,29 @@ public class DisplayInventory : MonoBehaviour
 
     public void createDisplay()
     {
-        for(int i = 0; i < theInventory.Inventory.Count; i++)
+        for(int i = 0; i < theInventory.storage.inventory.Count; i++)
         {
             var itemObject = Instantiate(inventoryItem, Vector3.zero, Quaternion.identity, transform);
             itemObject.GetComponent<RectTransform>().localPosition = getPosition(i);
-            itemObject.GetComponentInChildren<TextMeshProUGUI>().text = theInventory.Inventory[i].itemAmount.ToString("n0");
+            itemObject.GetComponentInChildren<TextMeshProUGUI>().text = theInventory.storage.inventory[i].itemAmount.ToString("n0");
         }
     }
 
     public void updateDisplay()
     {
-        for(int i = 0; i < theInventory.Inventory.Count; i++)
+        for(int i = 0; i < theInventory.storage.inventory.Count; i++)
         {
-            if (displayItem.ContainsKey(theInventory.Inventory[i]))
+            if (displayItem.ContainsKey(theInventory.storage.inventory[i]))
             {
-                displayItem[theInventory.Inventory[i]].GetComponentInChildren<TextMeshProUGUI>().text = theInventory.Inventory[i].itemAmount.ToString("n0");
+                displayItem[theInventory.storage.inventory[i]].GetComponentInChildren<TextMeshProUGUI>().text = theInventory.storage.inventory[i].itemAmount.ToString("n0");
             }
             else
             {
                 var itemObject = Instantiate(inventoryItem, Vector3.zero, Quaternion.identity, transform);
                 //itemObject.transform.GetChild(0).GetComponentInChildren<Image>().sprite;
                 itemObject.GetComponent<RectTransform>().localPosition = getPosition(i);
-                itemObject.GetComponentInChildren<TextMeshProUGUI>().text = theInventory.Inventory[i].itemAmount.ToString("n0");
-                displayItem.Add(theInventory.Inventory[i], itemObject);
+                itemObject.GetComponentInChildren<TextMeshProUGUI>().text = theInventory.storage.inventory[i].itemAmount.ToString("n0");
+                displayItem.Add(theInventory.storage.inventory[i], itemObject);
             }
         }
     }

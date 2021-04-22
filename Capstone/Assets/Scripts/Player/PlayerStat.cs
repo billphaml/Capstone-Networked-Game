@@ -64,7 +64,7 @@ public class PlayerStat : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        thePlayer.playerInventory.Inventory.Clear();
+        thePlayer.playerInventory.storage.inventory.Clear();
     }
 
     
