@@ -1,66 +1,62 @@
-using System;
+
 using UnityEngine;
 using MLAPI;
+using MLAPI.NetworkVariable;
+using MLAPI.Messaging;
+using System;
 
 public class PlayerHealth : NetworkBehaviour
 {
-    //// Grab the value from EnemyStats later
-    //[SerializeField] private float maxHealth = 100f;
+    // Grab the value from EnemyStats later
+    [SerializeField] private float maxHealth = 100f;
 
-    //[SyncVar(hook = nameof(HandleHealthUpdated))]
-    //private float health = 0f;
+    private NetworkVariable<float> Health = new NetworkVariable<float>(0f);
 
+    // Used to trigger a death event in other code
+    // Could be used to display a respawn ui
     //public static event EventHandler<DeathEventArgs> OnDeath;
-    //public event EventHandler<HealthChangedEventArgs> OnHealthChanged;
 
-    //public bool IsDead => health == 0f;
+    public bool IsDead => Health.Value == 0f;
 
-    //public override void OnStartServer()
-    //{
-    //    health = maxHealth;
-    //}
+    public override void NetworkStart()
+    {
+        base.NetworkStart();
 
-    //[ServerCallback]
-    //private void OnDestroy()
-    //{
-    //    OnDeath?.Invoke(this, new DeathEventArgs { ConnectionToClient = connectionToClient });
-    //}
+        Health.Value = maxHealth;
+    }
 
-    //[Server]
-    //public void Add(float value)
-    //{
-    //    value = Mathf.Max(value, 0);
+    private void OnDestroy()
+    {
+        if (IsServer || IsHost)
+        {
+            //OnDeath?.Invoke(this, new DeathEventArgs { ConnectionToClient = connectionToClient });
+        }
+    }
 
-    //    health = Mathf.Min(health + value, maxHealth);
-    //}
+    [ServerRpc]
+    public void AddHealthServerRpc(float value)
+    {
+        value = Mathf.Max(value, 0);
 
-    //[Server]
-    //public void Remove(float value)
-    //{
-    //    value = Mathf.Max(value, 0);
+        Health.Value = Mathf.Min(Health.Value + value, maxHealth);
+    }
 
-    //    health = Mathf.Max(health - value, 0);
+    [ServerRpc]
+    public void RemoveHealthServerRpc(float value)
+    {
+        value = Mathf.Max(value, 0);
 
-    //    if (health == 0)
-    //    {
-    //        OnDeath?.Invoke(this, new DeathEventArgs { ConnectionToClient = connectionToClient });
+        Health.Value = Mathf.Max(Health.Value - value, 0);
 
-    //        RpcHandleDeath();
-    //    }
-    //}
+        if (Health.Value == 0)
+        {
+            HandleDeathClientRpc();
+        }
+    }
 
-    //private void HandleHealthUpdated(float oldValue, float newValue)
-    //{
-    //    OnHealthChanged?.Invoke(this, new HealthChangedEventArgs
-    //    {
-    //        health = health,
-    //        maxHealth = maxHealth
-    //    });
-    //}
-
-    //[ClientRpc]
-    //private void RpcHandleDeath()
-    //{
-    //    gameObject.SetActive(false);
-    //}
+    [ClientRpc]
+    private void HandleDeathClientRpc()
+    {
+        gameObject.SetActive(false);
+    }
 }
