@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &676020122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676020123}
+  - component: {fileID: 676020125}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &676020123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676020122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &676020125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676020122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8732af252861f84ba9d05184f7ac158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &967463024
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +177,7 @@ GameObject:
   - component: {fileID: 967463027}
   - component: {fileID: 967463026}
   - component: {fileID: 967463025}
+  - component: {fileID: 967463028}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -205,6 +249,150 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967463028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967463024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!1 &1153962692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153962695}
+  - component: {fileID: 1153962694}
+  - component: {fileID: 1153962693}
+  m_Layer: 0
+  m_Name: Network Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1153962693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153962692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c005b32a68a254cbe502a4e5cb8eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NickName: 
+  m_RoomName: Health
+  m_MaxPlayers: 4
+  m_ChannelIdCodesStartRange: 0
+  m_AttachSupportLogger: 0
+  m_BatchMode: 1
+  m_SendQueueBatchSize: 4096
+  m_BatchedTransportEventCode: 129
+  m_KickEventCode: 130
+--- !u!114 &1153962694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153962692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DontDestroy: 1
+  RunInBackground: 1
+  LogLevel: 1
+  NetworkConfig:
+    ProtocolVersion: 0
+    NetworkTransport: {fileID: 1153962693}
+    RegisteredScenes:
+    - MainMenu
+    - HealthDemo
+    AllowRuntimeSceneChanges: 0
+    NetworkPrefabs:
+    - Prefab: {fileID: 665451937295417340, guid: 60f106e053163534aab54d723a21bb9c, type: 3}
+      PlayerPrefab: 0
+    - Prefab: {fileID: 1405533726842306551, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      PlayerPrefab: 0
+    - Prefab: {fileID: 2852737020013700082, guid: 6890b663f7f12f8418bc5eaf14d73431, type: 3}
+      PlayerPrefab: 1
+    PlayerPrefabHash:
+      id: 0
+    CreatePlayerPrefab: 1
+    ReceiveTickrate: 64
+    NetworkTickIntervalSec: 0.05
+    MaxReceiveEventsPerTickRate: 500
+    EventTickrate: 64
+    ClientConnectionBufferTimeout: 10
+    ConnectionApproval: 0
+    ConnectionData: 
+    EnableTimeResync: 1
+    TimeResyncInterval: 30
+    EnableNetworkVariable: 1
+    EnsureNetworkVariableLengthSafety: 0
+    EnableSceneManagement: 1
+    ForceSamePrefabs: 1
+    UsePrefabSync: 0
+    RecycleNetworkIds: 1
+    NetworkIdRecycleDelay: 120
+    RpcHashSize: 0
+    LoadSceneTimeOut: 120
+    EnableMessageBuffering: 1
+    MessageBufferTimeout: 20
+    EnableNetworkLogs: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: NullableBoolSerializable, ns: MLAPI.Configuration, asm: Unity.Multiplayer.MLAPI.Runtime}
+      data:
+        Value: 0
+--- !u!4 &1153962695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153962692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1516508535
 GameObject:
