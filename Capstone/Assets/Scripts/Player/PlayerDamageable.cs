@@ -16,7 +16,7 @@ public class PlayerDamageable : NetworkBehaviour
     /// <summary>
     /// Reference to health component. Make sure one exists on this object.
     /// </summary>
-    [SerializeField] private PlayerHealth health = null;
+    [SerializeField] public PlayerHealth health = null;
 
     /// <summary>
     /// Similar to awake but for occurs when all clients are synced.

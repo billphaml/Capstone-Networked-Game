@@ -1,50 +1,29 @@
-
-using MLAPI;
-using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
 using UnityEngine;
-
+using MLAPI;
 
 public class HealthDemoPlayer : NetworkBehaviour
 {
-    public NetworkVariableVector3 Position = new NetworkVariableVector3(new NetworkVariableSettings
-    {
-        WritePermission = NetworkVariablePermission.ServerOnly,
-        ReadPermission = NetworkVariablePermission.Everyone
-    });
+    [SerializeField] private HealthDemoTarget target = null;
 
     public override void NetworkStart()
     {
-        Move();
+        base.NetworkStart();
+
+        target = GameObject.FindGameObjectWithTag("Enemy").GetComponent<HealthDemoTarget>();
     }
 
-    public void Move()
+    public void Request()
     {
-        if (NetworkManager.Singleton.IsServer)
+        Debug.Log("Executing...");
+        bool rand = System.Convert.ToBoolean(Random.Range(0, 2));
+
+        if (rand)
         {
-            var randomPosition = GetRandomPositionOnPlane();
-            transform.position = randomPosition;
-            Position.Value = randomPosition;
+            target.AddHealthServerRpc(10);
         }
         else
         {
-            SubmitPositionRequestServerRpc();
+            target.RemoveHealthServerRpc(10);
         }
-    }
-
-    [ServerRpc]
-    void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
-    {
-        Position.Value = GetRandomPositionOnPlane();
-    }
-
-    static Vector3 GetRandomPositionOnPlane()
-    {
-        return new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
-    }
-
-    void Update()
-    {
-        transform.position = Position.Value;
     }
 }
