@@ -1,33 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
+/******************************************************************************
+ * Controls player movement.
+ *****************************************************************************/
+
 using UnityEngine;
 using MLAPI;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    private Vector3 movement;
-    public bool canMove;
-
+    // Grab value from playcontroller.playerstats later
     [SerializeField]
     private float moveSpeed = 7f;
 
+    /// <summary>
+    /// Direction to move the player towards.
+    /// </summary>
+    private Vector3 moveVector;
+
+    /// <summary>
+    /// Toggle to 
+    /// </summary>
+    private bool canMove = true;
+
+    /// <summary>
+    /// Rigidbody to move player.
+    /// </summary>
     private Rigidbody2D rb;
 
-    private FloatingJoystick stick = default;
+    /// <summary>
+    /// Mobile joystick.
+    /// </summary>
+    private FloatingJoystick stick;
 
-    private void Awake()
-    {
-        canMove = true;
-    }
-
+    /// <summary>
+    /// Start and grab references.
+    /// </summary>
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-
         if (IsLocalPlayer)
         {
+            rb = gameObject.GetComponent<Rigidbody2D>();
+
             try
             {
                 stick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FloatingJoystick>();
@@ -38,9 +50,12 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    void Update()
+    /// <summary>
+    /// Normal update. Grab input.
+    /// </summary>
+    public void UpdateMovement()
     {
-        if (IsLocalPlayer && canMove)
+        if (canMove)
         {
             GrabInputPC();
 #if UNITY_ANDROID
@@ -49,31 +64,43 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// PC input.
+    /// </summary>
     void GrabInputPC()
     {
-        movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        movement = Vector3.ClampMagnitude(movement, 1f);
+        moveVector = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        moveVector = Vector3.ClampMagnitude(moveVector, 1f);
     }
 
+    /// <summary>
+    /// Android input.
+    /// </summary>
     void GrabInputAndroid()
     {
-        movement = new Vector3(stick.Horizontal, stick.Vertical, 0);
-        movement = Vector3.ClampMagnitude(movement, 1f);
+        moveVector = new Vector3(stick.Horizontal, stick.Vertical, 0);
+        moveVector = Vector3.ClampMagnitude(moveVector, 1f);
     }
 
-    private void FixedUpdate()
+    /// <summary>
+    /// Fixed update. Move player.
+    /// </summary>
+    public void UpdateFixedMovement()
     {
-        if (IsLocalPlayer)
-        {
-            rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
-        }
+        rb.MovePosition(transform.position + moveVector * moveSpeed * Time.fixedDeltaTime);
     }
 
+    /// <summary>
+    /// Allow player to move.
+    /// </summary>
     public void turnOnMove()
     {
         canMove = true;
     }
 
+    /// <summary>
+    /// Don't allow player to move.
+    /// </summary>
     public void turnOffMove()
     {
         canMove = false;

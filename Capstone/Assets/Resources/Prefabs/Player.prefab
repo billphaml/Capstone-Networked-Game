@@ -319,8 +319,13 @@ GameObject:
   - component: {fileID: 665451937295417338}
   - component: {fileID: 3739424459818922928}
   - component: {fileID: 5772498334072177817}
+  - component: {fileID: 488158776743415876}
   - component: {fileID: 4827602532095103408}
   - component: {fileID: 7310806319465402635}
+  - component: {fileID: 4358009170471049868}
+  - component: {fileID: 8400033399381467064}
+  - component: {fileID: 2152892892352604467}
+  - component: {fileID: 8509923866435043366}
   - component: {fileID: -7772252315378617253}
   m_Layer: 0
   m_Name: Player
@@ -475,6 +480,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerColor: {fileID: 665451937400494506}
   camera: {fileID: 298823645420473070}
+  stats: {fileID: 0}
+--- !u!114 &488158776743415876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937295417340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906ede2fbe330d445939c33985c0f7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4827602532095103408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +531,80 @@ MonoBehaviour:
   attackBox: {fileID: 4002624745775347529}
   rangeBox: {fileID: 7086769163375278502}
   weaponType: 1
+--- !u!114 &4358009170471049868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937295417340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67640d106680444880cde748fea0a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thePlayer:
+    actorName: 
+    actorDescription: 
+    theActorType: 0
+    theAttackType: 0
+    playerHelmet: {fileID: 0}
+    playerArmor: {fileID: 0}
+    playerWeapon: {fileID: 0}
+    playerNecklace: {fileID: 0}
+    playerRingOne: {fileID: 0}
+    playerRingTwo: {fileID: 0}
+    playerStrength: 0
+    playerMagic: 0
+    playerDexterity: 0
+    playerConstitution: 0
+    playerAttack: 0
+    playerDefense: 0
+    playerMagicResistance: 0
+    playerMovementSpeed: 0
+    playerCriticalChance: 0
+    playerCriticalDamage: 0
+    playerResistance: 0
+    playerInventory: {fileID: 0}
+  playerInventory: {fileID: 11400000, guid: faa3a4eed3d5584408205aa2c2257dda, type: 2}
+--- !u!114 &8400033399381467064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937295417340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee4147ac286f454d980d360c173e8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &2152892892352604467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937295417340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4547965f62353f947b1c97fc6f788628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
+--- !u!114 &8509923866435043366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937295417340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974c4eb614d05854da5790338600b8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-7772252315378617253
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,7 @@
-using System.Runtime.InteropServices;
+/******************************************************************************
+ * 
+ *****************************************************************************/
+
 using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Messaging;
@@ -24,33 +27,22 @@ public class PlayerAttack : NetworkBehaviour
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
     NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
-    
-    /// <summary>
-    /// Empty
-    /// </summary>
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateAttack()
     {
-        if (IsLocalPlayer)
+        attack.Value = Input.GetMouseButtonDown(0);
+        if (attack.Value == true)
         {
-            attack.Value = Input.GetMouseButtonDown(0);
-            if (attack.Value == true)
+            if (weaponType == 1)
             {
-                if (weaponType == 1)
-                {
-                    MeleeAttackServerRpc();
-                }
-                else if (weaponType == 2)
-                {
-                    RangeAttackServerRpc();
-                }
-               
+                MeleeAttackServerRpc();
             }
+            else if (weaponType == 2)
+            {
+                RangeAttackServerRpc();
+            }
+               
         }
     }
 
@@ -61,8 +53,6 @@ public class PlayerAttack : NetworkBehaviour
     [ServerRpc]
     void MeleeAttackServerRpc(ServerRpcParams rpcParams = default)
     {
-        
-
         Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
         foreach (var currentEnemy in enemiesToDamage)
         {
@@ -77,7 +67,6 @@ public class PlayerAttack : NetworkBehaviour
         }
         Debug.Log(alreadyDamagedEnemies);
         alreadyDamagedEnemies.Clear();
-        
     }
 
     /// <summary>
@@ -95,7 +84,6 @@ public class PlayerAttack : NetworkBehaviour
         }
         //Transform arrowTransform = Instantiate(Projectile, attackBox.transform.position, Quaternion.identity);
         //Vector3 trajectory = (attackBox.transform.position - rangeBox.transform.position);
-
     }
 
     /// <summary>
