@@ -21,7 +21,6 @@ public class PlayerController : NetworkBehaviour
     public InventoryItem theInventory;
     public InventoryItem theEquipment;
 
-
     public MouseInventory theMouseItem = new MouseInventory();
 
     // Start is called before the first frame update
@@ -36,6 +35,8 @@ public class PlayerController : NetworkBehaviour
             move = gameObject.GetComponent<PlayerMovement>();
 
             attack = gameObject.GetComponent<PlayerAttack>();
+
+            setupInventory();
         }
 
         if (!IsLocalPlayer)
@@ -43,12 +44,6 @@ public class PlayerController : NetworkBehaviour
             camera.GetComponent<CinemachineVirtualCamera>().enabled = false;
 
         }
-    }
-
-    public override void NetworkStart()
-    {
-        base.NetworkStart();
-        setupInventory();
     }
 
     private void Update()
