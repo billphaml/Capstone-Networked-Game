@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventorySlot
 {
     public itemType[] allowedItem = new itemType[0];
-    //[System.NonSerialized]
+    [System.NonSerialized]
     public PlayerUserInterface interfaceParent;
     public int ID = -1;
     public GameItem theItem;

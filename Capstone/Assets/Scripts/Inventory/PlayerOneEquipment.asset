@@ -17,32 +17,26 @@ MonoBehaviour:
   storage:
     inventory:
     - allowedItem: 00000000
-      interfaceParent: {fileID: 0}
       ID: -1
       theItem: {fileID: 0}
       itemAmount: 0
     - allowedItem: 02000000
-      interfaceParent: {fileID: 0}
-      ID: -1
-      theItem: {fileID: 0}
-      itemAmount: 0
+      ID: 0
+      theItem: {fileID: 11400000, guid: 9f5b05d9116122e4591476f008eb2dde, type: 2}
+      itemAmount: 1
     - allowedItem: 01000000
-      interfaceParent: {fileID: 0}
-      ID: -1
-      theItem: {fileID: 0}
-      itemAmount: 0
+      ID: 1
+      theItem: {fileID: 11400000, guid: 7bcc07fdb4356f44a9ed1efafae1f445, type: 2}
+      itemAmount: 1
     - allowedItem: 0400000005000000060000000700000008000000
-      interfaceParent: {fileID: 0}
+      ID: 2
+      theItem: {fileID: 11400000, guid: 3bbf028729dccea44be8c69ca0b07c1c, type: 2}
+      itemAmount: 1
+    - allowedItem: 03000000
       ID: -1
       theItem: {fileID: 0}
       itemAmount: 0
     - allowedItem: 03000000
-      interfaceParent: {fileID: 0}
-      ID: -1
-      theItem: {fileID: 0}
-      itemAmount: 0
-    - allowedItem: 03000000
-      interfaceParent: {fileID: 0}
       ID: -1
       theItem: {fileID: 0}
       itemAmount: 0

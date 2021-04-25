@@ -481,6 +481,26 @@ MonoBehaviour:
   playerColor: {fileID: 665451937400494506}
   camera: {fileID: 298823645420473070}
   stats: {fileID: 0}
+  move: {fileID: 0}
+  attack: {fileID: 0}
+  theInventory: {fileID: 11400000, guid: faa3a4eed3d5584408205aa2c2257dda, type: 2}
+  theEquipment: {fileID: 11400000, guid: f411aa62d9de2074fa5dcfd09f54caa0, type: 2}
+  theMouseItem:
+    userInterface: {fileID: 0}
+    mouseObject: {fileID: 0}
+    item:
+      allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    hoverItem:
+      allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    hoverObject: {fileID: 0}
 --- !u!114 &488158776743415876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44540a0b1adc73c4ab84670166f93923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
   moveSpeed: 7
 --- !u!114 &7310806319465402635
 MonoBehaviour:
@@ -605,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974c4eb614d05854da5790338600b8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
 --- !u!114 &-7772252315378617253
 MonoBehaviour:
   m_ObjectHideFlags: 0

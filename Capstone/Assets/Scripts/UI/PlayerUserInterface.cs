@@ -10,7 +10,7 @@ public abstract class PlayerUserInterface : MonoBehaviour
 {
 
     public InventoryItem theInventory;
-    public LocalPlayerMovement thePlayer;
+    public PlayerController thePlayer;
 
 
     public Dictionary<GameObject, InventorySlot> displayItem = new Dictionary<GameObject, InventorySlot>();
