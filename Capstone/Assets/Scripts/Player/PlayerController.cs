@@ -34,6 +34,8 @@ public class PlayerController : NetworkBehaviour
             stats = gameObject.GetComponent<PlayerStat>();
 
             move = gameObject.GetComponent<PlayerMovement>();
+
+            attack = gameObject.GetComponent<PlayerAttack>();
         }
 
         if (!IsLocalPlayer)
