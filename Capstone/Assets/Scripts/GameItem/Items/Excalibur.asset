@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
-  m_Name: Dragon_Longbow
+  m_Name: Excalibur
   m_EditorClassIdentifier: 
-  itemID: 5
-  itemImage: {fileID: 21300114, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
-  itemName: Dragon Longbow
-  itemDescription: This baby can shoot an arrow with the force of a fireball
-  gameItemType: 7
-  addAttack: 80
-  addDefence: 0
-  addMagicResistance: 0
-  addSpeed: 0
-  addCriticalChance: 20
-  addCriticalDamage: 50
-  addResistance: 0
-  addStrength: 10
+  itemID: 0
+  itemImage: {fileID: 21300068, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
+  itemName: Excalibur
+  itemDescription: Holy cow, is that the Excalibur????
+  gameItemType: 4
+  addAttack: 99
+  addDefence: 99
+  addMagicResistance: 99
+  addSpeed: 99
+  addCriticalChance: 99
+  addCriticalDamage: 99
+  addResistance: 99
+  addStrength: 0
   addMagic: 0
-  addDexterity: 40
+  addDexterity: 0
   addConstitution: 0
   addHP: 0
   addSP: 0

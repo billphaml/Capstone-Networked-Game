@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Dragon_Greatsword
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemImage: {fileID: 0}
+  itemID: 3
+  itemImage: {fileID: 21300066, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   itemName: Dragon Greatsword
   itemDescription: It was too big to be called a sword. Too big, too thick, too heavy,
     and too rough, it was more like a large hunk of iron.

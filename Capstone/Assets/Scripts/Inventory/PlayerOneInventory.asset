@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1026e0bae7e414a8cc7ebf91599289, type: 3}
+  m_Name: PlayerOneInventory
+  m_EditorClassIdentifier: 
+  savePath: /PlayerOneInventory.Save
+  database: {fileID: 11400000, guid: 5956ffc05f99952499f5d8bca416867a, type: 2}
+  storage:
+    inventory:
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 8
+      theItem: {fileID: 11400000, guid: c7b742577aa18634aa9612ac5bdc34f3, type: 2}
+      itemAmount: 6
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 0
+      theItem: {fileID: 11400000, guid: 9f5b05d9116122e4591476f008eb2dde, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 2
+      theItem: {fileID: 11400000, guid: 3bbf028729dccea44be8c69ca0b07c1c, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 3
+      theItem: {fileID: 11400000, guid: a96bf3ea6bde5b34db0b02322e480e91, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 4
+      theItem: {fileID: 11400000, guid: e5615bd81851fb54989d20f7f3261ade, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 0
+      theItem: {fileID: 11400000, guid: 9f5b05d9116122e4591476f008eb2dde, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 5
+      theItem: {fileID: 11400000, guid: 08c7191e5907a804d8fa3df0ca6fb8e6, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 3
+      theItem: {fileID: 11400000, guid: a96bf3ea6bde5b34db0b02322e480e91, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 6
+      theItem: {fileID: 11400000, guid: f26492fe3cc70854eb54430ec51492dc, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 5
+      theItem: {fileID: 11400000, guid: 08c7191e5907a804d8fa3df0ca6fb8e6, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 6
+      theItem: {fileID: 11400000, guid: f26492fe3cc70854eb54430ec51492dc, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 7
+      theItem: {fileID: 11400000, guid: acbdc0933ddadf24483eccff0d74d317, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 7
+      theItem: {fileID: 11400000, guid: acbdc0933ddadf24483eccff0d74d317, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 0
+      theItem: {fileID: 11400000, guid: 9f5b05d9116122e4591476f008eb2dde, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 0
+      theItem: {fileID: 11400000, guid: 9f5b05d9116122e4591476f008eb2dde, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 0
+      theItem: {fileID: 11400000, guid: 9f5b05d9116122e4591476f008eb2dde, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 2
+      theItem: {fileID: 11400000, guid: 3bbf028729dccea44be8c69ca0b07c1c, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 7
+      theItem: {fileID: 11400000, guid: acbdc0933ddadf24483eccff0d74d317, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 5
+      theItem: {fileID: 11400000, guid: 08c7191e5907a804d8fa3df0ca6fb8e6, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 6
+      theItem: {fileID: 11400000, guid: f26492fe3cc70854eb54430ec51492dc, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 3
+      theItem: {fileID: 11400000, guid: a96bf3ea6bde5b34db0b02322e480e91, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: 1
+      theItem: {fileID: 11400000, guid: 7bcc07fdb4356f44a9ed1efafae1f445, type: 2}
+      itemAmount: 1
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0
+    - allowedItem: 
+      interfaceParent: {fileID: 0}
+      ID: -1
+      theItem: {fileID: 0}
+      itemAmount: 0

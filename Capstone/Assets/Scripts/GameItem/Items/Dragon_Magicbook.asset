@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Dragon_Magicbook
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemImage: {fileID: 0}
+  itemID: 6
+  itemImage: {fileID: 21300108, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   itemName: Dragon Magicbook
   itemDescription: A magic book with a crudely drawn picture of a dragon in the front
   gameItemType: 8

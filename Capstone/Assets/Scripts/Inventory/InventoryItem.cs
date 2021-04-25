@@ -12,6 +12,13 @@ public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
     [SerializeField]
     public ItemDatabase database;
     public Inventory storage;
+
+
+    void Awake()
+    {
+        storage = new Inventory();
+    }
+
     /*
     private void OnEnable()
     {
@@ -21,30 +28,79 @@ public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
 
     public void addItem(GameItem _theItem, int _itemAmount)
     {
-
-        for(int i = 0; i < storage.inventory.Count; i++)
+        if(_theItem.gameItemType != itemType.DEFAULT && _theItem.gameItemType != itemType.CONSUME)
         {
-            if(storage.inventory[i].theItem == _theItem)
+            setEmptySlot(_theItem, _itemAmount);
+            return;
+        }
+
+        for (int i = 0; i < storage.inventory.Length; i++)
+        {
+            if(storage.inventory[i].ID == _theItem.itemID)
             {
                 storage.inventory[i].addAmount(_itemAmount);
                 return;
             }
         }
-        storage.inventory.Add(new InventorySlot(database.GetID[_theItem], _theItem, _itemAmount));
+        setEmptySlot(_theItem, _itemAmount);
+
     }
+
+    public InventorySlot setEmptySlot(GameItem iItem, int iAmount)
+    {
+        for(int i = 0; i < storage.inventory.Length; i++)
+        {
+            if(storage.inventory[i].ID <= -1)
+            {
+                storage.inventory[i].updateSlot(iItem, iAmount);
+                return storage.inventory[i];
+            }
+            
+        }
+        // Set up functionality for when the inventory is full
+        return null;
+    }
+
 
     public void OnAfterDeserialize()
     {
-        for(int i = 0; i < storage.inventory.Count; i++)
+        /*
+        for(int i = 0; i < storage.inventory.Length; i++)
         {
-            storage.inventory[i].theItem = database.getItem[storage.inventory[i].ID];
+            if(storage.inventory[i].theItem != null)
+            {
+                storage.inventory[i].theItem = database.getItem[storage.inventory[i].ID];
+            }
         }
+       **/
     }
 
     public void OnBeforeSerialize()
     {
+        
     }
 
+    public void switchItem(InventorySlot firstItem, InventorySlot secondItem)
+    {
+        InventorySlot tempItem = new InventorySlot(secondItem.ID, secondItem.theItem, secondItem.itemAmount);
+        secondItem.updateSlot(firstItem.ID, firstItem.theItem, firstItem.itemAmount);
+        firstItem.updateSlot(tempItem.ID,tempItem.theItem, tempItem.itemAmount);
+    }
+
+    public void removeItem(GameItem iItem)
+    {
+        for(int i = 0; i < storage.inventory.Length; i++)
+        {
+            if(storage.inventory[i].theItem == iItem)
+            {
+                storage.inventory[i].updateSlot(-1, null, 0);
+                return;
+            }
+        }
+    }
+
+
+    [ContextMenu("Save Inventory")]
     public void saveInventory()
     {
         string saveData = JsonUtility.ToJson(this, true);
@@ -54,6 +110,7 @@ public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
         saveFile.Close();
     }
 
+    [ContextMenu("Load Inventory")]
     public void loadInventory()
     {
         if(File.Exists(string.Concat(Application.persistentDataPath, savePath))){
@@ -64,28 +121,13 @@ public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
         }
     }
 
-}
-
-[System.Serializable]
-public class Inventory
-{
-    public List<InventorySlot> inventory = new List<InventorySlot>();
-}
-
-[System.Serializable]
-public class InventorySlot
-{
-    public int ID;
-    public GameItem theItem;
-    public int itemAmount;
-    public InventorySlot(int iID, GameItem _theItem, int _itemAmount)
+    [ContextMenu("Clear Inventory")]
+    public void clearInventory()
     {
-        theItem = _theItem;
-        itemAmount = _itemAmount;
+        storage.Clear();
     }
 
-    public void addAmount(int iAmount)
-    {
-        itemAmount += iAmount;
-    }
 }
+
+
+

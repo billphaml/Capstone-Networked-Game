@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6faf08ba14324f4aa75d50155b6f501, type: 3}
   m_Name: Skeleton_Key
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemImage: {fileID: 0}
+  itemID: 8
+  itemImage: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   itemName: Skeleton Key
   itemDescription: A key with a design that is inspired by human bones. It's pretty
     cool.

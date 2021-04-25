@@ -31,3 +31,7 @@ public abstract class GameItem : ScriptableObject
     public itemType gameItemType;
 
 }
+
+
+
+

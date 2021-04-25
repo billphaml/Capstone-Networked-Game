@@ -18,8 +18,6 @@ public class ItemDatabase : ScriptableObject, ISerializationCallbackReceiver
             GetID.Add(theGameItem[i], i);
             getItem.Add(i, theGameItem[i]);
         }
-
-        
     }
 
     public void OnBeforeSerialize()
