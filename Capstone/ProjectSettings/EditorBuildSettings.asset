@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/NetworkingTests/SpawnDemo.unity
+    guid: 8f8361ec7905a9e4091d9e083139d568
+  - enabled: 1
     path: Assets/Scenes/NetworkingTests/HealthDemo.unity
     guid: be9fdd686204c0347a2caba0eca2b522
   - enabled: 1
