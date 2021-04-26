@@ -30,6 +30,18 @@ public abstract class GameItem : ScriptableObject
     public string itemDescription;
     public itemType gameItemType;
 
+    public virtual void useItem()
+    {
+
+
+        Debug.Log("Using " + itemName);
+    }
+
+    public GameItem getThis()
+    {
+        return this;
+    }
+
 }
 
 

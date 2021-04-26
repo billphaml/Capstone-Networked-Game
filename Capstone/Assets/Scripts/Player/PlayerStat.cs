@@ -10,8 +10,7 @@ public class PlayerStat : MonoBehaviour
 {
 
     public PlayerActor thePlayer;
-
-    public InventoryItem playerInventory;
+    public Inventory playerInventory;
 
     //private bool headCheck = false;
     //private bool armorCheck = false;
@@ -28,7 +27,6 @@ public class PlayerStat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -46,7 +44,7 @@ public class PlayerStat : MonoBehaviour
     public void setupPlayer()
     {
         thePlayer = new PlayerActor("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
-        thePlayer.playerInventory = playerInventory;
+        //thePlayer.playerInventory = playerInventory;
 
     }
 
@@ -64,9 +62,10 @@ public class PlayerStat : MonoBehaviour
     {
         Debug.Log("Wow you hit something");
         var item = collision.GetComponent<ItemBehavior>();
-        if (item)
+
+        if (item && playerInventory.canAdd())
         {
-            thePlayer.playerInventory.addItem(item.theItem, 1);
+            playerInventory.addItem(item.theItem);
             Destroy(collision.gameObject);
         }
     }

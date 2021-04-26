@@ -1,65 +1,70 @@
- using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-[System.Serializable]
-public class InventorySlot
+public class InventorySlot : MonoBehaviour
 {
-    public itemType[] allowedItem = new itemType[0];
-    [System.NonSerialized]
-    public PlayerUserInterface interfaceParent;
-    public int ID = -1;
-    public GameItem theItem;
-    public int itemAmount;
+    public EquipmentManager theEquipmentManager;
 
-    public InventorySlot(int iID, GameItem _theItem, int _itemAmount)
+    public Inventory theInventory;
+    public TextMeshProUGUI itemAmountText;
+    public Button dropButton;
+    GameItem theItem;
+    int itemAmount = 0;
+
+     void Start()
     {
-        ID = iID;
-        theItem = _theItem;
-        itemAmount = _itemAmount;
     }
 
-    public InventorySlot()
+    public void addItem(GameItem iItem)
     {
-        ID = -1;
-        theItem = null;
-        itemAmount = 0;
-    }
-
-    public void updateSlot(GameItem iItem, int iAmount)
-    {
-        ID = iItem.itemID;
         theItem = iItem;
-        itemAmount = iAmount;
+        transform.GetChild(0).GetComponentInChildren<Image>().sprite = iItem.itemImage;
+        //itemAmount++;
+        //itemAmountText.text = itemAmount.ToString();
+        dropButton.interactable = true;
     }
 
-    public void updateSlot(int iID, GameItem _theItem, int _itemAmount)
+    public void clearSlot()
     {
-        ID = iID;
-        theItem = _theItem;
-        itemAmount = _itemAmount;
+        theItem = null;
+        transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+        itemAmount = 0;
+        itemAmountText.text = "";
+        dropButton.interactable = false;
     }
 
-    public void addAmount(int iAmount)
+    public void onRemoveButton()
     {
-        itemAmount += iAmount;
+        theInventory.removeItem(theItem);
     }
 
-    public bool canPlace(GameItem iItem)
+    public void UseItem()
     {
-        if(allowedItem.Length <= 0)
+        if(theItem != null)
         {
-            return true;
-        }
-        
-        for(int i = 0; i < allowedItem.Length; i++)
-        {
-            if(iItem.gameItemType == allowedItem[i])
+            //theItem.useItem();
+            switch (theItem.gameItemType)
             {
-                return true;
+                case itemType.CONSUME:
+                    break;
+                case itemType.DEFAULT:
+                    break;
+                default:
+                    EquipItem dummyEquip = (EquipItem)theItem;
+                    GameItem returnItem = theEquipmentManager.equipItem(dummyEquip);
+
+                    if(returnItem == null)
+                    {
+                        theInventory.removeItem(theItem);
+                    }
+                    else
+                    {
+                        theInventory.removeItem(theItem);
+                        theInventory.addItem(returnItem);
+                    }
+                    break;
             }
         }
-
-        return false;
     }
 }

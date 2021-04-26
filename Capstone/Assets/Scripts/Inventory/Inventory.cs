@@ -2,27 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Inventory
+public class Inventory : MonoBehaviour
 {
-    public InventorySlot[] inventory;
 
-    public Inventory(int arraySize)
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallBack;
+
+    public List<GameItem> inventoryItem = new List<GameItem>();
+    public int inventorySpace = 28;
+
+    public void addItem(GameItem iItem)
     {
-        inventory = new InventorySlot[arraySize];
+        inventoryItem.Add(iItem);
+
+        if(onItemChangedCallBack != null)
+             onItemChangedCallBack.Invoke();
     }
 
-    public Inventory()
+    public void removeItem(GameItem iItem)
     {
-        inventory = new InventorySlot[28];
+        inventoryItem.Remove(iItem);
+
+        if (onItemChangedCallBack != null)
+            onItemChangedCallBack.Invoke();
     }
 
-
-    public void Clear()
+    public bool canAdd()
     {
-        for(int i = 0; i < inventory.Length; i++)
+        if(inventoryItem.Count < inventorySpace)
         {
-            inventory[i].updateSlot(-1, null, 0);
+            return true;
         }
+
+        return false;
     }
 }

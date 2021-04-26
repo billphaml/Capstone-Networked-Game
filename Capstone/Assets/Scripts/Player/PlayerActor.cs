@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerActor : Actor
 {
+
     [Header("Player Equipment")]
     public EquipItem playerHelmet;
     public EquipItem playerArmor;
@@ -28,7 +29,6 @@ public class PlayerActor : Actor
     public float playerRange = 0;
     public float playerSwingSpeed = 0;
 
-    public InventoryItem playerInventory;
 
     public PlayerActor(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
     {

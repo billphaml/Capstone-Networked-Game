@@ -39,4 +39,22 @@ public class EquipItem : GameItem
     {
         //gameItemType = itemType.HEAD;
     }
+
+    public override void useItem()
+    {
+        base.useItem();
+        // theEquipmentManager.equipItem(this);
+        // Equip the item
+        // Remove from game
+    }
+
+    public EquipItem GetThis()
+    {
+        return this;
+    }
+
+    public void removeFromInventory()
+    {
+        //inventory.removeItem(this);
+    }
 }
