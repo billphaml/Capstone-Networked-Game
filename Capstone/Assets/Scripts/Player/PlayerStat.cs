@@ -4,6 +4,11 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Transition;
+using MLAPI;
+using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
+using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
@@ -11,6 +16,8 @@ public class PlayerStat : MonoBehaviour
 
     public PlayerActor thePlayer;
     public Inventory playerInventory;
+
+    public bool itemCollected = false;
 
     //private bool headCheck = false;
     //private bool armorCheck = false;
@@ -66,10 +73,24 @@ public class PlayerStat : MonoBehaviour
         Debug.Log("Wow you hit something");
         var item = collision.GetComponent<ItemBehavior>();
 
-        if (item && playerInventory.canAdd())
+        collectedServerRpc();
+        if (item && playerInventory.canAdd() && collision.gameObject != null && itemCollected == true)
         {
             playerInventory.addItem(item.theItem);
             Destroy(collision.gameObject);
+            itemCollected = false;
+        }
+    }
+
+    [ServerRpc]
+    public void collectedServerRpc()
+    {
+        if(itemCollected == false && NetworkManager.Singleton.IsHost)
+        {
+            itemCollected = true;
+        } else if (itemCollected == false && NetworkManager.Singleton.IsClient)
+        {
+            itemCollected = true;
         }
     }
 
