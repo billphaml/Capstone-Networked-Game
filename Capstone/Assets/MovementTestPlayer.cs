@@ -17,9 +17,7 @@ public class MovementTestPlayer : NetworkBehaviour
 
     public Vector3 randomPos() 
     {
-        float rand = Random.RandomRange(-10, 10);
-
-        Vector3 newPos = new Vector3(rand, -rand + 8, 0);
+        Vector3 newPos = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
         return newPos;
     }
 }

@@ -58,7 +58,6 @@ public class MovementTestManager : NetworkBehaviour
         if (GUILayout.Button("Request"))
         {
             isRequesting = (isRequesting) ? false : true;
-            player.Request();
         }
     }
 
@@ -83,11 +82,11 @@ public class MovementTestManager : NetworkBehaviour
             }
         }
 
-        //if (isRequesting)
-        //{
-        //    Debug.Log("Requesting...");
-        //    player.Request();
-        //}
+        if (isRequesting)
+        {
+            Debug.Log("requesting...");
+            player.Request();
+        }
 
         Debug.Log("Position: " + location.position.ToString());
     }
