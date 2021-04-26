@@ -55,13 +55,18 @@ public class PlayerStat : MonoBehaviour
         
     }
 
+    // Ontriggerenter calls a serverrpc method
+    // the method checks if item isvalid is true
+    // if it is, set to false, destroy item, and pick up the item and send to client
+    // if it isn't valid do nothing
+    // probably need a callback to the client
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Wow you hit something");
         var item = collision.GetComponent<ItemBehavior>();
         if (item)
         {
-           thePlayer.playerInventory.addItem(item.theItem, 1);
+            thePlayer.playerInventory.addItem(item.theItem, 1);
             Destroy(collision.gameObject);
         }
     }

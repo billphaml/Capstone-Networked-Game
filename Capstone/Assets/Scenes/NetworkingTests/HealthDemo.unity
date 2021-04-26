@@ -459,14 +459,9 @@ MonoBehaviour:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1153962693}
     RegisteredScenes:
-    - MainMenu
     - HealthDemo
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
-    - Prefab: {fileID: 665451937295417340, guid: 60f106e053163534aab54d723a21bb9c, type: 3}
-      PlayerPrefab: 0
-    - Prefab: {fileID: 1405533726842306551, guid: dc547033f6ee61240883faeed74fe832, type: 3}
-      PlayerPrefab: 0
     - Prefab: {fileID: 2852737020013700082, guid: 6890b663f7f12f8418bc5eaf14d73431, type: 3}
       PlayerPrefab: 1
     PlayerPrefabHash:
