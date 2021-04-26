@@ -70,7 +70,7 @@ public class ChatBehaviour : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void SendMessageServerRpc(string message)
     {
         // Need to somehow get nickname, perhaps make loadbalanceclient public in photon class and directly
