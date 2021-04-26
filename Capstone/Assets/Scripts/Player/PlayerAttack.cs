@@ -15,9 +15,6 @@ public class PlayerAttack : NetworkBehaviour
     /// 
     /// </summary>
     
-    [SerializeField] float meleeRange;
-    [SerializeField] float rangeRange;
-    
     public Transform player;
     [SerializeField] public PlayerController thePlayer;
     [SerializeField] LayerMask whatIsEnemy;
@@ -27,6 +24,7 @@ public class PlayerAttack : NetworkBehaviour
     private PlayerActor.attackType weaponType; //1) Sword 2) Bow 3) Spells?
     private float damage;
     private float attackSpeed; //not developed yet
+    private float range;
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
@@ -40,6 +38,7 @@ public class PlayerAttack : NetworkBehaviour
             thePlayer = gameObject.GetComponent<PlayerController>();
             weaponType = thePlayer.stats.thePlayer.getAttackType();
             damage = thePlayer.stats.thePlayer.playerAttack;
+            damage = thePlayer.stats.thePlayer.playerRange;
         }
     }
 
@@ -78,7 +77,7 @@ public class PlayerAttack : NetworkBehaviour
     [ServerRpc]
     void MeleeAttackServerRpc(ServerRpcParams rpcParams = default)
     {
-        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(meleeRange, meleeRange), 0, whatIsEnemy);
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(range, range), 0, whatIsEnemy);
         foreach (var currentEnemy in enemiesToDamage)
         {
             // Skip if you already damaged this enemy
@@ -117,6 +116,6 @@ public class PlayerAttack : NetworkBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(attackBox.transform.position, new Vector3(meleeRange, meleeRange, 0f));
+        Gizmos.DrawCube(attackBox.transform.position, new Vector3(range, range, 0f));
     }
 }
