@@ -12,7 +12,7 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] private new GameObject camera;
 
-    [SerializeField] private PlayerStat stats;
+    [SerializeField] public PlayerStat stats;
 
     [SerializeField] private PlayerMovement move;
 

@@ -10,7 +10,7 @@ using MLAPI;
 
 public class AttackBoxLocation : NetworkBehaviour
 {
-    public Camera mainCamera;
+    //public Camera mainCamera;
     private float m_depth;
     private float test;
     private Vector3 mousePosition;
@@ -19,7 +19,7 @@ public class AttackBoxLocation : NetworkBehaviour
     [SerializeField] private Rigidbody2D player;
     void Start()
     {
-        m_depth = transform.position.z - mainCamera.transform.position.z;
+        //m_depth = transform.position.z - Camera.main.transform.position.z;
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class AttackBoxLocation : NetworkBehaviour
         if (IsLocalPlayer) 
         {
             //moves the attackbox torwards the location of the mouse based on the camera veiw
-            transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, m_depth));
+            transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, m_depth));
         
 
             //All the code below keeps the attack box within a radius

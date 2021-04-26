@@ -25,6 +25,8 @@ public class PlayerActor : Actor
     public float playerCriticalChance = 0.15f;
     public float playerCriticalDamage = 1f;
     public float playerResistance = 0.2f;
+    public float playerRange = 0;
+    public float playerSwingSpeed = 0;
 
     public InventoryItem playerInventory;
 
