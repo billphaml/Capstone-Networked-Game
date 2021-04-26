@@ -27,6 +27,9 @@ public class PlayerStat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject inventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
+        playerInventory = inventoryManager.GetComponent<Inventory>();
+        inventoryManager.GetComponent<EquipmentManager>().thePlayerStat = this;
     }
 
     // Update is called once per frame
