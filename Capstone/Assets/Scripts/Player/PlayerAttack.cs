@@ -3,6 +3,7 @@
  *****************************************************************************/
 
 using System.Collections.Generic;
+using Lean.Transition;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -14,7 +15,7 @@ public class PlayerAttack : NetworkBehaviour
     /// <summary>
     /// 
     /// </summary>
-    
+    public GameObject hitMarker;
     public Transform player;
     [SerializeField] public PlayerController thePlayer;
     [SerializeField] LayerMask whatIsEnemy;
@@ -33,24 +34,34 @@ public class PlayerAttack : NetworkBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        
+
         if (IsLocalPlayer)
         {
             thePlayer = gameObject.GetComponent<PlayerController>();
-            weaponType = thePlayer.stats.thePlayer.getAttackType();
-            damage = thePlayer.stats.thePlayer.playerAttack;
-            damage = thePlayer.stats.thePlayer.playerRange;
+            
         }
+        Instantiate(hitMarker);
+        hitMarker.transform.position = new Vector3(thePlayer.transform.position.x, thePlayer.transform.position.y, -1);
     }
 
     // Update is called once per frame
     public void UpdateAttack()
     {
+        weaponType = thePlayer.stats.thePlayer.getAttackType();
+        damage = thePlayer.stats.thePlayer.playerAttack;
+        damage = thePlayer.stats.thePlayer.playerRange;
+
         attack.Value = Input.GetMouseButtonDown(0);
         if (attack.Value == true)
         {
             switch (weaponType)
             {
+                case Actor.attackType.FIST:
+                    MeleeAttackServerRpc();
+                    break;
                 case Actor.attackType.SWORD:
+                    Debug.Log("sword");
                     MeleeAttackServerRpc();
                     break;
                 case Actor.attackType.GREATSWORD:
@@ -77,17 +88,23 @@ public class PlayerAttack : NetworkBehaviour
     [ServerRpc]
     void MeleeAttackServerRpc(ServerRpcParams rpcParams = default)
     {
-        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(range, range), 0, whatIsEnemy);
+        Debug.Log("using melee");
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(1, 1), 0, whatIsEnemy); //range hard coded replace 1 with range later
+        //hitmarker spawn will telport on hit
+        Debug.Log(range);
         foreach (var currentEnemy in enemiesToDamage)
         {
+            Debug.Log("bro");
             // Skip if you already damaged this enemy
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
-
+            
             currentEnemy.GetComponent<EnemyDamageable>().DealDamage(damage);
             Debug.Log("hit" + currentEnemy);
 
             // Add the damaged enemy to the list
             alreadyDamagedEnemies.Add(currentEnemy);
+            Instantiate(hitMarker);
+            hitMarker.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
         }
         Debug.Log(alreadyDamagedEnemies);
         alreadyDamagedEnemies.Clear();
