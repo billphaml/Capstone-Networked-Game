@@ -84,15 +84,15 @@ public class EnemyController : NetworkBehaviour
 
             move.UpdateMovement();
 
-            //if (Vector3.Distance(gameObject.transform.position, player.transform.position) < fsm.GetChaseRange())
-            //{
-            //    fsm.SetState(EnemyFSM.EnemyState.chaseState);
+            if (Vector3.Distance(gameObject.transform.position, player.transform.position) < fsm.GetChaseRange())
+            {
+                fsm.SetState(EnemyFSM.EnemyState.chaseState);
 
-            //    if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= fsm.GetAttackRange())
-            //    {
-            //        fsm.SetState(EnemyFSM.EnemyState.attackState);
-            //    }
-            //}
+                if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= fsm.GetAttackRange())
+                {
+                    fsm.SetState(EnemyFSM.EnemyState.attackState);
+                }
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ public class PlayerAttack : NetworkBehaviour
     [SerializeField] private GameObject rangeBox;
 
     private PlayerActor.attackType weaponType; //1) Sword 2) Bow 3) Spells?
-    private float damage;
+    private float damage = 10f;
     private float attackSpeed; //not developed yet
     private float range;
 
@@ -51,6 +51,9 @@ public class PlayerAttack : NetworkBehaviour
         weaponType = thePlayer.stats.thePlayer.getAttackType();
         damage = thePlayer.stats.thePlayer.playerAttack;
         damage = thePlayer.stats.thePlayer.playerRange;
+
+        // Temp fist damage
+        if (damage <= 0) damage = 10f;
 
         attack.Value = Input.GetMouseButtonDown(0);
         if (attack.Value == true)
@@ -99,12 +102,11 @@ public class PlayerAttack : NetworkBehaviour
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
             
             currentEnemy.GetComponent<EnemyDamageable>().DealDamage(damage);
+            Instantiate(hitMarker, currentEnemy.transform.position, Quaternion.identity);
             Debug.Log("hit" + currentEnemy);
 
             // Add the damaged enemy to the list
             alreadyDamagedEnemies.Add(currentEnemy);
-            Instantiate(hitMarker);
-            hitMarker.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
         }
         Debug.Log(alreadyDamagedEnemies);
         alreadyDamagedEnemies.Clear();
