@@ -17,6 +17,7 @@ public class PlayerStat : MonoBehaviour
     public PlayerActor thePlayer;
     public Inventory playerInventory;
 
+
     public bool itemCollected = false;
 
     //private bool headCheck = false;
@@ -34,15 +35,14 @@ public class PlayerStat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject inventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
-        playerInventory = inventoryManager.GetComponent<Inventory>();
-        inventoryManager.GetComponent<EquipmentManager>().thePlayerStat = this;
+        setupInventory();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        updatePlayerStat();
+
     }
 
     private void LateUpdate()
@@ -55,6 +55,22 @@ public class PlayerStat : MonoBehaviour
     {
         thePlayer = new PlayerActor("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
         //thePlayer.playerInventory = playerInventory;
+
+    }
+
+    public void setupInventory()
+    {
+        GameObject inventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
+        playerInventory = inventoryManager.GetComponent<Inventory>();
+        inventoryManager.GetComponent<EquipmentManager>().thePlayerStat = this;
+        inventoryManager.GetComponent<EquipmentManager>().statEquipmentChanged += updatePlayerStat;
+
+
+        EquipmentUI playerEquipment;
+        GameObject equipmentInterface = GameObject.FindGameObjectWithTag("Equipment UI");
+        playerEquipment = equipmentInterface.GetComponent<EquipmentUI>();
+        playerEquipment.thePlayer = this;
+
 
     }
 

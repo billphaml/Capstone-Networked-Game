@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Joystick
   - Inventory Manager
+  - Equipment UI
   layers:
   - Default
   - TransparentFX

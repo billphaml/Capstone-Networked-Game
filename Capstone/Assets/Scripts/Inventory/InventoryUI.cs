@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * Inventory UI class 
+ * This class is used to set up each individual inventory slot and update it contents.
+ * When the class start, it set up the inventory connection and equipment manager connection to each individual inventoryslot under it in the hierarchy
+ * It check for the Inventory's onItemChangedCallBack delegate to run updateInventory which updates the look and content of each individual inventoryslot
+ * */
+
 public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
@@ -34,8 +42,6 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryUI.SetActive(false);
         }
-
-
     }
 
     private void updateInventory()

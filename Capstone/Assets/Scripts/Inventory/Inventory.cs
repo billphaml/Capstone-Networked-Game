@@ -7,6 +7,13 @@ using MLAPI.NetworkVariable;
 using Photon.Realtime;
 using UnityEngine;
 
+
+/* This is the Inventory class
+ * The purpose of this class is to act as the player's backend inventory. 
+ * It contains a GameItem list and an inventory space int that acts as the maximum size of the inventory
+ * It uses an OnItemChanged delegate in order to let other classes knows when an item is added to the inventory list or removed from it.
+ **/ 
+ 
 public class Inventory : MonoBehaviour
 {
 
@@ -31,7 +38,6 @@ public class Inventory : MonoBehaviour
         if (onItemChangedCallBack != null)
             onItemChangedCallBack.Invoke();
     }
-
 
     public bool canAdd()
     {

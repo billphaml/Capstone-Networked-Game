@@ -3,18 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* This is the EquipmentManager Class
+ * This class is used to facilitate the gameitem exchange from inventoryUI to EquipmentUI to Playerstat
+ * It has an statEquipmentChanged in order to tell the playerStat to update the player's stats based on their equipped items
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
 public class EquipmentManager : MonoBehaviour
 {
+    //public delegate void OnEquipmentChanged(EquipItem iItem, EquipItem oItem);
+    //public OnEquipmentChanged onEquipmentChanged;
 
-    [SerializeField] EquipItem[] currentEquipment;
+    public delegate void StatEquipmentChanged();
+    public StatEquipmentChanged statEquipmentChanged;
+
+
+    [SerializeField] EquipmentSlot[] currentEquipment;
     public InventoryUI theInventoryUserInterface;
     public PlayerStat thePlayerStat;
 
+
+
     private void Start()
     {
-        int numSlots = System.Enum.GetNames(typeof(itemType)).Length;
+        EquipmentUI playerEquipment;
+        GameObject equipmentInterface = GameObject.FindGameObjectWithTag("Equipment UI");
+        playerEquipment = equipmentInterface.GetComponent<EquipmentUI>();
+        
 
-        currentEquipment = new EquipItem[numSlots];
+        currentEquipment = playerEquipment.itemSlot;
 
     }
 
@@ -60,6 +81,17 @@ public class EquipmentManager : MonoBehaviour
             oldItem = thePlayerStat.thePlayer.playerHelmet;
         }
         thePlayerStat.thePlayer.playerHelmet = iEquipment;
+
+        //if(onEquipmentChanged != null)
+        //{
+        //    onEquipmentChanged.Invoke(iEquipment, (EquipItem) oldItem);
+        //}
+
+        if(statEquipmentChanged != null)
+        {
+            statEquipmentChanged.Invoke();
+        }
+
         return oldItem;
     }
 
@@ -71,6 +103,17 @@ public class EquipmentManager : MonoBehaviour
             oldItem = thePlayerStat.thePlayer.playerNecklace;
         }
         thePlayerStat.thePlayer.playerNecklace = iEquipment;
+
+        //if (onEquipmentChanged != null)
+        //{
+        //    onEquipmentChanged.Invoke(iEquipment, (EquipItem)oldItem);
+        //}
+
+        if (statEquipmentChanged != null)
+        {
+            statEquipmentChanged.Invoke();
+        }
+
         return oldItem;
     }
 
@@ -82,6 +125,17 @@ public class EquipmentManager : MonoBehaviour
             oldItem = thePlayerStat.thePlayer.playerArmor;
         }
         thePlayerStat.thePlayer.playerArmor = iEquipment;
+
+        //if (onEquipmentChanged != null)
+        //{
+        //    onEquipmentChanged.Invoke(iEquipment, (EquipItem)oldItem);
+        //}
+
+        if (statEquipmentChanged != null)
+        {
+            statEquipmentChanged.Invoke();
+        }
+
         return oldItem;
     }
 
@@ -93,6 +147,17 @@ public class EquipmentManager : MonoBehaviour
             oldItem = thePlayerStat.thePlayer.playerWeapon;
         }
         thePlayerStat.thePlayer.playerWeapon = iEquipment;
+
+        //if (onEquipmentChanged != null)
+        //{
+        //    onEquipmentChanged.Invoke(iEquipment, (EquipItem)oldItem);
+        //}
+
+        if (statEquipmentChanged != null)
+        {
+            statEquipmentChanged.Invoke();
+        }
+
         return oldItem;
     }
 
@@ -113,13 +178,71 @@ public class EquipmentManager : MonoBehaviour
             thePlayerStat.thePlayer.playerRingOne = iEquipment;
         }
 
+        //if (onEquipmentChanged != null)
+        //{
+        //    onEquipmentChanged.Invoke(iEquipment, (EquipItem)oldItem);
+        //}
+
+        if (statEquipmentChanged != null)
+        {
+            statEquipmentChanged.Invoke();
+        }
+
         return oldItem;
     }
 
     public void removeFromInventory(EquipItem iEquipment)
     {
-        theInventoryUserInterface.inventory.removeItem(iEquipment);
+        //theInventoryUserInterface.inventory.removeItem(iEquipment);
+        Debug.Log("The equipment is " + iEquipment.itemName);
+        int slotIndex = -1;
+
+        Debug.Log("the length of the current equipment array is " + currentEquipment.Length);
+        for (int i = 0; i < currentEquipment.Length; i++)
+        {        
+            if (currentEquipment[i].theItem == iEquipment)
+            {
+                Debug.Log("The current index is at " + i);
+                slotIndex = i;
+            }
+        }
+
+        removeFromInventoryHandler(slotIndex);
+
+        //if (onEquipmentChanged != null)
+        //{
+        //    onEquipmentChanged.Invoke(null, iEquipment);
+        //}
+
+        if (statEquipmentChanged != null)
+        {
+            statEquipmentChanged.Invoke();
+        }
     }
 
+    public void removeFromInventoryHandler(int iIndex)
+    {
+        switch (iIndex)
+        {
+            case 0:
+                thePlayerStat.thePlayer.playerHelmet = null;
+                break;
+            case 1:
+                thePlayerStat.thePlayer.playerNecklace = null;
+                break;
+            case 2:
+                thePlayerStat.thePlayer.playerArmor = null;
+                break;
+            case 3:
+                thePlayerStat.thePlayer.playerWeapon = null;
+                break;
+            case 4:
+                thePlayerStat.thePlayer.playerRingOne = null;
+                break;
+            case 5:
+                thePlayerStat.thePlayer.playerRingTwo = null;
+                break;
+        }
 
+    }
 }

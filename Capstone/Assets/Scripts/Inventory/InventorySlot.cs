@@ -2,6 +2,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* This is the InventorySlot class
+ * The purpose of this class is to represent each individual "box" in a player's inventory
+ * Each one of the InventorySlot is a button; when clicked, it called the UseItem method to differentiate each individual item's function based on type
+ * It contact with the EquipmentManager in order to allows for equipment communication
+ * 
+ * Stores the Item value and maybe the item amount if we do item stacking
+ * 
+ * */
+
 public class InventorySlot : MonoBehaviour
 {
     public EquipmentManager theEquipmentManager;
