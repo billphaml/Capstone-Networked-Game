@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] public GameObject RoomNameHost;
-    [SerializeField] public GameObject RoomNameClient;
-    [SerializeField] public GameObject NickName;
+    public GameObject RoomNameHost;
+    public GameObject RoomNameClient;
+    public GameObject NickName;
+
+    [Header("Inventory")]
+    [SerializeField] private CanvasGroup inventory = null;
+    private bool isOpen = false;
 
     [Header("Android UI")]
-    [SerializeField] private GameObject androidUI = default;
+    [SerializeField] private GameObject androidUI = null;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,25 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckInventoryUI();
+    }
 
+    private void CheckInventoryUI()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (isOpen)
+            {
+                inventory.alpha = 0;
+                inventory.interactable = false;
+                isOpen = false;
+            }
+            else
+            {
+                inventory.alpha = 1;
+                inventory.interactable = true;
+                isOpen = true;
+            }
+        }
     }
 }

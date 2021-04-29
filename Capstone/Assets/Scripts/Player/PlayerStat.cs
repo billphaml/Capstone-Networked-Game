@@ -70,8 +70,6 @@ public class PlayerStat : MonoBehaviour
         GameObject equipmentInterface = GameObject.FindGameObjectWithTag("Equipment UI");
         playerEquipment = equipmentInterface.GetComponent<EquipmentUI>();
         playerEquipment.thePlayer = this;
-
-
     }
 
     public void itemChange()

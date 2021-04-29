@@ -13,6 +13,7 @@ TagManager:
   - Joystick
   - Inventory Manager
   - Equipment UI
+  - Inventory UI
   layers:
   - Default
   - TransparentFX
