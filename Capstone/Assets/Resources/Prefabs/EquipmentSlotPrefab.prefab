@@ -196,6 +196,8 @@ MonoBehaviour:
   theInventory: {fileID: 0}
   itemAmountText: {fileID: 0}
   dropButton: {fileID: 7186172362248473242}
+  theItem: {fileID: 0}
+  emptyImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &7542247256901653091
 GameObject:
   m_ObjectHideFlags: 0

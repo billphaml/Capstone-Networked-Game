@@ -405,10 +405,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489f761939263114f9de1a0fe16f65cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theEquipmentManager: {fileID: 0}
   theInventory: {fileID: 0}
   itemAmountText: {fileID: 3545914842159113672}
   dropButton: {fileID: 3400935794023159064}
-  theDatabase: {fileID: 11400000, guid: 5956ffc05f99952499f5d8bca416867a, type: 2}
+  emptyImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &5533554950023639769
 GameObject:
   m_ObjectHideFlags: 0

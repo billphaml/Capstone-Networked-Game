@@ -19,6 +19,11 @@ public class EquipmentSlot : MonoBehaviour
     public EquipItem theItem;
     int itemAmount = 0;
 
+    /// <summary>
+    /// Background image for empty item slot.
+    /// </summary>
+    [SerializeField] private Sprite emptyImage;
+
     void Start()
     {
         
@@ -36,7 +41,7 @@ public class EquipmentSlot : MonoBehaviour
     public void clearSlot()
     {
         theItem = null;
-        transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
+        transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
         //itemAmount = 0;
         //itemAmountText.text = "";
         //dropButton.interactable = false;
