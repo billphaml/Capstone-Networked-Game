@@ -2,23 +2,14 @@
  * 
  *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
-using Lean.Transition;
 using MLAPI;
 using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
-using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerStat : NetworkBehaviour
 {
-
     public PlayerActor thePlayer;
     public Inventory playerInventory;
-
-
-    public bool itemCollected = false;
 
     //private bool headCheck = false;
     //private bool armorCheck = false;
@@ -29,25 +20,19 @@ public class PlayerStat : NetworkBehaviour
 
     void Awake()
     {
-        setupPlayer();
+        if (IsLocalPlayer)
+        {
+            setupPlayer();
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        setupInventory();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void LateUpdate()
-    {
-        
+        if (IsLocalPlayer)
+        {
+            setupInventory();
+        }     
     }
 
     // Method used to set up the player character
@@ -64,7 +49,6 @@ public class PlayerStat : NetworkBehaviour
         playerInventory = inventoryManager.GetComponent<Inventory>();
         inventoryManager.GetComponent<EquipmentManager>().thePlayerStat = this;
         inventoryManager.GetComponent<EquipmentManager>().statEquipmentChanged += updatePlayerStat;
-
 
         EquipmentUI playerEquipment;
         GameObject equipmentInterface = GameObject.FindGameObjectWithTag("Equipment UI");
@@ -89,12 +73,13 @@ public class PlayerStat : NetworkBehaviour
             Debug.Log("Wow you hit something");
             var item = collision.GetComponent<ItemBehavior>();
 
-            collectedServerRpc();
-            if (item && playerInventory.canAdd() && collision.gameObject != null && itemCollected == true)
+            //collectedServerRpc();
+
+            if (item && playerInventory.canAdd() /*&& collision.gameObject != null && itemCollected == true*/)
             {
                 playerInventory.addItem(item.theItem);
                 Destroy(collision.gameObject);
-                itemCollected = false;
+                //itemCollected = false;
             }
         }
     }
@@ -102,15 +87,15 @@ public class PlayerStat : NetworkBehaviour
     [ServerRpc]
     public void collectedServerRpc()
     {
-        if(itemCollected == false && NetworkManager.Singleton.IsHost)
-        {
-            itemCollected = true;
-        } 
-        // wtf does this code do, shouldn't clients check the server's copy of the item collected???
-        else if (itemCollected == false && NetworkManager.Singleton.IsClient)
-        {
-            itemCollected = true;
-        }
+        //if (itemCollected == false && NetworkManager.Singleton.IsHost)
+        //{
+        //    itemCollected = true;
+        //} 
+        //// wtf does this code do, shouldn't clients check the server's copy of the item collected???
+        //else if (itemCollected == false && NetworkManager.Singleton.IsClient)
+        //{
+        //    itemCollected = true;
+        //}
     }
 
     private void OnApplicationQuit()
