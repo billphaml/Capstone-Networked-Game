@@ -16,19 +16,19 @@ public class InventorySlot : MonoBehaviour
     public EquipmentManager theEquipmentManager;
 
     public Inventory theInventory;
+
     public TextMeshProUGUI itemAmountText;
+
     public Button dropButton;
+
     GameItem theItem;
+
     int itemAmount = 0;
 
     /// <summary>
     /// Background image for empty item slot.
     /// </summary>
     [SerializeField] private Sprite emptyImage;
-
-     void Start()
-    {
-    }
 
     public void addItem(GameItem iItem)
     {

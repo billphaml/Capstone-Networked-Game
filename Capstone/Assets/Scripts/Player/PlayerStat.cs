@@ -11,7 +11,7 @@ using MLAPI.NetworkVariable;
 using Photon.Realtime;
 using UnityEngine;
 
-public class PlayerStat : MonoBehaviour
+public class PlayerStat : NetworkBehaviour
 {
 
     public PlayerActor thePlayer;
@@ -84,15 +84,18 @@ public class PlayerStat : MonoBehaviour
     // probably need a callback to the client
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Wow you hit something");
-        var item = collision.GetComponent<ItemBehavior>();
-
-        collectedServerRpc();
-        if (item && playerInventory.canAdd() && collision.gameObject != null && itemCollected == true)
+        if (IsLocalPlayer)
         {
-            playerInventory.addItem(item.theItem);
-            Destroy(collision.gameObject);
-            itemCollected = false;
+            Debug.Log("Wow you hit something");
+            var item = collision.GetComponent<ItemBehavior>();
+
+            collectedServerRpc();
+            if (item && playerInventory.canAdd() && collision.gameObject != null && itemCollected == true)
+            {
+                playerInventory.addItem(item.theItem);
+                Destroy(collision.gameObject);
+                itemCollected = false;
+            }
         }
     }
 
@@ -102,7 +105,9 @@ public class PlayerStat : MonoBehaviour
         if(itemCollected == false && NetworkManager.Singleton.IsHost)
         {
             itemCollected = true;
-        } else if (itemCollected == false && NetworkManager.Singleton.IsClient)
+        } 
+        // wtf does this code do, shouldn't clients check the server's copy of the item collected???
+        else if (itemCollected == false && NetworkManager.Singleton.IsClient)
         {
             itemCollected = true;
         }
