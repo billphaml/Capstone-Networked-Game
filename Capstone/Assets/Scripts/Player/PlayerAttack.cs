@@ -29,25 +29,21 @@ public class PlayerAttack : NetworkBehaviour
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
-    NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
+    //NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
 
     // Start is called before the first frame update
     private void Start()
     {
-        
-
         if (IsLocalPlayer)
         {
             thePlayer = gameObject.GetComponent<PlayerController>();
-            
         }
-        Instantiate(hitMarker);
-        hitMarker.transform.position = new Vector3(thePlayer.transform.position.x, thePlayer.transform.position.y, -1);
     }
 
     // Update is called once per frame
     public void UpdateAttack()
     {
+        // These should back one time events or something instead of every update
         weaponType = thePlayer.stats.thePlayer.getAttackType();
         damage = thePlayer.stats.thePlayer.playerAttack;
         damage = thePlayer.stats.thePlayer.playerRange;
@@ -55,8 +51,8 @@ public class PlayerAttack : NetworkBehaviour
         // Temp fist damage
         if (damage <= 0) damage = 10f;
 
-        attack.Value = Input.GetMouseButtonDown(0);
-        if (attack.Value == true)
+        //attack.Value = Input.GetMouseButtonDown(0);
+        if (Input.GetMouseButtonDown(0))
         {
             switch (weaponType)
             {
@@ -79,8 +75,7 @@ public class PlayerAttack : NetworkBehaviour
                 case Actor.attackType.MAGIC:
                     RangeAttackServerRpc();
                     break;
-            }
-               
+            }  
         }
     }
 

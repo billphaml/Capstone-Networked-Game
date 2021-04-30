@@ -59,7 +59,7 @@ public class WaveTrigger : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     void SubmitSpawnRequestServerRpc(ServerRpcParams rpcParams = default) 
     {
 #if (DEBUG)
