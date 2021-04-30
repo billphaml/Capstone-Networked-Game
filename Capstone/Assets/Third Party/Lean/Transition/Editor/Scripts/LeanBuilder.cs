@@ -6,7 +6,7 @@ using Lean.Common;
 namespace Lean.Transition.Editor
 {
 	/// <summary>This allows you to build a transition method from the specified template.</summary>
-	[CreateAssetMenu(fileName = "NewBuilder", menuName = "Lean/Transition/Builder")]
+	//[CreateAssetMenu(fileName = "NewBuilder", menuName = "Lean/Transition/Builder")]
 	public class LeanBuilder : ScriptableObject
 	{
 		[System.Serializable]

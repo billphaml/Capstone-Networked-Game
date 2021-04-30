@@ -33,6 +33,10 @@ public class Inventory : MonoBehaviour
             onItemChangedCallBack.Invoke();
     }
 
+    /// <summary>
+    /// Returns a true if player has empty inventory slot.
+    /// </summary>
+    /// <returns></returns>
     public bool canAdd()
     {
         if (inventoryItem.Count < inventorySpace)

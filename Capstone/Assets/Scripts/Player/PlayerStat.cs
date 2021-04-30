@@ -63,11 +63,14 @@ public class PlayerStat : NetworkBehaviour
         
     }
 
-    // Ontriggerenter calls a serverrpc method
-    // the method checks if item isvalid is true
-    // if it is, set to false, destroy item, and pick up the item and send to client
-    // if it isn't valid do nothing
-    // probably need a callback to the client
+    /// <summary>
+    /// When colliding with an object checks if it is a item. If it is and the
+    /// player has a free inventory slot then make a call to the server to try
+    /// to pick it up.
+    /// 
+    /// Missing: check if collision is an item.
+    /// </summary>
+    /// <param name="collision"></param>
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsLocalPlayer)
@@ -77,36 +80,28 @@ public class PlayerStat : NetworkBehaviour
 #endif
             var item = collision.GetComponent<ItemBehavior>();
 
-            //collectedServerRpc();
-
-            if (item && playerInventory.canAdd() /*&& collision.gameObject != null && itemCollected == true*/)
+            // If object is an item and player has empty slot
+            if (item && playerInventory.canAdd())
             {
-                playerInventory.addItem(item.theItem);
-                Destroy(collision.gameObject);
-                //itemCollected = false;
+                item.TryPickUpServerRpc(OwnerClientId);
             }
         }
     }
 
-    [ServerRpc]
-    public void collectedServerRpc()
+    /// <summary>
+    /// Pickup the passed in item and destroy it.
+    /// </summary>
+    /// <param name="item"></param>
+    public void AddItem(ItemBehavior item)
     {
-        //if (itemCollected == false && NetworkManager.Singleton.IsHost)
-        //{
-        //    itemCollected = true;
-        //} 
-        //// wtf does this code do, shouldn't clients check the server's copy of the item collected???
-        //else if (itemCollected == false && NetworkManager.Singleton.IsClient)
-        //{
-        //    itemCollected = true;
-        //}
+        playerInventory.addItem(item.theItem);
+        item.DestroyItemObjectServerRpc();
     }
 
     private void OnApplicationQuit()
     {
        // thePlayer.playerInventory.storage.inventory.Clear();
     }
-
     
     public void updateAttackType()
     {

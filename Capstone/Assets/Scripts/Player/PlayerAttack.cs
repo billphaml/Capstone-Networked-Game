@@ -3,11 +3,8 @@
  *****************************************************************************/
 
 using System.Collections.Generic;
-using Lean.Transition;
 using MLAPI;
 using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
-using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerAttack : NetworkBehaviour
@@ -29,8 +26,6 @@ public class PlayerAttack : NetworkBehaviour
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
-    //NetworkVariableBool attack = new NetworkVariableBool(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -51,7 +46,6 @@ public class PlayerAttack : NetworkBehaviour
         // Temp fist damage
         if (damage <= 0) damage = 10f;
 
-        //attack.Value = Input.GetMouseButtonDown(0);
         if (Input.GetMouseButtonDown(0))
         {
             switch (weaponType)

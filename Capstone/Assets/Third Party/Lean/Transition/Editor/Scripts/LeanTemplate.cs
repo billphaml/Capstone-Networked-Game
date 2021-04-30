@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Lean.Transition.Editor
 {
 	/// <summary>This allows you to define a transition template.</summary>
-	[CreateAssetMenu(fileName = "NewTemplate", menuName = "Lean/Transition/Template")]
+	//[CreateAssetMenu(fileName = "NewTemplate", menuName = "Lean/Transition/Template")]
 	public class LeanTemplate : ScriptableObject
 	{
 		[Multiline(100)]
