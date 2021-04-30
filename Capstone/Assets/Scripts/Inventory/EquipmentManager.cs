@@ -1,18 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /* This is the EquipmentManager Class
  * This class is used to facilitate the gameitem exchange from inventoryUI to EquipmentUI to Playerstat
  * It has an statEquipmentChanged in order to tell the playerStat to update the player's stats based on their equipped items
- * 
- * 
- * 
- * 
- * 
- * 
- * */
+ **/
+
+#undef DEBUG
+
+using UnityEngine;
+
 public class EquipmentManager : MonoBehaviour
 {
     //public delegate void OnEquipmentChanged(EquipItem iItem, EquipItem oItem);
@@ -21,22 +15,17 @@ public class EquipmentManager : MonoBehaviour
     public delegate void StatEquipmentChanged();
     public StatEquipmentChanged statEquipmentChanged;
 
-
     [SerializeField] EquipmentSlot[] currentEquipment;
     public InventoryUI theInventoryUserInterface;
     public PlayerStat thePlayerStat;
-
-
 
     private void Start()
     {
         EquipmentUI playerEquipment;
         GameObject equipmentInterface = GameObject.FindGameObjectWithTag("Equipment UI");
         playerEquipment = equipmentInterface.GetComponent<EquipmentUI>();
-        
 
         currentEquipment = playerEquipment.itemSlot;
-
     }
 
     public GameItem equipItem (EquipItem iEquipment)
@@ -194,15 +183,21 @@ public class EquipmentManager : MonoBehaviour
     public void removeFromInventory(EquipItem iEquipment)
     {
         //theInventoryUserInterface.inventory.removeItem(iEquipment);
+#if DEBUG
         Debug.Log("The equipment is " + iEquipment.itemName);
+#endif
         int slotIndex = -1;
 
+#if DEBUG
         Debug.Log("the length of the current equipment array is " + currentEquipment.Length);
+#endif
         for (int i = 0; i < currentEquipment.Length; i++)
         {        
             if (currentEquipment[i].theItem == iEquipment)
             {
+#if DEBUG
                 Debug.Log("The current index is at " + i);
+#endif
                 slotIndex = i;
             }
         }

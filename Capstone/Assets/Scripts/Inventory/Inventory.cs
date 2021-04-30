@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /* This is the Inventory class
  * The purpose of this class is to act as the player's backend inventory. 
  * It contains a GameItem list and an inventory space int that acts as the maximum size of the inventory
@@ -22,7 +21,7 @@ public class Inventory : MonoBehaviour
     {
         inventoryItem.Add(iItem);
 
-        if(onItemChangedCallBack != null)
+        if (onItemChangedCallBack != null)
              onItemChangedCallBack.Invoke();
     }
 
@@ -36,7 +35,7 @@ public class Inventory : MonoBehaviour
 
     public bool canAdd()
     {
-        if(inventoryItem.Count < inventorySpace)
+        if (inventoryItem.Count < inventorySpace)
         {
             return true;
         }

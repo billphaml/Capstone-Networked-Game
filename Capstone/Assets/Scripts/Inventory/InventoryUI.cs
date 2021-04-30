@@ -1,11 +1,15 @@
-using UnityEngine;
-
-/*
+/******************************************************************************
  * Inventory UI class 
  * This class is used to set up each individual inventory slot and update it contents.
- * When the class start, it set up the inventory connection and equipment manager connection to each individual inventoryslot under it in the hierarchy
- * It check for the Inventory's onItemChangedCallBack delegate to run updateInventory which updates the look and content of each individual inventoryslot
- * */
+ * When the class start, it set up the inventory connection and equipment manager
+ * connection to each individual inventoryslot under it in the hierarchy
+ * It check for the Inventory's onItemChangedCallBack delegate to run updateInventory
+ * which updates the look and content of each individual inventoryslot
+ *****************************************************************************/
+
+#undef DEBUG
+
+using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -39,7 +43,9 @@ public class InventoryUI : MonoBehaviour
                 itemSlot[i].clearSlot();
             }
         }
+#if DEBUG
         Debug.Log("Time To Update The Inventory Gamer!");
+#endif
     }
 
     private void setupManager()

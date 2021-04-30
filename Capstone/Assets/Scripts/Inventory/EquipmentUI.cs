@@ -1,17 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using MLAPI;
-using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
-using Photon.Realtime;
-using UnityEngine;
-
-
 /* This is the EquipmentUI class
  * The purpose of this class is to be a visual representation of the playerActor equipment.
  * It has a variable for the Inventory class in order to instantiate it to each individual equipmentslot prefab under it in the hierarchy 
  * It checks for the EquipmentManager statEquipmentChanged in order to update its slots visuals.
  * */
+
+#undef DEBUG
+
+using UnityEngine;
+
 public class EquipmentUI : MonoBehaviour
 {
     public Inventory inventory;
@@ -30,7 +26,11 @@ public class EquipmentUI : MonoBehaviour
         theEquipmentManager.statEquipmentChanged += updateEquipment;
 
         itemSlot = itemParent.GetComponentsInChildren<EquipmentSlot>();
+
+#if DEBUG
         Debug.Log("The equipment itemslot has " + itemSlot.Length);
+#endif
+
         setupManager();
     }
 
@@ -48,19 +48,15 @@ public class EquipmentUI : MonoBehaviour
         }
     }
 
-    //public override void networkstart()
-    //{
-
-    //}
-
-
     private void updateEquipment()
     {
-        if( thePlayer!= null)
+        if (thePlayer!= null)
         {
             updateEquipmentHandler();
         }
+#if DEBUG
         Debug.Log("Time To Update The Inventory Gamer!");
+#endif
     }
 
     public void updateEquipmentHandler()
@@ -128,5 +124,4 @@ public class EquipmentUI : MonoBehaviour
             itemSlot[i].theEquipmentManager = theEquipmentManager;
         }
     }
-
 }

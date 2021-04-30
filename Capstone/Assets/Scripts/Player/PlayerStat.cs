@@ -2,6 +2,8 @@
  * 
  *****************************************************************************/
 
+#undef DEBUG
+
 using MLAPI;
 using MLAPI.Messaging;
 using UnityEngine;
@@ -70,7 +72,9 @@ public class PlayerStat : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
+#if DEBUG
             Debug.Log("Wow you hit something");
+#endif
             var item = collision.GetComponent<ItemBehavior>();
 
             //collectedServerRpc();
