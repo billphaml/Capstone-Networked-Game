@@ -17,6 +17,12 @@ public class HealthDemoManager : NetworkBehaviour
 
     [SerializeField] private HealthDemoPlayer player = null;
 
+    private float nextRequestTime = 0f;
+
+    private float requestDelayTime = 3f;
+
+    private int position = 0;
+
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10, 10, 400, 400));
@@ -30,6 +36,8 @@ public class HealthDemoManager : NetworkBehaviour
             StatusLabels();
 
             StartEndRequesting();
+
+            ChangePlayerPosition();
         }
 
         GUILayout.EndArea();
@@ -54,6 +62,31 @@ public class HealthDemoManager : NetworkBehaviour
     }
 
     void StartEndRequesting()
+    {
+        if (GUILayout.Button("Change Position"))
+        {
+            position++;
+            if (position > 3) position = 0;
+
+            switch (position)
+            {
+                case 0:
+                    player.transform.position = new Vector2(3, 3);
+                    break;
+                case 1:
+                    player.transform.position = new Vector2(3, -3);
+                    break;
+                case 2:
+                    player.transform.position = new Vector2(-3, -3);
+                    break;
+                case 3:
+                    player.transform.position = new Vector2(-3, 3);
+                    break;
+            }
+        }
+    }
+
+    void ChangePlayerPosition()
     {
         if (GUILayout.Button("Request"))
         {
@@ -83,8 +116,12 @@ public class HealthDemoManager : NetworkBehaviour
 
         if (isRequesting)
         {
-            Debug.Log("Requesting...");
-            player.Request();
+            if (nextRequestTime <= Time.time)
+            {
+                Debug.Log("Requesting...");
+                player.Request();
+                nextRequestTime = Time.time + requestDelayTime;
+            }
         }
 
         Debug.Log("Health: " + health.Health.Value);
