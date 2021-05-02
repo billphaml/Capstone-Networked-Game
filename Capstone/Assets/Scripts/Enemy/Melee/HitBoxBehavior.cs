@@ -20,7 +20,7 @@ public class HitBoxBehavior : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
+        //player = GameObject.FindGameObjectsWithTag("Player")[0];
     }
 
     void Update()
@@ -42,47 +42,39 @@ public class HitBoxBehavior : MonoBehaviour
     }
 
     // only does anything if the hit box is enabled
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("Collision Detected");
-    //    if (hitBoxEnabled)
-    //    {
-    //        Debug.Log("Hit box on");
-    //        if (collision.gameObject.tag == "Player")
-    //        {
-    //            Debug.Log("Player hit");
-    //            // Damage the player when the player is in the hit box
-    //            // and the hit box is enabled
-    //            PlayerHit();
-    //        }
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision Detected");
+        if (hitBoxEnabled)
+        {
+            Debug.Log("Hit box on");
+            if (collision.gameObject.tag == "Player")
+            {
+                Debug.Log("Player hit");
+                // Damage the player when the player is in the hit box
+                // and the hit box is enabled
+                PlayerHit();
+            }
+        }
+    }
 
     // if the hit box touches the player when it's enabled
     // player takes damage
-    public void PlayerHit(string enemyType)
+    public void PlayerHit()
     {
-        //Collider2D[] hitObjects = Physics2D.OverlapCircleAll(hitBox.transform.position, hitBoxRadius, playerMask);
-        //Debug.Log("Trying to attack");
-        //if (hitObjects.Length > 0)
-        //{
-        //    PlayerBehavior i = player.GetComponent<PlayerBehavior>();
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(hitBox.transform.position, hitBoxRadius, playerMask);
+        Debug.Log("Trying to attack");
+        
+        for(int i = 0; i < hitObjects.Length; ++i)
+        {
+            player = hitObjects[i].gameObject;
+            PlayerDamageable dam = player.GetComponent<PlayerDamageable>();
 
-        //    if (enemyType.Equals("Brute"))
-        //    {
-        //        i.DamagePlayer(damageAmount);
-        //        i.DamagePlayer(damageAmount);
-        //        i.StunPlayer();
-        //    }
+            dam.DealDamage(3);
 
-        //    if (enemyType.Equals("MeleeEnemy"))
-        //    {
-        //        i.DamagePlayer(damageAmount);
-        //    }
-
-        //    hitBoxEnabled = false;
-        //    Debug.Log("Damaged Player");
-        //}
+            hitBoxEnabled = false;
+            Debug.Log("Damaged Player " + i);
+        }
     }
 
     private void OnDrawGizmosSelected()

@@ -34,7 +34,7 @@ public class BruteAttack : MonoBehaviour
                 {
                     Debug.Log("Attack");
                     HitBoxBehavior h = hitBox.GetComponent<HitBoxBehavior>();
-                    h.PlayerHit("Brute");
+                   // h.PlayerHit("Brute");
                     remainingCoolDownTime = attackCoolDown;
                     timerTick = 0;
                     state.SetIsAttacking(false);
