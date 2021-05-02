@@ -37,7 +37,7 @@ public class HealthDemoPlayer : NetworkBehaviour
 
     IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
         line.Destroy();
     }
 }

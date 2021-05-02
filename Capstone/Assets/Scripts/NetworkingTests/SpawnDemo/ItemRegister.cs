@@ -6,7 +6,7 @@ public class ItemRegister : MonoBehaviour
 
     private float nextDeletionTime = 0f;
 
-    private float deletionDelayTime = 60f;
+    private float deletionDelayTime = 0.4f;
 
     void Start()
     {

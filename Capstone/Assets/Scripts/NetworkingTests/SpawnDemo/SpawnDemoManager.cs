@@ -11,7 +11,9 @@ public class SpawnDemoManager : NetworkBehaviour
 
     private float nextSpawnTime = 0f;
 
-    private float spawnDelayTime = 10f;
+    private float spawnDelayTime = 0.6f;
+
+    GUIStyle headstyle = new GUIStyle();
 
     void OnGUI()
     {
@@ -43,10 +45,10 @@ public class SpawnDemoManager : NetworkBehaviour
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
         GUILayout.Label("Transport: " +
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
-        GUILayout.Label("Mode: " + mode);
-        GUILayout.Label("Spawning: " + isSpawning);
-        GUILayout.Label("Spawn count: " + spawnCount);
+            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name, headstyle);
+        GUILayout.Label("Mode: " + mode, headstyle);
+        GUILayout.Label("Spawning: " + isSpawning, headstyle);
+        GUILayout.Label("Spawn count: " + spawnCount, headstyle);
     }
 
     void StartEndSpawning()
@@ -60,6 +62,17 @@ public class SpawnDemoManager : NetworkBehaviour
         }
     }
 
+    public Vector3 randomPos()
+    {
+        return new Vector3(Random.Range(-4, 4), Random.Range(-4, 4), 0);
+    }
+
+    private void Start()
+    {
+        headstyle.fontSize = 24;
+        headstyle.normal.textColor = Color.white;
+    }
+
     private void FixedUpdate()
     {
         if (isSpawning && IsHost)
@@ -67,7 +80,7 @@ public class SpawnDemoManager : NetworkBehaviour
             if (nextSpawnTime <= Time.time)
             {
                 Debug.Log("Spawning...");
-                GameObject temp = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                GameObject temp = Instantiate(prefab, randomPos(), Quaternion.identity);
                 temp.GetComponent<NetworkObject>().Spawn();
                 nextSpawnTime = Time.time + spawnDelayTime;
             }

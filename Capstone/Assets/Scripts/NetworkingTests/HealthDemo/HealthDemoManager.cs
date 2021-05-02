@@ -19,7 +19,7 @@ public class HealthDemoManager : NetworkBehaviour
 
     private float nextRequestTime = 0f;
 
-    private float requestDelayTime = 1f;
+    private float requestDelayTime = 0.8f;
 
     private int position = 0;
 
