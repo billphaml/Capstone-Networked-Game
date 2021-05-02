@@ -35,7 +35,7 @@ public class MeleeAttack : MonoBehaviour
                 {
                     Debug.Log("Attack");
                     HitBoxBehavior h = hitBox.GetComponent<HitBoxBehavior>();
-                    h.PlayerHit("MeleeEnemy");
+                    h.PlayerHit();
                     remainingCoolDownTime = attackCoolDown;
                     timerTick = 0;
                     state.SetIsAttacking(false);
