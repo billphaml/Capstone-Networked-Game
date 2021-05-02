@@ -17,9 +17,15 @@ public class MovementTestManager : NetworkBehaviour
 
     [SerializeField] private MovementTestPlayer player = null;
 
+    GUIStyle headstyle = new GUIStyle();
+
+    private float nextRequestTime = 0f;
+
+    private float requestDelayTime = 0.3f;
+
     void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 400, 400));
+        GUILayout.BeginArea(new Rect(10, 10, 480, 480));
 
         if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
@@ -47,10 +53,20 @@ public class MovementTestManager : NetworkBehaviour
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
         GUILayout.Label("Transport: " +
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
-        GUILayout.Label("Mode: " + mode);
-        GUILayout.Label("Requesting: " + isRequesting);
-        GUILayout.Label("Target Position: " + location.position.ToString());
+            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name, headstyle);
+        GUILayout.Label("Mode: " + mode, headstyle);
+        GUILayout.Label("Requesting: " + isRequesting, headstyle);
+        PlayerPositions();
+    }
+
+    void PlayerPositions()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            GUILayout.Label("Player " + (i + 1) + " Position: " + players[i].transform.position, headstyle);
+        }
     }
 
     void StartEndRequesting()
@@ -61,10 +77,10 @@ public class MovementTestManager : NetworkBehaviour
         }
     }
 
-    private void Update()
+    private void Start()
     {
-        if(location == null)
-       location = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Transform>();
+        headstyle.fontSize = 24;
+        headstyle.normal.textColor = Color.white;
     }
 
     private void FixedUpdate()
@@ -84,8 +100,12 @@ public class MovementTestManager : NetworkBehaviour
 
         if (isRequesting)
         {
-            Debug.Log("requesting...");
-            player.Request();
+            if (nextRequestTime <= Time.time)
+            {
+                Debug.Log("requesting...");
+                player.Request();
+                nextRequestTime = Time.time + requestDelayTime;
+            }
         }
 
         Debug.Log("Position: " + location.position.ToString());

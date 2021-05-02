@@ -19,13 +19,15 @@ public class HealthDemoManager : NetworkBehaviour
 
     private float nextRequestTime = 0f;
 
-    private float requestDelayTime = 3f;
+    private float requestDelayTime = 1f;
 
     private int position = 0;
 
+    GUIStyle headstyle = new GUIStyle();
+
     void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 400, 400));
+        GUILayout.BeginArea(new Rect(10, 10, 480, 480));
 
         if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
@@ -55,10 +57,10 @@ public class HealthDemoManager : NetworkBehaviour
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
         GUILayout.Label("Transport: " +
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
-        GUILayout.Label("Mode: " + mode);
-        GUILayout.Label("Requesting: " + isRequesting);
-        GUILayout.Label("Target health: " + health.Health.Value);
+            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name, headstyle);
+        GUILayout.Label("Mode: " + mode, headstyle);
+        GUILayout.Label("Requesting: " + isRequesting, headstyle);
+        GUILayout.Label("Target health: " + health.Health.Value, headstyle);
     }
 
     void StartEndRequesting()
@@ -97,6 +99,9 @@ public class HealthDemoManager : NetworkBehaviour
     private void Start()
     {
         health = GameObject.FindGameObjectWithTag("Enemy").GetComponent<HealthDemoTarget>();
+
+        headstyle.fontSize = 24;
+        headstyle.normal.textColor = Color.white;
     }
 
     private void FixedUpdate()
