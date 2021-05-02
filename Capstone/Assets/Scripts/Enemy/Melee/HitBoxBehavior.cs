@@ -84,9 +84,8 @@ public class HitBoxBehavior : MonoBehaviour
     }
 
     // enables hit box
-    public void EnableHitBox(float d)
+    public void EnableHitBox()
     {
         hitBoxEnabled = true;
-        damageAmount = d;
     }
 }
