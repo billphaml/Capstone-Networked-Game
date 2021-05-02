@@ -65,8 +65,9 @@ public class HitBoxBehavior : MonoBehaviour
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(hitBox.transform.position, hitBoxRadius, playerMask);
         Debug.Log("Trying to attack");
         
-        for(int i = 0; i < hitObjects.Length; ++i)
+        for (int i = 0; i < hitObjects.Length; ++i)
         {
+            Debug.Log(hitObjects);
             player = hitObjects[i].gameObject;
             PlayerDamageable dam = player.GetComponent<PlayerDamageable>();
 
