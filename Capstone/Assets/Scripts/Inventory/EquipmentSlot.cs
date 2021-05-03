@@ -33,6 +33,7 @@ public class EquipmentSlot : MonoBehaviour
     {
         theItem = iItem;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = iItem.itemImage;
+        transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
         //itemAmount++;
         //itemAmountText.text = itemAmount.ToString();
         dropButton.interactable = true;
@@ -42,6 +43,7 @@ public class EquipmentSlot : MonoBehaviour
     {
         theItem = null;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
+        transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(0.1f, 0.1f, 0.1f, 0.8f);
         //itemAmount = 0;
         //itemAmountText.text = "";
         //dropButton.interactable = false;
