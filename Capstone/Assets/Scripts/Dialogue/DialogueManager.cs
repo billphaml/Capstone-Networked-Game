@@ -5,7 +5,14 @@ using System.IO;
 using UnityEngine.UI;
 using TMPro;
 
-
+/* This is the DialogueManager class.
+ * The purpose of this class is to manage the dialoguescene scriptable object and pass it dialogue object through the queue to display to the player
+ * Currently missing the ability to trigger events, apply buffs and change values.
+ * 
+ * 
+ * 
+ * 
+ * */
 public class DialogueManager : MonoBehaviour
 {
     public GameObject textGroup;
@@ -13,11 +20,10 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI placeholderDisplay;
     public TextMeshProUGUI activeDisplay;
     public TextMeshProUGUI nameDisplay;
+    public TextMeshProUGUI timeDisplay;
 
     public Queue<Dialogue> queueDialogue; // Shows the actual dialogue
-    public Queue<Dialogue> queueOneDialogue; // Prepare dialogue for 01 branch 
-    public Queue<Dialogue> queueTwoDialogue; // Prepare dialogue for 02 branch
-    public Queue<Dialogue> queueThreeDialogue; // Prepare dialogue for 03 branch
+
 
     private int index;
     private int currentIndex;
@@ -28,12 +34,14 @@ public class DialogueManager : MonoBehaviour
     private bool canNext;
     private bool isEndDialogue;
     private bool isActive;
-    private Dialogue activeDialogue;
+    [SerializeField] private float dialogueTime;
+    [SerializeField] private bool dialogueTimeActive;
+    [SerializeField] private Dialogue activeDialogue;
+    private DialogueScene currentDialogueScene;
 
 
 
-
-    // This IEnumerator is used to give the textDialogue for the NPC a typing effect.
+    // This IEnumerator is used to give the textDialogue  a typing effect.
     IEnumerator dialogueTyping()
     {
         dequeueDisplayText();
@@ -65,19 +73,20 @@ public class DialogueManager : MonoBehaviour
         nameDisplay.text = activeDialogue.speakerName;
     }
 
+     void Awake()
+    {
+        timeDisplay.enabled = false;
+    }
 
     void Start()
     {
-        queueDialogue = new Queue<Dialogue>();
-        queueOneDialogue = new Queue<Dialogue>();
-        queueTwoDialogue = new Queue<Dialogue>();
-        queueThreeDialogue = new Queue<Dialogue>();
-        
+        queueDialogue = new Queue<Dialogue>();   
     }
 
     void Update()
     {
         dialogueController();
+        updateDialogueTimer();
         updateEndDialogue();
     }
 
@@ -89,6 +98,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (canEnter == true && Input.GetKeyDown(KeyCode.Space))
             {
+                responseHandler();
                 nextDialogue();
             }
         }
@@ -97,7 +107,8 @@ public class DialogueManager : MonoBehaviour
             if (canEnter == true && Input.GetKeyDown(KeyCode.Space))
             {
                 // Trigger The Event Tag 
-                insertNextDialogue();
+                turnOffTimer();
+                insertNextDialogue(activeDialogue.branchNext);
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -175,53 +186,22 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    public void startDialogue(string startScene)
+    public void startDialogue(DialogueScene startScene)
     {
         // Find the dialogue set corresponding with the scene
-        //string path = "Assets/Dialogue_Set/" + startScene + ".txt";
         GameDialogueManager.theLocalGameManager.turnOffPlayerMovement();
+        currentDialogueScene = startScene;
         turnOnDialogue();
 
-        // Add a check for file
-        TextAsset textFile = Resources.Load<TextAsset>("Scene_Dialogue/" + startScene);
-
-        //Read all the lines in scene file
-        //string[] theLine = File.ReadAllLines(path);
-
-        string[] theLine = textFile.text.Split('\n');
-
-        // Split the string line into three parts, Name, Dialogue and Type
-        foreach (string importdialogue in theLine)
+        for(int i = 0; i < currentDialogueScene.SceneDialogue.Length; i++)
         {
-            string[] splitDialogue = importdialogue.Split('\t');
-
-            //Debug.Log(splitDialogue[0] + " " + splitDialogue[2] + " " + splitDialogue[4] + " " + splitDialogue[6] + " " + splitDialogue[8] + " " + splitDialogue[10]);
-
-            Dialogue addNewDialogue = new Dialogue(splitDialogue[0], splitDialogue[2], splitDialogue[4], splitDialogue[6], splitDialogue[8], splitDialogue[10]);
-
-
-            if (addNewDialogue.branchNum == 1 || addNewDialogue.branchNum == 4)
+            if(currentDialogueScene.SceneDialogue[i].branchNum == 0)
             {
-                queueOneDialogue.Enqueue(addNewDialogue);
-            } else if (addNewDialogue.branchNum == 2 || addNewDialogue.branchNum == 5)
-            {
-                queueTwoDialogue.Enqueue(addNewDialogue);
-            } else if (addNewDialogue.branchNum == 3 || addNewDialogue.branchNum == 6)
-            {
-                queueThreeDialogue.Enqueue(addNewDialogue);
+                queueDialogue.Enqueue(currentDialogueScene.SceneDialogue[i]);
             }
-            else
-            {
-                queueDialogue.Enqueue(addNewDialogue);
-            }
-
         }
-        nextDialogue();
 
-        // Else
-        // Dialogue errorDialogue = new Dialogue("Error", "This Scene Cannot Be Found", "false");
-        // queueDialogue.Enqueue(errorDialogue);
-        // nextDialogue();
+        nextDialogue();
     }
 
 
@@ -261,54 +241,35 @@ public class DialogueManager : MonoBehaviour
      * 
      * 
      * */
-    public void insertNextDialogue()
+    public void insertNextDialogue(int iBranchNum)
     {
         queueDialogue.Clear();
-
-        switch (activeDialogue.branchNext)
+        
+        for(int i = 0; i < currentDialogueScene.SceneDialogue.Length; i++)
         {
-            case 1:
-                while (queueOneDialogue.Count > 0)
-                {
-                    queueDialogue.Enqueue(queueOneDialogue.Dequeue());
-                }
-                break;
-            case 2:
-                while (queueTwoDialogue.Count > 0)
-                {
-                    queueDialogue.Enqueue(queueTwoDialogue.Dequeue());
-                }
-                break;
-            case 3:
-                while (queueThreeDialogue.Count > 0)
-                {
-                    queueDialogue.Enqueue(queueThreeDialogue.Dequeue());
-                }
-                break;
-            case 4:
-                while (queueOneDialogue.Count > 0)
-                {
-                    queueDialogue.Enqueue(queueOneDialogue.Dequeue());
-                }
-                break;
-            case 5:
-                while (queueTwoDialogue.Count > 0)
-                {
-                    queueDialogue.Enqueue(queueTwoDialogue.Dequeue());
-                }
-                break;
-            case 6:
-                while (queueThreeDialogue.Count > 0)
-                {
-                    queueDialogue.Enqueue(queueThreeDialogue.Dequeue());
-                }
-                break;
+            if(currentDialogueScene.SceneDialogue[i].branchNum == iBranchNum)
+            {
+                queueDialogue.Enqueue(currentDialogueScene.SceneDialogue[i]);
+            }
         }
 
-        queueOneDialogue.Clear();
-        queueTwoDialogue.Clear();
-        queueThreeDialogue.Clear();
         nextDialogue();
+    }
+
+    
+    public void responseHandler()
+    {
+        if (activeDialogue.dialogueResponse.Length > 0)
+        {
+            for (int i = 0; i < activeDialogue.dialogueResponse.Length; i++)
+            {
+                queueDialogue.Enqueue(activeDialogue.dialogueResponse[i]);
+            }
+            if(activeDialogue.typeTime >= 0)
+            {
+                turnOnTimer();
+            }
+        }
     }
 
     // this method is used to return whether the player is at the end of the dialogue string
@@ -334,6 +295,20 @@ public class DialogueManager : MonoBehaviour
         GameDialogueManager.theLocalGameManager.turnOffDialogue();
     }
 
+    private void turnOnTimer()
+    {
+        dialogueTime = activeDialogue.typeTime;
+        dialogueTimeActive = true;
+        timeDisplay.enabled = true;
+    }
+
+    private void turnOffTimer()
+    {
+        dialogueTime = activeDialogue.typeTime;
+        dialogueTimeActive = false;
+        timeDisplay.enabled = false;
+    }
+
     public bool getActive()
     {
         return isActive;
@@ -352,8 +327,25 @@ public class DialogueManager : MonoBehaviour
             endTimer -= Time.deltaTime;
             if (endTimer <= 0)
             {
+                GameEvent.theGameEvent.onEndOfDialogue(currentDialogueScene, activeDialogue.branchNum);
                 turnOffDialogue();
+                turnOffTimer();
                 isEndDialogue = false;
+            }
+        }
+    }
+
+    private void updateDialogueTimer()
+    {
+        if(dialogueTimeActive == true)
+        {
+            dialogueTime -= Time.deltaTime;
+            int intTime = (int)dialogueTime + 1;
+            timeDisplay.text = intTime.ToString() + "...";
+            if(dialogueTime <= 0)
+            {
+                turnOffTimer();
+                insertNextDialogue(-1);
             }
         }
     }

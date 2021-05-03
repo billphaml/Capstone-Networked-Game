@@ -39,7 +39,7 @@ public class GameDialogueManager : MonoBehaviour
     }
 
     //
-    public void startDialogue(string startScene)
+    public void startDialogue(DialogueScene startScene)
     {
         theDialogueManager.startDialogue(startScene);
     }
