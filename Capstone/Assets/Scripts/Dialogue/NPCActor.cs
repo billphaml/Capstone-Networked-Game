@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class NPC : Actor
 {
-    private string dialoguePath;
+    public DialogueScene theDialogue;
 
 
     public NPC(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
@@ -22,13 +23,13 @@ public class NPC : Actor
 
     }
 
-    public void setDialogue(string iDialogue)
+    public void setDialogue(DialogueScene iDialogue)
     {
-        dialoguePath = iDialogue;
+        theDialogue = iDialogue;
     }
 
-    public string getDialogue()
+    public DialogueScene getDialogue()
     {
-        return dialoguePath;
+        return theDialogue;
     }
 }

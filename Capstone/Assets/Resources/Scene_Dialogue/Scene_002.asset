@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
+  m_Name: Scene_002
+  m_EditorClassIdentifier: 
+  SceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Jason
+    dialogueText: Greetings, Welcome to the land of Rumipitier
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    triggerEvent: null
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Jason
+    dialogueText: If you're looking for the guild hall, simply follow the road North
+      and it will take you there.
+    canType: 0
+    typeTime: 20
+    branchNext: -1
+    triggerEvent: 1
+    dialogueResponse:
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: Thank you.
+      canType: 1
+      typeTime: 0
+      branchNext: 1
+      triggerEvent: null
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: Nobody asked you loser.
+      canType: 1
+      typeTime: 0
+      branchNext: 2
+      triggerEvent: null
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: I'm onto you Jason. Don't think you can fool me!
+      canType: 1
+      typeTime: 0
+      branchNext: 3
+      triggerEvent: null
+      dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 1
+    speakerName: Jason
+    dialogueText: It is no problem, may the wild be kind to you.
+    canType: 0
+    typeTime: 0
+    branchNext: 1
+    triggerEvent: null
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 2
+    speakerName: Jason
+    dialogueText: Okay, geez. I was just trying to be helpful.
+    canType: 0
+    typeTime: 0
+    branchNext: 2
+    triggerEvent: null
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 3
+    speakerName: Jason
+    dialogueText: Hahaha, very well. You foolish, fool! Have at you!
+    canType: 0
+    typeTime: 0
+    branchNext: 3
+    triggerEvent: null
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: -1
+    speakerName: Jason
+    dialogueText: Uhh... Very well then...  Good day to you. (Weird kid.)
+    canType: 0
+    typeTime: 0
+    branchNext: -1
+    triggerEvent: null
+    dialogueResponse: []

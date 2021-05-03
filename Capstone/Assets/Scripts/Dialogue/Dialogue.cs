@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Dialogue 
 {
+    public string eventPrerequisite;
     public int branchNum;
     public string speakerName;
+    [TextArea(5,10)]
     public string dialogueText;
     public bool canType;
+    public float typeTime;
     public int branchNext;
-    public string triggerEvent;
+    public Dialogue[] dialogueResponse;
+
 
     public Dialogue( string characterName, string theDialogue, string isType)
     {
@@ -25,7 +30,15 @@ public class Dialogue
         dialogueText = theDialogue;
         canType = convertType(isType);
         branchNext = getBranchNum(nextBranch);
-        triggerEvent = tEvent;
+    }
+
+    public Dialogue(Dialogue iDialogue)
+    {
+        branchNum = iDialogue.branchNum;
+        speakerName = iDialogue.speakerName;
+        dialogueText = iDialogue.dialogueText;
+        canType = iDialogue.canType;
+        branchNext = iDialogue.branchNext;
     }
 
     private bool convertType(string isType)
