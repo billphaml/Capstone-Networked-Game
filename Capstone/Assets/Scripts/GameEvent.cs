@@ -8,10 +8,11 @@ public class GameEvent : MonoBehaviour
     public static GameEvent theGameEvent;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         theGameEvent = this;
     }
+
 
     public event Action <DialogueScene,int> onEndOfDialogueTrigger;
 
@@ -23,5 +24,4 @@ public class GameEvent : MonoBehaviour
         }
     }
 
-    public bool isDone = false;
 }

@@ -6,8 +6,7 @@ public class DialogueHandler : MonoBehaviour
 {
     public static DialogueHandler theDialogueHandler;
 
-
-    void Start()
+     void Awake()
     {
         theDialogueHandler = this;
     }
