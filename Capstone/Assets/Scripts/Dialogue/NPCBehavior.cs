@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MLAPI;
 
-public class NPCBehavior : MonoBehaviour
+public class NPCBehavior : NetworkBehaviour
 {
     public NPC actorIdentity;
 
@@ -36,10 +37,13 @@ public class NPCBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //canTalk = true; 
-        Debug.Log("Wow you got here");
-        if(GameDialogueManager.theLocalGameManager.dialogueActive == false)
-        triggerDialogue();
+        if (collision.gameObject.GetComponent<PlayerController>().IsLocalPlayer)
+        {
+            //canTalk = true; 
+            Debug.Log("Wow you got here");
+            if (GameDialogueManager.theLocalGameManager.dialogueActive == false)
+                triggerDialogue();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
