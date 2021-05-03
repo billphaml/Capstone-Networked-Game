@@ -26,7 +26,7 @@ public class PlayerHealth : NetworkBehaviour
     /// <summary>
     /// Current health for this object.
     /// </summary>
-    private NetworkVariable<float> Health = new NetworkVariable<float>(0f);
+    public NetworkVariable<float> Health = new NetworkVariable<float>(0f);
 
     // Used to trigger a death event in other code
     // Could be used to display a respawn ui
@@ -76,6 +76,8 @@ public class PlayerHealth : NetworkBehaviour
     [ServerRpc]
     public void RemoveHealthServerRpc(float value)
     {
+        Debug.Log("Removing health");
+
         value = Mathf.Max(value, 0);
 
         Health.Value = Mathf.Max(Health.Value - value, 0);

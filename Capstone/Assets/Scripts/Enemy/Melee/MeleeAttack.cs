@@ -14,10 +14,12 @@ public class MeleeAttack : MonoBehaviour
     private float startUp = 30f;
     private float timerTick = 0;
     public GameObject hitBox;
+    HitBoxBehavior h = null;
 
     private void Start()
     {
         state = gameObject.GetComponent<EnemyFSM>();
+        h = hitBox.GetComponent<HitBoxBehavior>();
     }
 
     // Update is called once per frame
@@ -34,9 +36,9 @@ public class MeleeAttack : MonoBehaviour
                 if (timerTick > startUp)
                 {
                     Debug.Log("Attack");
-                    HitBoxBehavior h = hitBox.GetComponent<HitBoxBehavior>();
+                    
                     h.EnableHitBox();
-                    h.PlayerHit();
+                    //h.PlayerHit();
                     remainingCoolDownTime = attackCoolDown;
                     timerTick = 0;
                     state.SetIsAttacking(false);

@@ -35,6 +35,7 @@ public class PlayerDamageable : NetworkBehaviour
     /// <param name="damageToDeal"></param>
     public void DealDamage(float damageToDeal)
     {
+        Debug.Log("Taking damage 1");
         health.RemoveHealthServerRpc(damageToDeal);
     }
 }

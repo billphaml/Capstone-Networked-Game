@@ -28,7 +28,7 @@ public class HitBoxBehavior : MonoBehaviour
         // start timer once the hit box is enabled
         if(hitBoxEnabled)
             timer++;
-        ProcessTime();
+        //ProcessTime();
     }
 
     // hit box only lasts for 1 second
@@ -42,7 +42,7 @@ public class HitBoxBehavior : MonoBehaviour
     }
 
     // only does anything if the hit box is enabled
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         Debug.Log("Collision Detected");
         if (hitBoxEnabled)
@@ -64,11 +64,14 @@ public class HitBoxBehavior : MonoBehaviour
     {
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(hitBox.transform.position, hitBoxRadius, playerMask);
         Debug.Log("Trying to attack");
-        
+
+        Debug.Log(hitObjects[0]);
+
         for (int i = 0; i < hitObjects.Length; ++i)
         {
-            Debug.Log(hitObjects);
+            Debug.Log(hitObjects[i]);
             player = hitObjects[i].gameObject;
+            Debug.Log(player.name);
             PlayerDamageable dam = player.GetComponent<PlayerDamageable>();
 
             dam.DealDamage(3);
