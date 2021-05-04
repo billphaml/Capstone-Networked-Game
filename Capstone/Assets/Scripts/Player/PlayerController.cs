@@ -10,7 +10,7 @@ public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private SpriteRenderer playerColor;
 
-    [SerializeField] private  CMFindPlayer camera;
+    [SerializeField] private new CMFindPlayer camera;
 
     [SerializeField] public PlayerStat stats;
 

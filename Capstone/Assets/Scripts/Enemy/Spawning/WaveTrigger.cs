@@ -15,8 +15,11 @@ public class WaveTrigger : NetworkBehaviour
     /// <summary>
     /// The room that the wave trigger is location in/coressponds with.
     /// </summary> 
-    [SerializeField]
-    private GameObject room = null;
+    [SerializeField] private GameObject room = null;
+
+    private float nextSpawnTime = 0f;
+
+    [SerializeField] private float spawnDelayTime = 120f;
 
     //[SerializeField]
     //private GameObject[] doors;
@@ -35,27 +38,28 @@ public class WaveTrigger : NetworkBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.gameObject.tag == "Player" && IsHost)
+        if (nextSpawnTime <= Time.time)
         {
+            if (collision.gameObject.tag == "Player" && IsHost)
+            {
 #if (DEBUG)
-            Debug.Log("Triggered by player/object");
+                Debug.Log("Triggered by player/object");
 #endif
-            room.GetComponent<EnemySpawner>().StartWaves();
+                room.GetComponent<EnemySpawner>().StartWaves();
 
-            //for (int i = 0; i < doors.Length; i++)
-            //{
-            //    doors[i].GetComponent<BoxCollider2D>().enabled = true;
-            //    doors[i].GetComponent<SpriteRenderer>().enabled = true;
-            //}
+                // Lock room
+                //for (int i = 0; i < doors.Length; i++)
+                //{
+                //    doors[i].GetComponent<BoxCollider2D>().enabled = true;
+                //    doors[i].GetComponent<SpriteRenderer>().enabled = true;
+                //}
 
-            // Lock the room (Future item)
-
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.tag == "Player" && NetworkManager.Singleton.IsConnectedClient)
-        {
-            SubmitSpawnRequestServerRpc();
+                nextSpawnTime = Time.time + spawnDelayTime;
+            }
+            else if (collision.gameObject.tag == "Player" && NetworkManager.Singleton.IsConnectedClient)
+            {
+                SubmitSpawnRequestServerRpc();
+            }
         }
     }
 
@@ -67,14 +71,13 @@ public class WaveTrigger : NetworkBehaviour
 #endif
         room.GetComponent<EnemySpawner>().StartWaves();
 
+        // Lock room
         //for (int i = 0; i < doors.Length; i++)
         //{
         //    doors[i].GetComponent<BoxCollider2D>().enabled = true;
         //    doors[i].GetComponent<SpriteRenderer>().enabled = true;
         //}
 
-        // Lock the room (Future item)
-
-        Destroy(gameObject);
+        nextSpawnTime = Time.time + spawnDelayTime;
     }
 }

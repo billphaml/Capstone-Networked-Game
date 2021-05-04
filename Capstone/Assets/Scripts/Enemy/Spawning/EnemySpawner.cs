@@ -27,8 +27,6 @@ public class EnemySpawner : MonoBehaviour
         public enemyBP[] enemies;
     }
 
-    // is done spawning
-    bool doneSpawning = false;
     /// <summary>
     /// Array of enemies to spawn.
     /// </summary>
@@ -146,7 +144,6 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        doneSpawning = true;
     }
 
     IEnumerator<WaitForSeconds> DeletePortals()

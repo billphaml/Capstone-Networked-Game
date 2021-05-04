@@ -16,7 +16,7 @@ public class HitBoxBehavior : MonoBehaviour
 
     // the enemies that use this should give
     // it's corresponding damage amount when it's called 
-    private float damageAmount = 1f;
+    private float damageAmount = 5f;
 
     void Start()
     {
@@ -74,7 +74,7 @@ public class HitBoxBehavior : MonoBehaviour
             Debug.Log(player.name);
             PlayerDamageable dam = player.GetComponent<PlayerDamageable>();
 
-            dam.DealDamage(3);
+            dam.DealDamage(damageAmount);
 
             hitBoxEnabled = false;
             Debug.Log("Damaged Player " + i);
