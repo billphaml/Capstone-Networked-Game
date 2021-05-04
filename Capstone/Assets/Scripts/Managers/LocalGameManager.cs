@@ -19,7 +19,7 @@ public class LocalGameManager : MonoBehaviour
     public GameObject questUI;
     public TextMeshProUGUI questText;
 
-    public void updateKillQuest()
+    public void UpdateKillQuest()
     {
        for(int i = 0; i < currentQuest.Count; i++)
         {
