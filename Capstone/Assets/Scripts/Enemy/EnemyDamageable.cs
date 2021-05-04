@@ -21,10 +21,8 @@ public class EnemyDamageable : NetworkBehaviour
     /// <summary>
     /// Similar to awake but for occurs when all clients are synced.
     /// </summary>
-    public override void NetworkStart()
+    private void Start()
     {
-        base.NetworkStart();
-
         health = gameObject.GetComponent<EnemyHealth>();
     }
 

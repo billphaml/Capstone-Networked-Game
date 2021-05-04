@@ -6,7 +6,7 @@ public class DialogueHandler : MonoBehaviour
 {
     public static DialogueHandler theDialogueHandler;
 
-     void Awake()
+    void Awake()
     {
         theDialogueHandler = this;
     }
@@ -19,13 +19,9 @@ public class DialogueHandler : MonoBehaviour
             case "Scene_002":
                 Debug.Log("Hi, how you're doing?");
                 return introHandler(branchNum);
-            break;
-
             default:
-            return null;
+                return null;
         }
-
-        
     }
 
     public DialogueScene introHandler(int branchNum)
@@ -34,7 +30,6 @@ public class DialogueHandler : MonoBehaviour
         {
             case 1:
                 return (DialogueScene)Resources.Load("Scene_Dialogue/IntroGood");
-
             case 2:
                 return (DialogueScene)Resources.Load("Scene_Dialogue/IntroNeutral");
             case 3:
@@ -43,6 +38,4 @@ public class DialogueHandler : MonoBehaviour
                 return (DialogueScene)Resources.Load("Scene_Dialogue/IntroBad");
         }
     }
-
-
 }

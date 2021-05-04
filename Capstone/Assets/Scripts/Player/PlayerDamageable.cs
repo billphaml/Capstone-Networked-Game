@@ -21,10 +21,8 @@ public class PlayerDamageable : NetworkBehaviour
     /// <summary>
     /// Similar to awake but for occurs when all clients are synced.
     /// </summary>
-    public override void NetworkStart()
+    private void Start()
     {
-        base.NetworkStart();
-
         health = gameObject.GetComponent<PlayerHealth>();
     }
 
@@ -35,7 +33,7 @@ public class PlayerDamageable : NetworkBehaviour
     /// <param name="damageToDeal"></param>
     public void DealDamage(float damageToDeal)
     {
-        Debug.Log("Taking damage 1");
+        Debug.Log("Taking damage");
         health.RemoveHealthServerRpc(damageToDeal);
     }
 }

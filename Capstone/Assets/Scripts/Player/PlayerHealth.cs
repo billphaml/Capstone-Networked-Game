@@ -37,10 +37,8 @@ public class PlayerHealth : NetworkBehaviour
     /// <summary>
     /// Similar to awake but for occurs when all clients are synced.
     /// </summary>
-    public override void NetworkStart()
+    private void Start()
     {
-        base.NetworkStart();
-
         Health.Value = maxHealth;
     }
 
@@ -60,7 +58,7 @@ public class PlayerHealth : NetworkBehaviour
     /// maxHealth.
     /// </summary>
     /// <param name="value"></param>
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void AddHealthServerRpc(float value)
     {
         value = Mathf.Max(value, 0);
@@ -73,7 +71,7 @@ public class PlayerHealth : NetworkBehaviour
     /// MaxHealth. Calls rpc to handle death if health reaches 0.
     /// </summary>
     /// <param name="value"></param>
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void RemoveHealthServerRpc(float value)
     {
         Debug.Log("Removing health");

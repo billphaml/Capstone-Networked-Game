@@ -41,27 +41,27 @@ public class PlayerAttack : NetworkBehaviour
         // These should back one time events or something instead of every update
         weaponType = thePlayer.stats.thePlayer.getAttackType();
         damage = thePlayer.stats.thePlayer.playerAttack;
-        damage = thePlayer.stats.thePlayer.playerRange;
+        //damage = thePlayer.stats.thePlayer.playerRange;
 
         // Temp fist damage
-        if (damage <= 0) damage = 10f;
+        if (damage <= 0) damage = 5f;
 
         if (Input.GetMouseButtonDown(0))
         {
             switch (weaponType)
             {
                 case Actor.attackType.FIST:
-                    MeleeAttackServerRpc();
+                    MeleeAttack();
                     break;
                 case Actor.attackType.SWORD:
                     Debug.Log("sword");
-                    MeleeAttackServerRpc();
+                    MeleeAttack();
                     break;
                 case Actor.attackType.GREATSWORD:
-                    MeleeAttackServerRpc();
+                    MeleeAttack();
                     break;
                 case Actor.attackType.DAGGER:
-                    MeleeAttackServerRpc();
+                    MeleeAttack();
                     break;
                 case Actor.attackType.BOW:
                     RangeAttackServerRpc();
@@ -77,11 +77,11 @@ public class PlayerAttack : NetworkBehaviour
     /// Melee Hit detectuion using COllider2D
     /// </summary>
     /// <param name="rpcParams"></param>
-    [ServerRpc]
-    void MeleeAttackServerRpc(ServerRpcParams rpcParams = default)
+    void MeleeAttack()
     {
         Debug.Log("using melee");
-        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(1, 1), 0, whatIsEnemy); //range hard coded replace 1 with range later
+        //range hard coded replace 1 with range later
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(1, 1), 0, whatIsEnemy);
         //hitmarker spawn will telport on hit
         Debug.Log(range);
         foreach (var currentEnemy in enemiesToDamage)
@@ -91,7 +91,7 @@ public class PlayerAttack : NetworkBehaviour
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
             
             currentEnemy.GetComponent<EnemyDamageable>().DealDamage(damage);
-            Instantiate(hitMarker, currentEnemy.transform.position, Quaternion.identity);
+            //Instantiate(hitMarker, currentEnemy.transform.position, Quaternion.identity);
             Debug.Log("hit" + currentEnemy);
 
             // Add the damaged enemy to the list
