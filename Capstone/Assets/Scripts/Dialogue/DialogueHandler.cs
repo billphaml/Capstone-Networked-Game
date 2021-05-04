@@ -17,8 +17,11 @@ public class DialogueHandler : MonoBehaviour
         switch (theDialogue.name)
         {
             case "Scene_002":
-                Debug.Log("Hi, how you're doing?");
                 return introHandler(branchNum);
+            case "Golem_Slayer":
+                return LostChildIntroHandler(branchNum);
+            case "Lost_Child_Intro":
+                return LostChildIntroHandler(branchNum);
             default:
                 return null;
         }
@@ -38,4 +41,30 @@ public class DialogueHandler : MonoBehaviour
                 return (DialogueScene)Resources.Load("Scene_Dialogue/IntroBad");
         }
     }
+
+    public DialogueScene LostChildIntroHandler(int branchNum)
+    {
+        switch (branchNum)
+        {
+            case 1:
+                GiveQuest.theGiveQuest.acceptQuest();
+                return (DialogueScene)Resources.Load("Scene_Dialogue/Lost_Child_Accept");
+            default:
+                return null;
+        }
+    }
+
+    public DialogueScene GolemSlayerHandler(int branchNum)
+    {
+        switch (branchNum)
+        {
+            case 1:
+                GiveQuest.theGiveQuest.acceptQuest();
+                return (DialogueScene)Resources.Load("Scene_Dialogue/AfterGenericQuest");
+            default:
+                return null;
+        }
+    }
+
+
 }
