@@ -11,12 +11,11 @@ public class GameDialogueManager : MonoBehaviour
     public DialogueManager theDialogueManager;
     public PlayerMovement ThePlayerMovement;
 
-    public bool dialogueActive;
+    public bool isDialogueActive;
     
-
-     void Awake()
+    void Awake()
     {
-     if( _theLocalgameManager != null && _theLocalgameManager != this)
+        if (_theLocalgameManager != null && _theLocalgameManager != this)
         {
             Destroy(this.gameObject);
         }
@@ -47,12 +46,12 @@ public class GameDialogueManager : MonoBehaviour
 
     public void turnOnDialogue()
     {
-        dialogueActive = true;
+        isDialogueActive = true;
     }
 
     public void turnOffDialogue()
     {
-        dialogueActive = false;
+        isDialogueActive = false;
     }
 
     //
@@ -66,6 +65,4 @@ public class GameDialogueManager : MonoBehaviour
     {
         ThePlayerMovement.turnOffMove();
     }
-
-
 }

@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [Header("Android UI")]
     [SerializeField] private GameObject androidUI = null;
 
+    [SerializeField] private GameDialogueManager localDialogueManager = null;
+
     // Start is called before the first frame update
     void Start()
     {

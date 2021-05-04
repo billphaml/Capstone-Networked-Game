@@ -50,7 +50,7 @@ public class NPCBehavior : NetworkBehaviour
             {
                 //canTalk = true; 
                 Debug.Log("Wow you got here");
-                if (GameDialogueManager.theLocalGameManager.dialogueActive == false)
+                if (GameDialogueManager.theLocalGameManager.isDialogueActive == false)
                     triggerDialogue();
             }
         }

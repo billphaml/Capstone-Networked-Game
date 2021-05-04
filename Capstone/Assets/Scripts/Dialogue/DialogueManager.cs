@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         dialogueController();
-        updateDialogueTimer();
+        UpdateDialogueTimer();
         updateEndDialogue();
     }
 
@@ -269,7 +269,7 @@ public class DialogueManager : MonoBehaviour
             }
             if(activeDialogue.typeTime >= 0)
             {
-                turnOnTimer();
+                TurnOnTimer();
             }
         }
     }
@@ -298,7 +298,7 @@ public class DialogueManager : MonoBehaviour
         GameDialogueManager.theLocalGameManager.turnOffDialogue();
     }
 
-    private void turnOnTimer()
+    private void TurnOnTimer()
     {
         dialogueTime = activeDialogue.typeTime;
         dialogueTimeActive = true;
@@ -347,7 +347,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void updateDialogueTimer()
+    private void UpdateDialogueTimer()
     {
         if(dialogueTimeActive == true)
         {

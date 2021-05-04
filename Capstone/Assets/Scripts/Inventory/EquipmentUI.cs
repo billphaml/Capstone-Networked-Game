@@ -34,20 +34,6 @@ public class EquipmentUI : MonoBehaviour
         setupManager();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.I))
-        {
-            inventoryUI.SetActive(true);
-        }
-
-        if (Input.GetKey(KeyCode.M))
-        {
-            inventoryUI.SetActive(false);
-        }
-    }
-
     private void updateEquipment()
     {
         if (thePlayer!= null)

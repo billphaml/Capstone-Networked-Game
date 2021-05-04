@@ -63,6 +63,7 @@ public class EnemyHealth : NetworkBehaviour
 
         if (Health.Value == 0)
         {
+            LocalGameManager.theLocalGameManager.UpdateKillQuest();
             gameObject.GetComponent<EnemyItemDrop>().SpawnDrop();
             HandleDeathClientRpc();
         }
