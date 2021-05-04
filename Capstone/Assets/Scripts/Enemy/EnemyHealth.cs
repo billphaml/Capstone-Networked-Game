@@ -65,6 +65,7 @@ public class EnemyHealth : NetworkBehaviour
 
         if (Health.Value == 0)
         {
+            gameObject.GetComponent<EnemyItemDrop>().SpawnDrop();
             HandleDeathClientRpc();
         }
     }

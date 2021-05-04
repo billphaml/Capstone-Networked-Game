@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2399081376041194611}
   - component: {fileID: 133728070350947210}
   - component: {fileID: 5748319549430998125}
+  - component: {fileID: 7715274337192666208}
   m_Layer: 7
   m_Name: Enemy Template
   m_TagString: Enemy
@@ -259,6 +260,22 @@ MonoBehaviour:
   attackCoolDown: 3
   startUp: 30
   hitBox: {fileID: 4288339284144551591}
+--- !u!114 &7715274337192666208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405533726842306551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2c7a21a82583e44a90e11d82ec29be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropTable:
+  - {fileID: 7707462938504713363, guid: ecafd7082c764ca4db64aeca55dd8f28, type: 3}
+  - {fileID: 1156773902236365734, guid: 10a0ee9576c2f404c80ffa4861196b41, type: 3}
+  - {fileID: 8252210254109994388, guid: 507b15cfc2dcdeb4d888525482bfb391, type: 3}
 --- !u!1 &1405533727244231343
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +350,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec47f75fe8aff1644ac73998f4ad31b5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

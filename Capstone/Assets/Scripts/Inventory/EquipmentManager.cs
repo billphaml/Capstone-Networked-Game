@@ -34,30 +34,22 @@ public class EquipmentManager : MonoBehaviour
         {
             case itemType.HEAD:
                 return playerHelmetHandler(iEquipment);
-                break;
             case itemType.ARMOR:
                 return playerArmorHandler(iEquipment);
             case itemType.NECKLACE:
                 return playerNecklaceHandler(iEquipment);
-                break;
             case itemType.RING:
-                return  ringSlotHandler(iEquipment);
-                break;
+                return ringSlotHandler(iEquipment);
             case itemType.SWORD:
                 return playerWeaponhandler(iEquipment);
-                break;
             case itemType.GREATSWORD:
                 return playerWeaponhandler(iEquipment);
-                break;
             case itemType.DAGGER:
                 return playerWeaponhandler(iEquipment);
-                break;
             case itemType.BOW:
                 return playerWeaponhandler(iEquipment);
-                break;
             case itemType.MAGIC:
                 return playerWeaponhandler(iEquipment);
-                break;
             default:
                 return null;
         }
