@@ -15,11 +15,12 @@ public class AttackBoxLocation : NetworkBehaviour
     private float test;
     private Vector3 mousePosition;
     private Vector3 centerPosition;
-    [SerializeField] private float radius;
+    [SerializeField] private float radius = 1;
     [SerializeField] private Rigidbody2D player;
+
     void Start()
     {
-        //m_depth = transform.position.z - Camera.main.transform.position.z;
+        m_depth = transform.position.z - Camera.main.transform.position.z;
     }
 
     void Update()
@@ -28,18 +29,19 @@ public class AttackBoxLocation : NetworkBehaviour
         {
             //moves the attackbox torwards the location of the mouse based on the camera veiw
             transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, m_depth));
-        
 
-            //All the code below keeps the attack box within a radius
-            centerPosition = player.position;
+            ////All the code below keeps the attack box within a radius
+            //centerPosition = player.position;
 
-            test = Vector3.Distance(transform.position, centerPosition);
-            if (test > radius)
-            {
-                Vector3 fromOriginToObject = transform.position - centerPosition;
-                fromOriginToObject *= radius / test;
-                transform.position = centerPosition + fromOriginToObject;
-            }
+            //test = Vector3.Distance(centerPosition, transform.position);
+            //if (test > radius)
+            //{
+            //    Vector3 fromOriginToObject = transform.position - centerPosition;
+            //    fromOriginToObject *= radius / test;
+            //    var newPos = centerPosition + fromOriginToObject;
+
+            //    transform.position = newPos;
+            //}
         }
 
         //mousePosition = Input.mousePosition;

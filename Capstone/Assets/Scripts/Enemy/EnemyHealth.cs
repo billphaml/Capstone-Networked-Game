@@ -21,20 +21,18 @@ public class EnemyHealth : NetworkBehaviour
     /// <summary>
     /// Max health for this object.
     /// </summary>
-    [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private float maxHealth = 50f;
 
     /// <summary>
     /// Current health for this object.
     /// </summary>
-    private NetworkVariable<float> Health = new NetworkVariable<float>(0f);
+    public NetworkVariable<float> Health = new NetworkVariable<float>(0f);
 
     /// <summary>
     /// Similar to awake but for occurs when all clients are synced.
     /// </summary>
-    public override void NetworkStart()
+    private void Start()
     {
-        base.NetworkStart();
-
         Health.Value = maxHealth;
     }
 
@@ -43,7 +41,7 @@ public class EnemyHealth : NetworkBehaviour
     /// maxHealth.
     /// </summary>
     /// <param name="value"></param>
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void AddHealthServerRpc(float value)
     {
         value = Mathf.Max(value, 0);
@@ -56,7 +54,7 @@ public class EnemyHealth : NetworkBehaviour
     /// MaxHealth. Calls rpc to handle death if health reaches 0.
     /// </summary>
     /// <param name="value"></param>
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void RemoveHealthServerRpc(float value)
     {
         value = Mathf.Max(value, 0);

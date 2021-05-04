@@ -10,7 +10,7 @@ public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private SpriteRenderer playerColor;
 
-    [SerializeField] private new GameObject camera;
+    [SerializeField] private  CMFindPlayer camera;
 
     [SerializeField] public PlayerStat stats;
 
@@ -30,13 +30,9 @@ public class PlayerController : NetworkBehaviour
             move = gameObject.GetComponent<PlayerMovement>();
 
             attack = gameObject.GetComponent<PlayerAttack>();
-            
-        }
 
-        if (!IsLocalPlayer)
-        {
-            camera.GetComponent<CinemachineVirtualCamera>().enabled = false;
-
+            camera = GameObject.FindGameObjectWithTag("CM Player").GetComponent<CMFindPlayer>();
+            camera.Activate();
         }
     }
 
@@ -57,6 +53,4 @@ public class PlayerController : NetworkBehaviour
             move.UpdateFixedMovement();
         }
     }
-
-
 }

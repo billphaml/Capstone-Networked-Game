@@ -229,7 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a237a2e3b10f74c9c4d3e77829961e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
+  Health:
+    m_InternalValue: 0
 --- !u!114 &133728070350947210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +289,7 @@ GameObject:
   - component: {fileID: 1405533727244231342}
   - component: {fileID: 1405533727244231337}
   - component: {fileID: 6019827525303499277}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Enemy Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,9 +386,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060479576276803801}
-  - component: {fileID: 1132214619067222268}
+  - component: {fileID: 7552255880628519204}
   - component: {fileID: 5968336846966162724}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +409,7 @@ Transform:
   m_Father: {fileID: 1405533726842306550}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1132214619067222268
+--- !u!58 &7552255880628519204
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,7 +424,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
 --- !u!114 &5968336846966162724
 MonoBehaviour:
   m_ObjectHideFlags: 0
