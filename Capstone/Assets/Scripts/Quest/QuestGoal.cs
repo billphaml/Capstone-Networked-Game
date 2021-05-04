@@ -18,9 +18,17 @@ public class QuestGoal
 
     // this needs to be called to increment the quest (probably will be called from the enemy when it dies)
     //NEED to check if quest is active
-    public void hostile1Killed()
+    public void killCount()
     {
         if (goalType == GoalType.Kill)
+        {
+            currentAmount++;
+        }
+    }
+
+    public void collectCount()
+    {
+        if (goalType == GoalType.Gathering)
         {
             currentAmount++;
         }
@@ -33,5 +41,4 @@ public enum GoalType
     Gathering,
     Escort,
     YourMOM
-
 }

@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
-  m_Name: Lost_Child_01
+  m_Name: Lost_Child_Intro
   m_EditorClassIdentifier: 
   SceneDialogue:
   - eventPrerequisite: 
     branchNum: 0
     speakerName: Mathilda
-    dialogueText: 'Oh my god, are you an adventurer? You gotta help me. My daughter
-      went into the Forrest of Darkness and Thorn and she hasn''t come back since
-      last night! '
+    dialogueText: 'Oh my god, are you an adventurer? You gotta help me. My daughter,
+      Eris, went into the Forrest of Darkness and Thorn and she hasn''t come back
+      since last night! '
     canType: 0
     typeTime: 0
     branchNext: 0
-    triggerEvent: null
+    theQuest: {fileID: 0}
     dialogueResponse: []
   - eventPrerequisite: 
     branchNum: 0
@@ -30,11 +30,11 @@ MonoBehaviour:
     dialogueText: "She's been calling herself something weird like a fysall\xEDdamancer
       or something. I think it has something to do with salamanders but that's beside
       the point. I'll reward you handsomely if you can bring her back to me safely.
-      I would do it myself but come on."
+      I would do it myself but I uhh, can't. "
     canType: 0
     typeTime: -1
     branchNext: 0
-    triggerEvent: null
+    theQuest: {fileID: 11400000, guid: 61b91926cb5168049b367439d39bd2fe, type: 2}
     dialogueResponse:
     - eventPrerequisite: 
       branchNum: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
       canType: 1
       typeTime: 0
       branchNext: 1
-      triggerEvent: null
+      theQuest: {fileID: 0}
       dialogueResponse: []
     - eventPrerequisite: 
       branchNum: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
       canType: 1
       typeTime: 0
       branchNext: 2
-      triggerEvent: null
+      theQuest: {fileID: 0}
       dialogueResponse: []
   - eventPrerequisite: 
     branchNum: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
     canType: 0
     typeTime: 0
     branchNext: 0
-    triggerEvent: null
+    theQuest: {fileID: 0}
     dialogueResponse: []
   - eventPrerequisite: 
     branchNum: 2
@@ -71,5 +71,5 @@ MonoBehaviour:
     canType: 0
     typeTime: 0
     branchNext: 0
-    triggerEvent: null
+    theQuest: {fileID: 0}
     dialogueResponse: []

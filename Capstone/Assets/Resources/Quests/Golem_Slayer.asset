@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f59aecf335eb904e8413cf252fd980a, type: 3}
+  m_Name: Golem_Slayer
+  m_EditorClassIdentifier: 
+  isActive: 1
+  Repeatable: 1
+  title: Golem Slayer
+  description: 'Unlicensed golem have been spotted prowling around town. Kill 10
+    to reduce their soulless number. '
+  experienceReward: 100
+  goldReward: 2000
+  goal:
+    goalType: 0
+    goalAmount: 10
+    currentAmount: 0

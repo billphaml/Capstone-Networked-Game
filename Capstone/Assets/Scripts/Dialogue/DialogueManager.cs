@@ -219,6 +219,7 @@ public class DialogueManager : MonoBehaviour
 
             if (queueDialogue.Peek().canType == true)
             {
+                
                 displayText();
             }
             else
@@ -261,6 +262,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (activeDialogue.dialogueResponse.Length > 0)
         {
+            questHandler();
             for (int i = 0; i < activeDialogue.dialogueResponse.Length; i++)
             {
                 queueDialogue.Enqueue(activeDialogue.dialogueResponse[i]);
@@ -292,6 +294,7 @@ public class DialogueManager : MonoBehaviour
     {
         textGroup.SetActive(false);
         isActive = false;
+        GiveQuest.theGiveQuest.closeQuest();
         GameDialogueManager.theLocalGameManager.turnOffDialogue();
     }
 
@@ -318,6 +321,15 @@ public class DialogueManager : MonoBehaviour
     {
         isEndDialogue = true;
         endTimer = 0.5f;
+    }
+
+    private void questHandler()
+    {
+        if(activeDialogue.theQuest != null)
+        {
+            GiveQuest.theGiveQuest.setQuest(activeDialogue.theQuest);
+            GiveQuest.theGiveQuest.openQuest();
+        }
     }
     
     private void updateEndDialogue()

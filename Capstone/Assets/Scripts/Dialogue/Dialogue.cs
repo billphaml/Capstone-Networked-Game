@@ -13,7 +13,9 @@ public class Dialogue
     public bool canType;
     public float typeTime;
     public int branchNext;
+    public Quest theQuest;
     public Dialogue[] dialogueResponse;
+   
 
 
     public Dialogue( string characterName, string theDialogue, string isType)

@@ -6,7 +6,7 @@ using MLAPI;
 public class NPCBehavior : NetworkBehaviour
 {
     public NPC actorIdentity;
-
+    public DialogueScene theDialogue;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,14 @@ public class NPCBehavior : NetworkBehaviour
     public void startSetup()
     {
         actorIdentity = new NPC("Jason", "An Old Man In The Village", Actor.actorType.NPC, Actor.attackType.SWORD);
-        actorIdentity.setDialogue((DialogueScene)Resources.Load("Scene_Dialogue/Scene_002"));
+        if(theDialogue != null)
+        {
+            actorIdentity.setDialogue(theDialogue);
+        }
+        else
+        {
+            actorIdentity.setDialogue((DialogueScene)Resources.Load("Scene_Dialogue/Golem_Slayer"));
+        }
         GameEvent.theGameEvent.onEndOfDialogueTrigger += onEndOfDialogue;
     }
 
@@ -37,12 +44,15 @@ public class NPCBehavior : NetworkBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>().IsLocalPlayer)
+        if(collision.gameObject.tag == "Player")
         {
-            //canTalk = true; 
-            Debug.Log("Wow you got here");
-            if (GameDialogueManager.theLocalGameManager.dialogueActive == false)
-                triggerDialogue();
+            if (collision.gameObject.GetComponent<PlayerController>().IsLocalPlayer)
+            {
+                //canTalk = true; 
+                Debug.Log("Wow you got here");
+                if (GameDialogueManager.theLocalGameManager.dialogueActive == false)
+                    triggerDialogue();
+            }
         }
     }
 
@@ -56,8 +66,9 @@ public class NPCBehavior : NetworkBehaviour
         
         if(actorIdentity.theDialogue == theDialogueScene)
         {
-            if (DialogueHandler.theDialogueHandler.endDialogueHandler(theDialogueScene, branchNum) != null)
-            actorIdentity.theDialogue = DialogueHandler.theDialogueHandler.endDialogueHandler(theDialogueScene, branchNum);
+            DialogueScene returnDialogue = DialogueHandler.theDialogueHandler.endDialogueHandler(theDialogueScene, branchNum);
+            if (returnDialogue != null)
+            actorIdentity.theDialogue = returnDialogue;
         }
     }
 
