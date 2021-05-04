@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
-  m_Name: Kill_Quest_01
+  m_Name: Golem_Slayer
   m_EditorClassIdentifier: 
   SceneDialogue:
   - eventPrerequisite: 
     branchNum: 0
     speakerName: Barone
-    dialogueText: Orders from above. They want to reduce the number of Goblins  in
-      the Forrest of Darkness and Thorns. Think you can take down 10 of them?
+    dialogueText: Some punk started practicing alchemy without proper license and
+      animated some golem. Think you can take down 10 of them?
     canType: 0
     typeTime: -1
     branchNext: 0
-    triggerEvent: null
+    theQuest: {fileID: 11400000, guid: 5c7094e60e1f07c4d9e91db132977679, type: 2}
     dialogueResponse:
     - eventPrerequisite: 
       branchNum: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
       dialogueText: Hell yeah, give me the task.
       canType: 1
       typeTime: 0
-      branchNext: 0
-      triggerEvent: null
+      branchNext: 1
+      theQuest: {fileID: 0}
       dialogueResponse: []
     - eventPrerequisite: 
       branchNum: 0
@@ -38,6 +38,24 @@ MonoBehaviour:
       dialogueText: Nope, I am not going anywhere near a goblin.
       canType: 1
       typeTime: 0
-      branchNext: 0
-      triggerEvent: null
+      branchNext: 2
+      theQuest: {fileID: 0}
       dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 1
+    speakerName: Barone
+    dialogueText: Good, I'll wait for your update.
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 2
+    speakerName: Barone
+    dialogueText: Hmph, don't waste my time kid.
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
