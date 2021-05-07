@@ -16,6 +16,7 @@ TagManager:
   - Inventory UI
   - CM Player
   - Local Game Manager
+  - Interactable UI
   layers:
   - Default
   - TransparentFX

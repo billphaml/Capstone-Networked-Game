@@ -89,13 +89,23 @@ public class PlayerStat : NetworkBehaviour
     }
 
     /// <summary>
-    /// Pickup the passed in item and destroy it.
+    /// Add the passed in item to player inventory and destroy the gameobject.
     /// </summary>
     /// <param name="item"></param>
     public void AddItem(ItemBehavior item)
     {
         playerInventory.addItem(item.theItem);
         item.DestroyItemObjectServerRpc();
+    }
+
+    /// <summary>
+    /// Add the passed in item to the player inventory. Only use if the object
+    /// isn't spawned in the world and we're just adding a prefab.
+    /// </summary>
+    /// <param name="item"></param>
+    public void AddItemPrefab(ItemBehavior item)
+    {
+        playerInventory.addItem(item.theItem);
     }
 
     private void OnApplicationQuit()

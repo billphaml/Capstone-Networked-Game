@@ -12,7 +12,6 @@ public class LocalGameManager : MonoBehaviour
         theLocalGameManager = this;
     }
 
-
     public List<Quest> currentQuest = new List<Quest>();
     public int maxQuest = 5;
 
