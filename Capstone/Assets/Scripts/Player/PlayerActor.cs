@@ -29,6 +29,8 @@ public class PlayerActor : Actor
     public float playerRange = 0;
     public float playerSwingSpeed = 0;
 
+    public int[] inventory;
+    public int[] equipment;
 
     public PlayerActor(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
     {
