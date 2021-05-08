@@ -5,6 +5,7 @@
 
 #undef DEBUG
 
+using System.Linq;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
@@ -231,5 +232,16 @@ public class EquipmentManager : MonoBehaviour
                 break;
         }
 
+    }
+
+    public int[] saveEquipped()
+    {
+        int[] playerEquipped = new int[6];
+        foreach (EquipmentSlot equippedItem in currentEquipment)
+        {
+            playerEquipped.Append<int>(equippedItem.theItem.itemID);
+        }
+
+        return playerEquipped;
     }
 }
