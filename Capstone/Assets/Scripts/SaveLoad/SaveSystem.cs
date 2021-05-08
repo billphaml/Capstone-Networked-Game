@@ -6,8 +6,8 @@ public static class SaveSystem
 {
     public static void SavePlayer(PlayerStat player)
     {
-        //player.thePlayer.inventory = GameObject.FindGameObjectWithTag("Inventory Manager").GetComponent<Inventory>();
-        //player.thePlayer.equipment = GameObject.FindGameObjectWithTag("Inventory Manager").GetComponent<EquipmentManager>();
+        player.thePlayer.inventory = GameObject.FindGameObjectWithTag("Inventory Manager").GetComponent<Inventory>().saveInventory();
+        player.thePlayer.equipment = GameObject.FindGameObjectWithTag("Inventory Manager").GetComponent<EquipmentManager>().saveEquipped();
         SavePlayerHelper(player);
     }
 
@@ -42,5 +42,16 @@ public static class SaveSystem
             Debug.Log("Save file not found in " + path);
             return null;
         }
+    }
+
+    public static void SaveWorld()
+    {
+
+    }
+
+    // Replace void with world file
+    public static void LoadWorld()
+    {
+
     }
 }
