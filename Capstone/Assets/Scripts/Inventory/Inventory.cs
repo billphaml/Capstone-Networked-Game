@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /* This is the Inventory class
@@ -45,5 +46,16 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    public int[] saveInventory() 
+    {
+        int[] playerInventory =  new int[28];
+        foreach (GameItem gameItem in inventoryItem)
+        {
+            playerInventory.Append<int>(gameItem.itemID);
+        }
+
+        return playerInventory;
     }
 }
