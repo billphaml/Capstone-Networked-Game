@@ -145,75 +145,85 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
             case itemType.HEAD:
                 if(theEquipmentType == itemType.HEAD)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.ARMOR:
                 if (theEquipmentType == itemType.ARMOR)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.NECKLACE:
                 if (theEquipmentType == itemType.NECKLACE)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.RING:
                 if (theEquipmentType == itemType.RING)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.SWORD:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.GREATSWORD:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.DAGGER:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.BOW:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
             case itemType.MAGIC:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    theEquipmentManager.equipItem((EquipItem)theEquipment);
+                    equipItemHandler(theEquipment);
                     isDragEventHandler(eventData);
                 }
                 break;
         }
     }
-        private DragItem dragItemHandler(PointerEventData eventData)
+
+    private void equipItemHandler(GameItem theEquipment)
     {
-        if(eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
+     GameItem returnItem = theEquipmentManager.equipItem((EquipItem)theEquipment);
+       if(returnItem != null)
+        {
+            theInventory.addItem(returnItem);
+        }
+    }
+
+    private DragItem dragItemHandler(PointerEventData eventData)
+    {
+        if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
             return eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>().dragItem.GetComponent<DragItem>();
         }
-        else if(eventData.pointerDrag.gameObject.GetComponent<InventorySlot>() != null)
+        else if (eventData.pointerDrag.gameObject.GetComponent<InventorySlot>() != null)
         {
             return eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().dragItem.GetComponent<DragItem>();
         }
