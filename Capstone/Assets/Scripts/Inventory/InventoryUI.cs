@@ -54,6 +54,7 @@ public class InventoryUI : MonoBehaviour
         {
             itemSlot[i].theInventory = inventory;
             itemSlot[i].theEquipmentManager = theEquipmentManager;
+            itemSlot[i].theCanvas = transform.parent.parent.GetComponent<Canvas>();
         }
     }
 }

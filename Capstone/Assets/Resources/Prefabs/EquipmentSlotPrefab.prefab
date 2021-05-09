@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7186172362248473242}
   - component: {fileID: 814041119459186137}
   - component: {fileID: 8383126830257085833}
+  - component: {fileID: 3254385739222645942}
   m_Layer: 5
   m_Name: EquipmentSlotPrefab
   m_TagString: Untagged
@@ -197,7 +198,24 @@ MonoBehaviour:
   itemAmountText: {fileID: 0}
   dropButton: {fileID: 7186172362248473242}
   theItem: {fileID: 0}
+  itemImagePrefab: {fileID: 7538060562215535498, guid: c7d0db30793a3254abe4b768ebdc14ee, type: 3}
+  theEquipmentType: 0
   emptyImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  theCanvas: {fileID: 0}
+  dragItem: {fileID: 0}
+  isDragSucess: 0
+--- !u!225 &3254385739222645942
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537361074846966011}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7542247256901653091
 GameObject:
   m_ObjectHideFlags: 0

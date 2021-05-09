@@ -19,7 +19,7 @@ public class DialogueHandler : MonoBehaviour
             case "Scene_002":
                 return introHandler(branchNum);
             case "Golem_Slayer":
-                return LostChildIntroHandler(branchNum);
+                return GolemSlayerHandler(branchNum);
             case "Lost_Child_Intro":
                 return LostChildIntroHandler(branchNum);
             default:

@@ -16,8 +16,9 @@ MonoBehaviour:
   - eventPrerequisite: 
     branchNum: 0
     speakerName: Barone
-    dialogueText: Some punk started practicing alchemy without proper license and
-      animated some golem. Think you can take down 10 of them?
+    dialogueText: Some punk started practicing alchemy without the proper licenses.
+      Now, we got a roaming animated golems problem causing troubles on our hand.
+      Think you can take down 10 of them?
     canType: 0
     typeTime: -1
     branchNext: 0

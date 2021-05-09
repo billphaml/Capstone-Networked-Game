@@ -17,7 +17,7 @@ public class EquipmentUI : MonoBehaviour
 
     public GameObject inventoryUI;
     public PlayerStat thePlayer;
-
+    public Canvas theCanvas;
     public EquipmentSlot[] itemSlot;
 
     // Start is called before the first frame update
@@ -108,6 +108,7 @@ public class EquipmentUI : MonoBehaviour
         {
             itemSlot[i].theInventory = inventory;
             itemSlot[i].theEquipmentManager = theEquipmentManager;
+            itemSlot[i].theCanvas = transform.parent.parent.GetComponent<Canvas>();
         }
     }
 }
