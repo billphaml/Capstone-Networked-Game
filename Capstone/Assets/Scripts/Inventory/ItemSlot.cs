@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
-    public EquipmentManager theEquipmentManager;
+    public CraftingManager theCraftingManager;
     public Inventory theInventory;
     public TextMeshProUGUI itemAmountText;
     public Button dropButton;
@@ -13,6 +13,8 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
     public GameObject itemImagePrefab;
     public bool isResult;
     int itemAmount = 0;
+
+    public GameItem returnItem;
 
     public Canvas theCanvas;
     private CanvasGroup theSlotCanvas;
@@ -36,12 +38,13 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = iItem.itemImage;
         //itemAmount++;
         //itemAmountText.text = itemAmount.ToString();
-        dropButton.interactable = true;
+        dropButton.interactable = false;
     }
 
     public void clearSlot()
     {
         theItem = null;
+        returnItem = null;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
         itemAmount = 0;
         itemAmountText.text = "";
@@ -53,7 +56,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
         Debug.Log("You begin dragging something");
         if (theItem != null)
         {
-            dragItem = Instantiate(itemImagePrefab, transform.parent.parent.parent, false);
+            dragItem = Instantiate(itemImagePrefab, transform.parent.parent, false);
             dragItem.GetComponent<DragItem>().theItem = theItem;
             dragItem.GetComponent<Image>().sprite = theItem.itemImage;
             dragItem.transform.position = Input.mousePosition;
@@ -81,11 +84,21 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
             Object.Destroy(dragItem);
             theSlotCanvas.alpha = 1f;
             theSlotCanvas.blocksRaycasts = true;
+
             if (isDragSucess == true)
             {
-                // remove item from the crafting slot
+                if(isResult == true)
+                {
+                    theCraftingManager.claimResult();
+                }
+                else
+                {
+                    clearSlot();
+                    theCraftingManager.updateRecipeResult();
+                }
                 isDragSucess = false;
             }
+
         }
     }
 
@@ -98,19 +111,12 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
             Debug.Log("Did you just drop into the crafting slot ");
             DragItem theDragItem = dragItemHandler(eventData);
 
-            if (theDragItem != null)
+            if (theDragItem != null && isResult == false)
             {
-                //theInventory.addItem(theDragItem.theItem);
-                // Add item into the crafting slot
-                // Make sure this trigger the crafting manager to start to looking for a recipe to return
-                isDragEventHandler(eventData);
+                hasItemEventHandler(eventData);
+                theCraftingManager.updateRecipeResult();
             }
         }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("Clicked onto the crafting slot");
     }
 
     public void onRemoveButton()
@@ -122,7 +128,11 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
     {
         if (theItem != null)
         {
-            theInventory.addItem(theItem);
+            if (theInventory.canAdd())
+            {
+                theInventory.addItem(theItem);
+                clearSlot();
+            }
         }
     }
 
@@ -155,6 +165,43 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
         else if (eventData.pointerDrag.gameObject.GetComponent<ItemSlot>() != null)
         {
             eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().isDragSucess = true;
+        }
+    }
+
+    private void hasItemEventHandler(PointerEventData eventData)
+    {
+        DragItem theDragItem = dragItemHandler(eventData);
+
+        if (theItem == null)
+        {
+            addItem(theDragItem.theItem);
+            isDragEventHandler(eventData);
+        }
+        else
+        {
+            if (eventData.pointerDrag.gameObject.GetComponent<InventorySlot>() != null)
+            {
+                GameItem dummyItem = theItem;
+                addItem(theDragItem.theItem);
+                isDragEventHandler(eventData);
+                eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().theInventory.addItem(dummyItem);
+            }
+            else if(eventData.pointerDrag.gameObject.GetComponent<ItemSlot>() != null)
+            {
+                GameItem dummyItem = theItem;
+                addItem(theDragItem.theItem);
+
+                if(eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().isResult != true)
+                {
+                    eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().addItem(dummyItem);
+                }
+                else
+                {
+                    eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().returnItem = theDragItem.theItem;
+                    isDragEventHandler(eventData);
+                }
+
+            }
         }
     }
 }
