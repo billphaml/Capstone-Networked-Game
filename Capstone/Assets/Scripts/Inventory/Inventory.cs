@@ -56,7 +56,12 @@ public class Inventory : MonoBehaviour
         int[] playerInventory =  new int[28];
         for (int i = 0; i <playerInventory.Length; i++)
         {
-            GameItem gameItem = inventoryItem[i];
+            GameItem gameItem = null;
+            if (i < inventoryItem.Count) 
+            {
+                gameItem = inventoryItem[i];
+            }
+            
             if (gameItem != null)
             {
                 playerInventory[i] = gameItem.itemID;
