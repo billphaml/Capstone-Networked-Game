@@ -5,21 +5,9 @@ public class Interactable : NetworkBehaviour
 {
     [SerializeField] private GameObject interactUI = null;
 
-    [SerializeField] private Sprite unharvested = null;
+    protected SpriteRenderer sr = null;
 
-    [SerializeField] private Sprite harvested = null;
-
-    [SerializeField] private Vector3 unharvestedSpriteOffset;
-
-    [SerializeField] private Vector3 harvestedSpriteOffset;
-
-    private SpriteRenderer sr = null;
-
-    private bool isInteractDisplayed = false;
-
-    private float nextHarvestTime = 0;
-
-    private float harvestDelayTime = 180f;
+    protected bool isInteractDisplayed = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -43,7 +31,7 @@ public class Interactable : NetworkBehaviour
         interactUI.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public virtual void Interact()
+    protected virtual void Interact()
     {
         Debug.Log("Interacted with " + transform.name);
     }
@@ -57,23 +45,14 @@ public class Interactable : NetworkBehaviour
         sr = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (isInteractDisplayed)
         {
-            if (Input.GetKeyDown(KeyCode.F) && nextHarvestTime <= Time.time)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                nextHarvestTime = Time.time + harvestDelayTime;
-                sr.sprite = harvested;
-                sr.gameObject.transform.position = gameObject.transform.position + harvestedSpriteOffset;
                 Interact();
             }
-        }
-
-        if (nextHarvestTime <= Time.time)
-        {
-            sr.sprite = unharvested;
-            sr.gameObject.transform.position = gameObject.transform.position + unharvestedSpriteOffset;
         }
     }
 }

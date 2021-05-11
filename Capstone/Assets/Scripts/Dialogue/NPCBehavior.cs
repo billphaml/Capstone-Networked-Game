@@ -44,16 +44,16 @@ public class NPCBehavior : NetworkBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            if (collision.gameObject.GetComponent<PlayerController>().IsLocalPlayer)
-            {
-                //canTalk = true; 
-                Debug.Log("Wow you got here");
-                if (GameDialogueManager.theLocalGameManager.isDialogueActive == false)
-                    triggerDialogue();
-            }
-        }
+        //if(collision.gameObject.tag == "Player")
+        //{
+        //    if (collision.gameObject.GetComponent<PlayerController>().IsLocalPlayer)
+        //    {
+        //        //canTalk = true; 
+        //        Debug.Log("Wow you got here");
+        //        if (GameDialogueManager.theLocalGameManager.isDialogueActive == false)
+        //            triggerDialogue();
+        //    }
+        //}
     }
 
     private void OnCollisionExit2D(Collision2D collision)
