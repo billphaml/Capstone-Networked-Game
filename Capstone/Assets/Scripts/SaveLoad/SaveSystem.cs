@@ -2,12 +2,16 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+[System.Serializable]
 public static class SaveSystem
 {
     public static void SavePlayer(PlayerStat player)
     {
-        player.thePlayer.inventory = GameObject.FindGameObjectWithTag("Inventory Manager").GetComponent<Inventory>().saveInventory();
-        player.thePlayer.equipment = GameObject.FindGameObjectWithTag("Inventory Manager").GetComponent<EquipmentManager>().saveEquipped();
+        Debug.Log("This is the player" + player.ToString());
+
+        GameObject theInventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
+        player.thePlayer.inventory = theInventoryManager.GetComponent<Inventory>().saveInventory();
+        player.thePlayer.equipment = theInventoryManager.GetComponent<EquipmentManager>().saveEquipped();
         SavePlayerHelper(player);
     }
 
@@ -26,7 +30,7 @@ public static class SaveSystem
 
     public static PlayerActor LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player/data";
+        string path = Application.persistentDataPath + "/player.data";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

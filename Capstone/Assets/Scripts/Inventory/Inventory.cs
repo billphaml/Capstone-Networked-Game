@@ -10,6 +10,9 @@ using UnityEngine;
  
 public class Inventory : MonoBehaviour
 {
+
+    public ItemDatabase theItemDatabase;
+
     public delegate void OnItemChanged();
 
     public OnItemChanged onItemChangedCallBack;

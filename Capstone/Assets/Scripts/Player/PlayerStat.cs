@@ -13,12 +13,14 @@ public class PlayerStat : NetworkBehaviour
     public PlayerActor thePlayer;
     public Inventory playerInventory;
 
-    //private bool headCheck = false;
-    //private bool armorCheck = false;
-    //private bool weaponCheck = false;
-    //private bool necklaceCheck = false;
-    //private bool ringOneCheck = false;
-    //private bool ringTwoCheck = false;
+
+    [Header("Player Equipment")]
+    public EquipItem playerHelmet;
+    public EquipItem playerArmor;
+    public EquipItem playerWeapon;
+    public EquipItem playerNecklace;
+    public EquipItem playerRingOne;
+    public EquipItem playerRingTwo;
 
     void Awake()
     {
@@ -41,7 +43,7 @@ public class PlayerStat : NetworkBehaviour
     public void setupPlayer()
     {
         thePlayer = new PlayerActor("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
-        //thePlayer.playerInventory = playerInventory;
+        //playerInventory = playerInventory;
 
     }
 
@@ -110,17 +112,17 @@ public class PlayerStat : NetworkBehaviour
 
     private void OnApplicationQuit()
     {
-       // thePlayer.playerInventory.storage.inventory.Clear();
+       // playerInventory.storage.inventory.Clear();
     }
     
     public void updateAttackType()
     {
-        if(thePlayer.playerWeapon != null)
+        if(playerWeapon != null)
         {
-            switch (thePlayer.playerWeapon.gameItemType)
+            switch (playerWeapon.gameItemType)
             {
                 case itemType.SWORD:
-                    thePlayer.setAttackType(Actor.attackType.SWORD);
+                   thePlayer.setAttackType(Actor.attackType.SWORD);
                     break;
                 case itemType.GREATSWORD:
                     thePlayer.setAttackType(Actor.attackType.GREATSWORD);
@@ -159,49 +161,49 @@ public class PlayerStat : NetworkBehaviour
      float playerRange = 0;
      float playerSwingSpeed = 0;
 
-        if(thePlayer.playerHelmet != null)
+        if(playerHelmet != null)
         {
-            playerStrength += thePlayer.playerHelmet.addStrength;
-            playerMagic += thePlayer.playerHelmet.addMagic;
-            playerDexterity += thePlayer.playerHelmet.addDexterity;
-            playerConstitution += thePlayer.playerHelmet.addConstitution;
-            playerAttack += thePlayer.playerHelmet.addAttack;
-            playerDefense += thePlayer.playerHelmet.addDefence;
-            playerMagicResistance += thePlayer.playerHelmet.addMagicResistance;
-            playerMovementSpeed += thePlayer.playerHelmet.addSpeed;
-            playerCriticalChance += thePlayer.playerHelmet.addCriticalChance;
-            playerCriticalDamage += thePlayer.playerHelmet.addCriticalDamage;
-            playerResistance += thePlayer.playerHelmet.addResistance;
+            playerStrength += playerHelmet.addStrength;
+            playerMagic += playerHelmet.addMagic;
+            playerDexterity += playerHelmet.addDexterity;
+            playerConstitution += playerHelmet.addConstitution;
+            playerAttack += playerHelmet.addAttack;
+            playerDefense += playerHelmet.addDefence;
+            playerMagicResistance += playerHelmet.addMagicResistance;
+            playerMovementSpeed += playerHelmet.addSpeed;
+            playerCriticalChance += playerHelmet.addCriticalChance;
+            playerCriticalDamage += playerHelmet.addCriticalDamage;
+            playerResistance += playerHelmet.addResistance;
         }
 
-        if(thePlayer.playerArmor != null)
+        if(playerArmor != null)
         {
-            playerStrength += thePlayer.playerArmor.addStrength;
-            playerMagic += thePlayer.playerArmor.addMagic;
-            playerDexterity += thePlayer.playerArmor.addDexterity;
-            playerConstitution += thePlayer.playerArmor.addConstitution;
-            playerAttack += thePlayer.playerArmor.addAttack;
-            playerDefense += thePlayer.playerArmor.addDefence;
-            playerMagicResistance += thePlayer.playerArmor.addMagicResistance;
-            playerMovementSpeed += thePlayer.playerArmor.addSpeed;
-            playerCriticalChance += thePlayer.playerArmor.addCriticalChance;
-            playerCriticalDamage += thePlayer.playerArmor.addCriticalDamage;
-            playerResistance += thePlayer.playerArmor.addResistance;
+            playerStrength += playerArmor.addStrength;
+            playerMagic += playerArmor.addMagic;
+            playerDexterity += playerArmor.addDexterity;
+            playerConstitution += playerArmor.addConstitution;
+            playerAttack += playerArmor.addAttack;
+            playerDefense += playerArmor.addDefence;
+            playerMagicResistance += playerArmor.addMagicResistance;
+            playerMovementSpeed += playerArmor.addSpeed;
+            playerCriticalChance += playerArmor.addCriticalChance;
+            playerCriticalDamage += playerArmor.addCriticalDamage;
+            playerResistance += playerArmor.addResistance;
         }
 
-        if (thePlayer.playerWeapon != null)
+        if (playerWeapon != null)
         {
-            playerStrength += thePlayer.playerWeapon.addStrength;
-            playerMagic += thePlayer.playerWeapon.addMagic;
-            playerDexterity += thePlayer.playerWeapon.addDexterity;
-            playerConstitution += thePlayer.playerWeapon.addConstitution;
-            playerAttack += thePlayer.playerWeapon.addAttack;
-            playerDefense += thePlayer.playerWeapon.addDefence;
-            playerMagicResistance += thePlayer.playerWeapon.addMagicResistance;
-            playerMovementSpeed += thePlayer.playerWeapon.addSpeed;
-            playerCriticalChance += thePlayer.playerWeapon.addCriticalChance;
-            playerCriticalDamage += thePlayer.playerWeapon.addCriticalDamage;
-            playerResistance += thePlayer.playerWeapon.addResistance;
+            playerStrength += playerWeapon.addStrength;
+            playerMagic += playerWeapon.addMagic;
+            playerDexterity += playerWeapon.addDexterity;
+            playerConstitution += playerWeapon.addConstitution;
+            playerAttack += playerWeapon.addAttack;
+            playerDefense += playerWeapon.addDefence;
+            playerMagicResistance += playerWeapon.addMagicResistance;
+            playerMovementSpeed += playerWeapon.addSpeed;
+            playerCriticalChance += playerWeapon.addCriticalChance;
+            playerCriticalDamage += playerWeapon.addCriticalDamage;
+            playerResistance += playerWeapon.addResistance;
             updateAttackType();
         }
         else
@@ -209,49 +211,49 @@ public class PlayerStat : NetworkBehaviour
             updateAttackType();
         }
 
-        if (thePlayer.playerNecklace != null)
+        if (playerNecklace != null)
         {
-            playerStrength += thePlayer.playerNecklace.addStrength;
-            playerMagic += thePlayer.playerNecklace.addMagic;
-            playerDexterity += thePlayer.playerNecklace.addDexterity;
-            playerConstitution += thePlayer.playerNecklace.addConstitution;
-            playerAttack += thePlayer.playerNecklace.addAttack;
-            playerDefense += thePlayer.playerNecklace.addDefence;
-            playerMagicResistance += thePlayer.playerNecklace.addMagicResistance;
-            playerMovementSpeed += thePlayer.playerNecklace.addSpeed;
-            playerCriticalChance += thePlayer.playerNecklace.addCriticalChance;
-            playerCriticalDamage += thePlayer.playerNecklace.addCriticalDamage;
-            playerResistance += thePlayer.playerNecklace.addResistance;
+            playerStrength += playerNecklace.addStrength;
+            playerMagic += playerNecklace.addMagic;
+            playerDexterity += playerNecklace.addDexterity;
+            playerConstitution += playerNecklace.addConstitution;
+            playerAttack += playerNecklace.addAttack;
+            playerDefense += playerNecklace.addDefence;
+            playerMagicResistance += playerNecklace.addMagicResistance;
+            playerMovementSpeed += playerNecklace.addSpeed;
+            playerCriticalChance += playerNecklace.addCriticalChance;
+            playerCriticalDamage += playerNecklace.addCriticalDamage;
+            playerResistance += playerNecklace.addResistance;
         }
 
-        if (thePlayer.playerRingOne != null)
+        if (playerRingOne != null)
         {
-            playerStrength += thePlayer.playerRingOne.addStrength;
-            playerMagic += thePlayer.playerRingOne.addMagic;
-            playerDexterity += thePlayer.playerRingOne.addDexterity;
-            playerConstitution += thePlayer.playerRingOne.addConstitution;
-            playerAttack += thePlayer.playerRingOne.addAttack;
-            playerDefense += thePlayer.playerRingOne.addDefence;
-            playerMagicResistance += thePlayer.playerRingOne.addMagicResistance;
-            playerMovementSpeed += thePlayer.playerRingOne.addSpeed;
-            playerCriticalChance += thePlayer.playerRingOne.addCriticalChance;
-            playerCriticalDamage += thePlayer.playerRingOne.addCriticalDamage;
-            playerResistance += thePlayer.playerRingOne.addResistance;
+            playerStrength += playerRingOne.addStrength;
+            playerMagic += playerRingOne.addMagic;
+            playerDexterity += playerRingOne.addDexterity;
+            playerConstitution += playerRingOne.addConstitution;
+            playerAttack += playerRingOne.addAttack;
+            playerDefense += playerRingOne.addDefence;
+            playerMagicResistance += playerRingOne.addMagicResistance;
+            playerMovementSpeed += playerRingOne.addSpeed;
+            playerCriticalChance += playerRingOne.addCriticalChance;
+            playerCriticalDamage += playerRingOne.addCriticalDamage;
+            playerResistance += playerRingOne.addResistance;
         }
 
-        if (thePlayer.playerRingTwo != null)
+        if (playerRingTwo != null)
         {
-            playerStrength += thePlayer.playerRingTwo.addStrength;
-            playerMagic += thePlayer.playerRingTwo.addMagic;
-            playerDexterity += thePlayer.playerRingTwo.addDexterity;
-            playerConstitution += thePlayer.playerRingTwo.addConstitution;
-            playerAttack += thePlayer.playerRingTwo.addAttack;
-            playerDefense += thePlayer.playerRingTwo.addDefence;
-            playerMagicResistance += thePlayer.playerRingTwo.addMagicResistance;
-            playerMovementSpeed += thePlayer.playerRingTwo.addSpeed;
-            playerCriticalChance += thePlayer.playerRingTwo.addCriticalChance;
-            playerCriticalDamage += thePlayer.playerRingTwo.addCriticalDamage;
-            playerResistance += thePlayer.playerRingTwo.addResistance;
+            playerStrength += playerRingTwo.addStrength;
+            playerMagic += playerRingTwo.addMagic;
+            playerDexterity += playerRingTwo.addDexterity;
+            playerConstitution += playerRingTwo.addConstitution;
+            playerAttack += playerRingTwo.addAttack;
+            playerDefense += playerRingTwo.addDefence;
+            playerMagicResistance += playerRingTwo.addMagicResistance;
+            playerMovementSpeed += playerRingTwo.addSpeed;
+            playerCriticalChance += playerRingTwo.addCriticalChance;
+            playerCriticalDamage += playerRingTwo.addCriticalDamage;
+            playerResistance += playerRingTwo.addResistance;
         }
 
         thePlayer.playerStrength = playerStrength + thePlayer.getStrength();
@@ -336,17 +338,17 @@ public class PlayerStat : NetworkBehaviour
     /*
     public void addEquiptmentStat(GameItem theItem)
     {
-        thePlayer.playerStrength += theItem.addStrength;
-        thePlayer.playerMagic += theItem.addMagic;
-        thePlayer.playerDexterity += theItem.addDexterity;
-        thePlayer.playerConstitution += theItem.addConstitution;
-        thePlayer.playerAttack += theItem.addAttack;
-        thePlayer.playerDefense += theItem.addDefence;
-        thePlayer.playerMagicResistance += theItem.addMagicResistance;
-        thePlayer.playerMovementSpeed += theItem.addSpeed;
-        thePlayer.playerCriticalChance += theItem.addCriticalChance;
-        thePlayer.playerCriticalDamage += theItem.addCriticalDamage;
-        thePlayer.playerResistance += theItem.addResistance;
+        playerStrength += theItem.addStrength;
+        playerMagic += theItem.addMagic;
+        playerDexterity += theItem.addDexterity;
+        playerConstitution += theItem.addConstitution;
+        playerAttack += theItem.addAttack;
+        playerDefense += theItem.addDefence;
+        playerMagicResistance += theItem.addMagicResistance;
+        playerMovementSpeed += theItem.addSpeed;
+        playerCriticalChance += theItem.addCriticalChance;
+        playerCriticalDamage += theItem.addCriticalDamage;
+        playerResistance += theItem.addResistance;
 
         updateAttackType();
         calculatePlayerStat();
@@ -354,17 +356,17 @@ public class PlayerStat : NetworkBehaviour
 
     public void removeEquiptmentStat(GameItem theItem)
     {
-        thePlayer.playerStrength -= theItem.addStrength;
-        thePlayer.playerMagic -= theItem.addMagic;
-        thePlayer.playerDexterity -= theItem.addDexterity;
-        thePlayer.playerConstitution -= theItem.addConstitution;
-        thePlayer.playerAttack -= theItem.addAttack;
-        thePlayer.playerDefense -= theItem.addDefence;
-        thePlayer.playerMagicResistance -= theItem.addMagicResistance;
-        thePlayer.playerMovementSpeed -= theItem.addSpeed;
-        thePlayer.playerCriticalChance -= theItem.addCriticalChance;
-        thePlayer.playerCriticalDamage -= theItem.addCriticalDamage;
-        thePlayer.playerResistance -= theItem.addResistance;
+        playerStrength -= theItem.addStrength;
+        playerMagic -= theItem.addMagic;
+        playerDexterity -= theItem.addDexterity;
+        playerConstitution -= theItem.addConstitution;
+        playerAttack -= theItem.addAttack;
+        playerDefense -= theItem.addDefence;
+        playerMagicResistance -= theItem.addMagicResistance;
+        playerMovementSpeed -= theItem.addSpeed;
+        playerCriticalChance -= theItem.addCriticalChance;
+        playerCriticalDamage -= theItem.addCriticalDamage;
+        playerResistance -= theItem.addResistance;
 
         updateAttackType();
         calculatePlayerStat();

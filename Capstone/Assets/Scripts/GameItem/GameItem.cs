@@ -18,6 +18,7 @@ public enum itemType
     DEFAULT
 }
 
+[System.Serializable]
 public abstract class GameItem : ScriptableObject
 {
 

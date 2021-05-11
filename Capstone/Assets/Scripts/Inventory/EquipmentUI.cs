@@ -47,54 +47,54 @@ public class EquipmentUI : MonoBehaviour
 
     public void updateEquipmentHandler()
     {
-        if (thePlayer.thePlayer.playerHelmet != null)
+        if (thePlayer.playerHelmet != null)
         {
-            itemSlot[0].addItem(thePlayer.thePlayer.playerHelmet);
+            itemSlot[0].addItem(thePlayer.playerHelmet);
         }
         else
         {
             itemSlot[0].clearSlot();
         }
 
-        if (thePlayer.thePlayer.playerNecklace != null)
+        if (thePlayer.playerNecklace != null)
         {
-            itemSlot[1].addItem(thePlayer.thePlayer.playerNecklace);
+            itemSlot[1].addItem(thePlayer.playerNecklace);
         }
         else
         {
             itemSlot[1].clearSlot();
         }
 
-        if (thePlayer.thePlayer.playerArmor != null)
+        if (thePlayer.playerArmor != null)
         {
-            itemSlot[2].addItem(thePlayer.thePlayer.playerArmor);
+            itemSlot[2].addItem(thePlayer.playerArmor);
         }
         else
         {
             itemSlot[2].clearSlot();
         }
 
-        if (thePlayer.thePlayer.playerWeapon != null)
+        if (thePlayer.playerWeapon != null)
         {
-            itemSlot[3].addItem(thePlayer.thePlayer.playerWeapon);
+            itemSlot[3].addItem(thePlayer.playerWeapon);
         }
         else
         {
             itemSlot[3].clearSlot();
         }
 
-        if (thePlayer.thePlayer.playerRingOne != null)
+        if (thePlayer.playerRingOne != null)
         {
-            itemSlot[4].addItem(thePlayer.thePlayer.playerRingOne);
+            itemSlot[4].addItem(thePlayer.playerRingOne);
         }
         else
         {
             itemSlot[4].clearSlot();
         }
 
-        if (thePlayer.thePlayer.playerRingTwo != null)
+        if (thePlayer.playerRingTwo != null)
         {
-            itemSlot[5].addItem(thePlayer.thePlayer.playerRingTwo);
+            itemSlot[5].addItem(thePlayer.playerRingTwo);
         }
         else
         {

@@ -5,7 +5,9 @@
 
 #undef DEBUG
 
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
@@ -58,11 +60,11 @@ public class EquipmentManager : MonoBehaviour
     private GameItem playerHelmetHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
-        if(thePlayerStat.thePlayer.playerHelmet != null)
+        if(thePlayerStat.playerHelmet != null)
         {
-            oldItem = thePlayerStat.thePlayer.playerHelmet;
+            oldItem = thePlayerStat.playerHelmet;
         }
-        thePlayerStat.thePlayer.playerHelmet = iEquipment;
+        thePlayerStat.playerHelmet = iEquipment;
 
         //if(onEquipmentChanged != null)
         //{
@@ -80,11 +82,11 @@ public class EquipmentManager : MonoBehaviour
     private GameItem playerNecklaceHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
-        if (thePlayerStat.thePlayer.playerNecklace != null)
+        if (thePlayerStat.playerNecklace != null)
         {
-            oldItem = thePlayerStat.thePlayer.playerNecklace;
+            oldItem = thePlayerStat.playerNecklace;
         }
-        thePlayerStat.thePlayer.playerNecklace = iEquipment;
+        thePlayerStat.playerNecklace = iEquipment;
 
         //if (onEquipmentChanged != null)
         //{
@@ -102,11 +104,11 @@ public class EquipmentManager : MonoBehaviour
     private GameItem playerArmorHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
-        if (thePlayerStat.thePlayer.playerArmor != null)
+        if (thePlayerStat.playerArmor != null)
         {
-            oldItem = thePlayerStat.thePlayer.playerArmor;
+            oldItem = thePlayerStat.playerArmor;
         }
-        thePlayerStat.thePlayer.playerArmor = iEquipment;
+        thePlayerStat.playerArmor = iEquipment;
 
         //if (onEquipmentChanged != null)
         //{
@@ -124,11 +126,11 @@ public class EquipmentManager : MonoBehaviour
     private GameItem playerWeaponhandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
-        if (thePlayerStat.thePlayer.playerWeapon != null)
+        if (thePlayerStat.playerWeapon != null)
         {
-            oldItem = thePlayerStat.thePlayer.playerWeapon;
+            oldItem = thePlayerStat.playerWeapon;
         }
-        thePlayerStat.thePlayer.playerWeapon = iEquipment;
+        thePlayerStat.playerWeapon = iEquipment;
 
         //if (onEquipmentChanged != null)
         //{
@@ -146,18 +148,18 @@ public class EquipmentManager : MonoBehaviour
     private GameItem ringSlotHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
-        if(thePlayerStat.thePlayer.playerRingOne != null && thePlayerStat.thePlayer.playerRingTwo == null)
+        if(thePlayerStat.playerRingOne != null && thePlayerStat.playerRingTwo == null)
         {
-            thePlayerStat.thePlayer.playerRingTwo = iEquipment;
+            thePlayerStat.playerRingTwo = iEquipment;
         }
-        else if (thePlayerStat.thePlayer.playerRingOne == null && thePlayerStat.thePlayer.playerRingTwo != null)
+        else if (thePlayerStat.playerRingOne == null && thePlayerStat.playerRingTwo != null)
         {
-            thePlayerStat.thePlayer.playerRingOne = iEquipment;
+            thePlayerStat.playerRingOne = iEquipment;
         }
         else
         {
-            oldItem = thePlayerStat.thePlayer.playerRingOne;
-            thePlayerStat.thePlayer.playerRingOne = iEquipment;
+            oldItem = thePlayerStat.playerRingOne;
+            thePlayerStat.playerRingOne = iEquipment;
         }
 
         //if (onEquipmentChanged != null)
@@ -213,22 +215,22 @@ public class EquipmentManager : MonoBehaviour
         switch (iIndex)
         {
             case 0:
-                thePlayerStat.thePlayer.playerHelmet = null;
+                thePlayerStat.playerHelmet = null;
                 break;
             case 1:
-                thePlayerStat.thePlayer.playerNecklace = null;
+                thePlayerStat.playerNecklace = null;
                 break;
             case 2:
-                thePlayerStat.thePlayer.playerArmor = null;
+                thePlayerStat.playerArmor = null;
                 break;
             case 3:
-                thePlayerStat.thePlayer.playerWeapon = null;
+                thePlayerStat.playerWeapon = null;
                 break;
             case 4:
-                thePlayerStat.thePlayer.playerRingOne = null;
+                thePlayerStat.playerRingOne = null;
                 break;
             case 5:
-                thePlayerStat.thePlayer.playerRingTwo = null;
+                thePlayerStat.playerRingTwo = null;
                 break;
         }
 
@@ -237,11 +239,36 @@ public class EquipmentManager : MonoBehaviour
     public int[] saveEquipped()
     {
         int[] playerEquipped = new int[6];
+
         foreach (EquipmentSlot equippedItem in currentEquipment)
         {
-            playerEquipped.Append<int>(equippedItem.theItem.itemID);
+            if(equippedItem.theItem != null)
+            {
+                playerEquipped.Append<int>(equippedItem.theItem.itemID);
+            }
+            else
+            {
+                playerEquipped.Append<int>(-1);
+            }
         }
 
         return playerEquipped;
+    }
+
+    public void loadEquip()
+    {
+        string path = Application.persistentDataPath + "/player.data";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerActor data = formatter.Deserialize(stream) as PlayerActor;
+            stream.Close();
+        }
+        else
+        {
+            Debug.Log("Save file not found in " + path);
+        }
     }
 }
