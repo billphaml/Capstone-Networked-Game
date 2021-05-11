@@ -54,16 +54,14 @@ public class Inventory : MonoBehaviour
     public int[] saveInventory() 
     {
         int[] playerInventory =  new int[28];
-        foreach (GameItem gameItem in inventoryItem)
+        for (int i = 0; i <playerInventory.Length; i++)
         {
-            if (gameItem == null)
+            GameItem gameItem = inventoryItem[i];
+            if (gameItem != null)
             {
-                playerInventory.Append<int>(-1);
+                playerInventory[i] = gameItem.itemID;
             }
-            else 
-            {
-                playerInventory.Append<int>(gameItem.itemID);
-            }
+            playerInventory[i] = -1;
         }
 
         return playerInventory;

@@ -240,16 +240,14 @@ public class EquipmentManager : MonoBehaviour
     {
         int[] playerEquipped = new int[6];
 
-        foreach (EquipmentSlot equippedItem in currentEquipment)
+        for(int i = 0; i < playerEquipped.Length; i++)
         {
+            EquipmentSlot equippedItem = currentEquipment[i];
             if(equippedItem.theItem != null)
             {
-                playerEquipped.Append<int>(equippedItem.theItem.itemID);
+                playerEquipped[i] = equippedItem.theItem.itemID;
             }
-            else
-            {
-                playerEquipped.Append<int>(-1);
-            }
+            playerEquipped[i] = -1;
         }
 
         return playerEquipped;
