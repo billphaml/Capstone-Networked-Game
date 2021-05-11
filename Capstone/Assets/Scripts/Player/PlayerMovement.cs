@@ -19,7 +19,7 @@ public class PlayerMovement : NetworkBehaviour
     /// <summary>
     /// Toggle to 
     /// </summary>
-    private bool canMove = true;
+    public bool canMove = true;
 
     /// <summary>
     /// Rigidbody to move player.
