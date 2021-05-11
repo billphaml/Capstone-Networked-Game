@@ -56,7 +56,14 @@ public class Inventory : MonoBehaviour
         int[] playerInventory =  new int[28];
         foreach (GameItem gameItem in inventoryItem)
         {
-            playerInventory.Append<int>(gameItem.itemID);
+            if (gameItem == null)
+            {
+                playerInventory.Append<int>(-1);
+            }
+            else 
+            {
+                playerInventory.Append<int>(gameItem.itemID);
+            }
         }
 
         return playerInventory;

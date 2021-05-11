@@ -255,20 +255,4 @@ public class EquipmentManager : MonoBehaviour
         return playerEquipped;
     }
 
-    public void loadEquip()
-    {
-        string path = Application.persistentDataPath + "/player.data";
-        if (File.Exists(path))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            PlayerActor data = formatter.Deserialize(stream) as PlayerActor;
-            stream.Close();
-        }
-        else
-        {
-            Debug.Log("Save file not found in " + path);
-        }
-    }
 }

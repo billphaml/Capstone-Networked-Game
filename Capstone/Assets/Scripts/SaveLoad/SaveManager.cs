@@ -1,8 +1,8 @@
 using MLAPI;
 using UnityEngine;
-
 public class SaveManager : MonoBehaviour
 {
+    public ItemDatabase database;
     PlayerStat player;
 
     public void Start()
@@ -20,6 +20,27 @@ public class SaveManager : MonoBehaviour
 
     public void LoadData() 
     {
-        SaveSystem.LoadPlayer();
+        ulong clientId = NetworkManager.Singleton.LocalClientId;
+        player = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<PlayerStat>();
+        PlayerActor data = SaveSystem.LoadPlayer();
+
+        Debug.Log(data.equipment);
+        foreach (int id in data.equipment) 
+        {
+            if (id != -1) 
+            {
+                GameItem item = database.getItem[id];
+                FindObjectOfType<EquipmentManager>().equipItem((EquipItem)item);
+            }
+        }
+        Debug.Log(data.inventory);
+        foreach (int id in data.inventory) 
+        {
+            if (id != -1) 
+            {
+                GameItem item = database.getItem[id];
+                FindObjectOfType<Inventory>().addItem(item);
+            }
+        }
     }
 }
