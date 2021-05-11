@@ -6,13 +6,6 @@ using UnityEngine;
 public class PlayerActor : Actor
 {
 
-    [Header("Player Equipment")]
-    public EquipItem playerHelmet;
-    public EquipItem playerArmor;
-    public EquipItem playerWeapon;
-    public EquipItem playerNecklace;
-    public EquipItem playerRingOne;
-    public EquipItem playerRingTwo;
 
     [Header("Player Final Stats")]
     public int playerStrength = 10;

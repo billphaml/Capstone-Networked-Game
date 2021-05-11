@@ -15,6 +15,7 @@ public class ItemDatabase : ScriptableObject, ISerializationCallbackReceiver
         getItem = new Dictionary<int, GameItem>();
         for (int i = 0; i < theGameItem.Length; i++)
         {
+            theGameItem[i].itemID = i;
             GetID.Add(theGameItem[i], i);
             getItem.Add(i, theGameItem[i]);
         }
