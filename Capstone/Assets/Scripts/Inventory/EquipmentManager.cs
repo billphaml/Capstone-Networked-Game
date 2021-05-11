@@ -247,7 +247,11 @@ public class EquipmentManager : MonoBehaviour
             {
                 playerEquipped[i] = equippedItem.theItem.itemID;
             }
-            playerEquipped[i] = -1;
+            else
+            {
+                playerEquipped[i] = -1;
+            }
+            
         }
 
         return playerEquipped;

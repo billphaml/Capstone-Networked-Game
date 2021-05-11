@@ -13,6 +13,7 @@ public static class SaveSystem
 
         GameObject theInventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
         player.thePlayer.inventory = theInventoryManager.GetComponent<Inventory>().saveInventory();
+        
         player.thePlayer.equipment = theInventoryManager.GetComponent<EquipmentManager>().saveEquipped();
         SavePlayerHelper(player);
     }

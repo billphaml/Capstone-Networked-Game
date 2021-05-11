@@ -39,6 +39,7 @@ public class SaveManager : MonoBehaviour
             if (id != -1) 
             {
                 GameItem item = database.getItem[id];
+                Debug.Log("Lol This is the item ID " + id);
                 FindObjectOfType<Inventory>().addItem(item);
             }
         }

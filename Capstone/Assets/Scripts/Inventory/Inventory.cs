@@ -66,7 +66,15 @@ public class Inventory : MonoBehaviour
             {
                 playerInventory[i] = gameItem.itemID;
             }
-            playerInventory[i] = -1;
+            else
+            {
+                playerInventory[i] = -1;
+            }
+        }
+
+        for(int i = 0; i < playerInventory.Length; i++)
+        {
+            Debug.Log("saved player inventory id " + playerInventory[i]);
         }
 
         return playerInventory;
