@@ -279,6 +279,7 @@ Transform:
   - {fileID: 665451937400494507}
   - {fileID: 282927283125394686}
   - {fileID: 6848683602691996028}
+  - {fileID: 952932671892922540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -426,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
+  canMove: 1
 --- !u!114 &7310806319465402635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +484,8 @@ MonoBehaviour:
     playerResistance: 0
     playerRange: 0
     playerSwingSpeed: 0
+    inventory: 
+    equipment: 
   playerInventory: {fileID: 0}
 --- !u!114 &8400033399381467064
 MonoBehaviour:
@@ -549,6 +553,8 @@ GameObject:
   m_Component:
   - component: {fileID: 665451937400494507}
   - component: {fileID: 665451937400494506}
+  - component: {fileID: 4997742517071350266}
+  - component: {fileID: 7466493741287953568}
   m_Layer: 0
   m_Name: Player Sprite
   m_TagString: Untagged
@@ -564,8 +570,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665451937400494509}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children: []
   m_Father: {fileID: 665451937295417341}
   m_RootOrder: 1
@@ -611,7 +617,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4509599aa5763b419290380658aba57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -622,6 +628,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4997742517071350266
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937400494509}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 610dfeba05cf51447b483994055e6834, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7466493741287953568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665451937400494509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0958e529cf1e7ad4a8bc315e043d6678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4997742517071350266}
+  move: {fileID: 4827602532095103408}
 --- !u!1 &1450820064801551486
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +878,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2307619520928929022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952932671892922540}
+  m_Layer: 6
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &952932671892922540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307619520928929022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 665451937295417341}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2725859544481003034
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d710f3b19d148e47b4512d4959b0f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 665451937295417341}
+  player: {fileID: 952932671892922540}
   radius: 1
 --- !u!1 &5466494680227564000
 GameObject:
