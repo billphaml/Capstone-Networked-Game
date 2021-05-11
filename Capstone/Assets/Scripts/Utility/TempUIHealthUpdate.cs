@@ -13,9 +13,18 @@ public class TempUIHealthUpdate : NetworkBehaviour
     {
         if (player == null)
         {
-            player = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.gameObject.GetComponent<PlayerHealth>();
+            try
+            {
+                player = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.gameObject.GetComponent<PlayerHealth>();
+            }
+            catch
+            {
+            }
         }
 
-        ui.text = "Health: " + player.Health.Value + "/100";
+        if (player != null)
+        {
+            ui.text = "Health: " + player.Health.Value + "/100";
+        }
     }
 }

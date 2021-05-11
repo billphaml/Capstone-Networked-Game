@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MLAPI;
 
-public class GameDialogueManager : MonoBehaviour
+public class GameDialogueManager : NetworkBehaviour
 {
     private static GameDialogueManager _theLocalgameManager;
 
     public static GameDialogueManager theLocalGameManager { get { return _theLocalgameManager; } }
 
     public DialogueManager theDialogueManager;
-    public PlayerMovement ThePlayerMovement;
+    private PlayerMovement ThePlayerMovement;
 
     public bool isDialogueActive;
     
@@ -34,7 +35,16 @@ public class GameDialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (ThePlayerMovement == null)
+        {
+            try
+            {
+                ThePlayerMovement = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.gameObject.GetComponent<PlayerMovement>();
+            }
+            catch
+            {
+            }
+        }
     }
 
     //

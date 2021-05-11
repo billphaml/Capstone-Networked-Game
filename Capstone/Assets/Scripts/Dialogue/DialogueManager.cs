@@ -230,6 +230,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            GameDialogueManager.theLocalGameManager.turnOnPlayerMovement();
             resetTextBox();
             endOfDialogue();
             // Animate and hide dialogue box
