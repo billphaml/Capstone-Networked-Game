@@ -1,5 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Variation of items to store items currently equipped.
+ *****************************************************************************/
+
 using UnityEngine;
 
 [System.Serializable]
@@ -39,14 +41,6 @@ public class EquipItem : GameItem
      void Awake()
     {
         //gameItemType = itemType.HEAD;
-    }
-
-    public override void useItem()
-    {
-        base.useItem();
-        // theEquipmentManager.equipItem(this);
-        // Equip the item
-        // Remove from game
     }
 
     public EquipItem GetThis()

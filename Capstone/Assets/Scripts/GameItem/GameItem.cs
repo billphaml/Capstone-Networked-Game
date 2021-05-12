@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+/******************************************************************************
+ * Data values for items.
+ *****************************************************************************/
 
+using UnityEngine;
 
 public enum itemType
 {
@@ -21,7 +22,6 @@ public enum itemType
 [System.Serializable]
 public abstract class GameItem : ScriptableObject
 {
-
     // Item Description
     public int itemID;
     public Sprite itemImage;
@@ -31,20 +31,8 @@ public abstract class GameItem : ScriptableObject
     public string itemDescription;
     public itemType gameItemType;
 
-    public virtual void useItem()
-    {
-
-
-        Debug.Log("Using " + itemName);
-    }
-
     public GameItem getThis()
     {
         return this;
     }
-
 }
-
-
-
-

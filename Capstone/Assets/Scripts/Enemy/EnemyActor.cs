@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+/******************************************************************************
+ * Scriptable object to store stat values for an enemy.
+ *****************************************************************************/
 
 public class Enemy : Actor
 {

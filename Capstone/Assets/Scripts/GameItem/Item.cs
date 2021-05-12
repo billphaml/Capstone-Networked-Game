@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+/******************************************************************************
+ * Item class which uses values from gameItem scriptable object.
+ *****************************************************************************/
+
 
 [System.Serializable]
 public class Item 

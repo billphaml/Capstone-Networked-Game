@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+/******************************************************************************
+ * Manages interactions between the dialogue system and the rest of the game.
+ *****************************************************************************/
+
 using MLAPI;
 
-public class GameDialogueManager : NetworkBehaviour
+public class DialogueSystem : NetworkBehaviour
 {
-    private static GameDialogueManager _theLocalgameManager;
+    private static DialogueSystem _theLocalgameManager;
 
-    public static GameDialogueManager theLocalGameManager { get { return _theLocalgameManager; } }
+    public static DialogueSystem theLocalGameManager { get { return _theLocalgameManager; } }
 
     public DialogueManager theDialogueManager;
+
     private PlayerMovement ThePlayerMovement;
 
     public bool isDialogueActive;
@@ -24,12 +26,6 @@ public class GameDialogueManager : NetworkBehaviour
         {
             _theLocalgameManager = this;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -47,12 +43,10 @@ public class GameDialogueManager : NetworkBehaviour
         }
     }
 
-    //
     public void startDialogue(DialogueScene startScene)
     {
-        theDialogueManager.startDialogue(startScene);
+        theDialogueManager.StartDialogue(startScene);
     }
-
 
     public void turnOnDialogue()
     {
@@ -64,13 +58,11 @@ public class GameDialogueManager : NetworkBehaviour
         isDialogueActive = false;
     }
 
-    //
     public void turnOnPlayerMovement()
     {
         ThePlayerMovement.turnOnMove();
     }
 
-    //
     public void turnOffPlayerMovement()
     {
         ThePlayerMovement.turnOffMove();

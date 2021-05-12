@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject androidUI = null;
 
     [Header("Dialogue")]
-    [SerializeField] private GameDialogueManager localDialogueManager = null;
+    [SerializeField] private DialogueSystem localDialogueManager = null;
 
     [Header("Crafting")]
     private bool isOpenCrafting = false;
@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
 
     private void CheckInventoryUI()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !GameDialogueManager.theLocalGameManager.isDialogueActive)
+        if (Input.GetKeyDown(KeyCode.I) && !DialogueSystem.theLocalGameManager.isDialogueActive)
         {
             if (isOpenInventory)
             {
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
     private void CheckCraftingUI()
     {
-        if (Input.GetKeyDown(KeyCode.O) && !GameDialogueManager.theLocalGameManager.isDialogueActive)
+        if (Input.GetKeyDown(KeyCode.O) && !DialogueSystem.theLocalGameManager.isDialogueActive)
         {
             if (isOpenCrafting)
             {

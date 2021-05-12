@@ -1,5 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Generic item used for testing.
+ *****************************************************************************/
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Game Item", menuName = "GameItem/Items/Default")]

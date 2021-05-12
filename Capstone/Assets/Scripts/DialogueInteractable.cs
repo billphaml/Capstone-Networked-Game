@@ -11,7 +11,7 @@ public class DialogueInteractable : Interactable
 
     protected override void Interact()
     {
-        if (GameDialogueManager.theLocalGameManager.isDialogueActive == false)
+        if (DialogueSystem.theLocalGameManager.isDialogueActive == false)
         {
             npc.triggerDialogue();
         }

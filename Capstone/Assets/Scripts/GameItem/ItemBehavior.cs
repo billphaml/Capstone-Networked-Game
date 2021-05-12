@@ -1,3 +1,7 @@
+/******************************************************************************
+ * Logic for interactions with items such as pickup.
+ *****************************************************************************/
+
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;

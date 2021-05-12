@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+/******************************************************************************
+ * Data scriptable object containing information about a npc.
+ *****************************************************************************/
 
 [System.Serializable]
 public class NPC : Actor

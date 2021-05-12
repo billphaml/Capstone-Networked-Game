@@ -1,33 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Takes in the finished dialogueScene and triggers an event.
+ *****************************************************************************/
+
 using UnityEngine;
 
-public class DialogueHandler : MonoBehaviour
+public class DialogueEventHandler : MonoBehaviour
 {
-    public static DialogueHandler theDialogueHandler;
+    public static DialogueEventHandler theDialogueHandler;
 
     void Awake()
     {
         theDialogueHandler = this;
     }
 
-    public DialogueScene endDialogueHandler(DialogueScene theDialogue, int branchNum)
+    public DialogueScene ProcessDialogue(DialogueScene theDialogue, int branchNum)
     {
         Debug.Log("The dialogueName is " + theDialogue.name);
         switch (theDialogue.name)
         {
             case "Scene_002":
-                return introHandler(branchNum);
+                return TriggerIntro(branchNum);
             case "Golem_Slayer":
-                return GolemSlayerHandler(branchNum);
+                return TriggerGolemSlayer(branchNum);
             case "Lost_Child_Intro":
-                return LostChildIntroHandler(branchNum);
+                return TriggerLostChildIntro(branchNum);
             default:
                 return null;
         }
     }
 
-    public DialogueScene introHandler(int branchNum)
+    public DialogueScene TriggerIntro(int branchNum)
     {
         switch (branchNum)
         {
@@ -42,7 +44,7 @@ public class DialogueHandler : MonoBehaviour
         }
     }
 
-    public DialogueScene LostChildIntroHandler(int branchNum)
+    public DialogueScene TriggerLostChildIntro(int branchNum)
     {
         switch (branchNum)
         {
@@ -54,7 +56,7 @@ public class DialogueHandler : MonoBehaviour
         }
     }
 
-    public DialogueScene GolemSlayerHandler(int branchNum)
+    public DialogueScene TriggerGolemSlayer(int branchNum)
     {
         switch (branchNum)
         {
@@ -65,6 +67,4 @@ public class DialogueHandler : MonoBehaviour
                 return null;
         }
     }
-
-
 }

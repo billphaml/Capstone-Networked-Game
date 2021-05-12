@@ -1,4 +1,7 @@
-using System.Collections;
+/******************************************************************************
+ * Scriptable object to store items.
+ *****************************************************************************/
+
 using System.Collections.Generic;
 using UnityEngine;
 

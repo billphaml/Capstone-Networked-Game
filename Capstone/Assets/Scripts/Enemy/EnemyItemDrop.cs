@@ -1,6 +1,9 @@
+/******************************************************************************
+ * Can be called to drop an item from a drop table into the world.
+ *****************************************************************************/
+
 using UnityEngine;
 using MLAPI;
-using MLAPI.Messaging;
 
 public class EnemyItemDrop : NetworkBehaviour
 {

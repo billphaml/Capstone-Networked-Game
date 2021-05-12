@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/******************************************************************************
+ * Class to animate enemy sprite.
+ *****************************************************************************/
+
+using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {

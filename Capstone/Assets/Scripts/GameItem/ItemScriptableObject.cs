@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Scriptable object for item values.
+ *****************************************************************************/
+
 using UnityEngine;
 
 public class ItemScriptableObject : MonoBehaviour
 {
-    public CraftingItem.ItemType itemType;
     public string itemName;
     public Sprite itemSprite;
 }

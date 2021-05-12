@@ -1,5 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Item variant for consumables
+ *****************************************************************************/
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Game Item", menuName = "GameItem/Items/Consumables")]

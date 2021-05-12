@@ -1,5 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Scriptable object to store crafting recipes.
+ *****************************************************************************/
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item Recipe", menuName = "GameItem/Items/ItemRecipe")]

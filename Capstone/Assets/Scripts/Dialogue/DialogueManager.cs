@@ -1,18 +1,14 @@
+/******************************************************************************
+*  This is the DialogueManager class.
+ * The purpose of this class is to manage the dialoguescene scriptable object and pass it dialogue object through the queue to display to the player
+ * Currently missing the ability to trigger events, apply buffs and change values.
+ *****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using UnityEngine.UI;
 using TMPro;
 
-/* This is the DialogueManager class.
- * The purpose of this class is to manage the dialoguescene scriptable object and pass it dialogue object through the queue to display to the player
- * Currently missing the ability to trigger events, apply buffs and change values.
- * 
- * 
- * 
- * 
- * */
 public class DialogueManager : MonoBehaviour
 {
     public GameObject textGroup;
@@ -23,7 +19,6 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI timeDisplay;
 
     public Queue<Dialogue> queueDialogue; // Shows the actual dialogue
-
 
     private int index;
     private int currentIndex;
@@ -39,12 +34,27 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Dialogue activeDialogue;
     private DialogueScene currentDialogueScene;
 
+    void Awake()
+    {
+        timeDisplay.enabled = false;
+    }
 
+    void Start()
+    {
+        queueDialogue = new Queue<Dialogue>();
+    }
+
+    void Update()
+    {
+        DialogueController();
+        UpdateDialogueTimer();
+        UpdateEndDialogue();
+    }
 
     // This IEnumerator is used to give the textDialogue  a typing effect.
-    IEnumerator dialogueTyping()
+    IEnumerator DialogueTyping()
     {
-        dequeueDisplayText();
+        DequeueDisplayText();
 
         foreach (char letter in activeDialogue.dialogueText.ToCharArray())
         {
@@ -55,9 +65,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     // This method is used in order to display the placeholder text for the players to type in
-    public void displayText()
+    public void DisplayText()
     {
-        dequeueDisplayText();
+        DequeueDisplayText();
 
         foreach (char letter in activeDialogue.dialogueText.ToCharArray())
         {
@@ -65,7 +75,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void dequeueDisplayText()
+    public void DequeueDisplayText()
     {
         canEnter = false;
         activeDialogue = queueDialogue.Dequeue();
@@ -73,33 +83,15 @@ public class DialogueManager : MonoBehaviour
         nameDisplay.text = activeDialogue.speakerName;
     }
 
-     void Awake()
-    {
-        timeDisplay.enabled = false;
-    }
-
-    void Start()
-    {
-        queueDialogue = new Queue<Dialogue>();   
-    }
-
-    void Update()
-    {
-        dialogueController();
-        UpdateDialogueTimer();
-        updateEndDialogue();
-    }
-
-
     // This method is used in order to help the player control the dialogue of the game.
-    public void dialogueController()
+    public void DialogueController()
     {
         if (!activeType)
         {
             if (canEnter == true && Input.GetKeyDown(KeyCode.Space))
             {
-                responseHandler();
-                nextDialogue();
+                ResponseHandler();
+                NextDialogue();
             }
         }
         else
@@ -107,8 +99,8 @@ public class DialogueManager : MonoBehaviour
             if (canEnter == true && Input.GetKeyDown(KeyCode.Space))
             {
                 // Trigger The Event Tag 
-                turnOffTimer();
-                insertNextDialogue(activeDialogue.branchNext);
+                TurnOffTimer();
+                InsertNextDialogue(activeDialogue.branchNext);
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -116,7 +108,7 @@ public class DialogueManager : MonoBehaviour
                 for (int i = 0; i < queueDialogue.Count; i++)
                 {
                     queueDialogue.Enqueue(activeDialogue);
-                    nextDialogue();
+                    NextDialogue();
                 }
 
             }
@@ -124,18 +116,17 @@ public class DialogueManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 queueDialogue.Enqueue(activeDialogue);
-                nextDialogue();
+                NextDialogue();
             }
 
             foreach (char letter in Input.inputString)
             {
-                userInput(letter);
+                UserInput(letter);
             }
         }
     }
 
-    // This method is used to
-    public void userInput(char uInput)
+    public void UserInput(char uInput)
     {
 
         string activeWord = activeDialogue.dialogueText;
@@ -144,7 +135,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (canEnter == false)
             {
-                if (getLetter() == uInput)
+                if (GetLetter() == uInput)
                 {
                     // Play typing sound
                     // Highlight letter and move onto the next letter
@@ -156,7 +147,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (endDialogue())
+        if (EndDialogue())
         {
             canEnter = true;
         }
@@ -167,7 +158,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     // This method is used to get the letter at the current index that the user is 
-    public char getLetter()
+    public char GetLetter()
     {
         string activeWord = activeDialogue.dialogueText;
 
@@ -176,7 +167,7 @@ public class DialogueManager : MonoBehaviour
         return theChar[currentIndex];
     }
 
-    public void resetTextBox()
+    public void ResetTextBox()
     {
         currentIndex = 0;
         dialogueDisplay.text = "";
@@ -185,13 +176,12 @@ public class DialogueManager : MonoBehaviour
         nameDisplay.text = "";
     }
 
-
-    public void startDialogue(DialogueScene startScene)
+    public void StartDialogue(DialogueScene startScene)
     {
         // Find the dialogue set corresponding with the scene
-        GameDialogueManager.theLocalGameManager.turnOffPlayerMovement();
+        DialogueSystem.theLocalGameManager.turnOffPlayerMovement();
         currentDialogueScene = startScene;
-        turnOnDialogue();
+        TurnOnDialogue();
 
         for(int i = 0; i < currentDialogueScene.SceneDialogue.Length; i++)
         {
@@ -201,49 +191,44 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        nextDialogue();
+        NextDialogue();
     }
 
-
-    /* This method is used to move onto the next dialogue in the array.
-     * 
-     * 
-     * 
-     * */
-    public void nextDialogue()
+    /// <summary>
+    /// This method is used to move onto the next dialogue in the array.
+    /// </summary>
+    public void NextDialogue()
     {
-
         if (queueDialogue.Count > 0)
         {
-            resetTextBox();
+            ResetTextBox();
 
             if (queueDialogue.Peek().canType == true)
             {
                 
-                displayText();
+                DisplayText();
             }
             else
             {
-                StartCoroutine(dialogueTyping());
+                StartCoroutine(DialogueTyping());
             }
 
         }
         else
         {
-            GameDialogueManager.theLocalGameManager.turnOnPlayerMovement();
-            resetTextBox();
-            endOfDialogue();
+            DialogueSystem.theLocalGameManager.turnOnPlayerMovement();
+            ResetTextBox();
+            EndOfDialogue();
             // Animate and hide dialogue box
         }
     }
 
 
-    /* This method is used to help insert dialogue following a player's choice
-     * 
-     * 
-     * 
-     * */
-    public void insertNextDialogue(int iBranchNum)
+    /// <summary>
+    /// This method is used to help insert dialogue following a player's choice
+    /// </summary>
+    /// <param name="iBranchNum"></param>
+    public void InsertNextDialogue(int iBranchNum)
     {
         queueDialogue.Clear();
         
@@ -255,15 +240,14 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        nextDialogue();
+        NextDialogue();
     }
 
-    
-    public void responseHandler()
+    public void ResponseHandler()
     {
         if (activeDialogue.dialogueResponse.Length > 0)
         {
-            questHandler();
+            QuestHandler();
             for (int i = 0; i < activeDialogue.dialogueResponse.Length; i++)
             {
                 queueDialogue.Enqueue(activeDialogue.dialogueResponse[i]);
@@ -275,28 +259,31 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // this method is used to return whether the player is at the end of the dialogue string
-    public bool endDialogue()
+    /// <summary>
+    /// This method is used to return whether the player is at the end of the dialogue string.
+    /// </summary>
+    /// <returns></returns>
+    public bool EndDialogue()
     {
         bool endType = (currentIndex >= activeDialogue.dialogueText.Length);
         return endType;
     }
 
     // This method is used to turn on the dialogue, showing the textbox
-    private void turnOnDialogue()
+    private void TurnOnDialogue()
     {
         textGroup.SetActive(true);
         isActive = true;
-        GameDialogueManager.theLocalGameManager.turnOnDialogue();
+        DialogueSystem.theLocalGameManager.turnOnDialogue();
     }
 
     // This method is used to turn off the dialogue, hiding the textbox
-    private void turnOffDialogue()
+    private void TurnOffDialogue()
     {
         textGroup.SetActive(false);
         isActive = false;
         GiveQuest.theGiveQuest.closeQuest();
-        GameDialogueManager.theLocalGameManager.turnOffDialogue();
+        DialogueSystem.theLocalGameManager.turnOffDialogue();
     }
 
     private void TurnOnTimer()
@@ -306,25 +293,25 @@ public class DialogueManager : MonoBehaviour
         timeDisplay.enabled = true;
     }
 
-    private void turnOffTimer()
+    private void TurnOffTimer()
     {
         dialogueTime = activeDialogue.typeTime;
         dialogueTimeActive = false;
         timeDisplay.enabled = false;
     }
 
-    public bool getActive()
+    public bool GetActive()
     {
         return isActive;
     }
 
-    private void endOfDialogue()
+    private void EndOfDialogue()
     {
         isEndDialogue = true;
         endTimer = 0.5f;
     }
 
-    private void questHandler()
+    private void QuestHandler()
     {
         if(activeDialogue.theQuest != null)
         {
@@ -333,7 +320,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
     
-    private void updateEndDialogue()
+    private void UpdateEndDialogue()
     {
         if(isEndDialogue == true)
         {
@@ -341,8 +328,8 @@ public class DialogueManager : MonoBehaviour
             if (endTimer <= 0)
             {
                 GameEvent.theGameEvent.onEndOfDialogue(currentDialogueScene, activeDialogue.branchNum);
-                turnOffDialogue();
-                turnOffTimer();
+                TurnOffDialogue();
+                TurnOffTimer();
                 isEndDialogue = false;
             }
         }
@@ -357,8 +344,8 @@ public class DialogueManager : MonoBehaviour
             timeDisplay.text = intTime.ToString() + "...";
             if(dialogueTime <= 0)
             {
-                turnOffTimer();
-                insertNextDialogue(-1);
+                TurnOffTimer();
+                InsertNextDialogue(-1);
             }
         }
     }
