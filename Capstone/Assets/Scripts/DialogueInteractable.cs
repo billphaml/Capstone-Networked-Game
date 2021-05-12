@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class is derived from interactable specifically for dialogues,
+ * Interactable must be overrided.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using UnityEngine;
 
 public class DialogueInteractable : Interactable

@@ -1,3 +1,8 @@
+/******************************************************************************
+ * This Class is a base class for events currently no direction
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System;
 using System.Collections;
 using System.Collections.Generic;

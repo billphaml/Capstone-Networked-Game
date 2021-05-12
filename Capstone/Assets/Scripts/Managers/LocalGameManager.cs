@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class is used as a local manager for the client side gameplay, mostly
+ * used to update quests and quest related stuff.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;

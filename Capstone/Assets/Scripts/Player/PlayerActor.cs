@@ -1,3 +1,10 @@
+/******************************************************************************
+ * This Class is derived from actor and contains the stats of the player as well
+ * as the inventory and equipped items for when the player saves. It can be
+ * read in to load the player data.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

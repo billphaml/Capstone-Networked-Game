@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class is a helper class that draws a line so that we can see where the
+ * AI has determined its target and its direct path to said target
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using UnityEngine;
 
 public struct LineDrawer

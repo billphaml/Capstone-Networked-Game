@@ -1,3 +1,8 @@
+/******************************************************************************
+ * This Class contains the logic to set, open, accept, and close a quest.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Realtime;

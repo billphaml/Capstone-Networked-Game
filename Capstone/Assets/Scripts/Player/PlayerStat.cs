@@ -1,5 +1,7 @@
 /******************************************************************************
+ * This class contains the stats of the player and facilitates stat manipulation
  * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 #undef DEBUG

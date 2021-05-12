@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class is defines a quest goal for our quests. The class also contains
+ * the different types of quests
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

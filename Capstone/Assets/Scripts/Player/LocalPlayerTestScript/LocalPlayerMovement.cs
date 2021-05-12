@@ -1,3 +1,8 @@
+/******************************************************************************
+ * This Class is used to facilitate the local movement for the player.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;

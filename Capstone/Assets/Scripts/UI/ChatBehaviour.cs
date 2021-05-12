@@ -1,7 +1,8 @@
-/*
- * Bug: server host can't send messages in chat after users have joined.
- * Something to do with ownership.
- */
+/******************************************************************************
+ * This Class is the logic for our in game chat and its behavior.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 
 using UnityEngine;
 using MLAPI;

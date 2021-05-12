@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * This Class details the functionality for an interactable object.
+ * With this script attached to an object it is now an interactable object.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * *****************************************************************************/
+
 using UnityEngine;
 using MLAPI;
 

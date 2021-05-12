@@ -1,3 +1,8 @@
+/******************************************************************************
+ * This Class is the base class from which all actors derive from
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
