@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f59aecf335eb904e8413cf252fd980a, type: 3}
+  m_Script: {fileID: 11500000, guid: 33be5cf6a579b8b44a2d4ccb06ff29c6, type: 3}
   m_Name: LostChildOne
   m_EditorClassIdentifier: 
-  isActive: 0
+  questID: 0
   Repeatable: 0
-  title: Lost Child
+  title: Lost Child One
   description: Mathilda asked you to find her missing child Eris in The Forrest Of
     Darkness and Thorn. She's a terrible parent so don't get your hopes up on the
     rewards.
@@ -22,5 +22,6 @@ MonoBehaviour:
   goldReward: 1000
   goal:
     goalType: 2
-    goalAmount: 0
+    GoalAmount: 0
+    DialogueGoal: {fileID: 11400000, guid: 3d0739e1574de264690be19a7cb889c0, type: 2}
     currentAmount: 0

@@ -28,7 +28,7 @@ public class LocalGameManager : MonoBehaviour
     {
        for(int i = 0; i < currentQuest.Count; i++)
         {
-            if(currentQuest[i].isActive)
+            //if(currentQuest[i].isActive)
             currentQuest[i].goal.killCount();
 
             if (currentQuest[i].goal.goalCompleted())
@@ -43,11 +43,12 @@ public class LocalGameManager : MonoBehaviour
         updateQuestInfo();
     }
 
-    public bool addQuest(Quest theQuest)
+    public bool addQuest(ScriptableQuest theQuest)
     {
         if(currentQuest.Count < 1)
         {
-            currentQuest.Add(theQuest);
+            // Convert Scriptable Quest into Quest and add it into the currentQuestList
+            //currentQuest.Add(theQuest);
             return true;
         }
         else
@@ -72,7 +73,7 @@ public class LocalGameManager : MonoBehaviour
             questUI.SetActive(true);
             if (currentQuest.Count > 0)
             {
-                questText.text = currentQuest[0].title + " (" + currentQuest[0].goal.currentAmount + "/" + currentQuest[0].goal.goalAmount + ")";
+                questText.text = currentQuest[0].title + " (" + currentQuest[0].goal.currentAmount + "/" + currentQuest[0].goal.GoalAmount + ")";
             }
         }
     }

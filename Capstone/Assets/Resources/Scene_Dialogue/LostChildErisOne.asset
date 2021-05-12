@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
+  m_Name: LostChildErisOne
+  m_EditorClassIdentifier: 
+  SceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Eris
+    dialogueText: Who are you?
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Eris
+    dialogueText: My mom said not to talk to strangers.
+    canType: 0
+    typeTime: 10
+    branchNext: 1
+    theQuest: {fileID: 0}
+    dialogueResponse:
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Playername
+      dialogueText: Your mom's looking for you. She said she'll reward me if I can
+        find you and bring you home.
+      canType: 1
+      typeTime: 0
+      branchNext: 1
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Playername
+      dialogueText: I'm a not a stranger, I'm a friend.
+      canType: 1
+      typeTime: 0
+      branchNext: 2
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 1
+    speakerName: Eris
+    dialogueText: Yeah, right. That doesn't sound my mom. Please stay away from me.
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 2
+    speakerName: Eris
+    dialogueText: STRANGER DANGER.
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: -1
+    speakerName: Eris
+    dialogueText: You're creepy...
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []

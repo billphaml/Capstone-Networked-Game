@@ -13,13 +13,23 @@ public class QuestGoal
 {
     public GoalType goalType;
 
+    public QuestGoal(int goalAmount)
+    {
 
-    public int goalAmount;
+    }
+
+    public QuestGoal(DialogueScene dialogueGoal)
+    {
+
+    }
+
+    public int GoalAmount;
+    public DialogueScene DialogueGoal;
     public int currentAmount;
 
     public bool goalCompleted()
     {
-        return (currentAmount >= goalAmount);
+        return (currentAmount >= GoalAmount);
     }
 
     // this needs to be called to increment the quest (probably will be called from the enemy when it dies)
