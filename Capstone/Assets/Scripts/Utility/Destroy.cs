@@ -1,4 +1,7 @@
-using System.Collections;
+/******************************************************************************
+ * This Class is destroys objects
+ * 
+ * ***************************************************************************/using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,3 +1,8 @@
+/******************************************************************************
+ * This Class updates the health UI to reflect the players current health
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using UnityEngine;
 using MLAPI;
 using TMPro;

@@ -1,3 +1,7 @@
+/******************************************************************************
+ * This Class is an empty class to contain the logic for the player UI
+ * 
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

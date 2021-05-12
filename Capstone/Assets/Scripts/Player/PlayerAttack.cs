@@ -1,5 +1,8 @@
 /******************************************************************************
+ * This class contains the logic for the player attack including the damage and
+ * what types of attack the player is executing.
  * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using System.Collections.Generic;

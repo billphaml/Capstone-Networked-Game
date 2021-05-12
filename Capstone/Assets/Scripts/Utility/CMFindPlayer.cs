@@ -1,3 +1,7 @@
+/******************************************************************************
+ * This Class is for the Cinimachine to find the player
+ * 
+ * ***************************************************************************/
 using UnityEngine;
 using MLAPI;
 using Cinemachine;

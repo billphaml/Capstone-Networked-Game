@@ -1,5 +1,8 @@
 /******************************************************************************
+ * This class is a general controller class, It sets scripts as variables as
+ * well as calls certain methods that the player needs to move and attack
  * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

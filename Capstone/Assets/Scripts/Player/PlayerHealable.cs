@@ -1,5 +1,7 @@
 /******************************************************************************
+ * This Class controls the healing aspect of health for the player.
  * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

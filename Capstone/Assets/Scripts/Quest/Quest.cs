@@ -1,3 +1,10 @@
+/******************************************************************************
+ * This Class is the overall quest. It contains variables that help us determine
+ * what type of quest it is as well as if it is active, repeatable, and the
+ * rewards.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

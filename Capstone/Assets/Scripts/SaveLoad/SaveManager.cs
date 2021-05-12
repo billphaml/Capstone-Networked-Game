@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class is a helper class that can be added to the savemanager. It allows
+ * us to call the methods in SaveSystem.cs.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using MLAPI;
 using UnityEngine;
 public class SaveManager : MonoBehaviour

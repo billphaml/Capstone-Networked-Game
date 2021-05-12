@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class contains the logic for our saving and loading, it calls the save
+ * methods from the respective classes that have them and loads the save.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;

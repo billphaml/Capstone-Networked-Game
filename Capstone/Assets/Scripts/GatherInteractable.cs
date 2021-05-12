@@ -1,3 +1,9 @@
+/******************************************************************************
+ * This Class is derived from interactable, and is used to create an item that 
+ * can be harvested. Must override the interactable class.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * ***************************************************************************/
 using UnityEngine;
 using MLAPI;
 
