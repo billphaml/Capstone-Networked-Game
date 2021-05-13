@@ -2,7 +2,8 @@
  * This Class is the animation controller for the player
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
+
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour

@@ -1,8 +1,8 @@
 /******************************************************************************
- * This Class is destroys objects
+ * Utility class to destroy a gameobject after a set amount of time.
  * 
- * ***************************************************************************/using System.Collections;
-using System.Collections.Generic;
+ *****************************************************************************/
+
 using UnityEngine;
 
 public class Destroy : MonoBehaviour

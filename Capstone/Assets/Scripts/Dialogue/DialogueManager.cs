@@ -1,7 +1,11 @@
 /******************************************************************************
 *  This is the DialogueManager class.
- * The purpose of this class is to manage the dialoguescene scriptable object and pass it dialogue object through the queue to display to the player
- * Currently missing the ability to trigger events, apply buffs and change values.
+ * The purpose of this class is to manage the dialoguescene scriptable object 
+ * and pass it dialogue object through the queue to display to the player
+ * Currently missing the ability to trigger events, apply buffs and change
+ * values.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using System.Collections;
@@ -128,7 +132,6 @@ public class DialogueManager : MonoBehaviour
 
     public void UserInput(char uInput)
     {
-
         string activeWord = activeDialogue.dialogueText;
         Debug.Log(uInput);
         foreach (char letter in activeWord.ToCharArray())
@@ -179,15 +182,15 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueScene startScene)
     {
         // Find the dialogue set corresponding with the scene
-        DialogueSystem.theLocalGameManager.turnOffPlayerMovement();
+        DialogueSystem.theLocalGameManager.TurnOffPlayerMovement();
         currentDialogueScene = startScene;
         TurnOnDialogue();
 
-        for(int i = 0; i < currentDialogueScene.SceneDialogue.Length; i++)
+        for(int i = 0; i < currentDialogueScene.sceneDialogue.Length; i++)
         {
-            if(currentDialogueScene.SceneDialogue[i].branchNum == 0)
+            if(currentDialogueScene.sceneDialogue[i].branchNum == 0)
             {
-                queueDialogue.Enqueue(currentDialogueScene.SceneDialogue[i]);
+                queueDialogue.Enqueue(currentDialogueScene.sceneDialogue[i]);
             }
         }
 
@@ -216,7 +219,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            DialogueSystem.theLocalGameManager.turnOnPlayerMovement();
+            DialogueSystem.theLocalGameManager.TurnOnPlayerMovement();
             ResetTextBox();
             EndOfDialogue();
             // Animate and hide dialogue box
@@ -232,11 +235,11 @@ public class DialogueManager : MonoBehaviour
     {
         queueDialogue.Clear();
         
-        for(int i = 0; i < currentDialogueScene.SceneDialogue.Length; i++)
+        for(int i = 0; i < currentDialogueScene.sceneDialogue.Length; i++)
         {
-            if(currentDialogueScene.SceneDialogue[i].branchNum == iBranchNum)
+            if(currentDialogueScene.sceneDialogue[i].branchNum == iBranchNum)
             {
-                queueDialogue.Enqueue(currentDialogueScene.SceneDialogue[i]);
+                queueDialogue.Enqueue(currentDialogueScene.sceneDialogue[i]);
             }
         }
 
@@ -274,7 +277,7 @@ public class DialogueManager : MonoBehaviour
     {
         textGroup.SetActive(true);
         isActive = true;
-        DialogueSystem.theLocalGameManager.turnOnDialogue();
+        DialogueSystem.theLocalGameManager.TurnOnDialogue();
     }
 
     // This method is used to turn off the dialogue, hiding the textbox
@@ -283,7 +286,7 @@ public class DialogueManager : MonoBehaviour
         textGroup.SetActive(false);
         isActive = false;
         GiveQuest.theGiveQuest.closeQuest();
-        DialogueSystem.theLocalGameManager.turnOffDialogue();
+        DialogueSystem.theLocalGameManager.TurnOffDialogue();
     }
 
     private void TurnOnTimer()
@@ -313,7 +316,7 @@ public class DialogueManager : MonoBehaviour
 
     private void QuestHandler()
     {
-        if(activeDialogue.theQuest != null)
+        if (activeDialogue.theQuest != null)
         {
             GiveQuest.theGiveQuest.setQuest(activeDialogue.theQuest);
             GiveQuest.theGiveQuest.openQuest();
@@ -322,12 +325,12 @@ public class DialogueManager : MonoBehaviour
     
     private void UpdateEndDialogue()
     {
-        if(isEndDialogue == true)
+        if (isEndDialogue == true)
         {
             endTimer -= Time.deltaTime;
             if (endTimer <= 0)
             {
-                GameEvent.theGameEvent.onEndOfDialogue(currentDialogueScene, activeDialogue.branchNum);
+                GameEvent.theGameEvent.OnEndOfDialogue(currentDialogueScene, activeDialogue.branchNum);
                 TurnOffDialogue();
                 TurnOffTimer();
                 isEndDialogue = false;
@@ -337,12 +340,12 @@ public class DialogueManager : MonoBehaviour
 
     private void UpdateDialogueTimer()
     {
-        if(dialogueTimeActive == true)
+        if (dialogueTimeActive == true)
         {
             dialogueTime -= Time.deltaTime;
             int intTime = (int)dialogueTime + 1;
             timeDisplay.text = intTime.ToString() + "...";
-            if(dialogueTime <= 0)
+            if (dialogueTime <= 0)
             {
                 TurnOffTimer();
                 InsertNextDialogue(-1);

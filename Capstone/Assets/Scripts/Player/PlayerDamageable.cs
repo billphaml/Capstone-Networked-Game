@@ -4,6 +4,8 @@
  * function to do damage to this object. Never change health directly, add
  * functions to this class that make rpc on your behalf to affect health.
  * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * 
  * TODO:
  * - 
  *****************************************************************************/

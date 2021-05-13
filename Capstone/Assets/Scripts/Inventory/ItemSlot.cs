@@ -1,3 +1,11 @@
+/******************************************************************************
+ * This Class implements the logic for an item slot to hold items as well as
+ * the drag and drop functionality of items. General class for holding items
+ * that is different from inventory slots. Used for things like crafting slots.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,7 +40,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         theSlotCanvas = GetComponent<CanvasGroup>();
     }
 
-    public void addItem(GameItem iItem)
+    public void AddItem(GameItem iItem)
     {
         theItem = iItem;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = iItem.itemImage;
@@ -41,7 +49,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         dropButton.interactable = false;
     }
 
-    public void clearSlot()
+    public void ClearSlot()
     {
         theItem = null;
         returnItem = null;
@@ -89,12 +97,12 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             {
                 if(isResult == true)
                 {
-                    theCraftingManager.claimResult();
+                    theCraftingManager.ClaimResult();
                 }
                 else
                 {
-                    clearSlot();
-                    theCraftingManager.updateRecipeResult();
+                    ClearSlot();
+                    theCraftingManager.UpdateRecipeResult();
                 }
                 isDragSucess = false;
             }
@@ -102,41 +110,40 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         }
     }
 
-
     // This is the ondrop method of the itemslot. If the item slot is a result tab, then you cannot drop an item on it.
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
         {
             Debug.Log("Did you just drop into the crafting slot ");
-            DragItem theDragItem = dragItemHandler(eventData);
+            DragItem theDragItem = DragItemHandler(eventData);
 
             if (theDragItem != null && isResult == false)
             {
-                hasItemEventHandler(eventData);
-                theCraftingManager.updateRecipeResult();
+                HasItemEventHandler(eventData);
+                theCraftingManager.UpdateRecipeResult();
             }
         }
     }
 
-    public void onRemoveButton()
+    public void OnRemoveButton()
     {
-        theInventory.removeItem(theItem);
+        theInventory.RemoveItem(theItem);
     }
 
     public void UseItem()
     {
         if (theItem != null)
         {
-            if (theInventory.canAdd())
+            if (theInventory.CanAdd())
             {
-                theInventory.addItem(theItem);
-                clearSlot();
+                theInventory.AddItem(theItem);
+                ClearSlot();
             }
         }
     }
 
-    private DragItem dragItemHandler(PointerEventData eventData)
+    private DragItem DragItemHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
@@ -152,7 +159,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         }
     }
 
-    private void isDragEventHandler(PointerEventData eventData)
+    private void IsDragEventHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
@@ -168,37 +175,37 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         }
     }
 
-    private void hasItemEventHandler(PointerEventData eventData)
+    private void HasItemEventHandler(PointerEventData eventData)
     {
-        DragItem theDragItem = dragItemHandler(eventData);
+        DragItem theDragItem = DragItemHandler(eventData);
 
         if (theItem == null)
         {
-            addItem(theDragItem.theItem);
-            isDragEventHandler(eventData);
+            AddItem(theDragItem.theItem);
+            IsDragEventHandler(eventData);
         }
         else
         {
             if (eventData.pointerDrag.gameObject.GetComponent<InventorySlot>() != null)
             {
                 GameItem dummyItem = theItem;
-                addItem(theDragItem.theItem);
-                isDragEventHandler(eventData);
-                eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().theInventory.addItem(dummyItem);
+                AddItem(theDragItem.theItem);
+                IsDragEventHandler(eventData);
+                eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().theInventory.AddItem(dummyItem);
             }
-            else if(eventData.pointerDrag.gameObject.GetComponent<ItemSlot>() != null)
+            else if (eventData.pointerDrag.gameObject.GetComponent<ItemSlot>() != null)
             {
                 GameItem dummyItem = theItem;
-                addItem(theDragItem.theItem);
+                AddItem(theDragItem.theItem);
 
-                if(eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().isResult != true)
+                if (eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().isResult != true)
                 {
-                    eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().addItem(dummyItem);
+                    eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().AddItem(dummyItem);
                 }
                 else
                 {
                     eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().returnItem = theDragItem.theItem;
-                    isDragEventHandler(eventData);
+                    IsDragEventHandler(eventData);
                 }
 
             }

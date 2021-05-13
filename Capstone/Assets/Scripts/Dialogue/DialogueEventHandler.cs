@@ -1,5 +1,7 @@
 /******************************************************************************
  * Takes in the finished dialogueScene and triggers an event.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

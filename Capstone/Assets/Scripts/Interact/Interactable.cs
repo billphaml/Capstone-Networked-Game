@@ -1,6 +1,8 @@
 /*******************************************************************************
- * This Class details the functionality for an interactable object.
- * With this script attached to an object it is now an interactable object.
+ * This Class implements the interactable feature allowing objects with this
+ * script attached to be interacted with. Specific interactions such as
+ * opening dialogue or gathering should override the Interact() method with
+ * the desired behavior.
  * 
  * Authors: Bill, Hamza, Max, Ryan
  * *****************************************************************************/

@@ -1,7 +1,8 @@
 /******************************************************************************
- * This Class is for the Cinimachine to find the player
+ * Class to point the player's CM camera to the local player object to follow.
  * 
- * ***************************************************************************/
+ *****************************************************************************/
+
 using UnityEngine;
 using MLAPI;
 using Cinemachine;

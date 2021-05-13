@@ -1,13 +1,12 @@
-/*
- * So loading and syncing scenes is actually easy cause MLAPI does all of the sync.
- * So the only thing to make sure is that the scene that client has active is the same
- * as others on the server when they load in. So when a client connects they need to make sure
- * they have the same scene open.
- */
+/******************************************************************************
+ * So loading and syncing scenes is actually easy cause MLAPI does all of the
+ * sync. So the only thing to make sure is that the scene that client has
+ * active is the same as others on the server when they load in. So when a
+ * client connects they need to make sure they have the same scene open.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using MLAPI;
 using MLAPI.SceneManagement;

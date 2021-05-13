@@ -1,6 +1,6 @@
 /******************************************************************************
- * This Class is derived from interactable, and is used to create an item that 
- * can be harvested. Must override the interactable class.
+ * This Class is derived from interactable, and is used to create an object
+ * that can be harvested to give an item.
  * 
  * Authors: Bill, Hamza, Max, Ryan
  * ***************************************************************************/

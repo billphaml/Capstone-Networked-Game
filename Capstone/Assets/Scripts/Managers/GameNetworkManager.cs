@@ -1,73 +1,76 @@
+/******************************************************************************
+ * Class to connect player interactions to MLAPI lobby join/start.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
+
 using MLAPI;
 using MLAPI.Transports.PhotonRealtime;
-using MLAPI.Transports.UNET;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameNetworkManager : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject UIManager;
+
+    void OnGUI()
     {
-        [SerializeField]
-        private GameObject UIManager;
-
-        void OnGUI()
+        GUILayout.BeginArea(new Rect(10, 10, 300, 300));
+        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
-            GUILayout.BeginArea(new Rect(10, 10, 300, 300));
-            if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
-            {
-                // Default buttons for hosting and joining, replaced by custom buttons below
-                //StartButtons();
-            }
-            else
-            {
-                StatusLabels();
+            // Default buttons for hosting and joining, replaced by custom buttons below
+            //StartButtons();
+        }
+        else
+        {
+            StatusLabels();
 
-                //SubmitNewPosition();
+            //SubmitNewPosition();
 
-                QuitSession();
-            }
-
-            GUILayout.EndArea();
+            QuitSession();
         }
 
-        static void StartButtons()
-        {
-            if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
-            if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
-            if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
-        }
+        GUILayout.EndArea();
+    }
 
-        static void StatusLabels()
-        {
-            var mode = NetworkManager.Singleton.IsHost ?
-                "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
+    static void StartButtons()
+    {
+        if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
+        if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
+        if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
+    }
 
-            GUILayout.Label("Transport: " +
-                NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
-            GUILayout.Label("Mode: " + mode);
-        }
+    static void StatusLabels()
+    {
+        var mode = NetworkManager.Singleton.IsHost ?
+            "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
-        static void SubmitNewPosition()
+        GUILayout.Label("Transport: " +
+            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
+        GUILayout.Label("Mode: " + mode);
+    }
+
+    static void SubmitNewPosition()
+    {
+        if (GUILayout.Button(NetworkManager.Singleton.IsServer ? "Move" : "Request Position Change"))
         {
-            if (GUILayout.Button(NetworkManager.Singleton.IsServer ? "Move" : "Request Position Change"))
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
+                out var networkedClient))
             {
-                if (NetworkManager.Singleton.ConnectedClients.TryGetValue(NetworkManager.Singleton.LocalClientId,
-                    out var networkedClient))
-                {
-                    //var player = networkedClient.PlayerObject.GetComponent<NetworkPlayer>();
-                    //if (player)
-                    //{
-                    //    //player.Move();
-                    //}
-                }
+                //var player = networkedClient.PlayerObject.GetComponent<NetworkPlayer>();
+                //if (player)
+                //{
+                //    //player.Move();
+                //}
             }
         }
+    }
 
-        static void QuitSession()
-        {
-            if (GUILayout.Button("Quit")) NetworkManager.Singleton.StopClient();
-        }
+    static void QuitSession()
+    {
+        if (GUILayout.Button("Quit")) NetworkManager.Singleton.StopClient();
+    }
 
     //-------------------------------------------------------------------//
 

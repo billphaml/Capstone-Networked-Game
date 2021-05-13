@@ -1,5 +1,7 @@
 /******************************************************************************
- * Handle item pickup
+ * Handles collisions with player.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

@@ -3,8 +3,8 @@
  * used to update quests and quest related stuff.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
-using System.Collections;
+ *****************************************************************************/
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class LocalGameManager : MonoBehaviour
 {
     public static LocalGameManager theLocalGameManager;
 
-     void Awake()
+    void Awake()
     {
         theLocalGameManager = this;
     }
@@ -26,9 +26,9 @@ public class LocalGameManager : MonoBehaviour
 
     public void UpdateKillQuest()
     {
-       for(int i = 0; i < currentQuest.Count; i++)
+        for(int i = 0; i < currentQuest.Count; i++)
         {
-            if(currentQuest[i].isActive)
+            if (currentQuest[i].isActive)
             currentQuest[i].goal.killCount();
 
             if (currentQuest[i].goal.goalCompleted())
@@ -38,14 +38,13 @@ public class LocalGameManager : MonoBehaviour
                 currentQuest[i].complete();
                 currentQuest.Remove(currentQuest[i]);
             }
-
         }
-        updateQuestInfo();
+        UpdateQuestInfo();
     }
 
-    public bool addQuest(Quest theQuest)
+    public bool AddQuest(Quest theQuest)
     {
-        if(currentQuest.Count < 1)
+        if (currentQuest.Count < 1)
         {
             currentQuest.Add(theQuest);
             return true;
@@ -56,12 +55,12 @@ public class LocalGameManager : MonoBehaviour
         }
     }
 
-    public void updateQuestInfo()
+    public void UpdateQuestInfo()
     {
-        questInfoHandler();
+        QuestInfoHandler();
     }
 
-    private void questInfoHandler()
+    private void QuestInfoHandler()
     {
         if(currentQuest.Count <= 0)
         {

@@ -1,5 +1,7 @@
 /******************************************************************************
  * Data values for items.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;
@@ -31,7 +33,7 @@ public abstract class GameItem : ScriptableObject
     public string itemDescription;
     public itemType gameItemType;
 
-    public GameItem getThis()
+    public GameItem GetThis()
     {
         return this;
     }

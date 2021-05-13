@@ -1,5 +1,6 @@
 /******************************************************************************
- * This class contains the stats of the player and facilitates stat manipulation
+ * This class contains the stats of the player and facilitates stat
+ * manipulation.
  * 
  * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
@@ -7,14 +8,12 @@
 #undef DEBUG
 
 using MLAPI;
-using MLAPI.Messaging;
 using UnityEngine;
 
 public class PlayerStat : NetworkBehaviour
 {
     public PlayerActor thePlayer;
     public Inventory playerInventory;
-
 
     [Header("Player Equipment")]
     public EquipItem playerHelmet;
@@ -28,7 +27,7 @@ public class PlayerStat : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            setupPlayer();
+            SetupPlayer();
         }
     }
 
@@ -37,34 +36,29 @@ public class PlayerStat : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            setupInventory();
+            SetupInventory();
         }     
     }
 
     // Method used to set up the player character
-    public void setupPlayer()
+    public void SetupPlayer()
     {
         thePlayer = new PlayerActor("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
         //playerInventory = playerInventory;
 
     }
 
-    public void setupInventory()
+    public void SetupInventory()
     {
         GameObject inventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
         playerInventory = inventoryManager.GetComponent<Inventory>();
         inventoryManager.GetComponent<EquipmentManager>().thePlayerStat = this;
-        inventoryManager.GetComponent<EquipmentManager>().statEquipmentChanged += updatePlayerStat;
+        inventoryManager.GetComponent<EquipmentManager>().statEquipmentChanged += UpdatePlayerStat;
 
         EquipmentUI playerEquipment;
         GameObject equipmentInterface = GameObject.FindGameObjectWithTag("Equipment UI");
         playerEquipment = equipmentInterface.GetComponent<EquipmentUI>();
         playerEquipment.thePlayer = this;
-    }
-
-    public void itemChange()
-    {
-        
     }
 
     /// <summary>
@@ -85,7 +79,7 @@ public class PlayerStat : NetworkBehaviour
             var item = collision.GetComponent<ItemBehavior>();
 
             // If object is an item and player has empty slot
-            if (item && playerInventory.canAdd())
+            if (item && playerInventory.CanAdd())
             {
                 item.TryPickUpServerRpc(OwnerClientId);
             }
@@ -98,7 +92,7 @@ public class PlayerStat : NetworkBehaviour
     /// <param name="item"></param>
     public void AddItem(ItemBehavior item)
     {
-        playerInventory.addItem(item.theItem);
+        playerInventory.AddItem(item.theItem);
         item.DestroyItemObjectServerRpc();
     }
 
@@ -109,7 +103,7 @@ public class PlayerStat : NetworkBehaviour
     /// <param name="item"></param>
     public void AddItemPrefab(ItemBehavior item)
     {
-        playerInventory.addItem(item.theItem);
+        playerInventory.AddItem(item.theItem);
     }
 
     private void OnApplicationQuit()
@@ -117,53 +111,53 @@ public class PlayerStat : NetworkBehaviour
        // playerInventory.storage.inventory.Clear();
     }
     
-    public void updateAttackType()
+    public void UpdateAttackType()
     {
         if(playerWeapon != null)
         {
             switch (playerWeapon.gameItemType)
             {
                 case itemType.SWORD:
-                   thePlayer.setAttackType(Actor.attackType.SWORD);
+                   thePlayer.SetAttackType(Actor.attackType.SWORD);
                     break;
                 case itemType.GREATSWORD:
-                    thePlayer.setAttackType(Actor.attackType.GREATSWORD);
+                    thePlayer.SetAttackType(Actor.attackType.GREATSWORD);
                     break;
                 case itemType.DAGGER:
-                    thePlayer.setAttackType(Actor.attackType.DAGGER);
+                    thePlayer.SetAttackType(Actor.attackType.DAGGER);
                     break;
                 case itemType.BOW:
-                    thePlayer.setAttackType(Actor.attackType.BOW);
+                    thePlayer.SetAttackType(Actor.attackType.BOW);
                     break;
                 case itemType.MAGIC:
-                    thePlayer.setAttackType(Actor.attackType.MAGIC);
+                    thePlayer.SetAttackType(Actor.attackType.MAGIC);
                     break;
             }
         }
         else
         {
-            thePlayer.setAttackType(Actor.attackType.FIST);
+            thePlayer.SetAttackType(Actor.attackType.FIST);
         }
     }
 
 
-    public void updatePlayerStat()
+    public void UpdatePlayerStat()
     {
-     int playerStrength = 0;
-     int playerMagic = 0;
-     int playerDexterity = 0;
-     int playerConstitution = 0;
-     int playerAttack = 0;
-     int playerDefense = 0;
-     int playerMagicResistance = 0;
-     float playerMovementSpeed = 0;
-     float playerCriticalChance = 0;
-     float playerCriticalDamage = 0;
-     float playerResistance = 0;
-     float playerRange = 0;
-     float playerSwingSpeed = 0;
+         int playerStrength = 0;
+         int playerMagic = 0;
+         int playerDexterity = 0;
+         int playerConstitution = 0;
+         int playerAttack = 0;
+         int playerDefense = 0;
+         int playerMagicResistance = 0;
+         float playerMovementSpeed = 0;
+         float playerCriticalChance = 0;
+         float playerCriticalDamage = 0;
+         float playerResistance = 0;
+         float playerRange = 0;
+         float playerSwingSpeed = 0;
 
-        if(playerHelmet != null)
+        if (playerHelmet != null)
         {
             playerStrength += playerHelmet.addStrength;
             playerMagic += playerHelmet.addMagic;
@@ -178,7 +172,7 @@ public class PlayerStat : NetworkBehaviour
             playerResistance += playerHelmet.addResistance;
         }
 
-        if(playerArmor != null)
+        if (playerArmor != null)
         {
             playerStrength += playerArmor.addStrength;
             playerMagic += playerArmor.addMagic;
@@ -206,11 +200,11 @@ public class PlayerStat : NetworkBehaviour
             playerCriticalChance += playerWeapon.addCriticalChance;
             playerCriticalDamage += playerWeapon.addCriticalDamage;
             playerResistance += playerWeapon.addResistance;
-            updateAttackType();
+            UpdateAttackType();
         }
         else
         {
-            updateAttackType();
+            UpdateAttackType();
         }
 
         if (playerNecklace != null)
@@ -258,81 +252,80 @@ public class PlayerStat : NetworkBehaviour
             playerResistance += playerRingTwo.addResistance;
         }
 
-        thePlayer.playerStrength = playerStrength + thePlayer.getStrength();
-        thePlayer.playerMagic = playerMagic + thePlayer.getMagic();
-        thePlayer.playerDexterity = playerDexterity + thePlayer.getDexterity();
-        thePlayer.playerConstitution = playerConstitution + thePlayer.getConstitution();
-        thePlayer.playerAttack = playerAttack + thePlayer.getAttack();
-        thePlayer.playerDefense = playerDefense + thePlayer.getDefense();
-        thePlayer.playerMagicResistance = playerMagicResistance + thePlayer.getMagicResistance();
-        thePlayer.playerMovementSpeed = playerMovementSpeed + thePlayer.getSpeed();
-        thePlayer.playerCriticalChance = playerCriticalChance + thePlayer.getCritChance();
-        thePlayer.playerCriticalDamage = playerCriticalDamage + thePlayer.getCritDamage();
-        thePlayer.playerResistance = playerResistance + thePlayer.getResistance();
+        thePlayer.playerStrength = playerStrength + thePlayer.GetStrength();
+        thePlayer.playerMagic = playerMagic + thePlayer.GetMagic();
+        thePlayer.playerDexterity = playerDexterity + thePlayer.GetDexterity();
+        thePlayer.playerConstitution = playerConstitution + thePlayer.GetConstitution();
+        thePlayer.playerAttack = playerAttack + thePlayer.GetAttack();
+        thePlayer.playerDefense = playerDefense + thePlayer.GetDefense();
+        thePlayer.playerMagicResistance = playerMagicResistance + thePlayer.GetMagicResistance();
+        thePlayer.playerMovementSpeed = playerMovementSpeed + thePlayer.GetSpeed();
+        thePlayer.playerCriticalChance = playerCriticalChance + thePlayer.GetCritChance();
+        thePlayer.playerCriticalDamage = playerCriticalDamage + thePlayer.GetCritDamage();
+        thePlayer.playerResistance = playerResistance + thePlayer.GetResistance();
     }
 
-    public void addHelmetStat()
+    public void AddHelmetStat()
     {
 
     }
 
-    public void removeHelmetStat()
+    public void RemoveHelmetStat()
     {
 
     }
 
-    public void addArmorStat()
+    public void AddArmorStat()
     {
 
     }
 
-    public void removeArmorStat()
+    public void RemoveArmorStat()
     {
 
     }
 
-    public void addWeaponStat()
+    public void AddWeaponStat()
     {
 
     }
 
-    public void removeWeaponStat()
+    public void RemoveWeaponStat()
     {
 
     }
 
-    public void addNecklaceStat()
+    public void AddNecklaceStat()
     {
 
     }
 
-    public void removeNecklaceStat()
+    public void RemoveNecklaceStat()
     {
 
     }
 
-    public void addRingOneStat()
+    public void AddRingOneStat()
     {
 
     }
 
-    public void removeRingOneStat()
+    public void RemoveRingOneStat()
     {
 
     }
 
-    public void addRingTwoStat()
+    public void AddRingTwoStat()
     {
 
     }
 
-    public void removeRingTwoStat()
+    public void RemoveRingTwoStat()
     {
 
     }
 
-
-    public void calculatePlayerStat()
+    public void CalculatePlayerStat()
     {
 
     }
@@ -374,6 +367,4 @@ public class PlayerStat : NetworkBehaviour
         calculatePlayerStat();
     }
     **/
-
-
 }

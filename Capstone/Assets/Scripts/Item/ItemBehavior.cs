@@ -1,5 +1,7 @@
 /******************************************************************************
  * Logic for interactions with items such as pickup.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

@@ -1,9 +1,9 @@
 /******************************************************************************
- * This Class is a helper class that draws a line so that we can see where the
- * AI has determined its target and its direct path to said target
+ * Helper class to draw a line between two gameobjects in the game view.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
+
 using UnityEngine;
 
 public struct LineDrawer
@@ -62,7 +62,7 @@ public struct LineDrawer
     {
         if (lineRenderer != null)
         {
-            UnityEngine.Object.Destroy(lineRenderer.gameObject);
+            Object.Destroy(lineRenderer.gameObject);
         }
     }
 }

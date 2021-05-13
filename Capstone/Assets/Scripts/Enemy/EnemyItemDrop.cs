@@ -1,5 +1,7 @@
 /******************************************************************************
  * Can be called to drop an item from a drop table into the world.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

@@ -1,10 +1,11 @@
 /******************************************************************************
- * This Class is for the UI manager. It deterimines if an Android or PC player
- * is playing. Based on that it loads in the respective UI that works for the
- * platform
+ * This Class manages all the interactions between player and the UI. It also
+ * deterimines if an Android or PC player is playing and shows the
+ * appropriate UI.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
+
 using UnityEngine;
 
 public class UIManager : MonoBehaviour

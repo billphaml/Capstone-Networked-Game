@@ -1,5 +1,6 @@
 /******************************************************************************
  * This Class is used to facilitate the local movement for the player.
+ * Used for test scene.
  * 
  * Authors: Bill, Hamza, Max, Ryan
  * ***************************************************************************/

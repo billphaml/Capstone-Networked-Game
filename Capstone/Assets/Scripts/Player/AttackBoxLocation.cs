@@ -1,5 +1,7 @@
 /******************************************************************************
  * Script to rotate hitbox around the player based on mouse direction.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

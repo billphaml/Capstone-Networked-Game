@@ -3,9 +3,7 @@
  * 
  * Authors: Bill, Hamza, Max, Ryan
  * ***************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using Photon.Realtime;
+
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +12,7 @@ public class GiveQuest : MonoBehaviour
 {
     public static GiveQuest theGiveQuest;
 
-     void Awake()
+    void Awake()
     {
             theGiveQuest = this;
     }
@@ -46,13 +44,12 @@ public class GiveQuest : MonoBehaviour
     {
         questWindow.SetActive(false);
         theQuest.isActive = true;
-        LocalGameManager.theLocalGameManager.addQuest(theQuest);
-        LocalGameManager.theLocalGameManager.updateQuestInfo();
+        LocalGameManager.theLocalGameManager.AddQuest(theQuest);
+        LocalGameManager.theLocalGameManager.UpdateQuestInfo();
     }
 
     public void closeQuest()
     {
         questWindow.SetActive(false);
     }
-
 }

@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * The purpose of this class is to represent the player's equipment in the
+ * equipment UI as a button. It connects with the EquipmentManager in order to
+ * tell the EquipmentManager to take the item off the player when they're
+ * "clicked". It connects to the Inventory in order to add its EquipItem into
+ * the inventory list when "clicked".
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/* This is the EquipmentSlot class
- * The purpose of this class is to represent the player's equipment in the equipment UI as a button.
- * It connects with the EquipmentManager in order to tell the EquipmentManager to take the item off the player when they're "clicked"
- * It connects to the Inventory in order to add its EquipItem into the inventory list when "clicked"
- * */
 public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
     public EquipmentManager theEquipmentManager;
@@ -38,7 +41,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         theSlotCanvas = GetComponent<CanvasGroup>();
     }
 
-    public void addItem(EquipItem iItem)
+    public void AddItem(EquipItem iItem)
     {
         theItem = iItem;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = iItem.itemImage;
@@ -48,7 +51,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         dropButton.interactable = true;
     }
 
-    public void clearSlot()
+    public void ClearSlot()
     {
         theItem = null;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
@@ -58,36 +61,35 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         //dropButton.interactable = false;
     }
 
-    public void onRemoveButton()
+    public void OnRemoveButton()
     {
-        theInventory.removeItem(theItem);
+        theInventory.RemoveItem(theItem);
     }
 
     public void UseItem()
     {
         if (theItem != null)
         {
-            if (theInventory.canAdd())
+            if (theInventory.CanAdd())
             {
                 GameItem returnItem = theItem;
-                theInventory.addItem(returnItem);
-                theEquipmentManager.removeFromInventory(theItem);
-                clearSlot();
+                theInventory.AddItem(returnItem);
+                theEquipmentManager.RemoveFromInventory(theItem);
+                ClearSlot();
             }
         }
     }
-
 
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
         {
-            Debug.Log("Did you just drop something");
-            DragItem theDragItem = dragItemHandler(eventData);
+            //Debug.Log("Did you just drop something");
+            DragItem theDragItem = DragItemHandler(eventData);
 
             if (theDragItem != null)
             {
-                insertEquipmentHandler(theDragItem.theItem,eventData);
+                InsertEquipmentHandler(theDragItem.theItem,eventData);
                 
             }
         }
@@ -100,7 +102,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("You are currently dragging");
+        //Debug.Log("You are currently dragging");
         if (theItem != null)
         {
             dragRectTransform.anchoredPosition += eventData.delta / theCanvas.scaleFactor;
@@ -109,7 +111,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("You begin dragging something");
+        //Debug.Log("You begin dragging something");
         if (theItem != null)
         {
             dragItem = Instantiate(itemImagePrefab, transform.parent.parent.parent, false);
@@ -124,7 +126,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("You just stopped dragging something");
+        //Debug.Log("You just stopped dragging something");
         if (theItem != null)
         {
             Object.Destroy(dragItem);
@@ -132,92 +134,92 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
             theSlotCanvas.blocksRaycasts = true;
             if (isDragSucess == true)
             {
-                theEquipmentManager.removeFromInventory(theItem);
+                theEquipmentManager.RemoveFromInventory(theItem);
                 isDragSucess = false;
             }
         }
     }
 
-    private void insertEquipmentHandler(GameItem theEquipment, PointerEventData eventData)
+    private void InsertEquipmentHandler(GameItem theEquipment, PointerEventData eventData)
     {
         switch (theEquipment.gameItemType)
         {
             case itemType.HEAD:
-                if(theEquipmentType == itemType.HEAD)
+                if (theEquipmentType == itemType.HEAD)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.ARMOR:
                 if (theEquipmentType == itemType.ARMOR)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.NECKLACE:
                 if (theEquipmentType == itemType.NECKLACE)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.RING:
                 if (theEquipmentType == itemType.RING)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.SWORD:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.GREATSWORD:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.DAGGER:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.BOW:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
             case itemType.MAGIC:
                 if (theEquipmentType == itemType.SWORD)
                 {
-                    equipItemHandler(theEquipment);
-                    isDragEventHandler(eventData);
+                    EquipItemHandler(theEquipment);
+                    IsDragEventHandler(eventData);
                 }
                 break;
         }
     }
 
-    private void equipItemHandler(GameItem theEquipment)
+    private void EquipItemHandler(GameItem theEquipment)
     {
-     GameItem returnItem = theEquipmentManager.equipItem((EquipItem)theEquipment);
-       if(returnItem != null)
+        GameItem returnItem = theEquipmentManager.equipItem((EquipItem)theEquipment);
+        if (returnItem != null)
         {
-            theInventory.addItem(returnItem);
+            theInventory.AddItem(returnItem);
         }
     }
 
-    private DragItem dragItemHandler(PointerEventData eventData)
+    private DragItem DragItemHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
@@ -233,7 +235,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         }
     }
 
-    private void isDragEventHandler(PointerEventData eventData)
+    private void IsDragEventHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
@@ -248,4 +250,4 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
             eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().isDragSucess = true;
         }
     }
-    }
+}

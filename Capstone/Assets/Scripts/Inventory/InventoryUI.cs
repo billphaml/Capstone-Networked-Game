@@ -1,10 +1,13 @@
 /******************************************************************************
  * Inventory UI class 
- * This class is used to set up each individual inventory slot and update it contents.
- * When the class start, it set up the inventory connection and equipment manager
- * connection to each individual inventoryslot under it in the hierarchy
- * It check for the Inventory's onItemChangedCallBack delegate to run updateInventory
- * which updates the look and content of each individual inventoryslot
+ * This class is used to set up each individual inventory slot and update it
+ * contents. When the class start, it set up the inventory connection and
+ * equipment manager connection to each individual inventoryslot under it in
+ * the hierarchy. It checks for the Inventory's onItemChangedCallBack delegate
+ * to run updateInventory which updates the look and content of each individual
+ * inventoryslot.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 #undef DEBUG
@@ -36,11 +39,11 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.inventoryItem.Count)
             {
-                itemSlot[i].addItem(inventory.inventoryItem[i]);
+                itemSlot[i].AddItem(inventory.inventoryItem[i]);
             }
             else
             {
-                itemSlot[i].clearSlot();
+                itemSlot[i].ClearSlot();
             }
         }
 #if DEBUG

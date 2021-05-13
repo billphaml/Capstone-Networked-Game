@@ -1,5 +1,7 @@
 /******************************************************************************
  * Manages interactions between the dialogue system and the rest of the game.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using MLAPI;
@@ -43,27 +45,27 @@ public class DialogueSystem : NetworkBehaviour
         }
     }
 
-    public void startDialogue(DialogueScene startScene)
+    public void StartDialogue(DialogueScene startScene)
     {
         theDialogueManager.StartDialogue(startScene);
     }
 
-    public void turnOnDialogue()
+    public void TurnOnDialogue()
     {
         isDialogueActive = true;
     }
 
-    public void turnOffDialogue()
+    public void TurnOffDialogue()
     {
         isDialogueActive = false;
     }
 
-    public void turnOnPlayerMovement()
+    public void TurnOnPlayerMovement()
     {
         ThePlayerMovement.turnOnMove();
     }
 
-    public void turnOffPlayerMovement()
+    public void TurnOffPlayerMovement()
     {
         ThePlayerMovement.turnOffMove();
     }

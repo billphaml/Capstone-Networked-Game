@@ -4,6 +4,8 @@
  * only manages health. To take or heal damage add the corresponding enemy
  * scripts.
  * 
+ * Authors: Bill, Hamza, Max, Ryan
+ * 
  * TODO:
  * - Retrieve max health value from PlayerController.PlayerStats.GetMaxHealth()
  *   or something along that line.

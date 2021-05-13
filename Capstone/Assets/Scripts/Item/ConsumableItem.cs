@@ -1,5 +1,7 @@
 /******************************************************************************
- * Item variant for consumables
+ * Item variant for consumables.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

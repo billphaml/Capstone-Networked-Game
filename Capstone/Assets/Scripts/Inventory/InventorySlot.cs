@@ -1,16 +1,18 @@
+/******************************************************************************
+ * The purpose of this class is to represent each individual "box" in a
+ * player's inventory. Each one of the InventorySlot is a button; when clicked,
+ * it called the UseItem method to differentiate each individual item's
+ * function based on type. It contact with the EquipmentManager in order to
+ * allows for equipment communication. Also implements drag and drop
+ * functionality of items.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-/* This is the InventorySlot class
- * The purpose of this class is to represent each individual "box" in a player's inventory
- * Each one of the InventorySlot is a button; when clicked, it called the UseItem method to differentiate each individual item's function based on type
- * It contact with the EquipmentManager in order to allows for equipment communication
- * 
- * Stores the Item value and maybe the item amount if we do item stacking
- * 
- * */
 
 public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
@@ -44,7 +46,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         theSlotCanvas = GetComponent<CanvasGroup>();
     }
 
-    public void addItem(GameItem iItem)
+    public void AddItem(GameItem iItem)
     {
         theItem = iItem;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = iItem.itemImage;
@@ -53,7 +55,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         dropButton.interactable = true;
     }
 
-    public void clearSlot()
+    public void ClearSlot()
     {
         theItem = null;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
@@ -65,7 +67,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("You begin dragging something");
-        if(theItem != null)
+        if (theItem != null)
         {
             dragItem = Instantiate(itemImagePrefab, transform.parent.parent.parent, false);
             dragItem.GetComponent<DragItem>().theItem = theItem;
@@ -80,7 +82,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("You are currently dragging" );
-        if(theItem != null)
+        if (theItem != null)
         {
             dragRectTransform.anchoredPosition += eventData.delta / theCanvas.scaleFactor;
         }
@@ -90,14 +92,14 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("You just stopped dragging something");
-        if(theItem != null)
+        if (theItem != null)
         {
             Object.Destroy(dragItem);
             theSlotCanvas.alpha = 1f;
             theSlotCanvas.blocksRaycasts = true;
             if(isDragSucess == true)
             {
-                theInventory.removeItem(theItem);
+                theInventory.RemoveItem(theItem);
                 isDragSucess = false;
             }
         }
@@ -109,30 +111,29 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         if (eventData.pointerDrag != null)
         {
             Debug.Log("Did you just drop something");
-            DragItem theDragItem = dragItemHandler(eventData);
+            DragItem theDragItem = DragItemHandler(eventData);
 
             if (theDragItem != null)
             {
-                theInventory.addItem(theDragItem.theItem);
-                isDragEventHandler(eventData);
+                theInventory.AddItem(theDragItem.theItem);
+                IsDragEventHandler(eventData);
             }
         }
     }
-
 
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("Clicked onto the inventory slot");
     }
 
-    public void onRemoveButton()
+    public void OnRemoveButton()
     {
-        theInventory.removeItem(theItem);
+        theInventory.RemoveItem(theItem);
     }
 
     public void UseItem()
     {
-        if(theItem != null)
+        if (theItem != null)
         {
             //theItem.useItem();
             switch (theItem.gameItemType)
@@ -147,19 +148,19 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
                     if(returnItem == null)
                     {
-                        theInventory.removeItem(theItem);
+                        theInventory.RemoveItem(theItem);
                     }
                     else
                     {
-                        theInventory.removeItem(theItem);
-                        theInventory.addItem(returnItem);
+                        theInventory.RemoveItem(theItem);
+                        theInventory.AddItem(returnItem);
                     }
                     break;
             }
         }
     }
 
-    private DragItem dragItemHandler(PointerEventData eventData)
+    private DragItem DragItemHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
@@ -175,7 +176,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         }
     }
 
-    private void isDragEventHandler(PointerEventData eventData)
+    private void IsDragEventHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)
         {
@@ -190,5 +191,4 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
             eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().isDragSucess = true;
         }
     }
-
 }

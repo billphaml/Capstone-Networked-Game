@@ -1,5 +1,7 @@
 /******************************************************************************
  * Scriptable object to store stat values for an enemy.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 public class Enemy : Actor
@@ -12,12 +14,12 @@ public class Enemy : Actor
         
     }
 
-    public Enemy(Enemy iEnemy) : base (iEnemy.actorName, iEnemy.actorDescription, iEnemy.getActorType(), iEnemy.getAttackType())
+    public Enemy(Enemy iEnemy) : base (iEnemy.actorName, iEnemy.actorDescription, iEnemy.GetActorType(), iEnemy.GetAttackType())
     {
         
     }
 
-    public Enemy(NPC iNPC) : base(iNPC.actorName, iNPC.actorDescription, iNPC.getActorType(), iNPC.getAttackType())
+    public Enemy(NPC iNPC) : base(iNPC.actorName, iNPC.actorDescription, iNPC.GetActorType(), iNPC.GetAttackType())
     {
 
     }

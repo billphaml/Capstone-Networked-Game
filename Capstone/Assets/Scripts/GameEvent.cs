@@ -1,11 +1,10 @@
 /******************************************************************************
- * This Class is a base class for events currently no direction
+ * Class to contain events that other scripts can trigger.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEvent : MonoBehaviour
@@ -18,15 +17,13 @@ public class GameEvent : MonoBehaviour
         theGameEvent = this;
     }
 
-
     public event Action <DialogueScene,int> onEndOfDialogueTrigger;
 
-    public void onEndOfDialogue(DialogueScene theDialogueScene, int branchNum)
+    public void OnEndOfDialogue(DialogueScene theDialogueScene, int branchNum)
     {
         if(onEndOfDialogueTrigger != null)
         {
             onEndOfDialogueTrigger(theDialogueScene , branchNum);
         }
     }
-
 }

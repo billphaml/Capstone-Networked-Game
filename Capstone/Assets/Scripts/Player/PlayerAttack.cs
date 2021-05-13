@@ -42,7 +42,7 @@ public class PlayerAttack : NetworkBehaviour
     public void UpdateAttack()
     {
         // These should back one time events or something instead of every update
-        weaponType = thePlayer.stats.thePlayer.getAttackType();
+        weaponType = thePlayer.stats.thePlayer.GetAttackType();
         damage = thePlayer.stats.thePlayer.playerAttack;
         //damage = thePlayer.stats.thePlayer.playerRange;
 

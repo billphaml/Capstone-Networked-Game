@@ -1,5 +1,7 @@
 /******************************************************************************
  * Variation of items to store items currently equipped.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;
@@ -17,7 +19,6 @@ public class EquipItem : GameItem
     public int addCriticalChance;
     public int addCriticalDamage;
     public int addResistance;
-
 
     // Item add onto actor statistic 
     [Header("Game Actor Statistic")]
@@ -38,7 +39,7 @@ public class EquipItem : GameItem
     public float itemRadius;
     public float itemAttackSpeed;
 
-     void Awake()
+    void Awake()
     {
         //gameItemType = itemType.HEAD;
     }
@@ -48,7 +49,7 @@ public class EquipItem : GameItem
         return this;
     }
 
-    public void removeFromInventory()
+    public void RemoveFromInventory()
     {
         //inventory.removeItem(this);
     }

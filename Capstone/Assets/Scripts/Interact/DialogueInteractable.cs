@@ -1,6 +1,6 @@
 /******************************************************************************
- * This Class is derived from interactable specifically for dialogues,
- * Interactable must be overrided.
+ * This Class is derived from interactable and is used to trigger dialogue
+ * between the player and a npc.
  * 
  * Authors: Bill, Hamza, Max, Ryan
  * ***************************************************************************/
@@ -19,7 +19,7 @@ public class DialogueInteractable : Interactable
     {
         if (DialogueSystem.theLocalGameManager.isDialogueActive == false)
         {
-            npc.triggerDialogue();
+            npc.TriggerDialogue();
         }
     }
 

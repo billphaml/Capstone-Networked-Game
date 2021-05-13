@@ -1,13 +1,13 @@
-/* This is the EquipmentManager Class
- * This class is used to facilitate the gameitem exchange from inventoryUI to EquipmentUI to Playerstat
- * It has an statEquipmentChanged in order to tell the playerStat to update the player's stats based on their equipped items
- **/
+/******************************************************************************
+ * This class is used to facilitate the gameitem exchange from inventoryUI to
+ * EquipmentUI to Playerstat. It has an statEquipmentChanged in order to tell
+ * the playerStat to update the player's stats based on their equipped items
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
 
 #undef DEBUG
 
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
@@ -36,28 +36,29 @@ public class EquipmentManager : MonoBehaviour
         switch (iEquipment.gameItemType)
         {
             case itemType.HEAD:
-                return playerHelmetHandler(iEquipment);
+                return PlayerHelmetHandler(iEquipment);
             case itemType.ARMOR:
-                return playerArmorHandler(iEquipment);
+                return PlayerArmorHandler(iEquipment);
             case itemType.NECKLACE:
-                return playerNecklaceHandler(iEquipment);
+                return PlayerNecklaceHandler(iEquipment);
             case itemType.RING:
-                return ringSlotHandler(iEquipment);
+                return RingSlotHandler(iEquipment);
             case itemType.SWORD:
-                return playerWeaponhandler(iEquipment);
+                return PlayerWeaponhandler(iEquipment);
             case itemType.GREATSWORD:
-                return playerWeaponhandler(iEquipment);
+                return PlayerWeaponhandler(iEquipment);
             case itemType.DAGGER:
-                return playerWeaponhandler(iEquipment);
+                return PlayerWeaponhandler(iEquipment);
             case itemType.BOW:
-                return playerWeaponhandler(iEquipment);
+                return PlayerWeaponhandler(iEquipment);
             case itemType.MAGIC:
-                return playerWeaponhandler(iEquipment);
+                return PlayerWeaponhandler(iEquipment);
             default:
                 return null;
         }
     }
-    private GameItem playerHelmetHandler(EquipItem iEquipment)
+
+    private GameItem PlayerHelmetHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
         if(thePlayerStat.playerHelmet != null)
@@ -79,7 +80,7 @@ public class EquipmentManager : MonoBehaviour
         return oldItem;
     }
 
-    private GameItem playerNecklaceHandler(EquipItem iEquipment)
+    private GameItem PlayerNecklaceHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
         if (thePlayerStat.playerNecklace != null)
@@ -101,7 +102,7 @@ public class EquipmentManager : MonoBehaviour
         return oldItem;
     }
 
-    private GameItem playerArmorHandler(EquipItem iEquipment)
+    private GameItem PlayerArmorHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
         if (thePlayerStat.playerArmor != null)
@@ -123,7 +124,7 @@ public class EquipmentManager : MonoBehaviour
         return oldItem;
     }
 
-    private GameItem playerWeaponhandler(EquipItem iEquipment)
+    private GameItem PlayerWeaponhandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
         if (thePlayerStat.playerWeapon != null)
@@ -145,7 +146,7 @@ public class EquipmentManager : MonoBehaviour
         return oldItem;
     }
 
-    private GameItem ringSlotHandler(EquipItem iEquipment)
+    private GameItem RingSlotHandler(EquipItem iEquipment)
     {
         GameItem oldItem = null;
         if(thePlayerStat.playerRingOne != null && thePlayerStat.playerRingTwo == null)
@@ -175,7 +176,7 @@ public class EquipmentManager : MonoBehaviour
         return oldItem;
     }
 
-    public void removeFromInventory(EquipItem iEquipment)
+    public void RemoveFromInventory(EquipItem iEquipment)
     {
         //theInventoryUserInterface.inventory.removeItem(iEquipment);
 #if DEBUG
@@ -197,7 +198,7 @@ public class EquipmentManager : MonoBehaviour
             }
         }
 
-        removeFromInventoryHandler(slotIndex);
+        RemoveFromInventoryHandler(slotIndex);
 
         //if (onEquipmentChanged != null)
         //{
@@ -210,7 +211,7 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void removeFromInventoryHandler(int iIndex)
+    public void RemoveFromInventoryHandler(int iIndex)
     {
         switch (iIndex)
         {
@@ -236,14 +237,14 @@ public class EquipmentManager : MonoBehaviour
 
     }
 
-    public int[] saveEquipped()
+    public int[] SaveEquipped()
     {
         int[] playerEquipped = new int[6];
 
-        for(int i = 0; i < playerEquipped.Length; i++)
+        for (int i = 0; i < playerEquipped.Length; i++)
         {
             EquipmentSlot equippedItem = currentEquipment[i];
-            if(equippedItem.theItem != null)
+            if (equippedItem.theItem != null)
             {
                 playerEquipped[i] = equippedItem.theItem.itemID;
             }
@@ -251,10 +252,8 @@ public class EquipmentManager : MonoBehaviour
             {
                 playerEquipped[i] = -1;
             }
-            
         }
 
         return playerEquipped;
     }
-
 }

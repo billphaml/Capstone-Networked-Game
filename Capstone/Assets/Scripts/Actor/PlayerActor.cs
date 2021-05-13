@@ -1,19 +1,16 @@
 /******************************************************************************
- * This Class is derived from actor and contains the stats of the player as well
- * as the inventory and equipped items for when the player saves. It can be
- * read in to load the player data.
+ * This Class is derived from actor and contains the stats of the player as 
+ * well as the inventory and equipped items for when the player saves. It can
+ * be read in to load the player data.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
+ *****************************************************************************/
+
 using UnityEngine;
 
 [System.Serializable]
 public class PlayerActor : Actor
 {
-
-
     [Header("Player Final Stats")]
     public int playerStrength = 10;
     public int playerMagic = 10;
@@ -37,9 +34,8 @@ public class PlayerActor : Actor
 
     }
 
-    public PlayerActor(PlayerActor iPlayer) : base(iPlayer.actorName, iPlayer.actorDescription, iPlayer.getActorType(), iPlayer.getAttackType())
+    public PlayerActor(PlayerActor iPlayer) : base(iPlayer.actorName, iPlayer.actorDescription, iPlayer.GetActorType(), iPlayer.GetAttackType())
     {
 
     }
-
 }

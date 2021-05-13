@@ -3,12 +3,11 @@
  * methods from the respective classes that have them and loads the save.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
+
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Unity.VisualScripting;
-
 
 [System.Serializable]
 public static class SaveSystem
@@ -18,9 +17,9 @@ public static class SaveSystem
         Debug.Log("This is the player" + player.ToString());
 
         GameObject theInventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
-        player.thePlayer.inventory = theInventoryManager.GetComponent<Inventory>().saveInventory();
+        player.thePlayer.inventory = theInventoryManager.GetComponent<Inventory>().SaveInventory();
         
-        player.thePlayer.equipment = theInventoryManager.GetComponent<EquipmentManager>().saveEquipped();
+        player.thePlayer.equipment = theInventoryManager.GetComponent<EquipmentManager>().SaveEquipped();
         SavePlayerHelper(player);
     }
 

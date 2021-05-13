@@ -1,5 +1,7 @@
 /******************************************************************************
- * Controls player movement.
+ * Logic for moving player.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

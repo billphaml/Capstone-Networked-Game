@@ -1,16 +1,18 @@
+/******************************************************************************
+ * The purpose of this class is to act as the player's backend inventory. 
+ * It contains a GameItem list and an inventory space int that acts as the
+ * maximum size of the inventory. It uses an OnItemChanged delegate in order
+ * to let other classes knows when an item is added to the inventory list or
+ * removed from it.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
+ *****************************************************************************/
+
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-/* This is the Inventory class
- * The purpose of this class is to act as the player's backend inventory. 
- * It contains a GameItem list and an inventory space int that acts as the maximum size of the inventory
- * It uses an OnItemChanged delegate in order to let other classes knows when an item is added to the inventory list or removed from it.
- **/ 
- 
 public class Inventory : MonoBehaviour
 {
-
     public ItemDatabase theItemDatabase;
 
     public delegate void OnItemChanged();
@@ -21,27 +23,25 @@ public class Inventory : MonoBehaviour
 
     public int inventorySpace = 28;
 
-    public void addItem(GameItem iItem)
+    public void AddItem(GameItem iItem)
     {
         inventoryItem.Add(iItem);
 
-        if (onItemChangedCallBack != null)
-             onItemChangedCallBack.Invoke();
+        if (onItemChangedCallBack != null) onItemChangedCallBack.Invoke();
     }
 
-    public void removeItem(GameItem iItem)
+    public void RemoveItem(GameItem iItem)
     {
         inventoryItem.Remove(iItem);
 
-        if (onItemChangedCallBack != null)
-            onItemChangedCallBack.Invoke();
+        if (onItemChangedCallBack != null) onItemChangedCallBack.Invoke();
     }
 
     /// <summary>
     /// Returns a true if player has empty inventory slot.
     /// </summary>
     /// <returns></returns>
-    public bool canAdd()
+    public bool CanAdd()
     {
         if (inventoryItem.Count < inventorySpace)
         {
@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public int[] saveInventory() 
+    public int[] SaveInventory() 
     {
         int[] playerInventory =  new int[28];
         for (int i = 0; i <playerInventory.Length; i++)

@@ -1,11 +1,13 @@
 /******************************************************************************
- * This Class is a helper class that can be added to the savemanager. It allows
- * us to call the methods in SaveSystem.cs.
+ * This class is a helper class that is added to the savemanager object to
+ * allows us to call the methods in SaveSystem.cs.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
+
 using MLAPI;
 using UnityEngine;
+
 public class SaveManager : MonoBehaviour
 {
     public ItemDatabase database;
@@ -46,7 +48,7 @@ public class SaveManager : MonoBehaviour
             {
                 GameItem item = database.getItem[id];
                 Debug.Log("Lol This is the item ID " + id);
-                FindObjectOfType<Inventory>().addItem(item);
+                FindObjectOfType<Inventory>().AddItem(item);
             }
         }
     }

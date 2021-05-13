@@ -7,9 +7,8 @@
  * 
  * TODO:
  * - Add player searching to Update
- * - Add enemy health less than zero destroy logic
- * - Update enemy take damage logic
- * - Uncomment player distance chase check
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 // Uncomment for debug mode

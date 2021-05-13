@@ -8,6 +8,8 @@
  * TODO:
  * - Retrieve max health value from EnemyController.EnemyStats.GetMaxHealth()
  *   or something along that line.
+ *   
+ *   Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

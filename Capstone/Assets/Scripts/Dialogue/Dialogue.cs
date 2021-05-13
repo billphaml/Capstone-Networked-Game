@@ -1,6 +1,8 @@
 /******************************************************************************
  * Class to create instances of dialogue for DialogueScene.cs. Each instance
  * is a block of dialogue that belongs to a dialogue scene.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

@@ -1,16 +1,14 @@
 /******************************************************************************
- * This Class is the base class from which all actors derive from
+ * This class is the base class from which all actors derive from. Actors are
+ * classes which contain information about the object such as it's stats,
+ * items, dialogue, etc.
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ *****************************************************************************/
 
 [System.Serializable]
 public class Actor
 {
-
     public enum actorType
     {
         PLAYER,
@@ -39,14 +37,11 @@ public class Actor
     private int currentManaPoint = 20; // stat showing the playuer's current mana.
     private int actorLevel = 1; // Stat determining the level of the player. Used to show progression.
 
-
-
     // Defining Traits
     public string actorName; // The actor's name
     public string actorDescription; //  The Description for the actor
     public actorType theActorType; // Determine whether the actor is NPC or not
     public attackType theAttackType; // Determine the attack type of the actor
-
 
     // Actor Statistic
     private int actorBaseStrength = 10; // Stat used to calculate the attacking stat.
@@ -72,28 +67,27 @@ public class Actor
         theAttackType = theAttack;
     }
 
-    public void setActorType(actorType theType)
+    public void SetActorType(actorType theType)
     {
         theActorType = theType;
     }
 
-    public actorType getActorType()
+    public actorType GetActorType()
     {
         return theActorType;
     }
 
-    public void setAttackType(attackType theType)
+    public void SetAttackType(attackType theType)
     {
         theAttackType = theType;
     }
 
-    public attackType getAttackType()
+    public attackType GetAttackType()
     {
         return theAttackType;
     }
 
-    //
-    public void setMaxHitPoint(int iHP)
+    public void SetMaxHitPoint(int iHP)
     {
         if (iHP > 0)
         {
@@ -101,18 +95,16 @@ public class Actor
         }
     }
 
-    //
-    public int getMaxHitPoint()
+    public int GetMaxHitPoint()
     {
         return hitPoint;
     }
 
-    //
-    public void setHitPoint(int iHP)
+    public void SetHitPoint(int iHP)
     {
-        if ((currentHitpoint + iHP) > getMaxHitPoint())
+        if ((currentHitpoint + iHP) > GetMaxHitPoint())
         {
-            currentHitpoint = getMaxHitPoint();
+            currentHitpoint = GetMaxHitPoint();
         }
         else
         {
@@ -120,14 +112,12 @@ public class Actor
         }
     }
 
-    //
-    public int getHitPoint()
+    public int GetHitPoint()
     {
         return hitPoint;
     }
 
-    //
-    public void setMaxStamina(int iStam)
+    public void SetMaxStamina(int iStam)
     {
         if (iStam >= 0)
         {
@@ -135,18 +125,16 @@ public class Actor
         }
     }
 
-    //
-    public int getMaxStamina()
+    public int GetMaxStamina()
     {
         return staminaPoint;
     }
 
-    //
-    public void setStamina(int iStam)
+    public void SetStamina(int iStam)
     {
-        if ((currentStaminaPoint + iStam) > getMaxStamina())
+        if ((currentStaminaPoint + iStam) > GetMaxStamina())
         {
-            currentStaminaPoint = getMaxStamina();
+            currentStaminaPoint = GetMaxStamina();
         }
         else if ((currentStaminaPoint + iStam) < 0)
         {
@@ -158,12 +146,12 @@ public class Actor
         }
     }
 
-    public int getStamina()
+    public int GetStamina()
     {
         return currentStaminaPoint;
     }
 
-    public void setMaxMana(int iMana)
+    public void SetMaxMana(int iMana)
     {
         if (iMana > 0)
         {
@@ -171,16 +159,16 @@ public class Actor
         }
     }
 
-    public int getMaxMana()
+    public int GetMaxMana()
     {
         return manaPoint;
     }
 
-    public void setMana(int iMana)
+    public void SetMana(int iMana)
     {
-        if ((currentManaPoint + iMana) > getMaxMana())
+        if ((currentManaPoint + iMana) > GetMaxMana())
         {
-            currentManaPoint = getMaxMana();
+            currentManaPoint = GetMaxMana();
 
         } else if ((currentManaPoint + iMana) < 0)
         {
@@ -192,9 +180,7 @@ public class Actor
         }
     }
 
-
-
-    public void setLevel(int iLevel)
+    public void SetLevel(int iLevel)
     {
         if (iLevel > 0)
         {
@@ -202,7 +188,7 @@ public class Actor
         }
     }
 
-    public void addLevel()
+    public void AddLevel()
     {
         if (actorLevel < 100)
         {
@@ -210,12 +196,12 @@ public class Actor
         }
     }
 
-    public int getLevel()
+    public int GetLevel()
     {
         return actorLevel;
     }
 
-    public void setStrength(int iStrength)
+    public void SetStrength(int iStrength)
     {
         if (iStrength <= 0)
         {
@@ -227,12 +213,12 @@ public class Actor
         }
     }
 
-    public int getStrength()
+    public int GetStrength()
     {
         return actorBaseStrength;
     }
 
-    public void setMagic(int iMagic)
+    public void SetMagic(int iMagic)
     {
         if (iMagic <= 0)
         {
@@ -245,12 +231,12 @@ public class Actor
 
     }
 
-    public int getMagic()
+    public int GetMagic()
     {
         return actorBaseMagic;
     }
 
-    public void setDexterity(int iDex)
+    public void SetDexterity(int iDex)
     {
         if (iDex <= 0)
         {
@@ -262,14 +248,14 @@ public class Actor
         }
     }
 
-    public int getDexterity()
+    public int GetDexterity()
     {
         return actorBaseDexterity;
     }
 
-    public void setConstitution(int iCon)
+    public void SetConstitution(int iCon)
     {
-        if(iCon <= 0)
+        if (iCon <= 0)
         {
             actorBaseConstitution = 1;
         }
@@ -279,14 +265,14 @@ public class Actor
         }
     }
 
-    public int getConstitution()
+    public int GetConstitution()
     {
         return actorBaseConstitution;
     }
 
-    public void setAttack(int iAttack)
+    public void SetAttack(int iAttack)
     {
-        if(iAttack < 0)
+        if (iAttack < 0)
         {
             actorBaseAttack = 0;
         }
@@ -296,14 +282,14 @@ public class Actor
         }
     }
 
-    public int getAttack()
+    public int GetAttack()
     {
         return actorBaseAttack;
     }
 
-    public void setDefense(int iDefense)
+    public void SetDefense(int iDefense)
     {
-        if(iDefense < 0)
+        if (iDefense < 0)
         {
             actorBaseDefense = 0;
         }
@@ -313,14 +299,14 @@ public class Actor
         }
     }
 
-    public int getDefense()
+    public int GetDefense()
     {
         return actorBaseDefense;
     }
 
-    public void setMagicResistance(int iResist)
+    public void SetMagicResistance(int iResist)
     {
-        if(iResist < 0)
+        if (iResist < 0)
         {
             actorBaseMagicResistance = 0;
         }
@@ -330,12 +316,12 @@ public class Actor
         }
     }
 
-    public int getMagicResistance()
+    public int GetMagicResistance()
     {
         return actorBaseMagicResistance;
     }
 
-    public void setSpeed(float iSpeed)
+    public void SetSpeed(float iSpeed)
     {
         if (iSpeed < 0)
         {
@@ -351,18 +337,18 @@ public class Actor
         }
     }
 
-    public float getSpeed()
+    public float GetSpeed()
     {
         return actorBaseSpeed;
     }
 
     // Multiply the float by 100.
-    public void setCritChance(float iCrit)
+    public void SetCritChance(float iCrit)
     {
-        if(iCrit < 0.15f)
+        if (iCrit < 0.15f)
         {
             actorBaseCriticalChance = 0.15f;
-        } else if(iCrit > 1f)
+        } else if (iCrit > 1f)
         {
             actorBaseCriticalChance = 1f;
         }
@@ -372,17 +358,17 @@ public class Actor
         }
     }
 
-    public float getCritChance()
+    public float GetCritChance()
     {
         return actorBaseCriticalChance;
     }
 
-    public void setCritDamage(float iCrit)
+    public void SetCritDamage(float iCrit)
     {
-        if(iCrit < 0.01)
+        if (iCrit < 0.01)
         {
             actorBaseCriticalDamage = 0f;
-        } else if(iCrit > 4.5f)
+        } else if (iCrit > 4.5f)
         {
             actorBaseCriticalDamage = 4.5f;
         }
@@ -392,13 +378,12 @@ public class Actor
         }
     }
 
-    public float getCritDamage()
+    public float GetCritDamage()
     {
         return actorBaseCriticalDamage;
     }
 
-
-    public void setResistance(float iResist)
+    public void SetResistance(float iResist)
     {
         if (iResist > 1f)
         {
@@ -414,9 +399,8 @@ public class Actor
         }
     }
 
-    public float getResistance()
+    public float GetResistance()
     {
         return actorBaseResistance;
     }
-
 }

@@ -3,6 +3,8 @@
  * 
  * TODO:
  * - Uncomment player dest set once player search is implemented
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;

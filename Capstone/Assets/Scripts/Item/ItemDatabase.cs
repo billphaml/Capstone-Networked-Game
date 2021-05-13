@@ -1,5 +1,7 @@
 /******************************************************************************
  * Scriptable object to store items.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using System.Collections.Generic;

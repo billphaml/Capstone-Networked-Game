@@ -1,6 +1,8 @@
 /******************************************************************************
  * Class to store the npc's stats. Also stores and triggers the npc's
  * dialogue.
+ * 
+ * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
 using UnityEngine;
@@ -9,6 +11,7 @@ using MLAPI;
 public class NPCBehavior : NetworkBehaviour
 {
     public NPC actorIdentity;
+
     public DialogueScene theDialogue;
 
     public string npcName;
@@ -18,37 +21,31 @@ public class NPCBehavior : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startSetup();
+        StartSetup();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //theManager.getActive() == false
-    }
-
-    public void startSetup()
+    public void StartSetup()
     {
         actorIdentity = new NPC(npcName, npcDesc, Actor.actorType.NPC, Actor.attackType.SWORD);
-        if(theDialogue != null)
+        if (theDialogue != null)
         {
-            actorIdentity.setDialogue(theDialogue);
+            actorIdentity.SetDialogue(theDialogue);
         }
         else
         {
-            actorIdentity.setDialogue((DialogueScene)Resources.Load("Scene_Dialogue/Golem_Slayer"));
+            actorIdentity.SetDialogue((DialogueScene)Resources.Load("Scene_Dialogue/Golem_Slayer"));
         }
-        GameEvent.theGameEvent.onEndOfDialogueTrigger += onEndOfDialogue;
+        GameEvent.theGameEvent.onEndOfDialogueTrigger += OnEndOfDialogue;
     }
 
-    public void triggerDialogue()
+    public void TriggerDialogue()
     {
-        DialogueSystem.theLocalGameManager.startDialogue(actorIdentity.getDialogue());
+        DialogueSystem.theLocalGameManager.StartDialogue(actorIdentity.GetDialogue());
     }
 
-    private void onEndOfDialogue(DialogueScene theDialogueScene, int branchNum)
+    private void OnEndOfDialogue(DialogueScene theDialogueScene, int branchNum)
     {
-        if(actorIdentity.theDialogue == theDialogueScene)
+        if (actorIdentity.theDialogue == theDialogueScene)
         {
             DialogueScene returnDialogue = DialogueEventHandler.theDialogueHandler.ProcessDialogue(theDialogueScene, branchNum);
             if (returnDialogue != null) actorIdentity.theDialogue = returnDialogue;
@@ -57,6 +54,6 @@ public class NPCBehavior : NetworkBehaviour
 
     private void OnDestroy()
     {
-        GameEvent.theGameEvent.onEndOfDialogueTrigger -= onEndOfDialogue;
+        GameEvent.theGameEvent.onEndOfDialogueTrigger -= OnEndOfDialogue;
     }
 }
