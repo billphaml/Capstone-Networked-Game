@@ -29,13 +29,13 @@ public class LocalGameManager : MonoBehaviour
         for(int i = 0; i < currentQuest.Count; i++)
         {
             //if(currentQuest[i].isActive)
-            currentQuest[i].goal.killCount();
+            currentQuest[i].goal.KillCount();
 
             if (currentQuest[i].goal.goalCompleted())
             {
                 // add experience to the player
                 // add gold to the player
-                currentQuest[i].complete();
+                currentQuest[i].Complete();
                 currentQuest.Remove(currentQuest[i]);
             }
         }
