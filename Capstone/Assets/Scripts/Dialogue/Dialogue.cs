@@ -25,7 +25,7 @@ public class Dialogue
 
     public int branchNext;
 
-    public Quest theQuest;
+    public ScriptableQuest theQuest;
 
     public Dialogue[] dialogueResponse;
    

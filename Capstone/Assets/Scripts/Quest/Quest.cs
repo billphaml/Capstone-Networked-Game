@@ -1,22 +1,18 @@
 /******************************************************************************
- * This Class is the overall quest. It contains variables that help us determine
- * what type of quest it is as well as if it is active, repeatable, and the
- * rewards.
+ * This Class is the quest class. It uses a scriptable quest data to create a 
+ * quest object for quest manager to keep track of for the players to compelte
+ * It also helps facilitate saving and loading of quests
  * 
  * Authors: Bill, Hamza, Max, Ryan
- * ***************************************************************************/
+ *****************************************************************************/
 
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "New Quest", menuName = "Event/Quest")]
 [System.Serializable]
-public class Quest: ScriptableObject
+public class Quest
 {
-    public bool isActive;
+    public int questID;
     public bool Repeatable; //If not repeatable check that timesCompleted is not >= 1
 
     public string title;
-    [TextArea(5, 10)]
     public string description;
     public int experienceReward;
     public int goldReward;
@@ -25,9 +21,8 @@ public class Quest: ScriptableObject
 
     private int timeCompleted = 0;
 
-    public void complete()
+    public void Complete()
     {
-        isActive = false;
         timeCompleted++;
     }
 }
