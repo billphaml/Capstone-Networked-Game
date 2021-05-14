@@ -46,14 +46,6 @@ public class EnemyMovement : NetworkBehaviour
 
     private void Start()
     {
-        // Could probably set this to happen only on server, not sure if references waste memory
-        ec = gameObject.GetComponent<EnemyController>();
-        agent = gameObject.GetComponent<NavMeshAgent>();
-    }
-
-    public override void NetworkStart()
-    {
-        base.NetworkStart();
         ec = gameObject.GetComponent<EnemyController>();
         agent = gameObject.GetComponent<NavMeshAgent>();
     }
@@ -146,7 +138,7 @@ public class EnemyMovement : NetworkBehaviour
 
             if (RandomPoint(transform.position, 10.0f, out newDest))
             {
-                Debug.DrawLine(newDest, Vector3.up, Color.yellow, 1.0f);
+                Debug.DrawLine(newDest, Vector3.zero, Color.yellow, 1.0f);
             }
 
             ec.fsm.isPatroling = true;
@@ -180,7 +172,8 @@ public class EnemyMovement : NetworkBehaviour
     }
 
     /// <summary>
-    /// Returns a random position around a specified vector3.
+    /// Returns a random position around a specified origin. Point must exist
+    /// on the navmesh to be considered valid.
     /// </summary>
     /// <param name="center"></param>
     /// <param name="range"></param>
