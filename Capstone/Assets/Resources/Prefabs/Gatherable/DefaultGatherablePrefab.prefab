@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a9f84881abde25b48904c0ff67bca145, type: 2}
+  - {fileID: 2100000, guid: 72a909f13987ab14eba007ec607fcffb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,11 +146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactUI: {fileID: 0}
+  item: {fileID: 9216264659743694033, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
   unharvested: {fileID: 21300000, guid: 8b72b0ad3c12eca4f8c60853094c33fb, type: 3}
   harvested: {fileID: 21300080, guid: c3a40e1c46727b94e959990527f8e7fa, type: 3}
   unharvestedSpriteOffset: {x: 0, y: 0, z: 0}
   harvestedSpriteOffset: {x: 0, y: -0.53, z: 0}
-  item: {fileID: 9216264659743694033, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+  harvestDelayTime: 180
 --- !u!114 &3745493484847932473
 MonoBehaviour:
   m_ObjectHideFlags: 0
