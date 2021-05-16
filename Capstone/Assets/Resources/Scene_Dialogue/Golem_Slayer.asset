@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
   m_Name: Golem_Slayer
   m_EditorClassIdentifier: 
-  SceneDialogue:
+  sceneDialogue:
   - eventPrerequisite: 
     branchNum: 0
     speakerName: Barone
-    dialogueText: Some punk started practicing alchemy without the proper licenses.
-      Now, we got a roaming animated golems problem causing troubles on our hand.
-      Think you can take down 10 of them?
+    dialogueText: Some punks been practicing alchemy and animating golems without
+      the proper licenses. Now we have a bunch of golems outside of town wreaking
+      havoc and causing untold damages. You think you can put a few of them to rest?
     canType: 0
     typeTime: -1
     branchNext: 0
@@ -26,8 +26,8 @@ MonoBehaviour:
     dialogueResponse:
     - eventPrerequisite: 
       branchNum: 0
-      speakerName: Player
-      dialogueText: Hell yeah, give me the task.
+      speakerName: playername
+      dialogueText: Hell yeah, give me the quest.
       canType: 1
       typeTime: 0
       branchNext: 1
@@ -35,28 +35,10 @@ MonoBehaviour:
       dialogueResponse: []
     - eventPrerequisite: 
       branchNum: 0
-      speakerName: Player
-      dialogueText: Nope, I am not going anywhere near a goblin.
+      speakerName: playername
+      dialogueText: Hell no, I'm not going anywhere near a golem.
       canType: 1
       typeTime: 0
-      branchNext: 2
+      branchNext: 1
       theQuest: {fileID: 0}
       dialogueResponse: []
-  - eventPrerequisite: 
-    branchNum: 1
-    speakerName: Barone
-    dialogueText: Good, I'll wait for your update.
-    canType: 0
-    typeTime: 0
-    branchNext: 0
-    theQuest: {fileID: 0}
-    dialogueResponse: []
-  - eventPrerequisite: 
-    branchNum: 2
-    speakerName: Barone
-    dialogueText: Hmph, don't waste my time kid.
-    canType: 0
-    typeTime: 0
-    branchNext: 0
-    theQuest: {fileID: 0}
-    dialogueResponse: []
