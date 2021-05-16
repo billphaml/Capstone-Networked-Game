@@ -20,7 +20,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public GameItem theItem;
     public GameObject itemImagePrefab;
     public bool isResult;
-    int itemAmount = 0;
+    //int itemAmount = 0;
 
     public GameItem returnItem;
 
@@ -54,7 +54,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         theItem = null;
         returnItem = null;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
-        itemAmount = 0;
+        //itemAmount = 0;
         itemAmountText.text = "";
         dropButton.interactable = false;
     }

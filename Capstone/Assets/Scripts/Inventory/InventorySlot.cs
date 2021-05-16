@@ -9,6 +9,9 @@
  * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
+// Comment out to debug
+#undef DEBUG
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,7 +31,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public GameObject itemImagePrefab;
 
-    int itemAmount = 0;
+    //int itemAmount = 0;
 
     public Canvas theCanvas;
     private CanvasGroup theSlotCanvas;
@@ -59,14 +62,16 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     {
         theItem = null;
         transform.GetChild(0).GetComponentInChildren<Image>().sprite = emptyImage;
-        itemAmount = 0;
+        //itemAmount = 0;
         itemAmountText.text = "";
         dropButton.interactable = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+#if DEBUG
         Debug.Log("You begin dragging something");
+#endif
         if (theItem != null)
         {
             dragItem = Instantiate(itemImagePrefab, transform.parent.parent.parent, false);
@@ -81,7 +86,9 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
+#if DEBUG
         Debug.Log("You are currently dragging" );
+#endif
         if (theItem != null)
         {
             dragRectTransform.anchoredPosition += eventData.delta / theCanvas.scaleFactor;
@@ -91,7 +98,9 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
+#if DEBUG
         Debug.Log("You just stopped dragging something");
+#endif
         if (theItem != null)
         {
             Object.Destroy(dragItem);
@@ -110,7 +119,9 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
         if (eventData.pointerDrag != null)
         {
+#if DEBUG
             Debug.Log("Did you just drop something");
+#endif
             DragItem theDragItem = DragItemHandler(eventData);
 
             if (theDragItem != null)
@@ -123,7 +134,9 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+#if DEBUG
         Debug.Log("Clicked onto the inventory slot");
+#endif
     }
 
     public void OnRemoveButton()

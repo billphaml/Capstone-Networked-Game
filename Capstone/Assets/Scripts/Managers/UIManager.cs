@@ -22,8 +22,8 @@ public class UIManager : MonoBehaviour
     [Header("Android")]
     [SerializeField] private GameObject androidUI = null;
 
-    [Header("Dialogue")]
-    [SerializeField] private DialogueSystem localDialogueManager = null;
+    //[Header("Dialogue")]
+    //[SerializeField] private DialogueSystem localDialogueManager = null;
 
     [Header("Crafting")]
     private bool isOpenCrafting = false;

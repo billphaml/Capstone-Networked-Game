@@ -44,7 +44,7 @@ public class EquipItem : GameItem
         //gameItemType = itemType.HEAD;
     }
 
-    public EquipItem GetThis()
+    public new EquipItem GetThis()
     {
         return this;
     }

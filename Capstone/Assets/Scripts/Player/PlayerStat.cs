@@ -154,8 +154,8 @@ public class PlayerStat : NetworkBehaviour
          float playerCriticalChance = 0;
          float playerCriticalDamage = 0;
          float playerResistance = 0;
-         float playerRange = 0;
-         float playerSwingSpeed = 0;
+         //float playerRange = 0;
+         //float playerSwingSpeed = 0;
 
         if (playerHelmet != null)
         {

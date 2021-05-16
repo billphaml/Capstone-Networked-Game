@@ -22,7 +22,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     public Button dropButton;
     public EquipItem theItem;
     public GameObject itemImagePrefab;
-    int itemAmount = 0;
+    //int itemAmount = 0;
 
     public itemType theEquipmentType;
     /// <summary>
