@@ -9,6 +9,28 @@
 [System.Serializable]
 public class Quest
 {
+    //Quest constructor for importing from a scriptable object
+    public Quest(ScriptableQuest import) {
+        this.questID = import.questID;
+        this.Repeatable = import.Repeatable;
+        this.title = import.title;
+        this.description = import.description;
+        this.experienceReward = import.experienceReward;
+        this.goldReward = import.goldReward;
+        this.goal = import.goal;
+
+    }
+    //Quest constructor for importing all feilds
+    public Quest(int ID, bool rep, string tit, string desc, int exp, int gold, QuestGoal gol) {
+        questID = ID;
+        Repeatable = rep;
+        title = tit;
+        description = desc;
+        experienceReward = exp;
+        goldReward = gold;
+        goal = gol;
+    }
+
     public int questID;
     public bool Repeatable; //If not repeatable check that timesCompleted is not >= 1
 

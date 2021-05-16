@@ -47,7 +47,7 @@ public class LocalGameManager : MonoBehaviour
         if (currentQuest.Count < 1)
         {
             // Convert Scriptable Quest into Quest and add it into the currentQuestList
-            //currentQuest.Add(theQuest);
+            currentQuest.Add(new Quest(theQuest));
             return true;
         }
         else
