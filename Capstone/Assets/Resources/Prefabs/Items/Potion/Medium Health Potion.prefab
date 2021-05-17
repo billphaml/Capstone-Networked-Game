@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 10ba6b201de4c934ab18ef1c176eb280, type: 2}
     - target: {fileID: 9216264659743694035, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_Name
-      value: Large Health Potion
+      value: Medium Health Potion
       objectReference: {fileID: 0}
     - target: {fileID: 9216264659743694046, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_RootOrder
@@ -58,6 +58,14 @@ PrefabInstance:
     - target: {fileID: 9216264659743694046, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216264659743694047, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+      propertyPath: PrefabHash
+      value: 7936347848335408487
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216264659743694047, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+      propertyPath: PrefabHashGenerator
+      value: Medium Health Potion
       objectReference: {fileID: 0}
     - target: {fileID: 9216264660328451103, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_Sprite

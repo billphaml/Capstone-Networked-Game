@@ -59,6 +59,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9216264659743694047, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+      propertyPath: PrefabHash
+      value: 17107289864265518071
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216264659743694047, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+      propertyPath: PrefabHashGenerator
+      value: Fish
+      objectReference: {fileID: 0}
     - target: {fileID: 9216264660328451103, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_Sprite
       value: 

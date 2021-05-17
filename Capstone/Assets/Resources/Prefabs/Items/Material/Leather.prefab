@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b962136a414ebc54593c8e61afb8b47f, type: 2}
     - target: {fileID: 9216264659743694035, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_Name
-      value: Wood 1
+      value: Leather
       objectReference: {fileID: 0}
     - target: {fileID: 9216264659743694046, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_RootOrder
@@ -58,6 +58,14 @@ PrefabInstance:
     - target: {fileID: 9216264659743694046, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216264659743694047, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+      propertyPath: PrefabHash
+      value: 7687540258263328104
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216264659743694047, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
+      propertyPath: PrefabHashGenerator
+      value: Leather
       objectReference: {fileID: 0}
     - target: {fileID: 9216264660328451103, guid: 8c32a86eb7a06ef448f1398ac84a58e3, type: 3}
       propertyPath: m_Sprite
