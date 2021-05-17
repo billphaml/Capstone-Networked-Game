@@ -5,8 +5,9 @@
  *****************************************************************************/
 
 using UnityEngine;
+using MLAPI;
 
-public class PlayerAnimation : MonoBehaviour
+public class PlayerAnimation : NetworkBehaviour
 {
     [SerializeField] private Animator animator = null;
 
@@ -23,7 +24,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (animator != null)
+        if (animator != null && IsLocalPlayer)
         {
             UpdateSpriteDir();
 

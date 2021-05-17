@@ -106,5 +106,6 @@ public class PlayerMovement : NetworkBehaviour
     public void turnOffMove()
     {
         canMove = false;
+        moveVector = Vector3.zero;
     }
 }
