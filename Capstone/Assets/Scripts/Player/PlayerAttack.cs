@@ -5,6 +5,8 @@
  * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
+#undef DEBUG
+
 using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Messaging;
@@ -57,7 +59,9 @@ public class PlayerAttack : NetworkBehaviour
                     MeleeAttack();
                     break;
                 case Actor.attackType.SWORD:
+#if DEBUG
                     Debug.Log("sword");
+#endif  
                     MeleeAttack();
                     break;
                 case Actor.attackType.GREATSWORD:
@@ -82,25 +86,35 @@ public class PlayerAttack : NetworkBehaviour
     /// <param name="rpcParams"></param>
     void MeleeAttack()
     {
+#if DEBUG
         Debug.Log("using melee");
+#endif
         //range hard coded replace 1 with range later
         Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackBox.transform.position, new Vector2(1, 1), 0, whatIsEnemy);
         //hitmarker spawn will telport on hit
+#if DEBUG
         Debug.Log(range);
+#endif
         foreach (var currentEnemy in enemiesToDamage)
         {
+#if DEBUG
             Debug.Log("bro");
+#endif
             // Skip if you already damaged this enemy
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
             
             currentEnemy.GetComponent<EnemyDamageable>().DealDamage(damage);
             //Instantiate(hitMarker, currentEnemy.transform.position, Quaternion.identity);
+#if DEBUG
             Debug.Log("hit" + currentEnemy);
+#endif
 
             // Add the damaged enemy to the list
             alreadyDamagedEnemies.Add(currentEnemy);
         }
+#if DEBUG
         Debug.Log(alreadyDamagedEnemies);
+#endif
         alreadyDamagedEnemies.Clear();
     }
 

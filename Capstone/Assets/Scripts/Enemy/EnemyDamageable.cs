@@ -18,12 +18,12 @@ public class EnemyDamageable : NetworkBehaviour
     /// <summary>
     /// Reference to health component. Make sure one exists on this object.
     /// </summary>
-    [SerializeField] private EnemyHealth health = null;
+    private EnemyHealth health = null;
 
     /// <summary>
     /// Similar to awake but for occurs when all clients are synced.
     /// </summary>
-    private void Start()
+    public virtual void Start()
     {
         health = gameObject.GetComponent<EnemyHealth>();
     }
@@ -33,7 +33,7 @@ public class EnemyDamageable : NetworkBehaviour
     /// of damage.
     /// </summary>
     /// <param name="damageToDeal"></param>
-    public void DealDamage(float damageToDeal)
+    public virtual void DealDamage(float damageToDeal)
     {
         health.RemoveHealthServerRpc(damageToDeal);
     }
