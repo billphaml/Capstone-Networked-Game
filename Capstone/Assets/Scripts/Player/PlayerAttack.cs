@@ -10,6 +10,7 @@
 using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Messaging;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : NetworkBehaviour
@@ -19,6 +20,7 @@ public class PlayerAttack : NetworkBehaviour
     /// </summary>
     public GameObject hitMarker;
     public Transform player;
+
     [SerializeField] public PlayerController thePlayer;
     [SerializeField] LayerMask whatIsEnemy;
     [SerializeField] private GameObject attackBox;
@@ -28,6 +30,7 @@ public class PlayerAttack : NetworkBehaviour
     private float damage = 10f;
     private float attackSpeed; //not developed yet
     private float range;
+    private bool isMeleeAttacking = false; // used by PlayerAnimationSwing
 
     private List<Collider2D> alreadyDamagedEnemies = new List<Collider2D>();
 
@@ -57,18 +60,22 @@ public class PlayerAttack : NetworkBehaviour
             {
                 case Actor.attackType.FIST:
                     MeleeAttack();
+                    isMeleeAttacking = true;
                     break;
                 case Actor.attackType.SWORD:
 #if DEBUG
                     Debug.Log("sword");
 #endif  
                     MeleeAttack();
+                    isMeleeAttacking = true;
                     break;
                 case Actor.attackType.GREATSWORD:
                     MeleeAttack();
+                    isMeleeAttacking = true;
                     break;
                 case Actor.attackType.DAGGER:
                     MeleeAttack();
+                    isMeleeAttacking = true;
                     break;
                 case Actor.attackType.BOW:
                     RangeAttackServerRpc();
@@ -76,7 +83,11 @@ public class PlayerAttack : NetworkBehaviour
                 case Actor.attackType.MAGIC:
                     RangeAttackServerRpc();
                     break;
-            }  
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMeleeAttacking = false;
         }
     }
 
@@ -115,6 +126,7 @@ public class PlayerAttack : NetworkBehaviour
 #if DEBUG
         Debug.Log(alreadyDamagedEnemies);
 #endif
+        
         alreadyDamagedEnemies.Clear();
     }
 
@@ -142,5 +154,9 @@ public class PlayerAttack : NetworkBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(attackBox.transform.position, new Vector3(range, range, 0f));
+    }
+    public bool GetisMeleeAttacking()
+    {
+        return isMeleeAttacking;
     }
 }
