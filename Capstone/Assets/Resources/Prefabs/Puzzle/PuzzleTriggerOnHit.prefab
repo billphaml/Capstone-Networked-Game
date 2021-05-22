@@ -212,7 +212,7 @@ MonoBehaviour:
   isTriggered: 0
   isHit: 0
   hitDuration: 5
-  runes: {fileID: 7386355565368085615}
+  runes: {fileID: 1814839997621123586}
   lerpSpeed: 3
 --- !u!114 &7386355565368085610
 MonoBehaviour:
