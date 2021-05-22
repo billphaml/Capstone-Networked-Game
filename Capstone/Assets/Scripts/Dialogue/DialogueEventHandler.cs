@@ -34,6 +34,12 @@ public class DialogueEventHandler : MonoBehaviour
                 return TriggerOswinIntro();
             case "Roland_Intro":
                 return TriggerRolandIntro();
+            case "George_Default":
+                return TriggerGeorgeDefault();
+            case "Lale_Default":
+                return TriggerLaleDefault();
+            case "Oswin_Default":
+                return TriggerOswinDefault();
             default:
                 return null;
         }
@@ -98,5 +104,22 @@ public class DialogueEventHandler : MonoBehaviour
         return (DialogueScene)Resources.Load("Scene_Dialogue/Roland_Default");
     }
 
+    public DialogueScene TriggerGeorgeDefault()
+    {
+        ShopManager.theShopManager.triggerShop("George's Smithing Workshop");
+        return null;
+    }
+
+    public DialogueScene TriggerLaleDefault()
+    {
+        ShopManager.theShopManager.triggerShop("Lale Silversmith Workshop");
+        return null;
+    }
+
+    public DialogueScene TriggerOswinDefault()
+    {
+        ShopManager.theShopManager.triggerShop("Oswin Apothecary");
+        return null;
+    }
 
 }

@@ -14,4 +14,16 @@ public class ShopItem
 {
     public GameItem theShopItem;
     public int shopItemAmount;
+
+    public ShopItem(GameItem theGameItem)
+    {
+        theShopItem = theGameItem;
+        shopItemAmount = 1;
+    }
+
+    public ShopItem(GameItem theGameItem, int theItemAmount)
+    {
+        theShopItem = theGameItem;
+        shopItemAmount = theItemAmount;
+    }
 }

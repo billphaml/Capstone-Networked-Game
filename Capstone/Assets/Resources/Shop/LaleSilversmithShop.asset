@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885a78b61fb30294a838ae7d7029f79f, type: 3}
+  m_Name: LaleSilversmithShop
+  m_EditorClassIdentifier: 
+  shopName: Lale Silversmith Workshop
+  Shopitem:
+  - theShopItem: {fileID: 11400000, guid: a25cc5101b840354ca6d783d335d0daa, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 214d311d65934724795f09903baec66a, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 3a6d21c6ac09e25428944ae1c985856e, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 99accc7bdcd6709428a24f15a5176240, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: bf7ed77dacaf2af4d988eb5a5d0895b5, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 0d527ef67dcc60e42b3817ce565ddbb9, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 508220e3ce2bdf04fb8049752fec3ee1, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 9c8706e5951db33438459e19904e252f, type: 2}
+    shopItemAmount: 1
+  - theShopItem: {fileID: 11400000, guid: 85e23a6feba26704f98b400e1e730133, type: 2}
+    shopItemAmount: 0

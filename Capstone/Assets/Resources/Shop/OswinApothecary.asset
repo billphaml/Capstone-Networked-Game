@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885a78b61fb30294a838ae7d7029f79f, type: 3}
+  m_Name: OswinApothecary
+  m_EditorClassIdentifier: 
+  shopName: Oswin Apothecary
+  Shopitem:
+  - theShopItem: {fileID: 11400000, guid: aa5f184db842b1140954932210af15b7, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 10ba6b201de4c934ab18ef1c176eb280, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 9c195f6d9d1791f4b97d3fe333ce3fbe, type: 2}
+    shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: d292d4f1f588d5a438349624951f87e4, type: 2}
+    shopItemAmount: 213

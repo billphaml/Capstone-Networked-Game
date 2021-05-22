@@ -16,19 +16,13 @@ MonoBehaviour:
   Shopitem:
   - theShopItem: {fileID: 11400000, guid: c557b5465157cf84bb252b6276d0caa7, type: 2}
     shopItemAmount: 100
-    shopItemCost: 1500
   - theShopItem: {fileID: 11400000, guid: ae898695e6e577343b17d7e2cae8b32f, type: 2}
     shopItemAmount: 100
-    shopItemCost: 100
   - theShopItem: {fileID: 11400000, guid: 5e2efb0470a1d644d96d075d6e1afebe, type: 2}
     shopItemAmount: 100
-    shopItemCost: 500
   - theShopItem: {fileID: 11400000, guid: 4ac737b4cdee48c4796deec7b06b5f78, type: 2}
     shopItemAmount: 100
-    shopItemCost: 1000
   - theShopItem: {fileID: 11400000, guid: ef614cab008b03c4cb630fc3c62290af, type: 2}
     shopItemAmount: 100
-    shopItemCost: 3200
   - theShopItem: {fileID: 11400000, guid: acbdc0933ddadf24483eccff0d74d317, type: 2}
     shopItemAmount: 100
-    shopItemCost: 10000

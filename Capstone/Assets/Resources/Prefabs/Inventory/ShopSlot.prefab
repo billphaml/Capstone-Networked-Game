@@ -256,18 +256,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06c2b928bc9cb94da71df7715a386b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theCraftingManager: {fileID: 0}
   theInventory: {fileID: 0}
-  itemAmountText: {fileID: 0}
-  dropButton: {fileID: 0}
-  theItem: {fileID: 0}
+  itemAmountText: {fileID: 3032865180846932638}
   itemImagePrefab: {fileID: 0}
-  isResult: 0
-  returnItem: {fileID: 0}
   theCanvas: {fileID: 0}
   dragItem: {fileID: 0}
   isDragSucess: 0
-  emptyImage: {fileID: 0}
+  emptyImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &5767625580392825997
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,4 +382,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4340912951058213382}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2963402653338128112}
+        m_TargetAssemblyTypeName: ShopSlot, Assembly-CSharp
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
