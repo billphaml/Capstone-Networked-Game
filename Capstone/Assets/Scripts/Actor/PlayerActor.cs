@@ -19,6 +19,7 @@ public class PlayerActor : Actor
     public int playerAttack = 10;
     public int playerDefense = 10;
     public int playerMagicResistance = 10;
+    public int gold = 0;
     public float playerMovementSpeed = 4.5f;
     public float playerCriticalChance = 0.15f;
     public float playerCriticalDamage = 1f;
