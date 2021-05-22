@@ -16,7 +16,9 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 40d526b51d159064f851539ce7779eec, type: 3}
   itemName: Fishing Rod
   itemDescription: Can fish
-  gameItemType: 8
+  gameItemType: 4
+  sellPrice: 0
+  buyPrice: 0
   addAttack: 0
   addDefence: 0
   addMagicResistance: 0

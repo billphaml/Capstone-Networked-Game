@@ -32,6 +32,9 @@ public abstract class GameItem : ScriptableObject
     [TextArea(10,20)]
     public string itemDescription;
     public itemType gameItemType;
+    public int sellPrice;
+    public int buyPrice;
+
 
     public GameItem GetThis()
     {

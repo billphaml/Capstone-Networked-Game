@@ -18,6 +18,8 @@ public class NPCBehavior : NetworkBehaviour
 
     public string npcDesc;
 
+    public bool isIntro;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class NPCBehavior : NetworkBehaviour
     public void StartSetup()
     {
         actorIdentity = new NPC(npcName, npcDesc, Actor.actorType.NPC, Actor.attackType.SWORD);
+
         if (theDialogue != null)
         {
             actorIdentity.SetDialogue(theDialogue);
@@ -35,6 +38,7 @@ public class NPCBehavior : NetworkBehaviour
         {
             actorIdentity.SetDialogue((DialogueScene)Resources.Load("Scene_Dialogue/Golem_Slayer"));
         }
+
         GameEvent.theGameEvent.onEndOfDialogueTrigger += OnEndOfDialogue;
     }
 

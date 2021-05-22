@@ -26,6 +26,14 @@ public class DialogueEventHandler : MonoBehaviour
                 return TriggerGolemSlayer(branchNum);
             case "Lost_Child_Intro":
                 return TriggerLostChildIntro(branchNum);
+            case "George_Intro":
+                return TriggerGeorgeIntro();
+            case "Lale_Intro":
+                return TriggerLaleIntro();
+            case "Oswin_Intro":
+                return TriggerOswinIntro();
+            case "Roland_Intro":
+                return TriggerRolandIntro();
             default:
                 return null;
         }
@@ -69,4 +77,26 @@ public class DialogueEventHandler : MonoBehaviour
                 return null;
         }
     }
+
+    public DialogueScene TriggerGeorgeIntro()
+    {
+      return (DialogueScene)Resources.Load("Scene_Dialogue/George_Default");
+    }
+
+    public DialogueScene TriggerLaleIntro()
+    {
+        return (DialogueScene)Resources.Load("Scene_Dialogue/Lale_Default");
+    }
+
+    public DialogueScene TriggerOswinIntro()
+    {
+        return (DialogueScene)Resources.Load("Scene_Dialogue/Oswin_Default");
+    }
+
+    public DialogueScene TriggerRolandIntro()
+    {
+        return (DialogueScene)Resources.Load("Scene_Dialogue/Roland_Default");
+    }
+
+
 }
