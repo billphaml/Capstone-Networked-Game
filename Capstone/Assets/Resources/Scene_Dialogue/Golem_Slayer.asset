@@ -15,7 +15,7 @@ MonoBehaviour:
   sceneDialogue:
   - eventPrerequisite: 
     branchNum: 0
-    speakerName: Barone
+    speakerName: The Barone
     dialogueText: Some punks been practicing alchemy and animating golems without
       the proper licenses. Now we have a  bunch of golems outside of town wreaking
       havoc and causing untold damages. You think you can put a few of them to rest?
@@ -44,7 +44,7 @@ MonoBehaviour:
       dialogueResponse: []
   - eventPrerequisite: 
     branchNum: 1
-    speakerName: Barone
+    speakerName: The Barone
     dialogueText: Good, I'll wait for your update.
     canType: 0
     typeTime: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     dialogueResponse: []
   - eventPrerequisite: 
     branchNum: 2
-    speakerName: Barone
+    speakerName: The Barone
     dialogueText: 'Hmph, don''t waste my time kid.
 
 '

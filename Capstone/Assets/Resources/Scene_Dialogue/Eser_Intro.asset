@@ -12,4 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
   m_Name: Eser_Intro
   m_EditorClassIdentifier: 
-  sceneDialogue: []
+  sceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Sir Eser
+    dialogueText: I am Sir Esser, the garrison commander of Secundas.
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Sir Eser
+    dialogueText: "I have no plan for you right now, so ask The Barone for some tasks
+      around the outpost and maybe, I\u2019ll include you in the next expedition."
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []

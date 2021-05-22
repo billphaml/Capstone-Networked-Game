@@ -26,6 +26,12 @@ public class DialogueEventHandler : MonoBehaviour
                 return TriggerGolemSlayer(branchNum);
             case "Lost_Child_Intro":
                 return TriggerLostChildIntro(branchNum);
+            case "Cain_Intro":
+                return TriggerCainIntro();
+            case "Eser_Intro":
+                return TriggerEserIntro();
+            case "Barone_Intro":
+                return TriggerBaroneIntro();
             case "George_Intro":
                 return TriggerGeorgeIntro();
             case "Lale_Intro":
@@ -84,9 +90,24 @@ public class DialogueEventHandler : MonoBehaviour
         }
     }
 
+    public DialogueScene TriggerEserIntro()
+    {
+      return (DialogueScene)Resources.Load("Scene_Dialogue/Eser_Default");
+    }
+
+    public DialogueScene TriggerCainIntro()
+    {
+        return (DialogueScene)Resources.Load("Scene_Dialogue/Cain_Default");
+    }
+
+    public DialogueScene TriggerBaroneIntro()
+    {
+        return (DialogueScene)Resources.Load("Scene_Dialogue/Golem_Slayer");
+    }
+
     public DialogueScene TriggerGeorgeIntro()
     {
-      return (DialogueScene)Resources.Load("Scene_Dialogue/George_Default");
+        return (DialogueScene)Resources.Load("Scene_Dialogue/George_Default");
     }
 
     public DialogueScene TriggerLaleIntro()

@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
+  m_Name: Cain_Default
+  m_EditorClassIdentifier: 
+  sceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Cain
+    dialogueText: Do you have any questions?
+    canType: 0
+    typeTime: 10
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse:
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: Why am I here?
+      canType: 1
+      typeTime: 0
+      branchNext: 1
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: What is this place?
+      canType: 1
+      typeTime: 0
+      branchNext: 2
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: What are we doing here?
+      canType: 1
+      typeTime: 0
+      branchNext: 3
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: Turron!
+      canType: 1
+      typeTime: 0
+      branchNext: 4
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+    - eventPrerequisite: 
+      branchNum: 0
+      speakerName: Player
+      dialogueText: Nevermind.
+      canType: 1
+      typeTime: 0
+      branchNext: -1
+      theQuest: {fileID: 0}
+      dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 1
+    speakerName: Cain
+    dialogueText: "From the report sent from the capital, it looks like you were
+      sent here because you were caught stealing half a loaf of bread. Don\u2019t
+      worry, I won\u2019t judge."
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 2
+    speakerName: Cain
+    dialogueText: "We\u2019re in Secundas, an outpost on the edge of Rumipiter. We\u2019re
+      short on manpower right now, so any person caught committing crimes all over
+      the empire is sent here no matter how severe. So watch yourself."
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 3
+    speakerName: Cain
+    dialogueText: "The empire is making an effort to reclaim the land of Rumipiter
+      from the monsters overrunning the place. We\u2019ve made some progress in the
+      past, but we\u2019re being pushed back from a series of bad expeditions leaving
+      us with a serious manpower shortage. That\u2019s where you come in. "
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 4
+    speakerName: Cain
+    dialogueText: Tuuuuuuuuuuuuuuuuuuuuuuuurron!
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: -1
+    speakerName: Cain
+    dialogueText: "Come back when you\u2019ve made up your mind."
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []

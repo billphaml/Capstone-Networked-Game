@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
   m_Name: Barone_Intro
   m_EditorClassIdentifier: 
-  sceneDialogue: []
+  sceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: The Barone
+    dialogueText: "You must be the fresh meat. Look, people like you come and die
+      around here in less than a week. So, I\u2019m not very interested in getting
+      to know you. Just know that people around here call me The Barone. Come to
+      me when you\u2019re ready for a task and I\u2019ll pay you fairly for completing
+      it. "
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []

@@ -12,4 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
   m_Name: Cain_Intro
   m_EditorClassIdentifier: 
-  sceneDialogue: []
+  sceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Cain
+    dialogueText: "Oh? A new face. Ahh, you must be the bread thief from the capital.
+      I\u2019ve read the reports. Hahaha, I\u2019m sorry, I can\u2019t imagine being
+      sent off here to die for such a paltry amount of bread."
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: Cain
+    dialogueText: "I am Cain, the administrator of this little outpost. I\u2019ve
+      been part of Secundas for decades now so I know a thing or two about surviving
+      on this land. Don\u2019t worry, as long as you do your jobs, you\u2019ll never
+      have to steal another piece of bread ever again."
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
