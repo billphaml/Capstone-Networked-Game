@@ -22,8 +22,6 @@ public static class SaveSystem
         player.thePlayer.inventory = theInventoryManager.GetComponent<Inventory>().SaveInventory();
         
         player.thePlayer.equipment = theInventoryManager.GetComponent<EquipmentManager>().SaveEquipped();
-
-        player.thePlayer.currentQuests = theLocalGameManager.GetComponent<LocalGameManager>().saveQuests();
         SavePlayerHelper(player);
     }
 

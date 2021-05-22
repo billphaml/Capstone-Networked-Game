@@ -18,6 +18,7 @@ TagManager:
   - Local Game Manager
   - Interactable UI
   - NPC
+  - Networked Game Manager
   layers:
   - Default
   - TransparentFX
