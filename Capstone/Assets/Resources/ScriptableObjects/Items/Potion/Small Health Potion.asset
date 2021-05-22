@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2048f095f9af3de45b8fde7c2be05a10, type: 3}
   m_Name: Small Health Potion
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 27
   itemImage: {fileID: 21300000, guid: 117b17facff65dc42b1b57deb7c21551, type: 3}
   itemName: Small Health Potion
   itemDescription: Restore 10 HP
   gameItemType: 9
-  HPValue: 0
+  sellPrice: 0
+  buyPrice: 0
+  HPValue: 10
   SPValue: 0
   MPValue: 0

@@ -80,7 +80,7 @@ public class DialogueEventHandler : MonoBehaviour
                 GiveQuest.theGiveQuest.acceptQuest();
                 return (DialogueScene)Resources.Load("Scene_Dialogue/AfterGenericQuest");
             default:
-                return null;
+                return null; 
         }
     }
 

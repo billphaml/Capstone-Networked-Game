@@ -139,7 +139,7 @@ public class ShopManager : MonoBehaviour
 
     private void turnOnShop()
     {
-        theShopUI.turnOn();
+        UIManager.theUIManager.turnOnShopUI();
     }
 
     private void turnOffShop()

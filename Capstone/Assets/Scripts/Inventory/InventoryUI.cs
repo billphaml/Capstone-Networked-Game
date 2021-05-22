@@ -20,6 +20,10 @@ public class InventoryUI : MonoBehaviour
 
     public EquipmentManager theEquipmentManager;
 
+    public ShopManager theShopManager;
+
+    public CraftingManager theCraftingManager;
+
     public Transform itemParent;
 
     InventorySlot[] itemSlot;
@@ -57,6 +61,8 @@ public class InventoryUI : MonoBehaviour
         {
             itemSlot[i].theInventory = inventory;
             itemSlot[i].theEquipmentManager = theEquipmentManager;
+            itemSlot[i].theCraftingManager = theCraftingManager;
+            itemSlot[i].theShopManager = theShopManager;
             itemSlot[i].theCanvas = transform.parent.parent.GetComponent<Canvas>();
         }
     }

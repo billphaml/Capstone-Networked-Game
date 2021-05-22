@@ -12,7 +12,7 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
 
     public GameObject itemImagePrefab;
 
-    int itemAmount = 0;
+    public int itemAmount = 0;
 
     public Canvas theCanvas;
     private CanvasGroup theSlotCanvas;
@@ -62,7 +62,7 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
         if (theItem != null)
         {
             // Check if you can add into inventory and check if player has enough money.
-            if (theInventory.CanAdd())
+            if (theInventory.CanAdd() && itemAmount != 0)
             {
                 //remove money
                 theInventory.AddItem(theItem);

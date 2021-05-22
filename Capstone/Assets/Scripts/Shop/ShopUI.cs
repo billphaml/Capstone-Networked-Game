@@ -31,12 +31,13 @@ public class ShopUI : MonoBehaviour
     private void updateInventory()
     {
         shopTitleText.text = theShopManager.activeShop.shopName;
-
+     
         for (int i = 0; i < theShopSlot.Length; i++)
         {
             if (i < theShopManager.activeShop.theShopItem.Count)
             {
                 theShopSlot[i].AddItem(theShopManager.activeShop.theShopItem[i].theShopItem);
+                theShopSlot[i].itemAmount = theShopManager.activeShop.theShopItem[i].shopItemAmount;
                 theShopSlot[i].itemAmountText.text = theShopManager.activeShop.theShopItem[i].shopItemAmount.ToString();
             }
             else
@@ -60,9 +61,7 @@ public class ShopUI : MonoBehaviour
 
     public void turnOff()
     {
-        shopUICanvasGroup.alpha = 0;
-        shopUICanvasGroup.interactable = false;
-        shopUICanvasGroup.blocksRaycasts = false;
+        UIManager.theUIManager.turnOffShop();
     }
 
     public void turnOn()

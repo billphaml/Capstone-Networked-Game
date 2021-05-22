@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+
+    public static UIManager theUIManager;
+
     [Header("Hosting")]
     public GameObject RoomNameHost;
     public GameObject RoomNameClient;
@@ -17,7 +20,15 @@ public class UIManager : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventory = null;
-    private bool isOpenInventory = false;
+    public bool isOpenInventory = false;
+
+    [Header("Equipment")]
+    [SerializeField] private CanvasGroup equipment = null;
+    public bool isOpenEquipment = false;
+
+    [Header("Shop")]
+    [SerializeField] private CanvasGroup shop = null;
+    public bool isOpenShop = false;
 
     [Header("Android")]
     [SerializeField] private GameObject androidUI = null;
@@ -26,8 +37,15 @@ public class UIManager : MonoBehaviour
     //[SerializeField] private DialogueSystem localDialogueManager = null;
 
     [Header("Crafting")]
-    private bool isOpenCrafting = false;
+    public
+        bool isOpenCrafting = false;
     [SerializeField] private CanvasGroup crafting = null;
+
+
+     void Awake()
+    {
+        theUIManager = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +59,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         CheckInventoryUI();
-
+        CheckEquipmentUI();
         CheckCraftingUI();
     }
 
@@ -51,17 +69,14 @@ public class UIManager : MonoBehaviour
         {
             if (isOpenInventory)
             {
-                inventory.alpha = 0;
-                inventory.interactable = false;
-                inventory.blocksRaycasts = false;
-                isOpenInventory = false;
+                turnOffInventory();
+                turnOffCrafting();
+                turnOffEquipment();
+                turnOffShop();
             }
             else
             {
-                inventory.alpha = 1;
-                inventory.interactable = true;
-                inventory.blocksRaycasts = true;
-                isOpenInventory = true;
+                turnOnInventory();
             }
         }
     }
@@ -72,18 +87,105 @@ public class UIManager : MonoBehaviour
         {
             if (isOpenCrafting)
             {
-                crafting.alpha = 0;
-                crafting.interactable = false;
-                crafting.blocksRaycasts = false;
-                isOpenCrafting = false;
+                turnOffCrafting();
             }
             else
             {
-                crafting.alpha = 1;
-                crafting.interactable = true;
-                crafting.blocksRaycasts = true;
-                isOpenCrafting = true;
+                turnOnCrafting();
+                turnOffEquipment();
+                turnOffShop();
             }
         }
+    }
+
+    private void CheckEquipmentUI()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && !DialogueSystem.theLocalGameManager.isDialogueActive)
+        {
+            if (isOpenEquipment)
+            {
+                turnOffEquipment();
+            }
+            else
+            {
+                turnOffCrafting();
+                turnOnEquipment();
+                turnOffShop();
+            }
+        }
+    }
+
+    public void turnOnShopUI()
+    {
+        if (!isOpenShop)
+        {
+            turnOnShop();
+            turnOffCrafting();
+            turnOffEquipment();
+        }
+    }
+
+    private void turnOnCrafting()
+    {
+        crafting.alpha = 1;
+        crafting.interactable = true;
+        crafting.blocksRaycasts = true;
+        isOpenCrafting = true;
+    }
+
+    private void turnOffCrafting()
+    {
+        crafting.alpha = 0;
+        crafting.interactable = false;
+        crafting.blocksRaycasts = false;
+        isOpenCrafting = false;
+    }
+
+    private void turnOnInventory()
+    {
+        inventory.alpha = 1;
+        inventory.interactable = true;
+        inventory.blocksRaycasts = true;
+        isOpenInventory = true;
+    }
+
+    private void turnOffInventory()
+    {
+        inventory.alpha = 0;
+        inventory.interactable = false;
+        inventory.blocksRaycasts = false;
+        isOpenInventory = false;
+    }
+
+    private void turnOnEquipment()
+    {
+        equipment.alpha = 1;
+        equipment.interactable = true;
+        equipment.blocksRaycasts = true;
+        isOpenEquipment = true;
+    }
+
+    private void turnOffEquipment()
+    {
+        equipment.alpha = 0;
+        equipment.interactable = false;
+        equipment.blocksRaycasts = false;
+        isOpenEquipment = false;
+    }
+
+    private void turnOnShop()
+    {
+        shop.alpha = 1;
+        shop.interactable = true;
+        shop.blocksRaycasts = true;
+        isOpenShop = true;
+    }
+
+    public void turnOffShop()
+    {
+        shop.alpha = 0;
+        shop.interactable = false;
+        shop.blocksRaycasts = false;
+        isOpenShop = false;
     }
 }

@@ -23,6 +23,10 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public Inventory theInventory;
 
+    public CraftingManager theCraftingManager;
+
+    public ShopManager theShopManager;
+
     public TextMeshProUGUI itemAmountText;
 
     public Button dropButton;
@@ -148,27 +152,54 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     {
         if (theItem != null)
         {
-            //theItem.useItem();
-            switch (theItem.gameItemType)
+            if (UIManager.theUIManager.isOpenShop == true)
             {
-                case itemType.CONSUME:
-                    break;
-                case itemType.DEFAULT:
-                    break;
-                default:
-                    EquipItem dummyEquip = (EquipItem)theItem;
-                    GameItem returnItem = theEquipmentManager.equipItem(dummyEquip);
+                if (theShopManager.canAdd())
+                {
+                    theShopManager.addItem(theItem);
+                    theInventory.RemoveItem(theItem);
+                }
 
-                    if(returnItem == null)
-                    {
-                        theInventory.RemoveItem(theItem);
-                    }
-                    else
-                    {
-                        theInventory.RemoveItem(theItem);
-                        theInventory.AddItem(returnItem);
-                    }
-                    break;
+            } else if (UIManager.theUIManager.isOpenCrafting == true)
+            {
+                if(theCraftingManager.theCraftingSlot[0].theItem == null)
+                {
+                    theCraftingManager.theCraftingSlot[0].AddItem(theItem);
+                    theInventory.RemoveItem(theItem);
+                    theCraftingManager.UpdateRecipeResult();
+
+                } else if(theCraftingManager.theCraftingSlot[1].theItem == null)
+                {
+                    theCraftingManager.theCraftingSlot[1].AddItem(theItem);
+                    theInventory.RemoveItem(theItem);
+                    theCraftingManager.UpdateRecipeResult();
+                }
+            }
+            else
+            {
+                switch (theItem.gameItemType)
+                {
+                    case itemType.CONSUME:
+                        // add health, mana and sp value to the player.
+
+                        break;
+                    case itemType.DEFAULT:
+                        break;
+                    default:
+                        EquipItem dummyEquip = (EquipItem)theItem;
+                        GameItem returnItem = theEquipmentManager.equipItem(dummyEquip);
+
+                        if (returnItem == null)
+                        {
+                            theInventory.RemoveItem(theItem);
+                        }
+                        else
+                        {
+                            theInventory.RemoveItem(theItem);
+                            theInventory.AddItem(returnItem);
+                        }
+                        break;
+                }
             }
         }
     }

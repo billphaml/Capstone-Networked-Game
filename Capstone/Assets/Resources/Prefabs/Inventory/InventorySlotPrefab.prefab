@@ -122,7 +122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1926363835873572688}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: onRemoveButton
+        m_MethodName: OnRemoveButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -412,6 +412,8 @@ MonoBehaviour:
   dropButton: {fileID: 3400935794023159064}
   itemImagePrefab: {fileID: 7538060562215535498, guid: c7d0db30793a3254abe4b768ebdc14ee, type: 3}
   theCanvas: {fileID: 0}
+  dragItem: {fileID: 0}
+  isDragSucess: 0
   emptyImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!225 &2497790034919879
 CanvasGroup:
