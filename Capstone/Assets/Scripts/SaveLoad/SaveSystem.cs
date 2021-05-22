@@ -17,9 +17,12 @@ public static class SaveSystem
         Debug.Log("This is the player" + player.ToString());
 
         GameObject theInventoryManager = GameObject.FindGameObjectWithTag("Inventory Manager");
+        GameObject theLocalGameManager = GameObject.FindGameObjectWithTag("Local Game Manager");
         player.thePlayer.inventory = theInventoryManager.GetComponent<Inventory>().SaveInventory();
         
         player.thePlayer.equipment = theInventoryManager.GetComponent<EquipmentManager>().SaveEquipped();
+
+        player.thePlayer.currentQuests = theLocalGameManager.GetComponent<LocalGameManager>().saveQuests();
         SavePlayerHelper(player);
     }
 
