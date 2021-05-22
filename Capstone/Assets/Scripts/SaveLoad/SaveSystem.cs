@@ -8,6 +8,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 [System.Serializable]
 public static class SaveSystem
@@ -62,11 +63,46 @@ public static class SaveSystem
     public static void SaveWorld()
     {
 
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path = Application.persistentDataPath + "/world.data";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        LocalGameManager quests = GameObject.FindGameObjectWithTag("Networked Game Manager").GetComponent<LocalGameManager>();
+       
+        WorldSave data = new WorldSave();
+        data.CurrentQuests = quests.saveQuests();
+        var Npcs = GameObject.FindGameObjectsWithTag("NPC");
+        List<bool> introYN =  new List<bool>();
+
+        foreach (GameObject Npc in Npcs) 
+        {
+            introYN.Add(Npc.GetComponent<NPCBehavior>().isIntro);
+        }
+
+        data.interactedWith = introYN;
+        formatter.Serialize(stream, data);
+        stream.Close();
     }
 
     // Replace void with world file
-    public static void LoadWorld()
+    public static WorldSave LoadWorld()
     {
+        string path = Application.persistentDataPath + "/world.data";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
 
+            WorldSave data = formatter.Deserialize(stream) as WorldSave;
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.Log("Save file not found in " + path);
+            return null;
+        }
     }
 }

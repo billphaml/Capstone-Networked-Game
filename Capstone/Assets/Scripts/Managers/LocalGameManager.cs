@@ -76,4 +76,9 @@ public class LocalGameManager : MonoBehaviour
             }
         }
     }
+
+    public List<Quest> saveQuests() 
+    {
+        return currentQuest;
+    }
 }

@@ -28,6 +28,21 @@ public class SaveManager : MonoBehaviour
 
     public void LoadData() 
     {
+        WorldSave worldData = SaveSystem.LoadWorld();
+        LocalGameManager quests = GameObject.FindGameObjectWithTag("Networked Game Manager").GetComponent<LocalGameManager>();
+        
+        quests.currentQuest = worldData.CurrentQuests;
+
+        var NPCS = GameObject.FindGameObjectsWithTag("NPC");
+        
+        int i = 0;
+        
+        foreach (GameObject NPC in NPCS) 
+        {
+            NPC.GetComponent<NPCBehavior>().isIntro = worldData.interactedWith[i];
+            i++;
+        }
+
         ulong clientId = NetworkManager.Singleton.LocalClientId;
         player = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<PlayerStat>();
         PlayerActor data = SaveSystem.LoadPlayer();
