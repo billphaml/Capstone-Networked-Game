@@ -35,7 +35,7 @@ public class ChestInteractable : Interactable
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void DestroyServerRpc()
     {
         Destroy(gameObject);
