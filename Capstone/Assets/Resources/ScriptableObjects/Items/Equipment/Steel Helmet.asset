@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: 
   itemDescription: 
   gameItemType: 0
+  sellPrice: 0
+  buyPrice: 0
   addAttack: 0
   addDefence: 0
   addMagicResistance: 0
@@ -28,7 +30,7 @@ MonoBehaviour:
   addMagic: 0
   addDexterity: 0
   addConstitution: 0
-  addHP: 0
+  addHP: 20
   addSP: 0
   addMP: 0
   itemRange: 0

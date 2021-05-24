@@ -23,8 +23,9 @@ public class PlayerHealth : NetworkBehaviour
     /// <summary>
     /// Max health for this object.
     /// </summary>
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] public float maxHealth;
 
+    [SerializeField] private PlayerStat thePlayer;
     /// <summary>
     /// Current health for this object.
     /// </summary>
@@ -41,7 +42,16 @@ public class PlayerHealth : NetworkBehaviour
     /// </summary>
     private void Start()
     {
-        Health.Value = maxHealth;
+        if (thePlayer == null)
+        {
+            thePlayer = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerStat>();
+
+            if (thePlayer != null) {
+                thePlayer.statUpdated += updateHealthClientRpc;
+                maxHealth = thePlayer.thePlayer.playerMaxHealth;
+                Health.Value = maxHealth;
+            }
+        }
     }
 
     /// <summary>
@@ -96,4 +106,22 @@ public class PlayerHealth : NetworkBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    [ClientRpc]
+    private void updateHealthClientRpc()
+    {
+        float dummyMaxHealth = maxHealth;
+        maxHealth = thePlayer.thePlayer.playerMaxHealth;
+
+        if(maxHealth > dummyMaxHealth)
+        {
+            Health.Value += (maxHealth - dummyMaxHealth);
+        }
+
+        if (maxHealth < Health.Value)
+        {
+            Health.Value = maxHealth;
+        }
+    }
+
 }

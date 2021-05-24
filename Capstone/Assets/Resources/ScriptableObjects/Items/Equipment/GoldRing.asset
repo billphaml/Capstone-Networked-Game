@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: GoldRing
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 44
   itemImage: {fileID: 21300000, guid: 6858a15e5082cf34b9ee3167e90403d3, type: 3}
   itemName: Gold Ring
   itemDescription: A ring made from solid gold. That's it.
@@ -30,7 +30,7 @@ MonoBehaviour:
   addMagic: 0
   addDexterity: 0
   addConstitution: 0
-  addHP: 0
+  addHP: 20
   addSP: 0
   addMP: 0
   itemRange: 0

@@ -31,6 +31,8 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public Button dropButton;
 
+    public PlayerHealable thePlayerHealable;
+
     GameItem theItem;
 
     public GameObject itemImagePrefab;
@@ -181,7 +183,9 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
                 {
                     case itemType.CONSUME:
                         // add health, mana and sp value to the player.
-
+                        ConsumableItem Consume = (ConsumableItem)theItem;
+                        thePlayerHealable.Heal(Consume.HPValue);
+                        theInventory.RemoveItem(theItem);
                         break;
                     case itemType.DEFAULT:
                         break;

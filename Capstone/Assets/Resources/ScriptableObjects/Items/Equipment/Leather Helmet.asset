@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Leather Helmet
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 7
   itemImage: {fileID: 21300000, guid: 5ff9b869a12e70b4db7a137f84ed920b, type: 3}
   itemName: Leather Helmet
   itemDescription: 
   gameItemType: 0
+  sellPrice: 0
+  buyPrice: 0
   addAttack: 0
   addDefence: 5
   addMagicResistance: 5
@@ -28,7 +30,7 @@ MonoBehaviour:
   addMagic: 0
   addDexterity: 0
   addConstitution: 0
-  addHP: 10
+  addHP: 40
   addSP: 0
   addMP: 0
   itemRange: 0

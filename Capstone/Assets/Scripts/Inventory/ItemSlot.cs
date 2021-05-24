@@ -151,6 +151,8 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         }
     }
 
+    
+    // read this cursed shit
     private DragItem DragItemHandler(PointerEventData eventData)
     {
         if (eventData.pointerDrag.gameObject.GetComponent<EquipmentSlot>() != null)

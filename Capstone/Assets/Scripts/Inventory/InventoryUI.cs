@@ -12,9 +12,10 @@
 
 #undef DEBUG
 
+using MLAPI;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : NetworkBehaviour
 {
     public Inventory inventory;
 
@@ -24,6 +25,8 @@ public class InventoryUI : MonoBehaviour
 
     public CraftingManager theCraftingManager;
 
+    public PlayerHealable thePlayerHealable;
+
     public Transform itemParent;
 
     InventorySlot[] itemSlot;
@@ -32,9 +35,18 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         inventory.onItemChangedCallBack += updateInventory;
-
         itemSlot = itemParent.GetComponentsInChildren<InventorySlot>();
         setupManager();
+    }
+
+    void Update()
+    {
+        if(thePlayerHealable == null)
+        {
+            thePlayerHealable = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerHealable>();
+
+            if (thePlayerHealable != null) { setupNetworkManager(); }
+        }
     }
 
     private void updateInventory()
@@ -64,6 +76,14 @@ public class InventoryUI : MonoBehaviour
             itemSlot[i].theCraftingManager = theCraftingManager;
             itemSlot[i].theShopManager = theShopManager;
             itemSlot[i].theCanvas = transform.parent.parent.GetComponent<Canvas>();
+        }
+    }
+
+    private void setupNetworkManager()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            itemSlot[i].thePlayerHealable = thePlayerHealable;
         }
     }
 }

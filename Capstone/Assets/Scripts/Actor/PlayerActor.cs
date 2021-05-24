@@ -12,6 +12,7 @@ using UnityEngine;
 public class PlayerActor : Actor
 {
     [Header("Player Final Stats")]
+    public int playerMaxHealth = 50;
     public int playerStrength = 10;
     public int playerMagic = 10;
     public int playerDexterity = 10;
@@ -32,11 +33,11 @@ public class PlayerActor : Actor
 
     public PlayerActor(string name, string description, actorType theType, attackType theAttack) : base(name, description, theType, theAttack)
     {
-
+        playerMaxHealth = GetMaxHitPoint();
     }
 
     public PlayerActor(PlayerActor iPlayer) : base(iPlayer.actorName, iPlayer.actorDescription, iPlayer.GetActorType(), iPlayer.GetAttackType())
     {
-
+        playerMaxHealth = GetMaxHitPoint();
     }
 }

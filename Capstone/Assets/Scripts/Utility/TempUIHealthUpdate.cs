@@ -29,7 +29,7 @@ public class TempUIHealthUpdate : NetworkBehaviour
 
         if (player != null)
         {
-            ui.text = "Health: " + player.Health.Value + "/100";
+            ui.text = "Health: " + player.Health.Value + "/" + player.maxHealth;
         }
     }
 }

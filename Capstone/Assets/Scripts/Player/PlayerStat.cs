@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class PlayerStat : NetworkBehaviour
 {
+    public delegate void StatUpdated();
+    public StatUpdated statUpdated;
     public PlayerActor thePlayer;
     public Inventory playerInventory;
 
@@ -25,10 +27,7 @@ public class PlayerStat : NetworkBehaviour
 
     void Awake()
     {
-        if (IsLocalPlayer)
-        {
-            SetupPlayer();
-        }
+        
     }
 
     // Start is called before the first frame update
@@ -36,6 +35,7 @@ public class PlayerStat : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
+            SetupPlayer();
             SetupInventory();
         }     
     }
@@ -44,8 +44,6 @@ public class PlayerStat : NetworkBehaviour
     public void SetupPlayer()
     {
         thePlayer = new PlayerActor("PlayerName", "The Player", Actor.actorType.PLAYER, Actor.attackType.FIST);
-        //playerInventory = playerInventory;
-
     }
 
     public void SetupInventory()
@@ -143,6 +141,7 @@ public class PlayerStat : NetworkBehaviour
 
     public void UpdatePlayerStat()
     {
+         int playerHealth = 0;
          int playerStrength = 0;
          int playerMagic = 0;
          int playerDexterity = 0;
@@ -159,6 +158,7 @@ public class PlayerStat : NetworkBehaviour
 
         if (playerHelmet != null)
         {
+            playerHealth += playerHelmet.addHP;
             playerStrength += playerHelmet.addStrength;
             playerMagic += playerHelmet.addMagic;
             playerDexterity += playerHelmet.addDexterity;
@@ -174,6 +174,7 @@ public class PlayerStat : NetworkBehaviour
 
         if (playerArmor != null)
         {
+            playerHealth += playerArmor.addHP;
             playerStrength += playerArmor.addStrength;
             playerMagic += playerArmor.addMagic;
             playerDexterity += playerArmor.addDexterity;
@@ -189,6 +190,7 @@ public class PlayerStat : NetworkBehaviour
 
         if (playerWeapon != null)
         {
+            playerHealth += playerWeapon.addHP;
             playerStrength += playerWeapon.addStrength;
             playerMagic += playerWeapon.addMagic;
             playerDexterity += playerWeapon.addDexterity;
@@ -209,6 +211,7 @@ public class PlayerStat : NetworkBehaviour
 
         if (playerNecklace != null)
         {
+            playerHealth += playerNecklace.addHP;
             playerStrength += playerNecklace.addStrength;
             playerMagic += playerNecklace.addMagic;
             playerDexterity += playerNecklace.addDexterity;
@@ -224,6 +227,7 @@ public class PlayerStat : NetworkBehaviour
 
         if (playerRingOne != null)
         {
+            playerHealth += playerRingOne.addHP;
             playerStrength += playerRingOne.addStrength;
             playerMagic += playerRingOne.addMagic;
             playerDexterity += playerRingOne.addDexterity;
@@ -239,6 +243,7 @@ public class PlayerStat : NetworkBehaviour
 
         if (playerRingTwo != null)
         {
+            playerHealth += playerRingTwo.addHP;
             playerStrength += playerRingTwo.addStrength;
             playerMagic += playerRingTwo.addMagic;
             playerDexterity += playerRingTwo.addDexterity;
@@ -251,7 +256,7 @@ public class PlayerStat : NetworkBehaviour
             playerCriticalDamage += playerRingTwo.addCriticalDamage;
             playerResistance += playerRingTwo.addResistance;
         }
-
+        thePlayer.playerMaxHealth = playerHealth + thePlayer.GetMaxHitPoint();
         thePlayer.playerStrength = playerStrength + thePlayer.GetStrength();
         thePlayer.playerMagic = playerMagic + thePlayer.GetMagic();
         thePlayer.playerDexterity = playerDexterity + thePlayer.GetDexterity();
@@ -263,6 +268,11 @@ public class PlayerStat : NetworkBehaviour
         thePlayer.playerCriticalChance = playerCriticalChance + thePlayer.GetCritChance();
         thePlayer.playerCriticalDamage = playerCriticalDamage + thePlayer.GetCritDamage();
         thePlayer.playerResistance = playerResistance + thePlayer.GetResistance();
+
+        if (statUpdated != null)
+        {
+            statUpdated.Invoke();
+        }
     }
 
     public void AddHelmetStat()

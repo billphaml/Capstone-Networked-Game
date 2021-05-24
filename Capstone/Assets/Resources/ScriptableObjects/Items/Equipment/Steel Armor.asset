@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: Steel Armor
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 8
   itemImage: {fileID: 0}
   itemName: 
   itemDescription: 
   gameItemType: 0
+  sellPrice: 0
+  buyPrice: 0
   addAttack: 0
   addDefence: 0
   addMagicResistance: 0
@@ -28,7 +30,7 @@ MonoBehaviour:
   addMagic: 0
   addDexterity: 0
   addConstitution: 0
-  addHP: 0
+  addHP: 100
   addSP: 0
   addMP: 0
   itemRange: 0
