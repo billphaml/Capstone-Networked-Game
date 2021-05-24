@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfde9a5dc859d5f41b51934f3b43441f, type: 3}
+  m_Name: Iron_Armor_Recipe
+  m_EditorClassIdentifier: 
+  output: {fileID: 11400000, guid: 0103014d5a817bd4f91a953f6c7ffe1d, type: 2}
+  item_01: {fileID: 11400000, guid: acfc83b46bdb9f2429675d041838faab, type: 2}
+  item_02: {fileID: 11400000, guid: 8ae6edeb3c98e0f44a412d8293500d06, type: 2}

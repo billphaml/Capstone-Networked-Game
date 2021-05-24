@@ -214,9 +214,13 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         {
             return eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().dragItem.GetComponent<DragItem>();
         }
-        else
+        else if(eventData.pointerDrag.gameObject.GetComponent<ItemSlot>() != null)
         {
             return eventData.pointerDrag.gameObject.GetComponent<ItemSlot>().dragItem.GetComponent<DragItem>();
+        }
+        else
+        {
+            return null;
         }
     }
 

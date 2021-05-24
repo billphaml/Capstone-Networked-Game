@@ -137,8 +137,16 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         {
             if (theInventory.CanAdd())
             {
-                theInventory.AddItem(theItem);
-                ClearSlot();
+                if (isResult == true)
+                {
+                    theInventory.AddItem(theItem);
+                    theCraftingManager.ClaimResult();
+                }
+                else
+                {
+                    theInventory.AddItem(theItem);
+                    ClearSlot();
+                }
             }
         }
     }
