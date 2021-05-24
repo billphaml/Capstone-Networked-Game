@@ -53,29 +53,29 @@ public class PlayerAttack : NetworkBehaviour
 
         // Temp fist damage
         if (damage <= 0) damage = 5f;
-
+        isMeleeAttacking = false;
         if (Input.GetMouseButtonDown(0))
         {
             switch (weaponType)
             {
                 case Actor.attackType.FIST:
                     MeleeAttack();
-                    isMeleeAttacking = true;
+                    
                     break;
                 case Actor.attackType.SWORD:
 #if DEBUG
                     Debug.Log("sword");
 #endif  
                     MeleeAttack();
-                    isMeleeAttacking = true;
+                    
                     break;
                 case Actor.attackType.GREATSWORD:
                     MeleeAttack();
-                    isMeleeAttacking = true;
+                    
                     break;
                 case Actor.attackType.DAGGER:
                     MeleeAttack();
-                    isMeleeAttacking = true;
+                    
                     break;
                 case Actor.attackType.BOW:
                     RangeAttackServerRpc();
@@ -87,7 +87,7 @@ public class PlayerAttack : NetworkBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            isMeleeAttacking = false;
+            //isMeleeAttacking = false;
         }
     }
 
@@ -97,6 +97,8 @@ public class PlayerAttack : NetworkBehaviour
     /// <param name="rpcParams"></param>
     void MeleeAttack()
     {
+
+        isMeleeAttacking = true;
 #if DEBUG
         Debug.Log("using melee");
 #endif

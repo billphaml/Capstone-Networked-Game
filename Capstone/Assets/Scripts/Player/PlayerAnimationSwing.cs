@@ -32,7 +32,7 @@ public class PlayerAnimationSwing : MonoBehaviour
 
             if (combo == 0) Swing1();
             else if (combo == 1) Swing2();
-            else Swing3();
+            else if (combo == 2) Swing3();
 
         }
     }
@@ -41,16 +41,16 @@ public class PlayerAnimationSwing : MonoBehaviour
     private void Swing1()
     {
         animator.Play("Swing1");
-        combo++;
+        combo = 1;
     }
     private void Swing2()
     {
         animator.Play("Swing2");
-        combo++;
+        combo = 2;
     }
     private void Swing3()
     {
-        animator.Play("Swing1");
+        animator.Play("Swing3");
         combo = 0;
     }
 
