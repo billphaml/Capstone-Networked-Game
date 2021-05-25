@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using MLAPI;
 
 public class BoltSpawnSystem : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class BoltSpawnSystem : MonoBehaviour
     {
         Debug.Assert(CanSpawn());
         GameObject b = GameObject.Instantiate(boltSample) as GameObject;
+        b.GetComponent<NetworkObject>().Spawn();
         b.transform.position = p;
         b.transform.up = dir; // changed this from up to right 
         kSpawnBoltAt = Time.realtimeSinceStartup;

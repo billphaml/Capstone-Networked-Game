@@ -18,6 +18,8 @@
 
 using UnityEngine;
 using MLAPI;
+using System.Collections.Generic;
+using System;
 
 public class EnemyController : NetworkBehaviour
 {
@@ -77,7 +79,7 @@ public class EnemyController : NetworkBehaviour
         if (IsHost || IsServer)
         {
             // Add nearest player searching
-            //player = 
+            player = FindNearestPlayer(); 
 
             fsm.UpdateFSM();
 
@@ -93,5 +95,26 @@ public class EnemyController : NetworkBehaviour
                 }
             }
         }
+    }
+
+    private GameObject FindNearestPlayer() 
+    {
+        GameObject nearestPlayer = null;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        
+        float oldSize = Int32.MaxValue;
+        float size = 0;
+        
+        foreach (GameObject play in players) 
+        {
+            size =  Vector3.Distance(gameObject.transform.position, play.transform.position);
+            if (size < oldSize) 
+            {
+                oldSize = size;
+                nearestPlayer = play;
+            }
+        }
+
+        return nearestPlayer;
     }
 }
