@@ -18,7 +18,7 @@ public class WaveTrigger : NetworkBehaviour
     /// </summary> 
     [SerializeField] private GameObject room = null;
 
-    private NetworkVariableFloat nextSpawnTime;
+    private NetworkVariableFloat nextSpawnTime = new NetworkVariableFloat();
 
     [SerializeField] private float spawnDelayTime = 120f;
 
