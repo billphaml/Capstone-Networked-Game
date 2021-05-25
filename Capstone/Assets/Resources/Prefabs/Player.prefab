@@ -465,6 +465,7 @@ MonoBehaviour:
     actorDescription: 
     theActorType: 0
     theAttackType: 0
+    playerMaxHealth: 0
     playerStrength: 0
     playerMagic: 0
     playerDexterity: 0
@@ -501,6 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  thePlayer: {fileID: 0}
   Health:
     m_InternalValue: 100
 --- !u!114 &2152892892352604467
@@ -1540,7 +1542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4183657185722309927
 Transform:
   m_ObjectHideFlags: 0

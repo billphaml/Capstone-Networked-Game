@@ -48,7 +48,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.2
   m_Color: {r: 0.249, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -310,10 +310,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - length: 1
+  - length: 2
     enemies:
     - enemy: {fileID: 1405533726842306551, guid: dc547033f6ee61240883faeed74fe832, type: 3}
-      enemyCount: 5
+      enemyCount: 4
+      enemyRate: 1
+    - enemy: {fileID: 3330332621826780194, guid: 4bec46bc24712674580aeb8954d77b8c, type: 3}
+      enemyCount: 2
       enemyRate: 1
   waveCount: 1
   waveRate: 1
