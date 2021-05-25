@@ -9,6 +9,7 @@
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 
 public class WaveTrigger : NetworkBehaviour
 {
@@ -17,7 +18,7 @@ public class WaveTrigger : NetworkBehaviour
     /// </summary> 
     [SerializeField] private GameObject room = null;
 
-    private float nextSpawnTime = 0f;
+    private NetworkVariableFloat nextSpawnTime;
 
     [SerializeField] private float spawnDelayTime = 120f;
 
@@ -31,6 +32,7 @@ public class WaveTrigger : NetworkBehaviour
         {
             Debug.LogError("Unable to get room for spawning.");
         }
+        nextSpawnTime.Value = 0f;
     }
 
     /// <summary>
@@ -38,7 +40,7 @@ public class WaveTrigger : NetworkBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (nextSpawnTime <= Time.time)
+        if (nextSpawnTime.Value <= Time.time)
         {
             if (collision.gameObject.tag == "Player" && IsHost)
             {
@@ -54,7 +56,7 @@ public class WaveTrigger : NetworkBehaviour
                 //    doors[i].GetComponent<SpriteRenderer>().enabled = true;
                 //}
 
-                nextSpawnTime = Time.time + spawnDelayTime;
+                nextSpawnTime.Value = Time.time + spawnDelayTime;
             }
             else if (collision.gameObject.tag == "Player" && NetworkManager.Singleton.IsConnectedClient)
             {
@@ -78,6 +80,6 @@ public class WaveTrigger : NetworkBehaviour
         //    doors[i].GetComponent<SpriteRenderer>().enabled = true;
         //}
 
-        nextSpawnTime = Time.time + spawnDelayTime;
+        nextSpawnTime.Value = Time.time + spawnDelayTime;
     }
 }
