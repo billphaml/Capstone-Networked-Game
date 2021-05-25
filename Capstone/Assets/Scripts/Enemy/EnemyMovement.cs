@@ -144,18 +144,17 @@ public class EnemyMovement : NetworkBehaviour
             ec.fsm.isPatroling = true;
         }
 
-        Debug.DrawLine(newDest, gameObject.transform.position, Color.blue, 1.0f);
-        agent.SetDestination(newDest);
+        if (playerBias > 2)
+        {
+            Debug.DrawLine(newDest, gameObject.transform.position, Color.blue, 1.0f);
+            agent.SetDestination(newDest);
 
-        //if (playerBias > 2)
-        //{
-            
-        //}
-        //else
-        //{
-        //    //Debug.DrawLine(ec.player.transform.position, gameObject.transform.position, Color.red, 1.0f);
-        //    //agent.SetDestination(ec.player.transform.position);
-        //}
+        }
+        else
+        {
+            //Debug.DrawLine(ec.player.transform.position, gameObject.transform.position, Color.red, 1.0f);
+            //agent.SetDestination(ec.player.transform.position);
+        }
     }
 
     /// <summary>

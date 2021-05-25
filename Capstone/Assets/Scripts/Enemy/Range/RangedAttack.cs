@@ -2,16 +2,18 @@
 
 public class RangedAttack : MonoBehaviour
 {
+    public EnemyController controller;
     public EnemyFSM state;
     public EnemyFSM.EnemyState enemyState;
-    private GameObject player;
+    //private GameObject player;
     private BoltSpawnSystem kBoltSystem;
 
     private void Start()
     {
+        controller = gameObject.GetComponent<EnemyController>();
         kBoltSystem = gameObject.GetComponent<BoltSpawnSystem>();
         state = gameObject.GetComponent<EnemyFSM>();
-        player = GameObject.FindGameObjectWithTag("Player");
+       // player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class RangedAttack : MonoBehaviour
         if (kBoltSystem.CanSpawn())
         {
             Vector3 newPos = new Vector3(transform.position.x, transform.position.y, 0.0f);
-            kBoltSystem.SpawnABolt(newPos, (player.transform.position - newPos));
+            kBoltSystem.SpawnABolt(newPos, (controller.player.transform.position - newPos));
         }
     }
 }
