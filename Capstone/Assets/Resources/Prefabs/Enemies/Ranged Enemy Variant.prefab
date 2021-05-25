@@ -35,6 +35,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1405533726842306546, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: PrefabHash
+      value: 4756276361243662039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405533726842306546, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: PrefabHashGenerator
+      value: Ranged Enemy Variant
+      objectReference: {fileID: 0}
     - target: {fileID: 1405533726842306550, guid: dc547033f6ee61240883faeed74fe832, type: 3}
       propertyPath: m_RootOrder
       value: 0

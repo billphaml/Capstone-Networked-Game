@@ -41,10 +41,17 @@ public class InventoryUI : NetworkBehaviour
 
     void Update()
     {
-        if(thePlayerHealable == null)
+        if (thePlayerHealable == null)
         {
-            thePlayerHealable = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerHealable>();
+            try
+            {
+                thePlayerHealable = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerHealable>();
+            } 
+            catch
+            {
 
+            }
+            
             if (thePlayerHealable != null) { setupNetworkManager(); }
         }
     }
