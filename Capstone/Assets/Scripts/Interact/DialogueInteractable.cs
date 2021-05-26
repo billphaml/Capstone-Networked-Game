@@ -10,8 +10,10 @@ public class DialogueInteractable : Interactable
 {
     [SerializeField] private NPCBehavior npc;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+
         npc = gameObject.GetComponent<NPCBehavior>();
     }
 

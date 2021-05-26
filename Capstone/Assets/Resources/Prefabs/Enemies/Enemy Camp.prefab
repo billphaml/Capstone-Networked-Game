@@ -310,13 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - length: 2
+  - length: 1
     enemies:
     - enemy: {fileID: 1405533726842306551, guid: dc547033f6ee61240883faeed74fe832, type: 3}
       enemyCount: 4
-      enemyRate: 1
-    - enemy: {fileID: 3330332621826780194, guid: 4bec46bc24712674580aeb8954d77b8c, type: 3}
-      enemyCount: 2
       enemyRate: 1
   waveCount: 1
   waveRate: 1
