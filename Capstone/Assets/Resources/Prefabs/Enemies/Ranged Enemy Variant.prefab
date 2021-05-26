@@ -95,6 +95,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: RangedEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1405533727244231337, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7021294630956641602, guid: 19e241d24126e8a4491c28c7a833a1e6, type: 3}
+    - target: {fileID: 1405533727244231342, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405533727244231342, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517744926692530140, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d834f74bdb77a454a92bc83f2b5e3adb, type: 2}
     - target: {fileID: 2280849405685400733, guid: dc547033f6ee61240883faeed74fe832, type: 3}
       propertyPath: kChaseRange
       value: 15
@@ -103,6 +119,10 @@ PrefabInstance:
       propertyPath: kAttackRange
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6019827525303499277, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: enemyAnimator
+      value: 
+      objectReference: {fileID: 2929273100955386889}
     m_RemovedComponents:
     - {fileID: 5748319549430998125, guid: dc547033f6ee61240883faeed74fe832, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc547033f6ee61240883faeed74fe832, type: 3}
@@ -133,3 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56dbd983c1e4d1498e9142146aca6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2929273100955386889 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1517744926692530140, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+  m_PrefabInstance: {fileID: 4446955698812965845}
+  m_PrefabAsset: {fileID: 0}
