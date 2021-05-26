@@ -30,7 +30,7 @@ public class SaveManager : MonoBehaviour
     {
         WorldSave worldData = SaveSystem.LoadWorld();
         LocalGameManager quests = GameObject.FindGameObjectWithTag("Networked Game Manager").GetComponent<LocalGameManager>();
-        
+
         quests.currentQuest = worldData.CurrentQuests;
 
         var NPCS = GameObject.FindGameObjectsWithTag("NPC");
