@@ -19,6 +19,7 @@ TagManager:
   - Interactable UI
   - NPC
   - Networked Game Manager
+  - Audio Manager
   layers:
   - Default
   - TransparentFX

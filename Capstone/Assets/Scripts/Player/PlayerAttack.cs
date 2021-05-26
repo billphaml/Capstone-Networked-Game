@@ -117,6 +117,7 @@ public class PlayerAttack : NetworkBehaviour
             if (alreadyDamagedEnemies.Contains(currentEnemy)) continue;
             
             currentEnemy.GetComponent<EnemyDamageable>().DealDamage(damage);
+            AudioManager._instance.Play("Hit");
             //Instantiate(hitMarker, currentEnemy.transform.position, Quaternion.identity);
 #if DEBUG
             Debug.Log("hit" + currentEnemy);

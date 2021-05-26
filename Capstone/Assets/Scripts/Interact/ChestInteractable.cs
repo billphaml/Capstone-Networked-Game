@@ -23,6 +23,13 @@ public class ChestInteractable : Interactable
         NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerStat>().AddItemPrefab(item);
     }
 
+    public override void Start()
+    {
+        base.Start();
+
+        AudioManager._instance.Play("ChestSpawn");
+    }
+
     protected override void Update()
     {
         if (isInteractDisplayed)

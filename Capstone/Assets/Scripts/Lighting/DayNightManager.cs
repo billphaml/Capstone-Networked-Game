@@ -50,6 +50,12 @@ public class DayNightManager : NetworkBehaviour
 
     public AnimationCurve sunlightLevel;
 
+    /// <summary>
+    /// Day = true
+    /// Night = false
+    /// </summary>
+    private bool isDayNight = false;
+
     private void Start()
     {
         timeChangeRate = 1f / fullDayLength;
@@ -74,6 +80,8 @@ public class DayNightManager : NetworkBehaviour
         bri = sunlightLevel.Evaluate(time);
 
         globalLight.color = Color.HSVToRGB(hue, sat, bri);
+
+        UpdateSound();
     }
 
     /// <summary>
@@ -84,5 +92,26 @@ public class DayNightManager : NetworkBehaviour
     public bool IsDay()
     {
         return (bri >= 0.6f);
+    }
+
+    private void UpdateSound()
+    {
+        // if not equal then we just changed from one time cycle to another
+        // (i.e. day to night)
+        if (isDayNight != IsDay())
+        {
+            if (isDayNight) // switch from day to night
+            {
+                isDayNight = false;
+                AudioManager._instance.Stop("Day");
+                AudioManager._instance.Play("Night");
+            }
+            else // switch from night to day
+            {
+                isDayNight = true;
+                AudioManager._instance.Stop("Night");
+                AudioManager._instance.Play("Day");
+            }
+        }
     }
 }

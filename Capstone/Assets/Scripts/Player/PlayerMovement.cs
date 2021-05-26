@@ -33,6 +33,8 @@ public class PlayerMovement : NetworkBehaviour
     /// </summary>
     private FloatingJoystick stick;
 
+    private bool isPaused = false;
+
     /// <summary>
     /// Start and grab references.
     /// </summary>
@@ -63,6 +65,16 @@ public class PlayerMovement : NetworkBehaviour
 #if UNITY_ANDROID
             GrabInputAndroid();
 #endif
+            if (moveVector.magnitude > 0 && isPaused)
+            {
+                AudioManager._instance.Play("Walking");
+                isPaused = false;
+            }
+            else if (moveVector.magnitude <= 0 && !isPaused)
+            {
+                AudioManager._instance.Pause("Walking");
+                isPaused = true;
+            }
         }
     }
 

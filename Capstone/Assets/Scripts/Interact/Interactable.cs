@@ -26,7 +26,7 @@ public class Interactable : NetworkBehaviour
 
         isInteractDisplayed = true;
         interactUI.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        Vector2 offset = new Vector2(0, gameObject.transform.lossyScale.y * 0.3f);
+        Vector2 offset = new Vector2(0, gameObject.transform.lossyScale.y * 1.1f);
         interactUI.transform.position = new Vector2(gameObject.transform.position.x + offset.x, gameObject.transform.position.y + offset.y);
     }
 
@@ -45,7 +45,7 @@ public class Interactable : NetworkBehaviour
         Debug.Log("Interacted with " + transform.name);
     }
 
-    private void Start()
+    public virtual void Start()
     {
         // Get reference to interactable UI if needed (for spawned in interactables)
 

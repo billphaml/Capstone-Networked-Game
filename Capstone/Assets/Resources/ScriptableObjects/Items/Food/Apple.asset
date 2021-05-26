@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: Apple
   itemDescription: Gathering trees
   gameItemType: 9
-  HPValue: 0
+  sellPrice: 0
+  buyPrice: 0
+  HPValue: 5
   SPValue: 0
   MPValue: 0

@@ -22,12 +22,12 @@ public class GatherInteractable : Interactable
 
     private float nextHarvestTime = 0;
 
-    [SerializeField] private float harvestDelayTime = 180f;
+    [SerializeField] private float harvestDelayTime = 30f;
 
     protected override void Interact()
     {
         Debug.Log("Interacted with " + transform.name);
-
+        AudioManager._instance.Play("LeavesRustle");
         NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerStat>().AddItemPrefab(item);
     }
 
