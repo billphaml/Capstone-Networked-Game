@@ -312,7 +312,7 @@ MonoBehaviour:
   waves:
   - length: 1
     enemies:
-    - enemy: {fileID: 1405533726842306551, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+    - enemy: {fileID: 4528891773245980567, guid: 72f90a64ead5f7241ac309150b0a48b4, type: 3}
       enemyCount: 4
       enemyRate: 1
   waveCount: 1

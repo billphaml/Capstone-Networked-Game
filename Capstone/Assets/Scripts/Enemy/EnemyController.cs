@@ -38,6 +38,8 @@ public class EnemyController : NetworkBehaviour
     /// </summary>
     public EnemyMovement move = null;
 
+    public EnemyAnimation anim = null;
+
     public override void NetworkStart()
     {
         //if (IsHost || IsServer)
@@ -84,6 +86,8 @@ public class EnemyController : NetworkBehaviour
             fsm.UpdateFSM();
 
             move.UpdateMovement();
+
+            anim.UpdateAnimation();
 
             if (Vector3.Distance(gameObject.transform.position, player.transform.position) < fsm.GetChaseRange())
             {
