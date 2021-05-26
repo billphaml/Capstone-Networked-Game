@@ -41,9 +41,9 @@ public class EnemyAnimation : MonoBehaviour
 
                 if (enemy.tag == "RangedEnemy")
                 {
-                    var newVec = (enemyFSM.transform.position - ec.player.transform.position).normalized;
+                    var newVec = (ec.transform.position - ec.player.transform.position).normalized;
                     //Debug.Log(newVec);
-
+                    
                     enemyAnimator.SetFloat("horizontal", newVec.x);
                     enemyAnimator.SetFloat("vertical", newVec.y);
 
@@ -52,14 +52,23 @@ public class EnemyAnimation : MonoBehaviour
             }
             else
             {
-               // Debug.Log(enemyFSM.getIsAttacking());
+               ///Debug.Log(enemyFSM.getIsAttacking());
                 enemyAnimator.SetBool("attacking", false);
 
-                var newVec = (enemyFSM.transform.position - ec.player.transform.position).normalized;
+                var newVec = (ec.transform.position - ec.player.transform.position).normalized;
                 //Debug.Log(newVec);
-
+                
                 enemyAnimator.SetFloat("horizontal", newVec.x);
                 enemyAnimator.SetFloat("vertical", newVec.y);
+                
+                if (newVec.x < 0)
+                {
+                    gameObject.GetComponent<Transform>().localScale = new Vector3(-1, 1, 1);
+                }
+                if (newVec.x > 0)
+                {
+                    gameObject.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+                }
 
                 if (enemyFSM.GetEnemyState() == EnemyFSM.EnemyState.patrolState ||
                     enemyFSM.GetEnemyState() == EnemyFSM.EnemyState.chaseState)
