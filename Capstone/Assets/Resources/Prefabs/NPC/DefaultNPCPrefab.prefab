@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2576567434417656074}
   - component: {fileID: 2576567434417656308}
   - component: {fileID: 2576567434417656309}
-  - component: {fileID: 2576567434417656072}
+  - component: {fileID: 2785950340022587312}
   m_Layer: 0
   m_Name: DefaultNPCPrefab
   m_TagString: NPC
@@ -283,14 +283,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactUI: {fileID: 0}
   npc: {fileID: 2576567434417656308}
---- !u!114 &2576567434417656072
+--- !u!114 &2785950340022587312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2576567434417656304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e459414d766739344a4b8f66657d2a58, type: 3}
   m_Name: 
