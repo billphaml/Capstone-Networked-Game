@@ -16,7 +16,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 2c1fe65b4d4e7354ab4f30cf3b70bc96, type: 3}
   itemName: Emerald Amulet
   itemDescription: An amulet with an emerald engraved onto it. You can feel power
-    emanating from the sapphire.
+    emanating from the emerald.
   gameItemType: 2
   sellPrice: 200
   buyPrice: 500

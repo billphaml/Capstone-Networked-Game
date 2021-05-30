@@ -13,7 +13,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class EquipmentSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public EquipmentManager theEquipmentManager;
 
@@ -77,6 +77,22 @@ public class EquipmentSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
                 theEquipmentManager.RemoveFromInventory(theItem);
                 ClearSlot();
             }
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (theItem != null)
+        {
+            ToolTip.theToolTip.setItemInfo(theItem);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (theItem != null)
+        {
+            ToolTip.theToolTip.resetToolTip();
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShopSlot : MonoBehaviour, IPointerDownHandler
+public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Inventory theInventory;
     public TextMeshProUGUI itemAmountText;
@@ -45,13 +45,6 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
         itemAmountText.text = "";
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-#if DEBUG
-        Debug.Log("Clicked onto the inventory slot");
-#endif
-    }
-
     public void OnRemoveButton()
     {
         theInventory.RemoveItem(theItem);
@@ -69,6 +62,22 @@ public class ShopSlot : MonoBehaviour, IPointerDownHandler
                 ShopManager.theShopManager.removeItem(theItem);
             }
             
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(theItem != null)
+        {
+            ToolTip.theToolTip.setItemInfo(theItem);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(theItem != null)
+        {
+            ToolTip.theToolTip.resetToolTip();
         }
     }
 }

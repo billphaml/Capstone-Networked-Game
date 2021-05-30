@@ -17,7 +17,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class InventorySlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public EquipmentManager theEquipmentManager;
 
@@ -71,6 +71,22 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         //itemAmount = 0;
         itemAmountText.text = "";
         dropButton.interactable = false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (theItem != null)
+        {
+            ToolTip.theToolTip.setItemInfo(theItem);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (theItem != null)
+        {
+            ToolTip.theToolTip.resetToolTip();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)

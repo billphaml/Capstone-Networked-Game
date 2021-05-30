@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public CraftingManager theCraftingManager;
     public Inventory theInventory;
@@ -57,6 +57,22 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         //itemAmount = 0;
         itemAmountText.text = "";
         dropButton.interactable = false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (theItem != null)
+        {
+            ToolTip.theToolTip.setItemInfo(theItem);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (theItem != null)
+        {
+            ToolTip.theToolTip.resetToolTip();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)

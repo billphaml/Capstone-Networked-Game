@@ -30,7 +30,7 @@ MonoBehaviour:
   addMagic: 0
   addDexterity: 0
   addConstitution: 0
-  addHP: 0
+  addHP: 100
   addSP: 0
   addMP: 0
   itemRange: 0

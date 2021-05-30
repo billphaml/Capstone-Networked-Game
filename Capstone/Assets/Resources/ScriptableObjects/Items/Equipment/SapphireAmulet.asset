@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35715be3d42a03488f94b137f2e9439, type: 3}
   m_Name: SapphireAmulet
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 37
   itemImage: {fileID: 21300000, guid: 3c9805506cdde8f44889fc034ab0097e, type: 3}
   itemName: Sapphire Amulet
   itemDescription: An amulet with a sapphire engraved onto it. You can feel power
@@ -31,7 +31,7 @@ MonoBehaviour:
   addMagic: 20
   addDexterity: 0
   addConstitution: 0
-  addHP: 0
+  addHP: 20
   addSP: 20
   addMP: 0
   itemRange: 0
