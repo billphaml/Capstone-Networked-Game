@@ -12,7 +12,8 @@ using UnityEngine;
 public class LocalGameManager : MonoBehaviour
 {
     public static LocalGameManager theLocalGameManager;
-
+    public GoldUpdater iLoveGooooold;
+    public QuestComplete UI;
     void Awake()
     {
         theLocalGameManager = this;
@@ -35,6 +36,9 @@ public class LocalGameManager : MonoBehaviour
             {
                 // add experience to the player
                 // add gold to the player
+                iLoveGooooold.GoldAdd(currentQuest[i].goldReward);
+                UI.RewardQuest(currentQuest[i]);
+
                 currentQuest[i].Complete();
                 currentQuest.Remove(currentQuest[i]);
             }

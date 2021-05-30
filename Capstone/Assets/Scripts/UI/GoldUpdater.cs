@@ -37,4 +37,13 @@ public class GoldUpdater : MonoBehaviour
             ui.text = "Gold: " + player.gold;
         }
     }
+
+    public void GoldAdd(int input)
+    {
+        player.gold += input;
+    }
+    public void GoldRemove(int input)
+    {
+        player.gold -= input;
+    }
 }
