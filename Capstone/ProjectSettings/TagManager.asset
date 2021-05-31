@@ -22,6 +22,7 @@ TagManager:
   - Audio Manager
   - Network Manager
   - Game Network Manager
+  - Respawn Menu
   layers:
   - Default
   - TransparentFX
