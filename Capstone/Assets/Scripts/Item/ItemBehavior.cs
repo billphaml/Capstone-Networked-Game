@@ -41,7 +41,7 @@ public class ItemBehavior : NetworkBehaviour, ISerializationCallbackReceiver
     /// </summary>
     /// <param name="clientID"></param>
     [ClientRpc]
-    public void PickUpClientRpc(ulong clientID)
+    public virtual void PickUpClientRpc(ulong clientID)
     {
         if (NetworkManager.Singleton.LocalClientId == clientID)
         {

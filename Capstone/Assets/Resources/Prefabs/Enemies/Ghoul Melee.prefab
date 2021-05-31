@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: enemyAnimator
       value: 
       objectReference: {fileID: 4055687800185362364}
+    - target: {fileID: 7715274337192666208, guid: dc547033f6ee61240883faeed74fe832, type: 3}
+      propertyPath: gold
+      value: 
+      objectReference: {fileID: 9216264659743694035, guid: 6550841c4763204429deb6211a60fb24, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc547033f6ee61240883faeed74fe832, type: 3}
 --- !u!1 &4528891773245980567 stripped

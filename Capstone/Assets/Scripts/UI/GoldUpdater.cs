@@ -12,7 +12,7 @@ using TMPro;
 using MLAPI;
 public class GoldUpdater : MonoBehaviour
 {
-    private PlayerActor player = null;
+    private PlayerStat player = null;
 
     public TextMeshProUGUI ui = null;
 
@@ -24,7 +24,7 @@ public class GoldUpdater : MonoBehaviour
         {
             try
             { 
-                player = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.gameObject.GetComponent<PlayerStat>().thePlayer;
+                player = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.gameObject.GetComponent<PlayerStat>();
             }
             catch
             {
@@ -34,16 +34,16 @@ public class GoldUpdater : MonoBehaviour
 
         if (player != null)
         {
-            ui.text = "Gold: " + player.gold;
+            ui.text = "Gold: " + player.GetGold();
         }
     }
 
     public void GoldAdd(int input)
     {
-        player.gold += input;
+        player.AddGold(input);
     }
     public void GoldRemove(int input)
     {
-        player.gold -= input;
+        player.RemoveGold(input);
     }
 }

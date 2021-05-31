@@ -76,11 +76,13 @@ public class PlayerStat : NetworkBehaviour
 #endif
             var item = collision.GetComponent<ItemBehavior>();
 
+            
             // If object is an item and player has empty slot
             if (item && playerInventory.CanAdd())
             {
                 item.TryPickUpServerRpc(OwnerClientId);
             }
+            
         }
     }
 
@@ -92,6 +94,31 @@ public class PlayerStat : NetworkBehaviour
     {
         playerInventory.AddItem(item.theItem);
         item.DestroyItemObjectServerRpc();
+    }
+
+    /// <summary>
+    /// Gooooooollld.
+    /// </summary>
+    /// <param name="item"></param>
+    public void AddGold(ItemBehavior item)
+    {
+        int randGold = Random.Range(1, 10);
+        thePlayer.gold += randGold;
+        item.DestroyItemObjectServerRpc();
+    }
+
+    public void AddGold(int gold)
+    {
+        thePlayer.gold += gold ;
+    }
+
+    public void RemoveGold(int gold)
+    {
+        thePlayer.gold -= gold;
+    }
+    public int GetGold()
+    {
+        return thePlayer.gold;
     }
 
     /// <summary>
