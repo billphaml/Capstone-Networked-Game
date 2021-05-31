@@ -16,7 +16,9 @@ public class UIManager : MonoBehaviour
     [Header("Hosting")]
     public GameObject RoomNameHost;
     public GameObject RoomNameClient;
-    public GameObject NickName;
+    public GameObject NickNameHost;
+    public GameObject NickNameClient;
+
 
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventory = null;

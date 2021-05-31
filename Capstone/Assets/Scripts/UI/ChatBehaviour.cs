@@ -7,6 +7,7 @@
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 using TMPro;
 using System;
 
@@ -15,6 +16,14 @@ public class ChatBehaviour : NetworkBehaviour
     [SerializeField] private GameObject chatUI = null;
     [SerializeField] private TMP_Text chatText = null;
     [SerializeField] private TMP_InputField inputField = null;
+
+    public TextMeshProUGUI nameTag;
+
+    private string playerName = "";
+
+    //private NetworkVariable<string> PlayNameSync = new NetworkVariable<string>("");
+
+    private bool isConnected = false;
 
     private static event Action<string> OnMessage;
 
@@ -27,12 +36,48 @@ public class ChatBehaviour : NetworkBehaviour
             chatUI.SetActive(true);
 
             OnMessage += HandleNewMessage;
+
+            if (IsOwner) Debug.Log("hello");
+
+            playerName = GameObject.FindGameObjectWithTag("Game Network Manager").GetComponent<GameNetworkManager>().playerNickName;
+
+            nameTag.text = playerName;
+
+            isConnected = true;
         } 
         else
         {
             return;
         }
     }
+
+    //private void Update()
+    //{
+    //    if (playerName == "")
+    //    {
+    //        if (isConnected)
+    //        {
+    //            if (IsLocalPlayer)
+    //            {
+    //                playerName = GameObject.FindGameObjectWithTag("Game Network Manager").GetComponent<GameNetworkManager>().playerNickName;
+    //                nameTag.text = playerName;
+    //            }
+    //        }
+    //    }
+    //}
+
+    //    if (playerName == "")
+    //{
+    //    if (isConnected)
+    //    {
+    //        if (IsLocalPlayer)
+    //        {
+    //            playerName = GameNetworkManager.playerNickName;
+    //            ///PlayNameSync.Value = playerName;
+    //            //nameTag.text = playerName;
+    //        }
+    //    }
+    //}
 
     private void OnDestroy()
     {
@@ -61,7 +106,7 @@ public class ChatBehaviour : NetworkBehaviour
 
             if (string.IsNullOrWhiteSpace(message)) return;
 
-            SendMessageServerRpc(message);
+            SendMessageServerRpc(playerName, message);
 
             inputField.text = string.Empty;
         }
@@ -72,13 +117,13 @@ public class ChatBehaviour : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SendMessageServerRpc(string message)
+    private void SendMessageServerRpc(string player, string message)
     {
         // Need to somehow get nickname, perhaps make loadbalanceclient public in photon class and directly
         // retrieve nickname from there? Better idea is probably to have a custom nickname system stored
         // as network var so that we're not dependent on photon
         //NetworkManager.Singleton.gameObject.GetComponent<pho>
-        HandleMessageClientRpc($"[Player]: {message}");
+        HandleMessageClientRpc($"[{player}]: {message}");
     }
 
     [ClientRpc]

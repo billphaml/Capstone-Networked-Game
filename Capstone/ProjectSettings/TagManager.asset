@@ -20,6 +20,8 @@ TagManager:
   - NPC
   - Networked Game Manager
   - Audio Manager
+  - Network Manager
+  - Game Network Manager
   layers:
   - Default
   - TransparentFX

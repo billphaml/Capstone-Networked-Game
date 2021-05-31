@@ -14,6 +14,8 @@ public class GameNetworkManager : MonoBehaviour
     [SerializeField]
     private GameObject UIManager;
 
+    public string playerNickName = "";
+
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -74,7 +76,7 @@ public class GameNetworkManager : MonoBehaviour
 
     //-------------------------------------------------------------------//
 
-    public static void Host()
+    public void Host()
     {
         //UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
         ////UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
@@ -92,11 +94,11 @@ public class GameNetworkManager : MonoBehaviour
         PhotonRealtimeTransport manager = GameObject.Find("Network Manager").GetComponent<PhotonRealtimeTransport>();
 
         manager.RoomName = ui.RoomNameHost.GetComponent<TMP_InputField>().text.ToString();
-        manager.name = ui.NickName.GetComponent<TMP_InputField>().text.ToString();
+        playerNickName = ui.NickNameHost.GetComponent<TMP_InputField>().text.ToString();
         NetworkManager.Singleton.StartHost();
     }
 
-    public static void Join()
+    public void Join()
     {
         //UIManager ui = GameObject.Find("UI Manager").GetComponent<UIManager>();
         ////UNetTransport manager = GameObject.Find("Network Manager").GetComponent<UNetTransport>();
@@ -113,6 +115,8 @@ public class GameNetworkManager : MonoBehaviour
         PhotonRealtimeTransport manager = GameObject.Find("Network Manager").GetComponent<PhotonRealtimeTransport>();
 
         manager.RoomName = ui.RoomNameClient.GetComponent<TMP_InputField>().text.ToString();
+        playerNickName = ui.NickNameClient.GetComponent<TMP_InputField>().text.ToString();
+
         NetworkManager.Singleton.StartClient();
     }
 }
