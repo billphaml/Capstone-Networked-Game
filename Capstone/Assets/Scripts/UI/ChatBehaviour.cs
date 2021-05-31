@@ -7,7 +7,6 @@
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
 using TMPro;
 using System;
 
@@ -17,13 +16,7 @@ public class ChatBehaviour : NetworkBehaviour
     [SerializeField] private TMP_Text chatText = null;
     [SerializeField] private TMP_InputField inputField = null;
 
-    public TextMeshProUGUI nameTag;
-
     private string playerName = "";
-
-    //private NetworkVariable<string> PlayNameSync = new NetworkVariable<string>("");
-
-    private bool isConnected = false;
 
     private static event Action<string> OnMessage;
 
@@ -37,47 +30,13 @@ public class ChatBehaviour : NetworkBehaviour
 
             OnMessage += HandleNewMessage;
 
-            if (IsOwner) Debug.Log("hello");
-
             playerName = GameObject.FindGameObjectWithTag("Game Network Manager").GetComponent<GameNetworkManager>().playerNickName;
-
-            nameTag.text = playerName;
-
-            isConnected = true;
         } 
         else
         {
             return;
         }
     }
-
-    //private void Update()
-    //{
-    //    if (playerName == "")
-    //    {
-    //        if (isConnected)
-    //        {
-    //            if (IsLocalPlayer)
-    //            {
-    //                playerName = GameObject.FindGameObjectWithTag("Game Network Manager").GetComponent<GameNetworkManager>().playerNickName;
-    //                nameTag.text = playerName;
-    //            }
-    //        }
-    //    }
-    //}
-
-    //    if (playerName == "")
-    //{
-    //    if (isConnected)
-    //    {
-    //        if (IsLocalPlayer)
-    //        {
-    //            playerName = GameNetworkManager.playerNickName;
-    //            ///PlayNameSync.Value = playerName;
-    //            //nameTag.text = playerName;
-    //        }
-    //    }
-    //}
 
     private void OnDestroy()
     {

@@ -26,6 +26,13 @@ public class PlayerHealth : NetworkBehaviour
     [SerializeField] public float maxHealth;
 
     [SerializeField] private PlayerStat thePlayer;
+
+    public GameObject respawnMenu;
+
+    public SpriteRenderer playerSprite;
+
+    public SpriteRenderer shadowSprite;
+
     /// <summary>
     /// Current health for this object.
     /// </summary>
@@ -45,6 +52,8 @@ public class PlayerHealth : NetworkBehaviour
         if (thePlayer == null)
         {
             thePlayer = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerStat>();
+
+            respawnMenu = GameObject.FindGameObjectWithTag("Respawn Menu");
 
             if (thePlayer != null) {
                 thePlayer.statUpdated += updateHealthClientRpc;
@@ -105,6 +114,12 @@ public class PlayerHealth : NetworkBehaviour
     private void HandleDeathClientRpc()
     {
         gameObject.SetActive(false);
+        if (IsLocalPlayer)
+        {
+            respawnMenu.GetComponent<CanvasGroup>().alpha = 1;
+            respawnMenu.GetComponent<CanvasGroup>().interactable = true;
+            respawnMenu.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
     }
 
     [ClientRpc]
@@ -123,5 +138,4 @@ public class PlayerHealth : NetworkBehaviour
             Health.Value = maxHealth;
         }
     }
-
 }

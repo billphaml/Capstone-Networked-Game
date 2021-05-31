@@ -26,11 +26,11 @@ public class GameNetworkManager : MonoBehaviour
         }
         else
         {
-            StatusLabels();
+            //StatusLabels();
 
             //SubmitNewPosition();
 
-            QuitSession();
+            //QuitSession();
         }
 
         GUILayout.EndArea();
