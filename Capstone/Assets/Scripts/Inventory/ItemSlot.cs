@@ -65,6 +65,10 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         {
             ToolTip.theToolTip.setItemInfo(theItem);
         }
+        else
+        {
+            ToolTip.theToolTip.resetToolTip();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -162,6 +166,15 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
                 {
                     theInventory.AddItem(theItem);
                     ClearSlot();
+                }
+
+                if (theItem == null)
+                {
+                    ToolTip.theToolTip.resetToolTip();
+                }
+                else
+                {
+                    ToolTip.theToolTip.setItemInfo(theItem);
                 }
             }
         }

@@ -79,6 +79,10 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
         {
             ToolTip.theToolTip.setItemInfo(theItem);
         }
+        else
+        {
+            ToolTip.theToolTip.resetToolTip();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -220,6 +224,15 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
                         }
                         break;
                 }
+            }
+
+            if (theItem == null)
+            {
+                ToolTip.theToolTip.resetToolTip();
+            }
+            else
+            {
+                ToolTip.theToolTip.setItemInfo(theItem);
             }
         }
     }

@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!activeType)
         {
-            if (canEnter == true && Input.GetKeyDown(KeyCode.Space))
+            if (canEnter == true && Input.GetKeyDown(KeyCode.Space) && isActive)
             {
                 ResponseHandler();
                 NextDialogue();
@@ -100,14 +100,14 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if (canEnter == true && Input.GetKeyDown(KeyCode.Space))
+            if (canEnter == true && Input.GetKeyDown(KeyCode.Space) && isActive)
             {
                 // Trigger The Event Tag 
                 TurnOffTimer();
                 InsertNextDialogue(activeDialogue.branchNext);
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isActive)
             {
                 for (int i = 0; i < queueDialogue.Count; i++)
                 {
@@ -117,7 +117,7 @@ public class DialogueManager : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow) && isActive)
             {
                 queueDialogue.Enqueue(activeDialogue);
                 NextDialogue();

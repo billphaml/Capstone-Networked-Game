@@ -76,6 +76,15 @@ public class EquipmentSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
                 theInventory.AddItem(returnItem);
                 theEquipmentManager.RemoveFromInventory(theItem);
                 ClearSlot();
+
+            }
+            if (theItem == null)
+            {
+                ToolTip.theToolTip.resetToolTip();
+            }
+            else
+            {
+                ToolTip.theToolTip.setItemInfo(theItem);
             }
         }
     }
@@ -85,6 +94,10 @@ public class EquipmentSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
         if (theItem != null)
         {
             ToolTip.theToolTip.setItemInfo(theItem);
+        }
+        else
+        {
+            ToolTip.theToolTip.resetToolTip();
         }
     }
 

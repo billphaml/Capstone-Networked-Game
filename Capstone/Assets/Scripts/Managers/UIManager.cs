@@ -7,10 +7,10 @@
  *****************************************************************************/
 
 using UnityEngine;
+using MLAPI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : NetworkBehaviour
 {
-
     public static UIManager theUIManager;
 
     [Header("Hosting")]
@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
 
     private void CheckInventoryUI()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !DialogueSystem.theLocalGameManager.isDialogueActive)
+        if (Input.GetKeyDown(KeyCode.I) && !DialogueSystem.theLocalGameManager.isDialogueActive && (IsHost || IsClient))
         {
             if (isOpenInventory)
             {
@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour
 
     private void CheckCraftingUI()
     {
-        if (Input.GetKeyDown(KeyCode.O) && !DialogueSystem.theLocalGameManager.isDialogueActive)
+        if (Input.GetKeyDown(KeyCode.O) && !DialogueSystem.theLocalGameManager.isDialogueActive && (IsHost || IsClient))
         {
             if (isOpenCrafting)
             {
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
     private void CheckEquipmentUI()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !DialogueSystem.theLocalGameManager.isDialogueActive)
+        if (Input.GetKeyDown(KeyCode.E) && !DialogueSystem.theLocalGameManager.isDialogueActive && (IsHost || IsClient))
         {
             if (isOpenEquipment)
             {

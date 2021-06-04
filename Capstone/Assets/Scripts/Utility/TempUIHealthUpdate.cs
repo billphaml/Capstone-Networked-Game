@@ -4,6 +4,7 @@
  * Authors: Bill, Hamza, Max, Ryan
  *****************************************************************************/
 
+using UnityEngine;
 using MLAPI;
 using TMPro;
 
@@ -12,6 +13,8 @@ public class TempUIHealthUpdate : NetworkBehaviour
     private PlayerHealth player = null;
 
     public TextMeshProUGUI ui = null;
+
+    public CanvasGroup healthCanvas = null;
 
     // Update is called once per frame
     void Update()
@@ -29,6 +32,7 @@ public class TempUIHealthUpdate : NetworkBehaviour
 
         if (player != null)
         {
+            healthCanvas.alpha = 1;
             ui.text = "Health: " + player.Health.Value + "/" + player.maxHealth;
         }
     }

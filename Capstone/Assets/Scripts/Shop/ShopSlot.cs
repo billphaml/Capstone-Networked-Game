@@ -61,7 +61,14 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 theInventory.AddItem(theItem);
                 ShopManager.theShopManager.removeItem(theItem);
             }
-            
+            if (theItem == null)
+            {
+                ToolTip.theToolTip.resetToolTip();
+            }
+            else
+            {
+                ToolTip.theToolTip.setItemInfo(theItem);
+            }
         }
     }
 
@@ -70,6 +77,10 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if(theItem != null)
         {
             ToolTip.theToolTip.setItemInfo(theItem);
+        }
+        else
+        {
+            ToolTip.theToolTip.resetToolTip();
         }
     }
 

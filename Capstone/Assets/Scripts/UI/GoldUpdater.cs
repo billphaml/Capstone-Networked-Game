@@ -16,6 +16,8 @@ public class GoldUpdater : MonoBehaviour
 
     public TextMeshProUGUI ui = null;
 
+    public CanvasGroup goldCanvas;
+
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +36,7 @@ public class GoldUpdater : MonoBehaviour
 
         if (player != null)
         {
+            goldCanvas.alpha = 1;
             ui.text = "Gold: " + player.GetGold();
         }
     }
