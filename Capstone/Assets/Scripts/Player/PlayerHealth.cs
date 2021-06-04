@@ -128,11 +128,6 @@ public class PlayerHealth : NetworkBehaviour
         float dummyMaxHealth = maxHealth;
         maxHealth = thePlayer.thePlayer.playerMaxHealth;
 
-        if(maxHealth > dummyMaxHealth)
-        {
-            Health.Value += (maxHealth - dummyMaxHealth);
-        }
-
         if (maxHealth < Health.Value)
         {
             Health.Value = maxHealth;

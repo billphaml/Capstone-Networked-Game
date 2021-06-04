@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
   m_Name: AfterGenericQuest
   m_EditorClassIdentifier: 
-  sceneDialogue: []
+  sceneDialogue:
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: The Barone
+    dialogueText: 'Come back to me when you''re done with the quest. '
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []

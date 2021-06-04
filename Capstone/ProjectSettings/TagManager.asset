@@ -23,6 +23,7 @@ TagManager:
   - Network Manager
   - Game Network Manager
   - Respawn Menu
+  - Gold
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Second UI
   - 
   - 
   - 
