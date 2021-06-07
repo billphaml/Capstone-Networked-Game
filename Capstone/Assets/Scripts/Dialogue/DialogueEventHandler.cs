@@ -24,6 +24,8 @@ public class DialogueEventHandler : MonoBehaviour
                 return TriggerIntro(branchNum);
             case "Golem_Slayer":
                 return TriggerGolemSlayer(branchNum);
+            case "Goblin_Slayer":
+                return TriggerGoblinSlayer(branchNum);
             case "Lost_Child_Intro":
                 return TriggerLostChildIntro(branchNum);
             case "Cain_Intro":
@@ -90,6 +92,18 @@ public class DialogueEventHandler : MonoBehaviour
         }
     }
 
+    public DialogueScene TriggerGoblinSlayer(int branchNum)
+    {
+        switch (branchNum)
+        {
+            case 1:
+                GiveQuest.theGiveQuest.acceptQuest();
+                return (DialogueScene)Resources.Load("Scene_Dialogue/AfterGenericQuest");
+            default:
+                return null;
+        }
+    }
+
     public DialogueScene TriggerEserIntro()
     {
       return (DialogueScene)Resources.Load("Scene_Dialogue/Eser_Default");
@@ -102,7 +116,7 @@ public class DialogueEventHandler : MonoBehaviour
 
     public DialogueScene TriggerBaroneIntro()
     {
-        return (DialogueScene)Resources.Load("Scene_Dialogue/Golem_Slayer");
+        return (DialogueScene)Resources.Load("Scene_Dialogue/Goblin_Slayer");
     }
 
     public DialogueScene TriggerGeorgeIntro()

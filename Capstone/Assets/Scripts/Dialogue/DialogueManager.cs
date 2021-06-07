@@ -16,6 +16,7 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public GameObject textGroup;
+    public CanvasGroup userResponseCanvas = null;
     public TextMeshProUGUI dialogueDisplay;
     public TextMeshProUGUI placeholderDisplay;
     public TextMeshProUGUI activeDisplay;
@@ -38,10 +39,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Dialogue activeDialogue;
     private DialogueScene currentDialogueScene;
 
-    void Awake()
-    {
-        timeDisplay.enabled = false;
-    }
 
     void Start()
     {
@@ -104,23 +101,19 @@ public class DialogueManager : MonoBehaviour
             {
                 // Trigger The Event Tag 
                 TurnOffTimer();
+                hideResponseHelpText();
+                hideUserResponse();
                 InsertNextDialogue(activeDialogue.branchNext);
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow) && isActive)
             {
-                for (int i = 0; i < queueDialogue.Count; i++)
-                {
-                    queueDialogue.Enqueue(activeDialogue);
-                    NextDialogue();
-                }
-
+                upButtonDialogue();
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && isActive)
             {
-                queueDialogue.Enqueue(activeDialogue);
-                NextDialogue();
+                downButtonDialogue();
             }
 
             foreach (char letter in Input.inputString)
@@ -251,6 +244,7 @@ public class DialogueManager : MonoBehaviour
         if (activeDialogue.dialogueResponse.Length > 0)
         {
             QuestHandler();
+            showUserResponse();
             for (int i = 0; i < activeDialogue.dialogueResponse.Length; i++)
             {
                 queueDialogue.Enqueue(activeDialogue.dialogueResponse[i]);
@@ -258,6 +252,10 @@ public class DialogueManager : MonoBehaviour
             if(activeDialogue.typeTime >= 0)
             {
                 TurnOnTimer();
+            }
+            else
+            {
+                showResponseHelpText();
             }
         }
     }
@@ -270,6 +268,21 @@ public class DialogueManager : MonoBehaviour
     {
         bool endType = (currentIndex >= activeDialogue.dialogueText.Length);
         return endType;
+    }
+
+    public void upButtonDialogue()
+    {
+        for (int i = 0; i < queueDialogue.Count; i++)
+        {
+            queueDialogue.Enqueue(activeDialogue);
+            NextDialogue();
+        }
+    }
+
+    public void downButtonDialogue()
+    {
+        queueDialogue.Enqueue(activeDialogue);
+        NextDialogue();
     }
 
     // This method is used to turn on the dialogue, showing the textbox
@@ -293,14 +306,12 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueTime = activeDialogue.typeTime;
         dialogueTimeActive = true;
-        timeDisplay.enabled = true;
     }
 
     private void TurnOffTimer()
     {
         dialogueTime = activeDialogue.typeTime;
         dialogueTimeActive = false;
-        timeDisplay.enabled = false;
     }
 
     public bool GetActive()
@@ -322,6 +333,30 @@ public class DialogueManager : MonoBehaviour
             GiveQuest.theGiveQuest.openQuest();
         }
     }
+
+    private void showUserResponse()
+    {
+        userResponseCanvas.alpha = 1;
+        userResponseCanvas.interactable = true;
+        userResponseCanvas.blocksRaycasts = true;
+    }
+
+    private void hideUserResponse()
+    {
+        userResponseCanvas.alpha = 0;
+        userResponseCanvas.interactable = false;
+        userResponseCanvas.blocksRaycasts = false;
+    }
+
+    private void showResponseHelpText()
+    {
+        timeDisplay.text = "Type your response!";
+    }
+
+    private void hideResponseHelpText()
+    {
+        timeDisplay.text = "";
+    }
     
     private void UpdateEndDialogue()
     {
@@ -333,6 +368,7 @@ public class DialogueManager : MonoBehaviour
                 GameEvent.theGameEvent.OnEndOfDialogue(currentDialogueScene, activeDialogue.branchNum);
                 TurnOffDialogue();
                 TurnOffTimer();
+                hideUserResponse();
                 isEndDialogue = false;
             }
         }
@@ -344,10 +380,11 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueTime -= Time.deltaTime;
             int intTime = (int)dialogueTime + 1;
-            timeDisplay.text = intTime.ToString() + "...";
+            timeDisplay.text = intTime.ToString() + " seconds, type your response!";
             if (dialogueTime <= 0)
             {
                 TurnOffTimer();
+                hideUserResponse();
                 InsertNextDialogue(-1);
             }
         }

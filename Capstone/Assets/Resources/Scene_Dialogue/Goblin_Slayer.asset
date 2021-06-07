@@ -10,15 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bea8ff563e0d88a4598cd785193bdbab, type: 3}
-  m_Name: Golem_Slayer
+  m_Name: Goblin_Slayer
   m_EditorClassIdentifier: 
   sceneDialogue:
   - eventPrerequisite: 
     branchNum: 0
     speakerName: The Barone
-    dialogueText: Some punks been practicing alchemy and animating golems without
-      the proper licenses. Now we have a  bunch of golems outside of town wreaking
-      havoc and causing untold damages. You think you can put a few of them to rest?
+    dialogueText: Some punks been practicing alchemy and summoning goblins without
+      the proper licenses. Now we have a  bunch of goblins outside of town wreaking
+      havoc and causing untold damages. I don't understand, it's like these dumbasses
+      just want us all to get killed.
+    canType: 0
+    typeTime: 0
+    branchNext: 0
+    theQuest: {fileID: 0}
+    dialogueResponse: []
+  - eventPrerequisite: 
+    branchNum: 0
+    speakerName: The Barone
+    dialogueText: You think you can help take a few of the goblins down?
     canType: 0
     typeTime: -1
     branchNext: 0
@@ -36,7 +46,7 @@ MonoBehaviour:
     - eventPrerequisite: 
       branchNum: 0
       speakerName: Player
-      dialogueText: Nope, I am not going anywhere near a golem.
+      dialogueText: Nope, I am not going anywhere near a goblin.
       canType: 1
       typeTime: 0
       branchNext: 2

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33be5cf6a579b8b44a2d4ccb06ff29c6, type: 3}
-  m_Name: Golem_Slayer
+  m_Name: Goblin_Slayer
   m_EditorClassIdentifier: 
   questID: 0
   Repeatable: 1
-  title: Golem Slayer
-  description: Unlicensed golem have been spotted prowling around town. Kill 10 to
-    reduce their soulless number.
+  title: Goblin Slayer
+  description: Goblins have been spotted prowling outside of town. Kill 10 to reduce
+    their disgusting number.
   experienceReward: 100
   goldReward: 2000
   goal:
