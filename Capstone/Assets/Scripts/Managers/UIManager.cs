@@ -19,6 +19,7 @@ public class UIManager : NetworkBehaviour
     public GameObject NickNameHost;
     public GameObject NickNameClient;
 
+
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventory = null;
     public bool isOpenInventory = false;
@@ -38,10 +39,12 @@ public class UIManager : NetworkBehaviour
     //[SerializeField] private DialogueSystem localDialogueManager = null;
 
     [Header("Crafting")]
-    public bool isOpenCrafting = false;
+    public
+        bool isOpenCrafting = false;
     [SerializeField] private CanvasGroup crafting = null;
 
-    void Awake()
+
+     void Awake()
     {
         theUIManager = this;
     }
@@ -50,7 +53,6 @@ public class UIManager : NetworkBehaviour
     void Start()
     {
 #if !UNITY_ANDROID
-        Debug.Log("Not android");
         Destroy(androidUI);
 #endif
     }
