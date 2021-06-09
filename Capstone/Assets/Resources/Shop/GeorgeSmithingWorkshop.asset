@@ -26,3 +26,5 @@ MonoBehaviour:
     shopItemAmount: 100
   - theShopItem: {fileID: 11400000, guid: acbdc0933ddadf24483eccff0d74d317, type: 2}
     shopItemAmount: 100
+  - theShopItem: {fileID: 11400000, guid: 4d51ededc7ede6f49acb61048ab47941, type: 2}
+    shopItemAmount: 0

@@ -13,10 +13,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class DialogueManager : MonoBehaviour
 {
     public GameObject textGroup;
+    public CanvasGroup dialogueCanvasGroup = null;
     public CanvasGroup userResponseCanvas = null;
+    public CanvasGroup continueCanvas = null;
     public TextMeshProUGUI dialogueDisplay;
     public TextMeshProUGUI placeholderDisplay;
     public TextMeshProUGUI activeDisplay;
@@ -63,6 +66,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
         canEnter = true;
+        turnOnContinue();
     }
 
     // This method is used in order to display the placeholder text for the players to type in
@@ -79,6 +83,7 @@ public class DialogueManager : MonoBehaviour
     public void DequeueDisplayText()
     {
         canEnter = false;
+        turnOffContinue();
         activeDialogue = queueDialogue.Dequeue();
         activeType = activeDialogue.canType;
         nameDisplay.text = activeDialogue.speakerName;
@@ -116,9 +121,29 @@ public class DialogueManager : MonoBehaviour
                 downButtonDialogue();
             }
 
+            char[] currentChar = activeDialogue.dialogueText.ToCharArray();
+
+
+            if (canEnter == false && (currentChar[currentIndex] == ' ' || currentChar[currentIndex] == ',' || currentChar[currentIndex] == '.'))
+            {
+                moveNextChar();
+            }
+
             foreach (char letter in Input.inputString)
             {
-                UserInput(letter);
+              UserInput(letter);
+            }
+
+
+            if (EndDialogue())
+            {
+                canEnter = true;
+                turnOnContinue();
+            }
+            else
+            {
+                canEnter = false;
+                turnOffContinue();
             }
         }
     }
@@ -131,37 +156,54 @@ public class DialogueManager : MonoBehaviour
         {
             if (canEnter == false)
             {
-                if (GetLetter() == uInput)
+
+                if (getLowerLetter() == uInput || getUpperLetter() == uInput)
                 {
                     // Play typing sound
                     // Highlight letter and move onto the next letter
-                    activeDisplay.text += uInput;
-                    currentIndex++;
-
+                    moveNextChar();
                     break;
                 }
             }
         }
-
-        if (EndDialogue())
-        {
-            canEnter = true;
-        }
-        else
-        {
-            canEnter = false;
-        }
     }
 
-    // This method is used to get the letter at the current index that the user is 
-    public char GetLetter()
+    private void moveNextChar()
     {
-        string activeWord = activeDialogue.dialogueText;
+        activeDisplay.text += getLetter();
+        currentIndex++;
+    }
+
+    // This method is used to check for player lowercase input
+    public char getLowerLetter()
+    {
+        string activeWord = activeDialogue.dialogueText.ToLower();
 
         char[] theChar = activeWord.ToCharArray();
 
         return theChar[currentIndex];
     }
+
+    // This method is used to check for player uppercase input
+    public char getUpperLetter()
+    {
+        string activeWord = activeDialogue.dialogueText.ToUpper();
+
+        char[] theChar = activeWord.ToCharArray();
+
+        return theChar[currentIndex];
+    }
+
+    // This method is used to get the letter at the current index that the user is 
+    public string getLetter()
+    {
+        string activeWord = activeDialogue.dialogueText;
+
+        char[] theChar = activeWord.ToCharArray();
+
+        return theChar[currentIndex].ToString();
+    }
+
 
     public void ResetTextBox()
     {
@@ -172,6 +214,7 @@ public class DialogueManager : MonoBehaviour
         nameDisplay.text = "";
     }
 
+    // This method is used to start the dialogue system in the game.
     public void StartDialogue(DialogueScene startScene)
     {
         // Find the dialogue set corresponding with the scene
@@ -288,7 +331,10 @@ public class DialogueManager : MonoBehaviour
     // This method is used to turn on the dialogue, showing the textbox
     private void TurnOnDialogue()
     {
-        textGroup.SetActive(true);
+        //textGroup.SetActive(true);
+        dialogueCanvasGroup.alpha = 1;
+        dialogueCanvasGroup.interactable = true;
+        dialogueCanvasGroup.blocksRaycasts = true;
         isActive = true;
         DialogueSystem.theLocalGameManager.TurnOnDialogue();
     }
@@ -296,7 +342,10 @@ public class DialogueManager : MonoBehaviour
     // This method is used to turn off the dialogue, hiding the textbox
     private void TurnOffDialogue()
     {
-        textGroup.SetActive(false);
+        //textGroup.SetActive(false);
+        dialogueCanvasGroup.alpha = 0;
+        dialogueCanvasGroup.interactable = false;
+        dialogueCanvasGroup.blocksRaycasts = false;
         isActive = false;
         GiveQuest.theGiveQuest.closeQuest();
         DialogueSystem.theLocalGameManager.TurnOffDialogue();
@@ -312,6 +361,16 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueTime = activeDialogue.typeTime;
         dialogueTimeActive = false;
+    }
+
+    private void turnOnContinue()
+    {
+        continueCanvas.alpha = 1;
+    }
+
+    private void turnOffContinue()
+    {
+        continueCanvas.alpha = 0;
     }
 
     public bool GetActive()
@@ -380,7 +439,15 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueTime -= Time.deltaTime;
             int intTime = (int)dialogueTime + 1;
-            timeDisplay.text = intTime.ToString() + " seconds, type your response!";
+            if(intTime == 1)
+            {
+                timeDisplay.text = intTime.ToString() + " second, type your response!";
+            }
+            else
+            {
+                timeDisplay.text = intTime.ToString() + " seconds, type your response!";
+            }
+
             if (dialogueTime <= 0)
             {
                 TurnOffTimer();
