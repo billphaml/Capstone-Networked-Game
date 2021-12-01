@@ -1,4 +1,4 @@
-# Capstone-Networked-Game
+# Unity networking demo
 
 Project to explore the issues and challenges related to multiplayer networking in Unity.
 
